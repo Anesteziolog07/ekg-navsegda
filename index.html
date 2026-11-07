@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ЭКГ навсегда — бесплатный курс по чтению ЭКГ</title><meta name="description" content="Бесплатный курс по чтению ЭКГ: 12 глав с загадками, образами для памяти, лентами и тренажёром. Без регистрации.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="ЭКГ навсегда"><meta property="og:description" content="Бесплатный курс по чтению ЭКГ: 12 глав с загадками, образами для памяти, лентами и тренажёром. Без регистрации."><meta property="og:type" content="website"><meta name="theme-color" content="#b3122f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23b3122f'/%3E%3Cpath d='M2 18h8l3-10 5 17 3-7h9' fill='none' stroke='white' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@500;700&display=swap">
+<style>:root{padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<noscript><p style="padding:16px">Для курса нужен JavaScript.</p></noscript>
+
+
+
+<style>
+/* Концепция: светлая тема = лента кардиографа на миллиметровке, тёмная = экран прикроватного монитора.
+   Вся страница говорит языком ленты: клетка, калибровка, подпись 25 мм/с. */
+:root{
+  --bg:#fdf9f8; --fg:#1d1a20; --muted:#655a60; --line:#ecd6d3;
+  --tape:#fffbfa; --g1:#f6d7d4; --g2:#eaaba6; --trace:#1b1a22;
+  --accent:#b3122f; --accent-ink:#ffffff; --band:#b3122f22;
+  --img:#0a6660; --img-bg:#e3f2ef; --warn:#8a5200; --warn-bg:#fbefd9;
+  --ok:#17693f; --bad:#b3122f; --card:#ffffff;
+  --display:"Unbounded","Golos Text",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1412; --fg:#e6efeb; --muted:#93a59d; --line:#21332c;
+  --tape:#0a100e; --g1:#14231d; --g2:#1f3a2f; --trace:#7cf2b0;
+  --accent:#ff7a85; --accent-ink:#2a0a0e; --band:#ff7a8530;
+  --img:#7fe3d6; --img-bg:#10302b; --warn:#f2c26b; --warn-bg:#33280f;
+  --ok:#7cf2b0; --bad:#ff7a85; --card:#121c19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1412; --fg:#e6efeb; --muted:#93a59d; --line:#21332c;
+  --tape:#0a100e; --g1:#14231d; --g2:#1f3a2f; --trace:#7cf2b0;
+  --accent:#ff7a85; --accent-ink:#2a0a0e; --band:#ff7a8530;
+  --img:#7fe3d6; --img-bg:#10302b; --warn:#f2c26b; --warn-bg:#33280f;
+  --ok:#7cf2b0; --bad:#ff7a85; --card:#121c19; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+h1{font:700 clamp(30px,7vw,52px)/1.08 var(--display);letter-spacing:-.01em}
+h2{font:700 clamp(22px,4.6vw,30px)/1.2 var(--display)}
+h3{font:600 20px/1.3 var(--body);margin-top:6px}
+p{margin:0}
+a{color:var(--accent)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .in{max-width:820px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px 16px;align-items:center;flex-wrap:wrap}
+nav.top .logo{font:700 15px var(--display);color:var(--fg);text-decoration:none;margin-right:auto}
+nav.top .links{display:flex;gap:4px;flex-wrap:wrap}
+nav.top .links a{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:6px}
+nav.top .links a.on{color:var(--accent-ink);background:var(--accent)}
+.view{display:flex;flex-direction:column;gap:22px;padding-top:26px;scroll-margin-top:120px}
+@media (max-width:480px){nav.top .links a{font-size:14px;padding:5px 7px}nav.top .links{gap:2px}nav.top .in{padding-block:7px}}
+.eyebrow{font:600 13px var(--mono);letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
+.lead{font-size:19px;line-height:1.5}
+.muted{color:var(--muted)}
+.small{font-size:15px}
+figure{margin:0}
+.tape{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tape svg{display:block;width:100%;height:auto;background:var(--tape);border:1px solid var(--g2)}
+.tape figcaption{font-size:15px;line-height:1.45;color:var(--muted)}
+.tape figcaption b{color:var(--fg);font-weight:600}
+svg .g1{stroke:var(--g1);stroke-width:.5;fill:none}
+svg .g2{stroke:var(--g2);stroke-width:.8;fill:none}
+svg .tr{stroke:var(--trace);stroke-width:1.5;fill:none;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+svg .tag{fill:var(--muted);font:500 7px var(--mono)}
+svg .lb{fill:var(--accent);font:700 11px var(--mono);text-anchor:middle}
+svg .band{fill:var(--band)}
+.beats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.beats.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.beats:not(#axQ){grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* образ: отрывной талон, не карточка */
+.obraz{background:var(--img-bg);color:var(--fg);padding:14px 16px 15px;border:1px dashed var(--img);display:flex;flex-direction:column;gap:6px}
+.obraz .k{font:600 12px var(--mono);letter-spacing:.08em;color:var(--img);text-transform:uppercase}
+.obraz b{color:var(--img);font-weight:700}
+.warn{background:var(--warn-bg);padding:12px 16px;font-size:16px;display:flex;flex-direction:column;gap:4px}
+.warn .k{font:600 12px var(--mono);letter-spacing:.08em;color:var(--warn);text-transform:uppercase}
+.tblw{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:15.5px;line-height:1.4}
+th{font-weight:600;text-align:left;color:var(--muted);font-size:13.5px;border-bottom:2px solid var(--g2);padding:6px 10px 6px 0;vertical-align:bottom}
+td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+details.q{border-top:1px solid var(--line);padding:10px 0}
+details.q:last-of-type{border-bottom:1px solid var(--line)}
+details.q summary{cursor:pointer;font-weight:500;list-style-position:outside;margin-left:18px}
+details.q p{margin:8px 0 2px 18px;color:var(--img);font-weight:500}
+.qs{display:flex;flex-direction:column}
+.qs h3{margin-bottom:8px}
+button,.btn{font:600 16px var(--body);border-radius:6px;cursor:pointer;padding:11px 16px;border:1px solid var(--accent);background:transparent;color:var(--accent);text-decoration:none;display:inline-block;text-align:center}
+button.pri,.btn.pri{background:var(--accent);color:var(--accent-ink)}
+button.chip{padding:6px 11px;font-size:14.5px;font-weight:500;border-color:var(--g2);color:var(--fg)}
+button.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--img);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.sp{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:start}
+.grid2>*{min-width:0}
+ol.toc{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+ol.toc li{border-bottom:1px solid var(--line)}
+ol.toc a{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:baseline;padding:11px 0;text-decoration:none;color:var(--fg)}
+ol.toc .no{font:600 14px var(--mono);color:var(--accent)}
+ol.toc .ti{font-weight:600;min-width:0}
+ol.toc .ti small{display:block;font-weight:400;color:var(--muted);font-size:15px;line-height:1.35}
+ol.toc .st{font:500 13px var(--mono);color:var(--muted);white-space:nowrap}
+ol.toc .st.done{color:var(--ok)}
+.stats{display:flex;gap:26px;flex-wrap:wrap}
+.stats div{display:flex;flex-direction:column}
+.stats b{font:600 26px var(--mono);line-height:1.1}
+.stats span{font-size:14px;color:var(--muted)}
+.hero{display:flex;flex-direction:column;gap:14px}
+.sweep{position:relative;overflow:hidden}
+.sweep::after{content:"";position:absolute;top:1px;bottom:1px;width:7%;left:-8%;background:linear-gradient(90deg,transparent,var(--tape));animation:sw 5s linear infinite}
+@keyframes sw{to{left:101%}}
+@media (prefers-reduced-motion:reduce){.sweep::after{display:none}}
+.widget{border:1px solid var(--g2);background:var(--card);padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.widget .wt{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.leads{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.leads span{font:600 15px var(--mono);text-align:center;padding:9px 0;border:1px solid var(--g2);color:var(--muted)}
+.leads span.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.flash{border:1px solid var(--g2);background:var(--card);padding:20px;display:flex;flex-direction:column;gap:14px;min-height:230px}
+.flash .qq{font-size:20px;font-weight:600;line-height:1.35}
+.flash .aa{color:var(--img);font-weight:500;font-size:18px;line-height:1.45;white-space:pre-line}
+.flash .meta{font:500 13px var(--mono);color:var(--muted)}
+.ans{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+.ans button{font-weight:500;border-color:var(--g2);color:var(--fg)}
+.ans button.right{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.ans button.wrong{background:var(--bad);border-color:var(--bad);color:var(--bg)}
+select{font:500 15px var(--body);padding:8px;background:var(--card);color:var(--fg);border:1px solid var(--g2);border-radius:6px;max-width:100%}
+.foot{border-top:1px solid var(--line);padding-top:14px;font-size:14.5px;color:var(--muted)}
+.pn{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.fix{display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid var(--line)}
+.fix .h{font-weight:600}
+.fix .tag2{font:600 12px var(--mono);letter-spacing:.05em;color:var(--warn)}
+.fix .tag2.hi{color:var(--bad)}
+ul.t{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+svg .hs{fill:none;stroke:var(--g2);stroke-width:2}
+svg .hp{fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+svg .hp.on{stroke:var(--accent);stroke-width:5}
+svg .hn{fill:var(--muted)}
+svg .hn.on{fill:var(--accent)}
+svg .ht{fill:var(--fg);font:500 12px var(--body)}
+svg .dial{fill:none;stroke:var(--g2);stroke-width:1.2}
+svg .zone{fill:none;stroke-width:13}
+svg .vec{stroke:var(--accent);stroke-width:3.5;stroke-linecap:round}
+svg .ax{stroke:var(--g2);stroke-width:1}
+svg .al{fill:var(--muted);font:600 11px var(--mono);text-anchor:middle;dominant-baseline:middle}
+/* --- игровой слой --- */
+.hud{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--muted);font:500 13px var(--mono);min-width:0}
+.hud .lv{color:var(--fg);font-weight:600;white-space:nowrap}
+.hud .bar{width:64px;height:6px;background:var(--g1);display:block;flex:none}
+.hud .bar i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.hud.beat .lv{animation:pop .4s}
+@keyframes pop{40%{transform:scale(1.18)}}
+#pbar{position:relative;height:20px;border-top:1px solid var(--line);background:var(--tape);overflow:hidden}
+#pbar .pf{position:absolute;inset:0 auto 0 0;background:var(--band);transition:width .5s}
+#pbar span{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:1px;font-size:12px;color:var(--muted)}
+.step{display:flex;flex-direction:column;gap:22px;scroll-margin-top:130px;min-width:0}
+.step.new{animation:rise .45s ease-out}
+@keyframes rise{from{transform:translateY(14px)}}
+.nx{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nx button{min-width:190px}
+.box{border:1px solid var(--g2);background:var(--card);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.box .wt{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.box.mystery{border:2px solid var(--accent)}
+.box .q2{font-size:19px;font-weight:600;line-height:1.35}
+.box .why{font-size:16px;line-height:1.45}
+.box .why.ok{color:var(--ok)}
+.box .why.no{color:var(--bad)}
+.ans button{transition:transform .12s}
+.ans button:not(:disabled):active{transform:scale(.97)}
+.ans button:disabled{cursor:default;opacity:1}
+.ans button.pick{background:var(--img-bg);border-color:var(--img);color:var(--fg)}
+.ans button.right{animation:pop .35s}
+.fx{position:fixed;z-index:60;font:700 18px var(--mono);color:var(--ok);pointer-events:none;animation:fly .9s ease-out forwards}
+@keyframes fly{to{transform:translateY(-46px);opacity:0}}
+.toast{position:fixed;z-index:55;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;font-weight:600;font-size:15px;max-width:calc(100vw - 32px);animation:tin .3s}
+@keyframes tin{from{transform:translate(-50%,16px)}}
+#ov{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));overflow:auto}
+#ov .card{max-width:520px;width:100%;display:flex;flex-direction:column;gap:16px;text-align:left}
+#ov .stamp{font:700 clamp(26px,7vw,40px)/1.1 var(--display);color:var(--accent);border:3px solid var(--accent);padding:10px 14px;align-self:flex-start;transform:rotate(-3deg);animation:stamp .4s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{from{transform:scale(2.2) rotate(-3deg)}}
+#ov .sw svg{display:block;width:100%;height:auto;background:var(--tape);border:1px solid var(--g2)}
+#ov .sw .tr{stroke-dasharray:7000;stroke-dashoffset:7000;animation:draw 1.6s linear forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.badges div{border:1px solid var(--g2);padding:10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.badges b{font-size:15px;line-height:1.25}
+.badges span{font-size:13.5px;line-height:1.3;color:var(--muted)}
+.badges div.off{opacity:.5;border-style:dashed}
+.badges div.on{border-color:var(--ok)}
+.tbar{height:8px;background:var(--g1)}
+.tbar i{display:block;height:100%;background:var(--accent)}
+.big{font:600 44px var(--mono);line-height:1}
+.miss{display:flex;flex-direction:column;gap:6px}
+ol.toc .st.now{color:var(--accent)}
+@media (max-width:480px){.hud .bar{width:44px}.nx button{width:100%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#ov .sw .tr{stroke-dashoffset:0}}
+
+h1{font-size:clamp(27px,6vw,44px)}
+
+</style>
+
+<nav class="top" aria-label="Разделы"><div class="in">
+  <a class="logo" href="#uroki">ЭКГ навсегда</a>
+  <a class="hud" id="hud" href="#uroki" aria-label="Твой прогресс"></a>
+  <div class="links">
+    <a href="#uroki" data-nav="uroki">Главы</a>
+    <a href="#trener" data-nav="trener">Тренажёр</a>
+    <a href="#shpora" data-nav="shpora">Шпаргалка</a>
+    <a href="#okurse" data-nav="okurse">О курсе</a>
+  </div>
+</div>
+<div id="pbar" hidden><div class="pf" id="pfill"></div><span class="mono" id="ptxt"></span></div></nav>
+
+<div class="wrap">
+
+<section class="view" id="uroki">
+  <div class="warn"><span class="k">Версия на проверке</span><p>Сейчас материал вычитывают врачи. Не используй его для решений о лечении.</p></div>
+  <div class="hero">
+    <div class="eyebrow">Бесплатный курс · без регистрации</div>
+    <h1>Научись читать ЭКГ так, чтобы лента сама всё рассказывала</h1>
+    <p class="lead">12 коротких глав. Каждая начинается с загадки, а заканчивается тем, что ты решаешь её сам. Зубрить не придётся: вся ЭКГ сводится к одному вопросу, где прошёл импульс.</p>
+  </div>
+
+  <div class="widget lenta">
+    <span class="wt">Твоя лента</span>
+    <figure class="tape" id="lentaFig"></figure>
+    <p id="lentaTxt"></p>
+    <div class="row"><a class="btn pri" id="goNext" href="#m1">Начать с первой загадки</a></div>
+  </div>
+
+  <div class="widget" id="daily"></div>
+
+  <div class="stats" id="homeStats"></div>
+
+  <div class="obraz">
+    <span class="k">Образ, на котором держится весь курс</span>
+    <p><b>Сердце — это больничное отделение.</b> СА-узел — заведующий: он задаёт темп. АВ-узел — шлюз оперблока: все входят только через него и с задержкой. Желудочки — операционная, где делается работа. Почти вся патология на ленте значит одно из трёх: кто-то скомандовал вместо заведующего, шлюз не пропускает, или кто-то пошёл в обход.</p>
+  </div>
+
+  <div>
+    <h2 style="margin-bottom:12px">12 глав</h2>
+    <ol class="toc" id="toc"></ol>
+  </div>
+
+  <div id="skillsBox" hidden>
+    <h2 style="margin-bottom:12px">Ты уже умеешь</h2>
+    <ul class="t" id="skills"></ul>
+  </div>
+
+  <div>
+    <h2 style="margin-bottom:12px">Значки</h2>
+    <div class="badges" id="badges"></div>
+  </div>
+
+  <p class="foot">Учебный материал, не медицинская рекомендация. Он не заменяет врача, клинические рекомендации и протоколы учреждения. Если тебе плохо прямо сейчас, вызывай скорую. Все ленты нарисованы программой и показывают схему, настоящие записи выглядят грязнее.</p>
+</section>
+
+<!-- ===== ГЛАВА 1 ===== -->
+<section class="view" id="m1" hidden data-m="1">
+  <div class="eyebrow">Глава 1</div>
+  <h2>Проводящая система и электроды</h2>
+  <p class="lead">Импульс рождается наверху, задерживается в одной точке и разбегается по желудочкам. Эта задержка объясняет половину ЭКГ.</p>
+
+  <div class="tblw"><table>
+    <tr><th>Что</th><th>Кто в отделении</th><th>Что делает</th></tr>
+    <tr><td>СА-узел (Кис–Флак)</td><td>Заведующий</td><td>Автоматизм есть у всех, но у него самый быстрый, поэтому он подавляет остальных</td></tr>
+    <tr><td>3 межузловых тракта: Бахман, Венкебах, Торель</td><td>Три коридора</td><td>Несут приказ к АВ-узлу. От тракта Бахмана отходит пучок к левому предсердию</td></tr>
+    <tr><td>АВ-узел (Ашофф–Тавара)</td><td>Шлюз оперблока</td><td>Держит импульс 0,08 с, как мытьё рук перед операцией</td></tr>
+    <tr><td>Пучок Гиса</td><td>Коридор оперблока</td><td>Идёт в межжелудочковой перегородке</td></tr>
+    <tr><td>Правая ножка</td><td>Одна дверь направо</td><td>Прямое продолжение пучка, ранима</td></tr>
+    <tr><td>Левая ножка</td><td>Короткий тамбур и две двери</td><td>Сразу делится на переднюю и заднюю ветви. Передняя ранима</td></tr>
+    <tr><td>Волокна Пуркинье</td><td>Бригада на местах</td><td>Разводят импульс по миокарду</td></tr>
+  </table></div>
+
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Заведующий → три коридора → шлюз → коридор → две двери → бригада.</b> Запомни 0,08 с как мытьё рук: на ленте это ровная линия, ведь пока хирург моется, ничего не происходит. Самых хрупких места два: правая дверь и передняя левая. Вместе они ломаются чаще всего, это будет в главе 7.</p>
+  </div>
+
+  <div data-check="1a"></div>
+  <div class="widget" id="route">
+    <span class="wt">Маршрут на ленте: нажимай по шагам</span>
+    <div class="grid2">
+      <div id="routeHeart"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+        <div class="row" id="routeBtns"></div>
+        <figure class="tape" id="routeBeat" style="max-width:300px"></figure>
+        <p id="routeTxt"></p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Электроды на конечности</h3>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Светофор по часовой стрелке от правой руки.</b> Красный на правую руку (Red и Right на одну букву), жёлтый на левую руку, зелёный на левую ногу, чёрный на правую ногу. Чёрный — это корпус светофора, он же заземление.</p>
+  </div>
+
+  <h3>Грудные электроды</h3>
+  <div class="grid2">
+    <div id="chest"></div>
+    <div class="obraz">
+      <span class="k">Образ</span>
+      <p><b>Этажи.</b> V1 и V2 живут на 4-м этаже по бокам от грудины. V4, V5, V6 живут на 5-м: среднеключичная, передняя подмышечная, средняя подмышечная. V3 стоит на лестнице между V2 и V4, поэтому ставится после V4.</p>
+      <p><b>Цвета:</b> светофор, потом кофе, уголь, слива. Красный, жёлтый, зелёный, коричневый, чёрный, фиолетовый.</p>
+    </div>
+  </div>
+  <div data-check="1b"></div>
+  <p class="small muted">Положение на конечностях почти не влияет на запись. Грудной электрод, смещённый на пару сантиметров, уже искажает картину.</p>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Почему после P идёт ровная линия?</summary><p>Импульс стоит в АВ-узле 0,08 с. Масса миокарда при этом не возбуждается, поэтому записывать нечего.</p></details>
+    <details class="q"><summary>Какие участки проводящей системы страдают чаще всего?</summary><p>Правая ножка и передняя ветвь левой ножки.</p></details>
+    <details class="q"><summary>В каком порядке ставят грудные электроды и почему?</summary><p>V1, V2, V4, V3, V5, V6: V3 нельзя поставить, пока нет V4, он лежит посередине между V2 и V4.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 2 ===================== -->
+<section class="view" id="m2" hidden data-m="2">
+  <div class="eyebrow">Глава 2</div>
+  <h2>Зубцы, сегменты, интервалы</h2>
+  <p class="lead">Одно правило объясняет направление любого зубца: вектор идёт к электроду, и зубец смотрит вверх. Вектор уходит, и зубец смотрит вниз.</p>
+
+  <figure class="tape" data-beat="labeled" data-cap="Один цикл. <b>P</b> — предсердия. <b>QRS</b> — желудочки. <b>ST</b> — равновесие. <b>T</b> — восстановление."></figure>
+
+  <div class="tblw"><table>
+    <tr><th>Элемент</th><th>Что это</th><th>Как запомнить</th></tr>
+    <tr><td>P</td><td>Подъём — правое предсердие, спуск — левое. Две волны сливаются в одну</td><td>Правое — первое</td></tr>
+    <tr><td>Q</td><td>Перегородка. Импульс пробегает по Гису и разворачивается назад, поэтому вектор уходит от электрода</td><td rowspan="3">Слово <b>ПоВОрот</b>: Перегородка, Верхушка, Основание</td></tr>
+    <tr><td>R</td><td>Верхушка, вектор к электроду</td></tr>
+    <tr><td>S</td><td>Основание, вектор от электрода</td></tr>
+    <tr><td>ST</td><td>Деполяризация кончается, реполяризация начинается, сумма равна нулю</td><td>Весы в равновесии</td></tr>
+    <tr><td>T</td><td>Реполяризация преобладает</td><td>Уборка после операции</td></tr>
+  </table></div>
+
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Интервал содержит зубец, сегмент — только ровную линию.</b> Сегмент PQ — это мытьё рук. Интервал PQ — вся дорога от заведующего до входа в операционную: зубец P плюс мытьё рук. Интервал QT — вся жизнь желудочков от начала возбуждения до конца уборки.</p>
+  </div>
+
+  <div data-check="2a"></div>
+  <h3>Нормы в клетках вместо секунд</h3>
+  <p>При 25 мм/с цифры проще видеть глазами. Большая клетка 0,2 с, маленькая 0,04 с.</p>
+  <div class="tblw"><table>
+    <tr><th>Что</th><th class="n">Секунды</th><th class="n">Клетки</th><th>Образ</th></tr>
+    <tr><td>Зубец P</td><td class="n">до 0,10</td><td class="n">2,5 мал.</td><td>Полбольшой</td></tr>
+    <tr><td>QRS</td><td class="n">до 0,10</td><td class="n">2,5 мал.</td><td>Полбольшой</td></tr>
+    <tr><td>Широкий QRS</td><td class="n">≥ 0,12</td><td class="n">3 мал.</td><td>Три маленькие — уже широкий</td></tr>
+    <tr><td>Интервал PQ</td><td class="n">0,12–0,20</td><td class="n">3–5 мал.</td><td>Не больше одной большой</td></tr>
+    <tr><td>Интервал QT</td><td class="n">около 0,44</td><td class="n">11 мал.</td><td>Чуть больше двух больших. Зависит от ЧСС</td></tr>
+  </table></div>
+  <div data-check="2b"></div>
+  <p class="small muted">QT зависит от частоты, поэтому его пересчитывают в QTc. Разберём в главе 12.</p>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Почему Q направлен вниз?</summary><p>Перегородка возбуждается в обратную сторону, вектор уходит от регистрирующего электрода.</p></details>
+    <details class="q"><summary>Из чего складывается интервал PQ?</summary><p>Зубец P (0,1 с) плюс сегмент PQ (около 0,08 с), то есть предсердия и АВ-узел.</p></details>
+    <details class="q"><summary>Что значит подъём и что спуск зубца P?</summary><p>Подъём — правое предсердие, спуск — левое. На этом строятся P pulmonale и P mitrale из главы 8.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 3 ===================== -->
+<section class="view" id="m3" hidden data-m="3">
+  <div class="eyebrow">Глава 3</div>
+  <h2>Алгоритм чтения ЭКГ</h2>
+  <p class="lead">Сначала паспорт ленты, потом рычаг на оси, потом проход по комплексу слева направо.</p>
+
+  <div class="obraz">
+    <span class="k">Образ всего алгоритма</span>
+    <p><b>Паспорт 25–10–12:</b> скорость 25 мм/с, вольтаж 10 мм/мВ, 12 отведений. Проверь П-образную метку: её высота должна совпасть с подписью, иначе аппарат не откалиброван и лента недостоверна.</p>
+    <p><b>РЫЧАГ на ОСИ:</b> РЫ — ритм, ЧА — частота, ОСЬ. Дальше просто иди пальцем слева направо: P, QRS, ST, T и в конце интервалы PQ и QT.</p>
+  </div>
+
+  <h3>Скорость и ЧСС</h3>
+  <div class="tblw"><table>
+    <tr><th>Скорость</th><th class="n">Малая клетка</th><th class="n">Большая</th><th class="n">ЧСС</th></tr>
+    <tr><td>25 мм/с</td><td class="n">0,04 с</td><td class="n">0,2 с</td><td class="n">1500 / R-R в мм</td></tr>
+    <tr><td>50 мм/с</td><td class="n">0,02 с</td><td class="n">0,1 с</td><td class="n">3000 / R-R в мм</td></tr>
+  </table></div>
+  <p>Формула: ЧСС = 60 / (R-R × t). При 25 мм/с она сводится к 1500 / мм: если R-R 20 мм, ЧСС 75 в минуту.</p>
+  <div class="obraz">
+    <span class="k">Приём на три секунды</span>
+    <p>При 25 мм/с считай большие клетки между соседними R: <b class="mono">1 → 300, 2 → 150, 3 → 100, 4 → 75, 5 → 60, 6 → 50.</b></p>
+  </div>
+  <p>Ритм правильный, если R-R расходятся не больше чем на 10%. Норму ЧСС в разных источниках пишут как 60–90 или 60–100 в минуту.</p>
+
+  <div data-check="3a"></div>
+  <h3>Синусовый ли ритм</h3>
+  <ul class="t">
+    <li>P положительный во II и отрицательный в aVR. Это обязательно.</li>
+    <li>P стоит перед каждым QRS.</li>
+    <li>Форма P постоянна в данном отведении.</li>
+  </ul>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>aVR смотрит из-за правого плеча.</b> Весь поток уходит вниз и влево, от него. Поэтому в норме в aVR всё перевёрнуто: и P, и QRS, и T. Если в aVR зубец P положительный, заведующий сидит не на своём месте.</p>
+  </div>
+
+  <div data-check="3b"></div>
+  <h3>Отведения: кто что видит</h3>
+  <div class="tblw"><table>
+    <tr><th>Отведение</th><th>Что видит</th></tr>
+    <tr><td class="n">I</td><td>Передняя стенка. Правая рука — левая рука</td></tr>
+    <tr><td class="n">II</td><td>Сумма I и III. Правая рука — левая нога</td></tr>
+    <tr><td class="n">III</td><td>Задняя стенка. Левая рука — левая нога</td></tr>
+    <tr><td class="n">aVR</td><td>Правая боковая стенка, правое предсердие</td></tr>
+    <tr><td class="n">aVL</td><td>Левая переднебоковая</td></tr>
+    <tr><td class="n">aVF</td><td>Задненижняя. F — foot, пол</td></tr>
+    <tr><td class="n">V1, V2</td><td>Правый желудочек</td></tr>
+    <tr><td class="n">V3</td><td>Перегородка</td></tr>
+    <tr><td class="n">V4</td><td>Верхушка, здесь R самый высокий</td></tr>
+    <tr><td class="n">V5, V6</td><td>Переднебоковая и боковая левого желудочка</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Две команды.</b> Левая: I, aVL, V5, V6. Правая: III, aVF, V1, V2. Команды зеркальны: то, что поднялось у одной, опускается у другой. Это пригодится при блокадах и гипертрофиях.</p>
+  </div>
+
+  <h3>Электрическая ось</h3>
+  <div class="widget" id="axis">
+    <span class="wt">Крути вектор и смотри на I, II, III</span>
+    <div class="grid2">
+      <div id="axDial"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+        <label for="axR" class="mono small">Угол α: <b id="axV"></b></label>
+        <input type="range" id="axR" min="-180" max="180" value="50">
+        <div class="row" id="axBtns"></div>
+        <p><b id="axName"></b></p>
+        <p class="mono small" id="axOrd"></p>
+        <div class="beats" style="grid-template-columns:repeat(3,1fr)" id="axQ"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tblw"><table>
+    <tr><th>Ось</th><th class="n">α</th><th>Порядок R</th></tr>
+    <tr><td>Нормальная</td><td class="n">+30…+69</td><td class="n">II &gt; I &gt; III</td></tr>
+    <tr><td>Вертикальная</td><td class="n">+70…+90</td><td class="muted">Худые люди</td></tr>
+    <tr><td>Горизонтальная</td><td class="n">0…+29</td><td class="muted">Тучные люди</td></tr>
+    <tr><td>Влево</td><td class="n">0…−90</td><td class="n">I &gt; II &gt; III</td></tr>
+    <tr><td>Вправо</td><td class="n">+91…+180</td><td class="n">III &gt; II &gt; I</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Считаем отведения.</b> Влево — прямой счёт 1-2-3. Вправо — обратный отсчёт 3-2-1. Норма — двойка вырвалась вперёд: 2-1-3.</p>
+    <p><b>Смотрим на QRS в I и III.</b> I вверх, III вниз: комплексы разЛетелись, значит Лево. I вниз, III вверх: Подошли друг к другу, значит Право.</p>
+    <p>Ось тянется к мышце и уходит от рубца. Если R одинаковы, считай сумму Q+R+S в I и III и смотри таблицу Дьеда. За рубежом нормальной чаще считают всю зону от −30 до +90.</p>
+  </div>
+
+  <div data-check="3c"></div>
+  <h3>Проход по комплексу</h3>
+  <div class="tblw"><table>
+    <tr><th>Что</th><th>Норма</th></tr>
+    <tr><td>P</td><td>До 0,1 с, до 2,5 мм. Отрицательный в aVR, в V1–V2 может быть двухфазным</td></tr>
+    <tr><td>QRS</td><td>До 0,1 с. Q меньше ¼ R. R растёт от V1 к V4, потом снижается</td></tr>
+    <tr><td>ST</td><td>На изолинии. Допустимо: до 0,5 мм вниз в V5–V6, до 2 мм вверх в V1–V2 при положительном T</td></tr>
+    <tr><td>T</td><td>Отрицательный в aVR. Положительный в I, II, aVF, V2–V6. Любой в III, aVL, V1</td></tr>
+    <tr><td>Интервалы</td><td>PQ 0,12–0,20 с. QTc примерно до 0,45 с</td></tr>
+  </table></div>
+  <figure class="tape" data-beat="rprog" data-cap="Прогрессия R: холм с вершиной в V4. Если вершина сползла к V6 (R V6 &gt; V5 &gt; V4), думай о гипертрофии левого желудочка."></figure>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Что проверить до того, как смотреть на зубцы?</summary><p>Паспорт: скорость, вольтаж и совпадение метки с подписью, все 12 отведений.</p></details>
+    <details class="q"><summary>R-R 15 мм при 25 мм/с. Какая ЧСС?</summary><p>1500 / 15 = 100 в минуту.</p></details>
+    <details class="q"><summary>R в I выше, чем во II, а во II выше, чем в III. Что с осью?</summary><p>Счёт 1-2-3: отклонение влево.</p></details>
+    <details class="q"><summary>Какие критерии синусового ритма обязательны?</summary><p>P положительный во II, отрицательный в aVR, стоит перед каждым QRS, форма постоянная.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 4 ===================== -->
+<section class="view" id="m4" hidden data-m="4">
+  <div class="eyebrow">Глава 4</div>
+  <h2>Синусовые аритмии и экстрасистолы</h2>
+  <p class="lead">При синусовых аритмиях заведующий на месте и меняет только темп. При экстрасистоле кто-то крикнул раньше него.</p>
+
+  <h3>Заведующий меняет темп</h3>
+  <figure class="tape" data-strip="sinTachy" data-cap="<b>Синусовая тахикардия.</b> Всё как в норме, только чаще 90 в минуту. Нагрузка, волнение, анемия, эндокринные причины."></figure>
+  <figure class="tape" data-strip="sinBrady" data-cap="<b>Синусовая брадикардия.</b> Реже 60. Спортсмены, сон, а также повышенное ВЧД, поражение узла, эндокринные причины."></figure>
+  <figure class="tape" data-strip="sinResp" data-cap="<b>Дыхательная аритмия.</b> Ритм синусовый, R-R плавают вместе с дыханием. Вариант нормы."></figure>
+
+  <h3>Экстрасистола: кто крикнул</h3>
+  <p>Общий признак один: R-R перед внеочередным комплексом короче обычного. Дальше задай два вопроса: какой P и какой QRS.</p>
+  <div class="tblw"><table>
+    <tr><th>Откуда</th><th>P</th><th>QRS</th></tr>
+    <tr><td>Предсердие</td><td>Есть, но другой</td><td>Узкий</td></tr>
+    <tr><td>АВ-узел</td><td>Чаще нет, либо отрицательный рядом с QRS</td><td>Узкий</td></tr>
+    <tr><td>Желудочек</td><td>Нет</td><td>Широкий, больше 0,12 с, уродливый</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Вошёл через шлюз — вид приличный. Влез в операционную через окно — вид уродливый.</b> Всё, что родилось выше АВ-узла, проходит нормальным путём, и QRS узкий. Рождённое в желудочке ползёт по мышце, и QRS широкий.</p>
+  </div>
+  <div data-check="4a"></div>
+  <figure class="tape" data-strip="pac" data-cap="<b>Предсердная.</b> Раньше срока, P другой формы, QRS обычный."></figure>
+  <figure class="tape" data-strip="jpc" data-cap="<b>Из АВ-узла.</b> Раньше срока, P нет, QRS обычный."></figure>
+  <figure class="tape" data-strip="pvc" data-cap="<b>Желудочковая.</b> Раньше срока, P нет, QRS широкий, T смотрит в другую сторону. После неё длинная пауза."></figure>
+
+  <h3>Где очаг в предсердии</h3>
+  <div class="beats">
+    <figure class="tape" data-beat="pUp" data-cap="<b>Верх:</b> P положительный, импульс идёт вниз к электроду"></figure>
+    <figure class="tape" data-beat="pBi" data-cap="<b>Середина:</b> P двухфазный, импульс идёт в обе стороны"></figure>
+    <figure class="tape" data-beat="pNeg" data-cap="<b>Низ:</b> P отрицательный, импульс идёт вверх"></figure>
+  </div>
+  <p>То же работает для АВ-узла. Очаг в верхней части: P отрицательный перед QRS, PQ короткий. В средней (самый частый вариант): P спрятан в QRS. В нижней: P отрицательный после QRS.</p>
+
+  <div data-check="4b"></div>
+  <h3>Как они ходят</h3>
+  <figure class="tape" data-strip="bigem" data-cap="<b>Бигеминия:</b> через одну, 1 : 1."></figure>
+  <figure class="tape" data-strip="trigem" data-cap="<b>Тригеминия:</b> после каждых двух нормальных, 1 : 2."></figure>
+  <figure class="tape" data-strip="couplet" data-cap="<b>Парные:</b> две подряд."></figure>
+  <p>Политопные экстрасистолы идут из разных очагов и отличаются друг от друга. Предсердные и АВ-узловые вместе называют наджелудочковыми.</p>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Что общего у всех экстрасистол?</summary><p>Предшествующий R-R короче обычного.</p></details>
+    <details class="q"><summary>Узкий ранний QRS без зубца P. Откуда он?</summary><p>Из АВ-узла, средняя часть: P спрятан в комплексе.</p></details>
+    <details class="q"><summary>Почему QRS узкий при предсердной экстрасистоле?</summary><p>От АВ-узла импульс идёт обычным путём, как и синусовый.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 5 ===================== -->
+<section class="view" id="m5" hidden data-m="5">
+  <div class="eyebrow">Глава 5</div>
+  <h2>Несинусовые тахикардии, трепетания, фибрилляции</h2>
+  <p class="lead">Все они различаются тремя вещами: где очаг, сколько в нём импульсов и сколько пропускает шлюз.</p>
+
+  <h3>Откуда берутся</h3>
+  <div class="obraz">
+    <span class="k">Образ re-entry</span>
+    <p><b>Кольцевая развязка.</b> Есть две дороги с общим въездом и выездом. Быстрая дорога долго отдыхает, медленная отдыхает быстро. Внеочередной импульс попадает на закрытую быструю дорогу и идёт по медленной. Пока он едет, быстрая открылась, и он возвращается по ней навстречу. Круг замкнулся, и эта развязка теперь командует вместо заведующего.</p>
+  </div>
+  <p>Второй механизм — патологический автоматизм: очаг просто разряжается чаще узла. По ЭКГ механизмы не различить. Пароксизмальную и постоянную форму тоже не различить, это определяет анамнез.</p>
+
+  <h3>Лестница частот</h3>
+  <div class="tblw"><table>
+    <tr><th>Предсердия</th><th class="n">В минуту</th><th>Что со шлюзом</th></tr>
+    <tr><td>Тахикардия</td><td class="n">120–220</td><td>Проходят все</td></tr>
+    <tr><td>Трепетание</td><td class="n">240–340</td><td>Часть застревает</td></tr>
+    <tr><td>Фибрилляция</td><td class="n">350–600</td><td>Пропускает как попало</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Двести, триста, четыреста с лишним.</b> Шлюз пропускает примерно 220 в минуту (учебный ориентир): до этого предела каждому P положен свой QRS, выше начинается давка. <b>Трепетание — пила, фибрилляция — рябь на воде.</b> Пила ровная, поэтому ритм желудочков чаще правильный. Рябь хаотична, поэтому R-R разные.</p>
+  </div>
+
+  <div data-check="5a"></div>
+  <h3>Три вопроса к любой тахикардии</h3>
+  <p>1. QRS узкий или широкий? &nbsp;2. R-R ровные? &nbsp;3. Что вместо обычного P?</p>
+  <div class="tblw"><table>
+    <tr><th>Аритмия</th><th>QRS</th><th>R-R</th><th>Вместо P</th><th class="n">Частота</th></tr>
+    <tr><td>Предсердная тахикардия</td><td>Узкий</td><td>Ровные</td><td>Другой P перед каждым QRS</td><td class="n">120–220</td></tr>
+    <tr><td>Тахикардия из АВ-соединения</td><td>Узкий</td><td>Ровные</td><td>P не виден</td><td class="n">120–220</td></tr>
+    <tr><td>Трепетание предсердий</td><td>Узкий</td><td>Чаще ровные</td><td>Пила F, QRS не после каждого</td><td class="n">240–340 предс.</td></tr>
+    <tr><td>Фибрилляция предсердий</td><td>Узкий</td><td>Разные</td><td>Мелкие волны f</td><td class="n">350–600 предс.</td></tr>
+    <tr><td>Желудочковая тахикардия</td><td>Широкий</td><td>Ровные</td><td>Неразличим</td><td class="n">больше 100</td></tr>
+    <tr><td>Фибрилляция желудочков</td><td colspan="3">Комплексов нет, беспорядочные волны</td><td class="n">300–500</td></tr>
+  </table></div>
+
+  <div data-check="5b"></div>
+  <figure class="tape" data-strip="atTachy" data-cap="<b>Предсердная тахикардия.</b> Начало приступа: после трёх синусовых комплексов пошёл частый ритм, P другой и наслаивается на T."></figure>
+  <figure class="tape" data-strip="avTachy" data-cap="<b>Тахикардия из АВ-соединения.</b> Ровно, узко, P не виден. Предсердную и АВ-тахикардию часто не различить, поэтому их объединяют: наджелудочковая тахикардия."></figure>
+  <figure class="tape" data-strip="flutter" data-cap="<b>Трепетание предсердий.</b> Пила, здесь проведение 4 : 1."></figure>
+  <figure class="tape" data-strip="af" data-cap="<b>Фибрилляция предсердий.</b> Нет P, мелкие волны f, R-R все разные."></figure>
+  <figure class="tape" data-strip="vt" data-cap="<b>Желудочковая тахикардия.</b> Широкие одинаковые комплексы, R-R ровные. Угроза жизни, нужна экстренная помощь."></figure>
+  <figure class="tape" data-strip="vflutter" data-cap="<b>Трепетание желудочков.</b> Сплошная синусоида, отдельных QRS и T нет, частота примерно 250–350. Это уже почти фибрилляция."></figure>
+  <figure class="tape" data-strip="vf" data-cap="<b>Фибрилляция желудочков.</b> Хаос. Опаснее ЖТ, лечится дефибрилляцией."></figure>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Какие условия нужны для re-entry?</summary><p>Два параллельных пути с общим началом и концом. Один быстрее, но с более длинным рефрактерным периодом.</p></details>
+    <details class="q"><summary>Узкие QRS, все R-R разные, зубцов P нет. Что это?</summary><p>Фибрилляция предсердий.</p></details>
+    <details class="q"><summary>Чем предсердная тахикардия отличается от АВ-тахикардии?</summary><p>При предсердной есть несинусовый P перед каждым QRS, при АВ зубца P не видно.</p></details>
+    <details class="q"><summary>Почему при трепетании QRS идёт не после каждой волны F?</summary><p>Волн больше 220 в минуту, шлюз пропускает только часть.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 6 ===================== -->
+<section class="view" id="m6" hidden data-m="6">
+  <div class="eyebrow">Глава 6</div>
+  <h2>СА-блокады, внутрипредсердная, АВ-блокады</h2>
+  <p class="lead">Степени всегда одни и те же: I задерживает, II теряет часть импульсов, III не пропускает ничего.</p>
+
+  <div class="obraz">
+    <span class="k">Главное отличие</span>
+    <p><b>СА-блокада:</b> приказ не вышел из кабинета, поэтому исчезает всё, вместе с P. <b>АВ-блокада:</b> приказ дошёл до шлюза, P на месте, исчез только QRS.</p>
+  </div>
+
+  <h3>АВ-блокады: что происходит в шлюзе</h3>
+  <div class="tblw"><table>
+    <tr><th>Степень</th><th>Образ</th><th>На ленте</th></tr>
+    <tr><td>I</td><td>Шлюз медленный, но проходят все</td><td>PQ больше 0,2 с, каждый P с QRS</td></tr>
+    <tr><td>II, Мобитц 1</td><td>Санитар устаёт, открывает всё дольше, потом не открыл, отдохнул и снова бодр</td><td>PQ растёт от удара к удару, затем выпал QRS (периодика Самойлова–Венкебаха)</td></tr>
+    <tr><td>II, Мобитц 2</td><td>Дверь захлопнулась без предупреждения</td><td>PQ одинаковый, QRS внезапно выпал, пауза равна 2 R-R</td></tr>
+    <tr><td>III</td><td>Дверь заперта. В операционной работает своя бригада</td><td>P сами по себе, QRS сами по себе. Оба ритма ровные, связи нет</td></tr>
+  </table></div>
+  <figure class="tape" data-strip="av1" data-cap="<b>I степень.</b> PQ длинный, больше одной большой клетки."></figure>
+  <figure class="tape" data-strip="w1" data-cap="<b>Мобитц 1.</b> PQ растёт, потом P без QRS, и цикл начинается снова."></figure>
+  <figure class="tape" data-strip="w2" data-cap="<b>Мобитц 2.</b> PQ не меняется, и вдруг P без QRS."></figure>
+  <p class="small muted">Если не проведён каждый второй P (блокада 2 : 1), тип по ленте не определить: нужны два подряд проведённых PQ, чтобы сравнить их.</p>
+  <figure class="tape" data-strip="av3" data-cap="<b>III степень.</b> P идут своим ритмом, QRS своим, редким. Функцию водителя для желудочков чаще берёт на себя сам АВ-узел."></figure>
+
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Мобитц 1: один признак, удлинение.</b> <b>Мобитц 2: ровно в 2 раза</b> длиннее пауза. Это работает и для СА-блокады: при типе 2 пауза кратна R-R, при типе 1 меньше 2 R-R.</p>
+  </div>
+
+  <div data-check="6a"></div>
+  <h3>СА-блокады</h3>
+  <div class="tblw"><table>
+    <tr><th>Степень</th><th>Что происходит</th><th>На ленте</th></tr>
+    <tr><td>I</td><td>Выход импульса замедлен</td><td>Не видна: СА-узел на ЭКГ не пишется</td></tr>
+    <tr><td>II, тип 1</td><td>Периодика</td><td>R-R прогрессивно укорачиваются, затем выпал весь комплекс, пауза меньше 2 R-R</td></tr>
+    <tr><td>II, тип 2</td><td>Импульс периодически теряется</td><td>Выпал весь комплекс, пауза равна 2 R-R (3, 4 при выпадении нескольких)</td></tr>
+    <tr><td>III</td><td>Ни один импульс не вышел</td><td>Ритм другого водителя или изолиния</td></tr>
+  </table></div>
+  <figure class="tape" data-strip="saM2" data-cap="<b>СА-блокада II, тип 2.</b> Выпал весь цикл с P, пауза ровно 2 R-R."></figure>
+  <figure class="tape" data-strip="saM1" data-cap="<b>СА-блокада II, тип 1.</b> R-R сокращаются, потом пауза короче 2 R-R."></figure>
+
+  <div class="obraz">
+    <span class="k">Образ замены</span>
+    <p><b>Заведующий ушёл, командует старший.</b> Сначала предсердный очаг, потом АВ-узел (P нет, QRS узкий), в последнюю очередь желудочки (P нет, QRS широкий). Чем ниже водитель, тем реже и ненадёжнее ритм. Ориентиры: АВ-узел примерно 40–60, желудочки 20–40 в минуту.</p>
+  </div>
+
+  <div data-check="6b"></div>
+  <h3>Внутрипредсердная блокада</h3>
+  <p>Импульс тормозит по пути от СА-узла к АВ-узлу. Единственный главный признак: P шире 0,1 с, форма может меняться.</p>
+
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>На ленте выпал весь цикл вместе с P. Какая блокада?</summary><p>СА-блокада II степени.</p></details>
+    <details class="q"><summary>Есть P без QRS, PQ перед ним одинаковые. Что это?</summary><p>АВ-блокада II степени, Мобитц 2.</p></details>
+    <details class="q"><summary>Как доказать полную АВ-блокаду?</summary><p>P-P ровные, R-R ровные, но ритмы разные и связи между P и QRS нет.</p></details>
+    <details class="q"><summary>Почему СА-блокаду I степени не видно?</summary><p>Проведение от узла к предсердию на поверхностной ЭКГ не регистрируется.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 7 ===================== -->
+<section class="view" id="m7" hidden data-m="7">
+  <div class="eyebrow">Глава 7</div>
+  <h2>Блокады ножек пучка Гиса</h2>
+  <p class="lead">Заблокированный желудочек возбуждается последним и в обход. Поэтому QRS широкий, а его хвост указывает на больную сторону.</p>
+
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Буква М живёт там, где блокада.</b> Правая ножка: М в правых отведениях V1–V2 (rsR', заячьи уши). Левая ножка: М в левых отведениях V5–V6 (зазубренный или широкий R, похожий на Л).</p>
+    <p><b>Поворотник в V1.</b> Хвост QRS в V1 вверх, как рычаг вверх: поворот направо, правая ножка. Хвост вниз: поворот налево, левая ножка.</p>
+  </div>
+
+  <div class="beats two">
+    <figure class="tape" data-beat="rbbbV1" data-cap="<b>Блокада правой ножки, V1:</b> rsR', широкий, ST вниз, T отрицательный"></figure>
+    <figure class="tape" data-beat="rbbbV6" data-cap="<b>Блокада правой ножки, V6:</b> qRS, широкий незаострённый S"></figure>
+    <figure class="tape" data-beat="lbbbV1" data-cap="<b>Блокада левой ножки, V1:</b> маленький r или QS, глубокий S, ST вверх"></figure>
+    <figure class="tape" data-beat="lbbbV6" data-cap="<b>Блокада левой ножки, V6:</b> зазубренный R, ST вниз, T отрицательный"></figure>
+  </div>
+
+  <div class="tblw"><table>
+    <tr><th></th><th>Правая ножка</th><th>Левая ножка</th></tr>
+    <tr><td>Форма</td><td>rsR', rSR', RsR', rR' в V1–V2</td><td>rR', RR', Rr', широкий R в V5–V6, в V1–V2 rS или QS</td></tr>
+    <tr><td class="n">Неполная</td><td class="n">QRS 0,10–0,12</td><td class="n">QRS 0,10–0,12</td></tr>
+    <tr><td class="n">Полная</td><td class="n">QRS &gt; 0,12</td><td class="n">QRS &gt; 0,12</td></tr>
+    <tr><td>ST и T при полной</td><td>Вниз и отрицательный в V1–V2</td><td>Вниз и отрицательный в V5–V6, зеркально вверх в V1–V2</td></tr>
+    <tr><td>Ось при полной</td><td class="muted">Не критерий</td><td>Горизонтальная, реже влево</td></tr>
+  </table></div>
+  <div class="warn"><span class="k">Важно</span><p>При полной блокаде изменения ST и T вторичны и сами по себе ишемию не означают. Но блокада может и скрывать инфаркт, особенно левая, поэтому важны клиника и сравнение со старой плёнкой. Для этого есть отдельные критерии, например Сгарбосса, они вне этого курса.</p></div>
+
+  <div data-check="7a"></div>
+  <h3>Ветви левой ножки</h3>
+  <p>Ветви соединены анастомозами, импульс быстро обходит препятствие, поэтому QRS почти не расширен. Главный признак — резкое отклонение оси.</p>
+  <div class="tblw"><table>
+    <tr><th>Ветвь</th><th>Ось</th><th>Зубцы</th></tr>
+    <tr><td>Передняя</td><td class="n">α ≤ −60, влево</td><td>S &gt; R во II, III, aVF</td></tr>
+    <tr><td>Задняя</td><td class="n">α ≥ +120, вправо</td><td>S &gt; R в I, aVL</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Задним ходом смотришь через правое плечо:</b> задняя ветвь, ось вправо. Значит, передняя — влево. Самая частая пара блокад: правая ножка плюс передняя ветвь, те самые две хрупкие двери из главы 1.</p>
+  </div>
+
+  <div data-check="7b"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Широкий QRS, в V1 rsR'. Какая ножка?</summary><p>Правая: М в правых отведениях, хвост вверх.</p></details>
+    <details class="q"><summary>Чем полная блокада отличается от неполной?</summary><p>Шириной QRS: больше 0,12 с против 0,10–0,12 с. При полной ещё есть вторичные изменения ST и T.</p></details>
+    <details class="q"><summary>Ось −70, S &gt; R во II, QRS узкий. Что это?</summary><p>Блокада передней ветви левой ножки.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 8 ===================== -->
+<section class="view" id="m8" hidden data-m="8">
+  <div class="eyebrow">Глава 8</div>
+  <h2>Гипертрофии</h2>
+  <p class="lead">Мышца выросла, а сосуды за ней не успели. Отсюда четыре признака для любого отдела.</p>
+  <div class="obraz">
+    <span class="k">Образ: перекачанная мышца</span>
+    <p><b>Громче, голоднее, медленнее, тянет к себе.</b> Громче: зубцы R или P выше. Голоднее: субэндокардиальная ишемия, ST вниз. Медленнее: проводящие пути лежат под эндокардом и страдают, зубец шире, бывают блокады. Тянет к себе: ось уходит в сторону гипертрофии.</p>
+  </div>
+
+  <h3>Предсердия</h3>
+  <div class="beats two">
+    <figure class="tape" data-beat="pPulm" data-cap="<b>P pulmonale, правое предсердие.</b> Высокий острый, больше 2–2,5 мм, симметричный, не шире нормы. II, III, aVF. Лёгочные болезни."></figure>
+    <figure class="tape" data-beat="pMitr" data-cap="<b>P mitrale, левое предсердие.</b> Двугорбый широкий, больше 0,10–0,12 с. I, II, aVL, V5, V6. Митральные пороки."></figure>
+  </div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Правое — Пик. Митральный — буква М.</b> Логика из главы 2: правое предсердие даёт начало P, поэтому при его гипертрофии растёт подъём, и зубец успевает закончиться вовремя. Левое даёт конец P, поэтому зубец удлиняется, и появляется второй горб. В V1 при левой гипертрофии P широкий с глубокой отрицательной фазой, при правой преобладает первая положительная.</p>
+  </div>
+
+  <div data-check="8a"></div>
+  <h3>Желудочки</h3>
+  <div class="beats two">
+    <figure class="tape" data-beat="lvhV6" data-cap="<b>ГЛЖ, V6:</b> высокий R, ST вниз, T отрицательный"></figure>
+    <figure class="tape" data-beat="lvhV1" data-cap="<b>ГЛЖ, V1:</b> глубокий S, зеркально ST вверх"></figure>
+  </div>
+  <div class="tblw"><table>
+    <tr><th>Признак</th><th>ГЛЖ</th><th>ГПЖ</th></tr>
+    <tr><td>Высокий R</td><td class="n">V5–V6</td><td class="n">V1–V2, больше 7 мм</td></tr>
+    <tr><td>Глубокий S</td><td class="n">V1–V2</td><td class="n">V5–V6</td></tr>
+    <tr><td>Сумма</td><td class="n">S V1 + R V5(6) ≥ 35 мм</td><td class="n">R V1 + S V5(6) &gt; 10,5 мм</td></tr>
+    <tr><td>Особый признак</td><td class="n">R V6 &gt; V5 &gt; V4</td><td class="muted">Нет</td></tr>
+    <tr><td>Дополнительно</td><td>T минус и ST вниз в V5–V6, ось влево</td><td>T минус и ST вниз в V1, ось вправо</td></tr>
+  </table></div>
+  <div class="warn"><span class="k">Важно</span><p>Сумма для ГЛЖ — индекс Соколова–Лайона. Он плохо работает у молодых и худых: бывает завышен без всякой гипертрофии. А отрицательный результат гипертрофию не исключает.</p></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Правый желудочек должен перекричать левого.</b> Он намного меньше, и левый его заглушает, поэтому порог низкий (7 мм), а признаки появляются только при выраженной гипертрофии. Правило зеркала: высокий R в своих отведениях, глубокий S в чужих.</p>
+  </div>
+
+  <div data-check="8b"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Какие четыре признака общие для всех гипертрофий?</summary><p>Больше амплитуда R или P, признаки ишемии, нарушение проводимости, ось в сторону гипертрофии.</p></details>
+    <details class="q"><summary>Двугорбый P 0,13 с в I и II. Что это?</summary><p>P mitrale, гипертрофия левого предсердия.</p></details>
+    <details class="q"><summary>Почему депрессия ST при гипертрофии?</summary><p>Субэндокардиальные слои не получают крови: сосуды идут от эпикарда и не успевают за мышцей.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 9 ===================== -->
+<section class="view" id="m9" hidden data-m="9">
+  <div class="eyebrow">Глава 9</div>
+  <h2>Инфаркт: ишемия, повреждение, некроз</h2>
+  <p class="lead">Чем глубже беда, тем левее по комплексу. Ишемия меняет T, повреждение меняет ST, некроз меняет Q.</p>
+
+  <div class="tblw"><table>
+    <tr><th>Зона</th><th>Что нарушено</th><th>Где на ленте</th><th>Клетка</th></tr>
+    <tr><td>Ишемия</td><td>Только реполяризация</td><td>T</td><td>Выглядит здоровой</td></tr>
+    <tr><td>Повреждение</td><td>Реполяризация и деполяризация</td><td>ST</td><td>Изменена под микроскопом</td></tr>
+    <tr><td>Некроз</td><td>Ничего уже не работает</td><td>Q, снижение R</td><td>Погибла</td></tr>
+  </table></div>
+
+  <div class="obraz">
+    <span class="k">Два правила вместо девяти рисунков</span>
+    <p><b>ST тянется к ране. T убегает от голода.</b> Электрод стоит снаружи, у эпикарда.</p>
+    <p>Рана рядом с электродом (субэпикардиально, трансмурально): ST тянется к нему, вверх. Рана далеко, под эндокардом: ST уходит вниз.</p>
+    <p>Голод рядом с электродом (субэпикардиально, трансмурально): T убегает от него, отрицательный. Голод далеко, под эндокардом: T бежит на электрод, высокий острый.</p>
+  </div>
+
+  <div data-check="9a"></div>
+  <div class="beats">
+    <figure class="tape" data-beat="tPeak" data-cap="<b>Субэндокардиальная ишемия:</b> высокий острый T"></figure>
+    <figure class="tape" data-beat="tNeg" data-cap="<b>Субэпикардиальная ишемия:</b> T отрицательный"></figure>
+    <figure class="tape" data-beat="tDeep" data-cap="<b>Трансмуральная ишемия:</b> T глубокий отрицательный"></figure>
+    <figure class="tape" data-beat="stDown" data-cap="<b>Субэндокардиальное повреждение:</b> ST вниз"></figure>
+    <figure class="tape" data-beat="stUp" data-cap="<b>Субэпикардиальное повреждение:</b> ST вверх"></figure>
+    <figure class="tape" data-beat="stCat" data-cap="<b>Трансмуральное повреждение:</b> кошачья спинка"></figure>
+    <figure class="tape" data-beat="qs" data-cap="<b>Трансмуральный некроз:</b> только QS"></figure>
+    <figure class="tape" data-beat="qPath" data-cap="<b>Нетрансмуральный:</b> патологический Q, R снижен"></figure>
+    <figure class="tape" data-beat="noQ" data-cap="<b>Интрамуральный или субэндокардиальный:</b> Q может не быть"></figure>
+  </div>
+  <p>Патологический Q глубже ¼ R и шире 0,03 с. Если зон несколько, их признаки складываются: глубокий Q, подъём ST и отрицательный T на одной ленте.</p>
+
+  <div class="widget" id="stage">
+    <span class="wt">Стадии: двигай ползунок</span>
+    <input type="range" id="stR" min="0" max="5" value="0" aria-label="Стадия инфаркта">
+    <p><b id="stName"></b> <span class="mono small muted" id="stTime"></span></p>
+    <figure class="tape" id="stBeat" style="max-width:420px"></figure>
+    <p id="stTxt"></p>
+  </div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>ST живёт дни, T живёт месяцы, Q живёт всю жизнь.</b> Кошка выгнула спину (подъём ST), потом успокаивается (ST опускается, T уходит вниз), и в конце остаётся шрам (Q).</p>
+  </div>
+  <div class="warn"><span class="k">Важно</span><p>Полностью нормальная ЭКГ инфаркт не исключает. И наоборот: похожие изменения бывают при ТЭЛА, миокардите, электролитных нарушениях, инсульте, панкреатите. Диагноз ставят по клинике, маркерам и другим данным вместе. Точные сроки стадий в разных классификациях различаются.</p></div>
+  <div class="obraz"><span class="k">Пороги подъёма ST</span><p>Два соседних отведения, точка J: от <b>1 мм</b> везде, кроме V2–V3. В V2–V3: от <b>2,5 мм</b> у мужчин до 40 лет, от <b>2 мм</b> у мужчин от 40 лет, от <b>1,5 мм</b> у женщин.</p></div>
+
+  <div data-check="9b"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Что отражают T, ST и Q?</summary><p>Ишемию, повреждение и некроз.</p></details>
+    <details class="q"><summary>Подъём ST и отрицательный T. Что лежит под электродом?</summary><p>Субэпикардиальное повреждение и субэпикардиальная ишемия.</p></details>
+    <details class="q"><summary>Q патологический, ST на изолинии, T глубокий отрицательный. Какая стадия?</summary><p>Подострая: зона повреждения исчезла, большая зона ишемии осталась.</p></details>
+    <details class="q"><summary>Какая стадия: Q патологический, ST на изолинии, T обычный?</summary><p>Рубцевание.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 10 ===================== -->
+<section class="view" id="m10" hidden data-m="10">
+  <div class="eyebrow">Глава 10</div>
+  <h2>Где инфаркт</h2>
+  <p class="lead">Смотри, где типичные признаки, и читай стенку по карте отведений.</p>
+
+  <div class="widget" id="loc">
+    <span class="wt">Выбери локализацию</span>
+    <div class="row" id="locBtns"></div>
+    <div class="leads" id="locGrid"></div>
+    <p id="locTxt"></p>
+  </div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Пол, стена, фасад.</b> Пол (нижний инфаркт): II, III, aVF, по ним мы ходим ногами, F значит foot. Боковая стена: левая команда I, aVL, V5, V6. Фасад: V1–V4, идём слева направо от перегородки к верхушке.</p>
+  </div>
+
+  <div data-check="10a"></div>
+  <h3>Зеркало</h3>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Электрод простреливает сердце насквозь, а дальнюю стенку видит наоборот.</b> Что бы ни было на противоположной стенке, для него это выглядит как субэндокардиальное. Поэтому задняя стенка с подъёмом ST в своей зоне даёт депрессию ST в V1–V4. Это реципрокные изменения.</p>
+  </div>
+  <figure class="tape" data-beat="recip" data-cap="Нижний инфаркт: слева III (подъём ST, Q, T минус), справа V2 (реципрокная депрессия)."></figure>
+  <p>Депрессия в V1–V4 может быть реципрокной, а не первичной: прежде чем решить, посмотри на всю плёнку. Грудные отведения покрывают не все стенки, поэтому смотрят все 12, а иногда накладывают дополнительные электроды.</p>
+
+  <div data-check="10b"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Подъём ST во II, III, aVF. Какая стенка?</summary><p>Нижняя (заднедиафрагмальная).</p></details>
+    <details class="q"><summary>Признаки в I, aVL, V5, V6?</summary><p>Переднебоковой инфаркт.</p></details>
+    <details class="q"><summary>Признаки в V1–V3?</summary><p>Переднеперегородочный инфаркт.</p></details>
+    <details class="q"><summary>Почему задняя ишемия даёт высокий T в V1–V2?</summary><p>Противоположная стенка видна как субэндокардиальная, а субэндокардиальная ишемия даёт высокий T.</p></details>
+  </div>
+</section>
+
+<!-- ===================== ГЛАВА 11 ===================== -->
+<section class="view" id="m11" hidden data-m="11">
+  <div class="eyebrow">Глава 11</div>
+  <h2>Преждевременное возбуждение желудочков</h2>
+  <p class="lead">Кто-то прошёл в операционную мимо шлюза.</p>
+
+  <div class="tblw"><table>
+    <tr><th></th><th>WPW</th><th>LGL</th></tr>
+    <tr><td>Пучок</td><td>Кента: предсердие сразу к желудочку</td><td>Джеймса: предсердие к низу АВ-узла или началу Гиса</td></tr>
+    <tr><td>Образ</td><td>Чёрный ход прямо в операционную</td><td>Служебный лифт мимо мытья рук, дальше обычный коридор</td></tr>
+    <tr><td>PQ</td><td class="n">&lt; 0,12 с</td><td class="n">&lt; 0,12 с</td></tr>
+    <tr><td>Дельта-волна</td><td>Есть</td><td>Нет</td></tr>
+    <tr><td>QRS</td><td>Широкий</td><td>Нормальный</td></tr>
+  </table></div>
+  <figure class="tape" data-strip="wpw" data-cap="<b>WPW.</b> P сразу переходит в пологий подъём: это дельта-волна. Часть миокарда возбудилась по чёрному ходу и ползёт по мышце."></figure>
+  <figure class="tape" data-strip="lgl" data-cap="<b>LGL.</b> PQ короткий, QRS обычный."></figure>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Обе группы вышли одновременно, и чёрный ход победил.</b> Те, кто пришёл через него, начали работу сами: это дельта. Потом подоспели остальные через шлюз: это обычная часть QRS. Поэтому QRS сливной и широкий, а PQ короткий, ведь мытьё рук пропустили.</p>
+    <p><b>LGL — лёгкая версия:</b> PQ короткий, больше ничего.</p>
+  </div>
+  <p>Дополнительные пучки проводят в обе стороны, поэтому создают кольцо для re-entry и наджелудочковых тахиаритмий. При WPW нередко есть депрессия ST и отрицательный T, а QRS напоминает блокаду ножки. Короткий PQ сам по себе бывает и при других состояниях, например при гипертиреозе.</p>
+  <div class="warn"><span class="k">Важно</span><p>Фибрилляция предсердий при WPW опасна: предел шлюза тут не действует, импульсы идут через пучок Кента, и ритм может перейти в ФЖ. Препараты, блокирующие АВ-узел, при этом могут навредить. Тактику сверяй с действующими рекомендациями.</p></div>
+
+  <div data-check="11a"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>Три признака WPW?</summary><p>PQ меньше 0,12 с, дельта-волна, широкий QRS.</p></details>
+    <details class="q"><summary>Почему при LGL QRS нормальный?</summary><p>Пропущена только задержка в АВ-узле, по желудочкам импульс идёт обычным путём.</p></details>
+  </div>
+</section>
+
+<section class="view" id="m12" hidden data-m="12">
+  <div class="eyebrow">Глава 12</div>
+  <h2>Калий, QT и опасные двойники</h2>
+  <p class="lead">Лента бывает похожа на инфаркт, а причина совсем другая. Здесь собрано то, что опаснее всего спутать.</p>
+
+  <h3>Высокий калий</h3>
+  <p>Изменения идут по лестнице, и лента может перескочить ступени.</p>
+  <div class="beats">
+    <figure class="tape" data-beat="k1" data-cap="<b>Ступень 1:</b> высокий острый узкий T"></figure>
+    <figure class="tape" data-beat="k2" data-cap="<b>Ступень 2:</b> P плоский, QRS шире"></figure>
+    <figure class="tape" data-beat="k3" data-cap="<b>Ступень 3:</b> QRS сливается с T, идёт к синусоиде"></figure>
+  </div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Калий ставит палатку, а потом лента тает.</b> Сначала T острый, как шатёр. Потом исчезает P, расплывается QRS, и всё стекает в синусоиду, а за ней остановка. Группа риска: почечная недостаточность, пропущенный диализ, калийсберегающие препараты.</p>
+  </div>
+  <div class="warn"><span class="k">Как отличить от ишемии</span><p>При гиперкалиемии T обычно узкий у основания и симметричный, как палатка. Острый T при ранней ишемии чаще шире. По одной ленте это не всегда ясно, поэтому смотри калий.</p></div>
+
+  <div data-check="12a"></div>
+  <h3>Низкий калий</h3>
+  <figure class="tape" data-beat="hypoK" data-cap="<b>Гипокалиемия:</b> T плоский, ST чуть вниз, за T появляется зубец U."></figure>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>T сдулся, а из-за него выглянул U.</b> Лента становится вялой, зато сердце становится раздражительным: растёт риск аритмий.</p>
+  </div>
+
+  <h3>Длинный QT</h3>
+  <p>QT укорачивается, когда сердце бьётся чаще, поэтому его приводят к одной частоте. Самая известная формула — Базетта: QTc = QT / √R-R, всё в секундах. При тахикардии она завышает результат, при брадикардии занижает.</p>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Правило половины.</b> Если T заканчивается дальше середины между двумя R, QT скорее всего длинный. Это быстрая прикидка для обычной частоты, а не замена расчёту.</p>
+  </div>
+  <figure class="tape" data-strip="longqt" data-cap="<b>Длинный QT.</b> T кончается заметно позже середины R-R. Причины: препараты, низкие калий и магний, врождённые синдромы."></figure>
+  <p>QTc больше 0,50 с — зона высокого риска.</p>
+  <figure class="tape" data-strip="tdp" data-cap="<b>Пируэт (torsades de pointes).</b> Полиморфная ЖТ: широкие комплексы то растут, то сжимаются, будто вьются вокруг изолинии. Угроза жизни."></figure>
+
+  <div data-check="12b"></div>
+  <h3>Двойники инфаркта</h3>
+  <figure class="tape" data-beat="peric" data-cap="<b>Перикардит:</b> ST поднят полого и вогнуто, сегмент PQ снижен."></figure>
+  <div class="tblw"><table>
+    <tr><th></th><th>Инфаркт</th><th>Перикардит</th></tr>
+    <tr><td>Подъём ST</td><td>В зоне одной артерии, часто выпуклый</td><td>Почти везде, вогнутый</td></tr>
+    <tr><td>Зеркальная депрессия</td><td>Есть</td><td>Нет, кроме aVR и иногда V1</td></tr>
+    <tr><td>PQ</td><td>Не снижен</td><td>Снижен</td></tr>
+    <tr><td>Зубец Q</td><td>Появляется</td><td>Не появляется</td></tr>
+  </table></div>
+  <div class="obraz">
+    <span class="k">Образ</span>
+    <p><b>Инфаркт — улыбка наоборот, перикардит — улыбка.</b> ST при инфаркте чаще выпуклый вверх, как нахмуренная бровь. При перикардите он вогнутый и улыбается сразу во многих отведениях.</p>
+  </div>
+  <p><b>ТЭЛА.</b> Самая частая находка — обычная синусовая тахикардия. Классическая тройка S1Q3T3 (глубокий S в I, Q и отрицательный T в III) бывает, но не обязательна. Могут быть отрицательные T в V1–V4 и блокада правой ножки: правый желудочек внезапно перегружен. Нормальная ЭКГ ТЭЛА не исключает.</p>
+
+  <div data-check="12c"></div>
+  <div class="qs"><h3>Спроси себя</h3>
+    <details class="q"><summary>В каком порядке меняется лента при росте калия?</summary><p>T острый, затем P плоский и QRS шире, затем синусоида.</p></details>
+    <details class="q"><summary>Что выглядывает из-за плоского T при гипокалиемии?</summary><p>Зубец U.</p></details>
+    <details class="q"><summary>Почему QT считают с поправкой?</summary><p>Он зависит от ЧСС: при тахикардии короче, при брадикардии длиннее.</p></details>
+    <details class="q"><summary>Подъём ST почти везде, вогнутый, PQ снижен. Что это?</summary><p>Перикардит.</p></details>
+  </div>
+</section>
+
+<div class="pn" id="pn" hidden style="padding-top:18px"></div>
+
+<!-- ===================== ТРЕНАЖЁР ===================== -->
+<section class="view" id="trener" hidden>
+  <div class="eyebrow">Интервальное повторение</div>
+  <h2>Тренажёр</h2>
+  <div class="row">
+    <button class="chip on" id="tabCards">Карточки</button>
+    <button class="chip" id="tabQuiz">Что на ленте?</button>
+    <button class="chip" id="tabShift">Ночное дежурство</button>
+  </div>
+
+  <div id="paneCards" style="display:flex;flex-direction:column;gap:14px">
+    <div class="row sp">
+      <label class="small" for="deck">Глава:&nbsp;<select id="deck"></select></label>
+      <span class="mono small muted" id="dueTxt"></span>
+    </div>
+    <div class="flash" id="flash"></div>
+    <p class="small muted">Сначала произнеси ответ вслух, только потом открывай. «Помню» отправляет карточку на более длинную паузу. «Не помню» вернёт её сегодня в конце и завтра.</p>
+  </div>
+
+  <div id="paneQuiz" hidden style="display:flex;flex-direction:column;gap:14px">
+    <div class="row sp"><span class="small">Определи ритм по схеме</span><span class="mono small muted" id="quizScore"></span></div>
+    <figure class="tape" id="quizStrip"></figure>
+    <div class="ans" id="quizAns"></div>
+    <p id="quizKey" class="small"></p>
+    <div class="row"><button class="pri" id="quizNext" hidden>Следующая лента</button></div>
+  </div>
+  <div id="paneShift" hidden style="display:flex;flex-direction:column;gap:14px"></div>
+  <p class="foot">Регистрации нет. Прогресс хранится только в этом браузере.</p>
+</section>
+
+<!-- ===================== ШПАРГАЛКА ===================== -->
+<section class="view" id="shpora" hidden>
+  <div class="eyebrow">Всё на одном экране</div>
+  <h2>Шпаргалка</h2>
+  <div class="tblw"><table>
+    <tr><th>Лента</th><th>Значение</th></tr>
+    <tr><td>Паспорт</td><td class="n">25 мм/с · 10 мм/мВ · 12 отведений</td></tr>
+    <tr><td>Клетка при 25 мм/с</td><td class="n">мал. 0,04 с · бол. 0,2 с</td></tr>
+    <tr><td>ЧСС</td><td class="n">1500 / R-R мм (при 50 мм/с: 3000)</td></tr>
+    <tr><td>По клеткам</td><td class="n">300 · 150 · 100 · 75 · 60 · 50</td></tr>
+    <tr><td>Алгоритм</td><td>РЫЧАГ на ОСИ, потом P → QRS → ST → T → PQ, QT</td></tr>
+  </table></div>
+  <div class="tblw"><table>
+    <tr><th>Норма</th><th class="n">Значение</th></tr>
+    <tr><td>P</td><td class="n">≤ 0,10 с, ≤ 2,5 мм</td></tr>
+    <tr><td>QRS</td><td class="n">≤ 0,10 с (широкий ≥ 0,12)</td></tr>
+    <tr><td>PQ</td><td class="n">0,12–0,20 с</td></tr>
+    <tr><td>QTc</td><td class="n">примерно до 0,45 с, выше 0,50 опасно</td></tr>
+    <tr><td>Q</td><td class="n">&lt; ¼ R</td></tr>
+    <tr><td>ST</td><td>На изолинии. До −0,5 мм V5–V6, до +2 мм V1–V2</td></tr>
+    <tr><td>Ось R</td><td class="n">норма 2-1-3 · влево 1-2-3 · вправо 3-2-1</td></tr>
+  </table></div>
+  <div class="tblw"><table>
+    <tr><th>Находка</th><th>Вывод</th></tr>
+    <tr><td>Ранний узкий QRS, P другой</td><td>Предсердная экстрасистола</td></tr>
+    <tr><td>Ранний узкий QRS, P нет</td><td>АВ-экстрасистола</td></tr>
+    <tr><td>Ранний широкий QRS, P нет</td><td>Желудочковая экстрасистола</td></tr>
+    <tr><td>Пила</td><td>Трепетание предсердий</td></tr>
+    <tr><td>Нет P, R-R разные</td><td>Фибрилляция предсердий</td></tr>
+    <tr><td>Широкие, ровные, частые</td><td>Желудочковая тахикардия</td></tr>
+    <tr><td>Выпал весь цикл с P</td><td>СА-блокада</td></tr>
+    <tr><td>PQ &gt; 0,2 с, всё проходит</td><td>АВ I</td></tr>
+    <tr><td>PQ растёт, QRS выпал</td><td>АВ II, Мобитц 1</td></tr>
+    <tr><td>PQ ровный, QRS выпал</td><td>АВ II, Мобитц 2</td></tr>
+    <tr><td>P и QRS живут отдельно</td><td>АВ III</td></tr>
+    <tr><td>М в V1</td><td>Блокада правой ножки</td></tr>
+    <tr><td>М в V5–V6, глубокий S в V1</td><td>Блокада левой ножки</td></tr>
+    <tr><td>Ось ≤ −60, S &gt; R во II</td><td>Передняя ветвь</td></tr>
+    <tr><td>Ось ≥ +120, S &gt; R в I</td><td>Задняя ветвь</td></tr>
+    <tr><td>P пик, II, III, aVF</td><td>Правое предсердие</td></tr>
+    <tr><td>P двугорбый, широкий</td><td>Левое предсердие</td></tr>
+    <tr><td>S V1 + R V5(6) ≥ 35 мм</td><td>ГЛЖ (Соколов–Лайон)</td></tr>
+    <tr><td>R V1 &gt; 7 мм</td><td>ГПЖ</td></tr>
+    <tr><td>T / ST / Q</td><td>Ишемия / повреждение / некроз</td></tr>
+    <tr><td>Короткий PQ, дельта, широкий QRS</td><td>WPW</td></tr>
+    <tr><td>Короткий PQ, обычный QRS</td><td>LGL</td></tr>
+    <tr><td>Острый узкий T, широкий QRS</td><td>Подумай о гиперкалиемии</td></tr>
+    <tr><td>Плоский T, зубец U</td><td>Подумай о гипокалиемии</td></tr>
+    <tr><td>Вьющаяся широкая тахикардия</td><td>Пируэт</td></tr>
+  </table></div>
+  <div class="tblw"><table>
+    <tr><th>Инфаркт</th><th>Отведения</th></tr>
+    <tr><td>Переднеперегородочный</td><td class="n">V1–V3</td></tr>
+    <tr><td>Передневерхушечный</td><td class="n">V3–V4</td></tr>
+    <tr><td>Переднебоковой</td><td class="n">I, aVL, V5, V6</td></tr>
+    <tr><td>Распространённый передний</td><td class="n">I, aVL, V1–V6</td></tr>
+    <tr><td>Нижний</td><td class="n">II, III, aVF</td></tr>
+    <tr><td>Заднебоковой</td><td class="n">II, III, aVF, V5, V6</td></tr>
+  </table></div>
+</section>
+
+<section class="view" id="okurse" hidden>
+  <div class="eyebrow">О курсе</div>
+  <h2>Как это устроено и где границы</h2>
+  <p class="lead">Сайт для студентов, медсестёр, фельдшеров и молодых врачей, которые хотят понимать ЭКГ, а не угадывать её.</p>
+
+  <h3>Почему здесь запоминается</h3>
+  <ul class="t">
+    <li>Сначала вопрос, потом ответ. Попытка угадать заранее помогает запомнить объяснение, даже если ответ был неверным.</li>
+    <li>Каждому сложному правилу есть образ.</li>
+    <li>Карточки возвращаются через 1, 3, 7, 21, 60 и 180 дней. Именно повторение, а не одно прочтение, держит знание годами.</li>
+  </ul>
+
+  <h3>Честные правила игры</h3>
+  <ul class="t">
+    <li>Очки дают только за знания. Случайных наград здесь нет.</li>
+    <li>Нет рекламы, покупок и таймеров, которые на тебя давят. Таймер есть только в «Ночном дежурстве», и включаешь его ты сам.</li>
+    <li>Пропущенный день ничего не сжигает: лучшая серия остаётся с тобой.</li>
+  </ul>
+
+  <h3>Где источники расходятся</h3>
+  <div class="tblw"><table>
+    <tr><th>Что</th><th>Варианты</th></tr>
+    <tr><td>Норма ЧСС</td><td>60–90 в российских учебниках, 60–100 чаще за рубежом</td></tr>
+    <tr><td>Нормальная ось</td><td>+30…+69 с выделением вертикальной и горизонтальной, или вся зона от −30 до +90</td></tr>
+    <tr><td>Граница QTc</td><td>Около 0,45 с у мужчин, 0,46–0,47 с у женщин</td></tr>
+    <tr><td>Сроки стадий инфаркта</td><td>В разных классификациях разные, поэтому на сайте даны только ориентиры</td></tr>
+    <tr><td>Частоты аритмий</td><td>Это учебные ориентиры, а не строгие границы</td></tr>
+  </table></div>
+
+  <h3>Чего здесь нет</h3>
+  <ul class="t">
+    <li>Лечения и доз препаратов. Это курс чтения ленты.</li>
+    <li>Детской ЭКГ, ритмов кардиостимулятора, синдрома Бругада.</li>
+    <li>Инфаркта на фоне блокады левой ножки, заднего отведения V7–V9 и правых V3R–V4R.</li>
+    <li>Отличия ЖТ от наджелудочковой тахикардии с аберрацией.</li>
+  </ul>
+
+  <div class="warn"><span class="k">Важно</span><p>Сайт не ставит диагнозов и не заменяет врача. Цифры сверяй с действующими клиническими рекомендациями и протоколами своего учреждения. Если есть боль в груди, одышка, обморок или другие тревожные симптомы, вызывай скорую помощь.</p></div>
+
+  <div class="row" id="resetBox"></div>
+
+  <p class="foot">Проверочные материалы: <a href="https://litfl.com/ecg-criteria-for-left-ventricular-hypertrophy/">LITFL, критерии ГЛЖ</a> · <a href="https://en.ecgpedia.org/wiki/Rvh">ECGpedia, ГПЖ</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30165617/">Четвёртое универсальное определение ИМ</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9075358">обзор критериев подъёма ST</a> · <a href="https://en.my-ekg.com/how-read-ekg/pr-qt-intervals.html">My EKG, PR и QT</a>.</p>
+</section>
+
+</div>
+
+<script>
+"use strict";
+/* ---------- модель сигнала ---------- */
+const sm=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+function rng(s){return()=>(s=(s*1664525+1013904223)%4294967296)/4294967296}
+class W{constructor(){this.c=[];this.f=[]}
+  g(m,s,a){this.c.push([m,s,a]);return this}
+  fn(f){this.f.push(f);return this}
+  v(t){let y=0;for(const[m,s,a]of this.c){const x=(t-m)/s;if(x>-4.5&&x<4.5)y+=a*Math.exp(-.5*x*x)}for(const f of this.f)y+=f(t);return y}}
+function P(w,t,k){k=k||'n';
+  if(k==='n')w.g(t+.05,.02,.13);
+  else if(k==='peak')w.g(t+.05,.017,.32);
+  else if(k==='mitr'){w.g(t+.035,.018,.13);w.g(t+.095,.018,.16)}
+  else if(k==='neg')w.g(t+.05,.02,-.13);
+  else if(k==='bi'){w.g(t+.03,.014,.11);w.g(t+.072,.014,-.1)}
+  else if(k==='odd')w.g(t+.045,.015,.2)}
+function Tw(w,t,a,k,n){k=k||1;const s=n?.032:.048;w.g(t+.3*k,s*k,a);if(!n)w.g(t+.235*k,.03*k,a*.22)}
+function N(w,t,o){o=o||{};const q=o.q===undefined?.07:o.q,r=o.r===undefined?1:o.r,s=o.s===undefined?.2:o.s,ta=o.ta===undefined?.27:o.ta,k=o.k||1,st=o.st||0;
+  const wq=q>.2;
+  if(q)w.g(t+(wq?.018:.01),wq?.012:.005,-q);
+  if(r)w.g(t+(wq?.05:.032),.0085,r);
+  if(s)w.g(t+(wq?.075:.055),.007,-s);
+  if(st)w.fn(x=>st*sm((x-(t+.056))/.02)*(1-sm((x-(t+.25))/.09)));
+  if(o.cat)w.g(t+.19,.06,.1);
+  if(ta)Tw(w,t,ta,k,o.tn)}
+function V(w,t,o){o=o||{};const a=o.a||1.25;w.g(t+.065,.034,a);w.g(t+.165,.022,-.14);w.g(t+.37,.065,-.42)}
+function seq(w,t0,rrs,f){let t=t0;rrs.forEach((r,i)=>{f(w,t,i);t+=r});return t}
+const sin1=(w,t,pq,o,pk)=>{P(w,t,pk);N(w,t+(pq||.16),o)};
+
+/* ---------- ленты ---------- */
+const DUR=5;
+const ST={
+  sinus(){const w=new W();seq(w,.12,[.8,.8,.8,.8,.8,.8,.8],(w,t)=>sin1(w,t));return w},
+  sinTachy(){const w=new W();let t=.05;while(t<4.9){sin1(w,t,.13,{k:.72});t+=.45}return w},
+  sinBrady(){const w=new W();seq(w,.2,[1.35,1.35,1.35,1.35],(w,t)=>sin1(w,t));return w},
+  sinResp(){const w=new W();seq(w,.1,[.62,.7,.84,1,.86,.72,.64],(w,t)=>sin1(w,t));return w},
+  pac(){const w=new W();let t=.12;[0,1].forEach(()=>{sin1(w,t);t+=.85});t-=.28;P(w,t,'neg');N(w,t+.15);t+=1.05;[0,1,2].forEach(()=>{sin1(w,t);t+=.85});return w},
+  jpc(){const w=new W();let t=.12;[0,1].forEach(()=>{sin1(w,t);t+=.85});N(w,t-.15);t+=.75;[0,1,2].forEach(()=>{sin1(w,t);t+=.85});return w},
+  pvc(){const w=new W();let t=.12;[0,1].forEach(()=>{sin1(w,t);t+=.85});V(w,t-.12);t+=.85;[0,1,2].forEach(()=>{sin1(w,t);t+=.85});return w},
+  bigem(){const w=new W();let t=.1;for(let i=0;i<4;i++){sin1(w,t);V(w,t+.66);t+=1.3}return w},
+  trigem(){const w=new W();let t=.1;for(let i=0;i<3;i++){sin1(w,t);sin1(w,t+.8);V(w,t+1.45);t+=2.05}return w},
+  couplet(){const w=new W();let t=.12;[0,1].forEach(()=>{sin1(w,t);t+=.85});V(w,t-.12);V(w,t+.38);t+=1.3;[0,1,2].forEach(()=>{sin1(w,t);t+=.85});return w},
+  atTachy(){const w=new W();let t=.1;[0,1,2].forEach(()=>{sin1(w,t);t+=.8});t-=.25;while(t<4.9){P(w,t,'odd');N(w,t+.12,{k:.62,ta:.2});t+=.36}return w},
+  avTachy(){const w=new W();let t=.08;while(t<4.9){N(w,t,{k:.62,ta:.22});t+=.34}return w},
+  flutter(){const w=new W();w.fn(t=>{const p=(t/.2)%1;return p<.72?.1-.26*(p/.72):-.16+.26*((p-.72)/.28)});let t=.27;while(t<4.9){N(w,t,{ta:0,q:0});t+=.8}return w},
+  af(){const w=new W(),r=rng(7);const a=r()*6,b=r()*6,c=r()*6;w.fn(t=>(.038+.02*Math.sin(t*1.7))*(Math.sin(38*t+a)+.8*Math.sin(53*t+b)+.6*Math.sin(71*t+c)));let t=.15;while(t<4.9){N(w,t,{ta:.12,q:0});t+=.42+r()*.62}return w},
+  vt(){const w=new W();let t=.04;while(t<4.95){w.g(t+.06,.03,1.2);w.g(t+.135,.018,-.22);w.g(t+.27,.042,-.4);t+=.4}return w},
+  vflutter(){const w=new W();w.fn(t=>.95*Math.sin(2*Math.PI*4.5*t)*sm(t/.08));return w},
+  vf(){const w=new W(),r=rng(21);const p=[r()*6,r()*6,r()*6,r()*6];w.fn(t=>(.34+.16*Math.sin(t*2.1+p[0]))*(Math.sin(27*t+p[1])+.8*Math.sin(39*t+p[2]+Math.sin(t*3))+.6*Math.sin(19*t+p[3])));return w},
+  av1(){const w=new W();seq(w,.08,[.9,.9,.9,.9,.9,.9],(w,t)=>sin1(w,t,.32));return w},
+  w1(){const w=new W();let t=.08;for(let c=0;c<2;c++){[.16,.26,.36].forEach(pq=>{sin1(w,t,pq);t+=.72});P(w,t);t+=.72}return w},
+  w2(){const w=new W();let t=.08;for(let c=0;c<3;c++){sin1(w,t,.18);t+=.68;sin1(w,t,.18);t+=.68;P(w,t);t+=.68}return w},
+  av3(){const w=new W();let t=.15;while(t<4.95){P(w,t);t+=.72}t=.52;while(t<4.95){N(w,t);t+=1.55}return w},
+  saM2(){const w=new W();seq(w,.1,[.8,.8,1.6,.8,.8],(w,t)=>sin1(w,t));return w},
+  saM1(){const w=new W();seq(w,.08,[.95,.82,1.45,.95,.82],(w,t)=>sin1(w,t));return w},
+  wpw(){const w=new W();let t=.1;while(t<4.9){P(w,t);const q=t+.085;w.g(q+.04,.022,.3);w.g(q+.082,.012,.95);w.g(q+.112,.009,-.14);Tw(w,q+.05,.2);t+=.9}return w},
+  lgl(){const w=new W();seq(w,.12,[.85,.85,.85,.85,.85,.85],(w,t)=>sin1(w,t,.09));return w},
+};
+/* ---------- одиночные комплексы ---------- */
+const T0=.24;
+function bt(o){const w=new W();if(o.p!==0)P(w,.06,o.p);N(w,T0,o);return w}
+function cust(f,p){const w=new W();if(p!==0)P(w,.06,p);f(w,T0);return w}
+const BT={
+  labeled(){return{w:bt({}),dur:.84,labels:[['P',.11,.26],['Q',.245,-.26],['R',.272,1.13],['S',.3,-.42],['ST',.42,.16],['T',.54,.41]]}},
+  pUp(){return{w:bt({p:'odd'}),dur:.8}},pBi(){return{w:bt({p:'bi'}),dur:.8}},pNeg(){return{w:bt({p:'neg'}),dur:.8}},
+  pPulm(){return{w:bt({p:'peak'}),dur:.8}},pMitr(){return{w:bt({p:'mitr'}),dur:.8}},
+  tPeak(){return{w:bt({ta:.62,tn:1}),dur:.8}},tNeg(){return{w:bt({ta:-.24}),dur:.8}},tDeep(){return{w:bt({ta:-.55}),dur:.8}},
+  stDown(){return{w:bt({st:-.17,ta:.18}),dur:.8}},stUp(){return{w:bt({st:.2}),dur:.8}},stCat(){return{w:bt({st:.5,ta:.16,cat:1}),dur:.8}},
+  qs(){return{w:cust((w,t)=>{w.g(t+.04,.018,-1.05)}),dur:.8}},
+  qPath(){return{w:bt({q:.5,r:.45,s:.1}),dur:.8}},noQ(){return{w:bt({q:0,r:.82}),dur:.8}},
+  rbbbV1(){return{w:cust((w,t)=>{w.g(t+.022,.008,.28);w.g(t+.05,.009,-.34);w.g(t+.098,.016,.9);w.fn(x=>-.09*sm((x-(t+.13))/.03)*(1-sm((x-(t+.26))/.08)));Tw(w,t+.04,-.22)}),dur:.86}},
+  rbbbV6(){return{w:cust((w,t)=>{w.g(t+.01,.005,-.08);w.g(t+.04,.012,.95);w.g(t+.1,.024,-.3);Tw(w,t+.04,.25)}),dur:.86}},
+  lbbbV1(){return{w:cust((w,t)=>{w.g(t+.016,.007,.1);w.g(t+.08,.034,-1.15);w.fn(x=>.14*sm((x-(t+.14))/.03)*(1-sm((x-(t+.26))/.08)));Tw(w,t+.04,.32)}),dur:.86}},
+  lbbbV6(){return{w:cust((w,t)=>{w.g(t+.045,.021,.82);w.g(t+.105,.021,.92);w.fn(x=>-.1*sm((x-(t+.15))/.03)*(1-sm((x-(t+.27))/.08)));Tw(w,t+.04,-.28)}),dur:.86}},
+  lvhV6(){return{w:bt({r:2.2,s:.1,st:-.14,ta:-.3}),dur:.8}},
+  lvhV1(){return{w:cust((w,t)=>{w.g(t+.02,.008,.15);w.g(t+.055,.015,-1.9);w.fn(x=>.14*sm((x-(t+.1))/.02)*(1-sm((x-(t+.26))/.09)));Tw(w,t,.32)}),dur:.8}},
+  rprog(){const w=new W();const R=[.15,.35,.7,1.25,1.05,.8],S=[.9,1,.65,.32,.2,.1],d=.72;R.forEach((r,i)=>{const t=.08+i*d;N(w,t,{q:i>3?.08:0,r,s:S[i],ta:.22+.02*i,k:.82})});return{w,dur:6*d+.04,labels:['V1','V2','V3','V4','V5','V6'].map((n,i)=>[n,.12+i*d,1.5]),mm:3}},
+  recip(){const w=new W();N(w,.12,{q:.4,r:.5,s:.1,st:.3,ta:-.2});N(w,1.02,{q:0,r:.5,s:.7,st:-.2,ta:.34,tn:1});return{w,dur:1.72,labels:[['III',.14,1],['V2',1.05,1]]}},
+};
+/* ---------- отрисовка ---------- */
+let uid=0;
+function svgW(w,o){const dur=o.dur,mm=o.mm||4,dt=o.dt||.004;
+  let ys=[],lo=9,hi=-9;for(let t=0;t<=dur;t+=dt){const y=w.v(t);ys.push(y);if(y<lo)lo=y;if(y>hi)hi=y}
+  if(o.labels)o.labels.forEach(l=>{if(l[2]+.2>hi)hi=l[2]+.2;if(l[2]-.1<lo)lo=l[2]-.1});
+  const Wd=dur*25*mm,Hmm=Math.max(o.H||24,Math.ceil((hi-lo)*10+6)),Hh=Hmm*mm;
+  const base=(Hh/2)+((hi+lo)/2)*10*mm;const id='p'+(++uid);
+  const X=t=>(t*25*mm).toFixed(1),Y=v=>(base-v*10*mm).toFixed(1);
+  let d='',t=0;for(let i=0;i<ys.length;i++){d+=(i?'L':'M')+X(t)+' '+Y(ys[i]);t+=dt}
+  const b=5*mm;let sl='';for(let i=1;i<5;i++)sl+=`M${i*mm} 0V${b}M0 ${i*mm}H${b}`;
+  let extra='';
+  if(o.band)extra+=`<rect class="band" x="${X(o.band[0])}" y="0" width="${(o.band[1]-o.band[0])*25*mm}" height="${Hh}"/>`;
+  if(o.labels)o.labels.forEach(l=>{extra+=`<text class="lb" x="${X(l[1])}" y="${Y(l[2])}">${l[0]}</text>`});
+  const tag=o.notag?'':`<text class="tag" x="${Wd-4}" y="${Hh-5}" text-anchor="end">25 мм/с · 10 мм/мВ</text>`;
+  return `<svg viewBox="0 0 ${Wd} ${Hh}" role="img" aria-label="${o.alt||'Схема ЭКГ'}"><defs><pattern id="${id}" width="${b}" height="${b}" patternUnits="userSpaceOnUse"><path class="g1" d="${sl}"/><path class="g2" d="M0 0H${b}M0 0V${b}"/></pattern></defs><rect width="${Wd}" height="${Hh}" fill="url(#${id})"/>${extra}<path class="tr" d="${d}"/>${tag}</svg>`}
+function fillFig(el,html){const c=el.dataset.cap;el.innerHTML=html+(c?`<figcaption>${c}</figcaption>`:'')}
+function hydrate(root){
+  root.querySelectorAll('[data-strip]:not([data-done])').forEach(el=>{el.dataset.done=1;fillFig(el,svgW(ST[el.dataset.strip](),{dur:DUR,H:28,notag:!!el.dataset.notag}))});
+  root.querySelectorAll('[data-beat]:not([data-done])').forEach(el=>{el.dataset.done=1;const b=BT[el.dataset.beat]();fillFig(el,svgW(b.w,{dur:b.dur,mm:b.mm||6,H:22,dt:.002,labels:b.labels,notag:1}))})}
+
+/* ---------- маршрут импульса ---------- */
+const ROUTE=[
+ {n:'СА-узел',p:['sa'],b:[.05,.075],t:'Заведующий отдал приказ. Сам узел на ленте не пишется, виден только момент начала P.'},
+ {n:'Предсердия',p:['sa','int'],b:[.06,.16],t:'Зубец P. Подъём от правого предсердия, спуск от левого.'},
+ {n:'АВ-узел',p:['av'],b:[.16,.24],t:'Мытьё рук: сегмент PQ, около 0,08 с. Ровная линия.'},
+ {n:'Перегородка',p:['his'],b:[.24,.26],t:'Зубец Q. Импульс разворачивается, вектор уходит от электрода.'},
+ {n:'Верхушка',p:['his','rb','lb'],b:[.26,.285],t:'Зубец R. Вектор идёт к электроду.'},
+ {n:'Основание',p:['pk'],b:[.285,.32],t:'Зубец S. Вектор снова уходит от электрода.'},
+ {n:'Плато',p:[],b:[.32,.46],t:'Сегмент ST. Возбуждение и восстановление уравновешены.'},
+ {n:'Восстановление',p:[],b:[.46,.68],t:'Зубец T. Желудочки возвращаются в исходное состояние.'}];
+function heartSvg(){return `<svg viewBox="0 0 330 300" role="img" aria-label="Схема проводящей системы"><path class="hs" d="M110 34C68 34 38 72 44 120 50 176 112 236 168 284 224 236 288 176 288 120 288 72 254 40 216 40 196 40 176 50 165 66 150 44 130 34 110 34Z"/><path class="hs" d="M50 132H284" stroke-dasharray="5 6"/><path class="hs" d="M166 134V268"/>
+<path class="hp" data-k="int" d="M104 72C120 96 146 110 160 128M104 72C100 100 124 118 158 130M104 72C138 66 188 76 226 86"/>
+<path class="hp" data-k="his" d="M163 134V172"/>
+<path class="hp" data-k="rb" d="M163 172C150 196 126 214 108 214"/>
+<path class="hp" data-k="lb" d="M163 172C180 176 200 186 226 176M172 176C188 196 200 220 206 236"/>
+<path class="hp" data-k="pk" d="M108 214l-16 -12M108 214l-14 10M108 214l-4 18M226 176l18 -6M226 176l18 8M226 176l8 16M206 236l14 -6M206 236l2 16M206 236l-12 10"/>
+<circle class="hn" data-k="sa" cx="104" cy="72" r="11"/><circle class="hn" data-k="av" cx="162" cy="130" r="10"/>
+<text class="ht" x="120" y="62">СА-узел</text><text class="ht" x="178" y="128">АВ-узел</text><text class="ht" x="172" y="158">пучок Гиса</text><text class="ht" x="58" y="240">правая ножка</text><text class="ht" x="224" y="214">левая</text></svg>`}
+function setRoute(i){const s=ROUTE[i];
+  document.querySelectorAll('#routeBtns button').forEach((b,j)=>b.classList.toggle('on',j===i));
+  document.querySelectorAll('#routeHeart [data-k]').forEach(e=>e.classList.toggle('on',s.p.includes(e.dataset.k)));
+  document.getElementById('routeBeat').innerHTML=svgW(bt({}),{dur:.84,mm:6,H:22,dt:.002,band:s.b,notag:1});
+  document.getElementById('routeTxt').textContent=s.t}
+function initRoute(){document.getElementById('routeHeart').innerHTML=heartSvg();
+  const r=document.getElementById('routeBtns');ROUTE.forEach((s,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=s.n;b.onclick=()=>setRoute(i);r.append(b)});setRoute(1)}
+function chestSvg(){const dots=[['V1',124,108,'#d0342c'],['V2',176,108,'#d9a400'],['V3',197,128,'#2f9e44'],['V4',218,148,'#8a5a2b'],['V5',254,148,'#222'],['V6',286,148,'#8e44ad']];
+  return `<svg viewBox="0 0 320 230" role="img" aria-label="Положение грудных электродов" style="width:100%;height:auto"><path class="hs" d="M60 20C110 34 210 34 260 20L300 60V220H20V60Z"/><path class="hs" d="M140 40H160V200H140Z" transform="translate(10 0)"/><path class="ax" d="M36 108H284" stroke-dasharray="4 5"/><path class="ax" d="M36 148H296" stroke-dasharray="4 5"/><text class="al" x="54" y="98">4 этаж</text><text class="al" x="54" y="138">5 этаж</text>${dots.map(d=>`<circle cx="${d[1]}" cy="${d[2]}" r="10" fill="${d[3]}" stroke="var(--tape)" stroke-width="2"/><text class="al" style="fill:var(--fg)" x="${d[1]}" y="${d[2]+(d[0]==='V3'?-17:21)}">${d[0]}</text>`).join('')}</svg>`}
+
+/* ---------- ось ---------- */
+function axisName(a){if(a>=30&&a<=69)return'Нормальная ось';if(a>=70&&a<=90)return'Вертикальная ось';if(a>=0&&a<30)return'Горизонтальная ось';if(a<0&&a>=-90)return'Отклонение влево';if(a>90)return'Отклонение вправо';return'Экстремальное отклонение: −91…−180'}
+const LEADS=[['I',0],['II',60],['III',120],['aVF',90],['aVL',-30],['aVR',-150]];
+function dial(a){const c=130,r=92,pt=(g,R)=>[c+R*Math.cos(g*Math.PI/180),c+R*Math.sin(g*Math.PI/180)];
+  const arc=(a1,a2,col)=>{const[x1,y1]=pt(a1,r+18),[x2,y2]=pt(a2,r+18);return`<path class="zone" style="stroke:${col}" d="M${x1} ${y1}A${r+18} ${r+18} 0 ${(a2-a1)>180?1:0} 1 ${x2} ${y2}"/>`};
+  const[vx,vy]=pt(a,r);
+  return `<svg viewBox="0 0 260 260" id="axS" role="img" aria-label="Круг электрической оси" style="width:100%;max-width:300px;height:auto;touch-action:none">${arc(30,70,'var(--ok)')}${arc(70,90,'var(--img)')}${arc(0,30,'var(--warn)')}${arc(-90,0,'var(--accent)')}${arc(90,180,'var(--muted)')}<circle class="dial" cx="${c}" cy="${c}" r="${r}"/>${LEADS.map(l=>{const[x,y]=pt(l[1],r),[x2,y2]=pt(l[1]+180,r),[tx,ty]=pt(l[1],r-14);return`<path class="ax" d="M${x} ${y}L${x2} ${y2}"/><text class="al" x="${tx}" y="${ty}">${l[0]}</text>`}).join('')}<line class="vec" x1="${c}" y1="${c}" x2="${vx}" y2="${vy}"/><circle cx="${vx}" cy="${vy}" r="6" fill="var(--accent)"/></svg>`}
+function setAxis(a){a=Math.round(a);document.getElementById('axR').value=a;document.getElementById('axV').textContent=(a>0?'+':'')+a+'°';
+  document.getElementById('axDial').innerHTML=dial(a);document.getElementById('axName').textContent=axisName(a);
+  const amp=g=>Math.cos((a-g)*Math.PI/180);const L=[['I',amp(0)],['II',amp(60)],['III',amp(120)]];
+  document.getElementById('axOrd').textContent='R: '+[...L].sort((x,y)=>y[1]-x[1]).map(x=>x[0]).join(' > ');
+  document.getElementById('axQ').innerHTML=L.map(l=>{const w=new W(),v=l[1];N(w,.05,{q:0,r:Math.max(.08,v)*1,s:Math.max(.05,-v),ta:0});return`<figure class="tape">${svgW(w,{dur:.2,mm:6,H:26,dt:.002,notag:1})}<figcaption class="mono" style="text-align:center">${l[0]}</figcaption></figure>`}).join('');
+  const s=document.getElementById('axS');s.onpointerdown=e=>{const f=ev=>{const b=s.getBoundingClientRect();const x=ev.clientX-b.left-b.width/2,y=ev.clientY-b.top-b.height/2;setAxis(Math.atan2(y,x)*180/Math.PI)};f(e)}}
+function initAxis(){const r=document.getElementById('axR');r.oninput=()=>setAxis(+r.value);
+  const b=document.getElementById('axBtns');[['Норма',50],['Влево',-45],['Вправо',120],['Передняя ветвь',-70]].forEach(p=>{const x=document.createElement('button');x.className='chip';x.textContent=p[0];x.onclick=()=>setAxis(p[1]);b.append(x)});setAxis(50)}
+
+/* ---------- стадии ---------- */
+const STG=[
+ ['Норма','','Для сравнения.',{}],
+ ['1. Острейшая, начало','первые часы','Трансмуральное повреждение: кошачья спинка, Q ещё нет.',{st:.5,ta:.16,cat:1}],
+ ['1. Острейшая, появился некроз','часы','К подъёму ST прибавляется патологический Q.',{q:.35,r:.6,st:.45,ta:.15,cat:1}],
+ ['2. Острая','дни и недели','Зона повреждения сжимается: ST опускается. Появляется ишемия: T уходит вниз.',{q:.5,r:.45,st:.2,ta:-.2}],
+ ['3. Подострая','недели и месяцы','Повреждения нет: ST на изолинии. Большая зона ишемии: T глубокий отрицательный.',{q:.5,r:.45,ta:-.5}],
+ ['4. Рубцевание','до конца жизни','Вокруг рубца ничего нет: T обычный. Q остаётся, хотя может уменьшиться.',{q:.42,r:.55,ta:.22}]];
+function setStage(i){const s=STG[i];document.getElementById('stName').textContent=s[0];document.getElementById('stTime').textContent=s[1];document.getElementById('stTxt').textContent=s[2];document.getElementById('stBeat').innerHTML=svgW(bt(s[3]),{dur:.8,mm:6,H:24,dt:.002,notag:1})}
+function initStage(){const r=document.getElementById('stR');r.oninput=()=>setStage(+r.value);setStage(1);r.value=1}
+
+/* ---------- локализация ---------- */
+const GRID=['I','aVR','V1','V4','II','aVL','V2','V5','III','aVF','V3','V6'];
+const LOC=[['Переднеперегородочный',['V1','V2','V3']],['Передневерхушечный',['V3','V4']],['Переднебоковой',['I','aVL','V5','V6']],['Распространённый передний',['I','aVL','V1','V2','V3','V4','V5','V6']],['Нижний',['II','III','aVF']],['Заднебоковой',['II','III','aVF','V5','V6']]];
+function setLoc(i){document.querySelectorAll('#locBtns button').forEach((b,j)=>b.classList.toggle('on',j===i));document.getElementById('locGrid').innerHTML=GRID.map(g=>`<span class="${LOC[i][1].includes(g)?'on':''}">${g}</span>`).join('');document.getElementById('locTxt').textContent=LOC[i][0]+': '+LOC[i][1].join(', ')}
+function initLoc(){const b=document.getElementById('locBtns');LOC.forEach((l,i)=>{const x=document.createElement('button');x.className='chip';x.textContent=l[0];x.onclick=()=>setLoc(i);b.append(x)});setLoc(4)}
+
+/* ---------- данные ---------- */
+const CH=[[1,'Проводящая система и электроды','Отделение, шлюз, светофор, этажи'],[2,'Зубцы и интервалы','Правило вектора, нормы в клетках'],[3,'Алгоритм чтения','РЫЧАГ на ОСИ, отведения, ось'],[4,'Синусовые аритмии, экстрасистолы','Кто крикнул раньше заведующего'],[5,'Тахикардии, трепетания, фибрилляции','Кольцевая развязка, лестница частот'],[6,'СА- и АВ-блокады','Шлюз: медленный, усталый, захлопнулся, заперт'],[7,'Блокады ножек','Буква М, поворотник, задний ход'],[8,'Гипертрофии','Громче, голоднее, медленнее, тянет к себе'],[9,'Инфаркт: зоны и стадии','ST тянется к ране, T убегает от голода'],[10,'Локализация инфаркта','Пол, стена, фасад, зеркало'],[11,'WPW и LGL','Чёрный ход и служебный лифт'],[12,'Калий, QT и двойники','То, что опаснее всего спутать']];
+const C=[
+[1,'Что подавляет все остальные очаги автоматизма?','СА-узел: у него автоматизм выражен сильнее всего.'],
+[1,'Сколько времени импульс держится в АВ-узле?','0,08 с. Это мытьё рук, на ленте ровная линия.'],
+[1,'Как называются три межузловых тракта?','Бахман (передний), Венкебах (средний), Торель (задний).'],
+[1,'Другое название АВ-узла и СА-узла?','АВ — узел Ашоффа–Тавары. СА — узел Киса–Флака.'],
+[1,'Какие участки проводящей системы самые ранимые?','Правая ножка и передняя ветвь левой ножки.'],
+[1,'Электроды на конечностях по порядку?','Красный — правая рука, жёлтый — левая рука, зелёный — левая нога, чёрный — правая нога. Светофор по часовой.'],
+[1,'Где стоят V1 и V2?','4-е межреберье у правого и левого края грудины.'],
+[1,'Где стоят V4, V5, V6?','5-е межреберье: среднеключичная, передняя подмышечная, средняя подмышечная.'],
+[1,'Где стоит V3?','Посередине между V2 и V4.'],
+[1,'Цвета грудных электродов V1–V6?','Красный, жёлтый, зелёный, коричневый, чёрный, фиолетовый. Светофор, кофе, уголь, слива.'],
+[2,'Какое правило определяет направление зубца?','Вектор к электроду — зубец вверх, от электрода — вниз.'],
+[2,'Что отражают Q, R, S?','ПоВОрот: перегородка, верхушка, основание.'],
+[2,'Какая часть P от какого предсердия?','Подъём — правое, спуск — левое.'],
+[2,'Чем интервал отличается от сегмента?','Интервал содержит зубец, сегмент — только линия.'],
+[2,'Нормы P и QRS?','До 0,10 с, полбольшой клетки при 25 мм/с.'],
+[2,'Норма PQ?','0,12–0,20 с, 3–5 малых клеток.'],
+[2,'С какой ширины QRS считается широким?','С 0,12 с, 3 малые клетки.'],
+[2,'Как оценивают QT?','По QTc, с поправкой на ЧСС. Верхняя граница примерно 0,45 с.'],
+[3,'Что такое паспорт ленты?','25 мм/с, 10 мм/мВ, 12 отведений. Метка должна совпасть с подписью.'],
+[3,'Порядок анализа?','РЫЧАГ на ОСИ: ритм, частота, ось. Затем P, QRS, ST, T, интервалы.'],
+[3,'Длительность малой и большой клетки при 25 мм/с? При 50?','25: 0,04 и 0,2 с. 50: 0,02 и 0,1 с.'],
+[3,'Быстрая формула ЧСС при 25 мм/с?','1500 / R-R в мм. Или 300, 150, 100, 75, 60, 50 по большим клеткам.'],
+[3,'Какое расхождение R-R ещё считается правильным ритмом?','До 10%.'],
+[3,'Критерии синусового ритма?','P + во II и − в aVR, P перед каждым QRS, форма постоянная.'],
+[3,'Какие отведения левые, какие правые?','Левые: I, aVL, V5, V6. Правые: III, aVF, V1, V2.'],
+[3,'Какое отведение равно сумме I и III?','II.'],
+[3,'Что видят V1–V2, V3, V4, V5–V6?','Правый желудочек, перегородка, верхушка, боковая стенка левого желудочка.'],
+[3,'Границы оси по углу?','Норма +30…+69, вертикальная +70…+90, горизонтальная 0…+29, влево 0…−90, вправо +91…+180.'],
+[3,'Порядок R при норме, отклонении влево и вправо?','Норма 2-1-3, влево 1-2-3, вправо 3-2-1.'],
+[3,'Как идёт R в грудных отведениях?','Растёт от V1 к V4, потом снижается.'],
+[3,'Норма Q и высоты P?','Q меньше ¼ R. P до 2,5 мм.'],
+[3,'Какие подъём и депрессия ST допустимы?','Вниз до 0,5 мм в V5–V6. Вверх до 2 мм в V1–V2 при положительном T.'],
+[3,'Где T может быть любым?','III, aVL, V1. В aVR он отрицательный.'],
+[4,'Общий признак всех экстрасистол?','R-R перед ней короче обычного.'],
+[4,'Признаки предсердной экстрасистолы?','P другой, QRS не изменён.'],
+[4,'Признаки АВ-экстрасистолы?','P нет (чаще) или он отрицательный рядом с QRS, QRS не изменён.'],
+[4,'Признаки желудочковой экстрасистолы?','P нет, QRS шире 0,12 с и деформирован.'],
+[4,'Форма P при очаге вверху, в середине и внизу предсердий?','Положительный, двухфазный, отрицательный.'],
+[4,'Что такое бигеминия и тригеминия?','Экстрасистола через одну (1:1) и после двух нормальных (1:2).'],
+[4,'Что такое политопные экстрасистолы?','Из разных очагов, отличаются друг от друга.'],
+[5,'Условия re-entry?','Два пути с общими началом и концом, быстрый имеет более длинный рефрактерный период.'],
+[5,'Частота при предсердной тахикардии, трепетании и фибрилляции?','120–220, 240–340, 350–600.'],
+[5,'Учебный предел АВ-узла?','Около 220 в минуту. Дополнительный пучок его обходит.'],
+[5,'Критерии фибрилляции предсердий?','Нет P, есть волны f, R-R разные.'],
+[5,'Критерии трепетания предсердий?','Пилообразные волны F, QRS не после каждой, желудочковый ритм чаще правильный.'],
+[5,'Как отличить предсердную тахикардию от АВ?','При предсердной есть несинусовый P, при АВ его не видно.'],
+[5,'Критерии желудочковой тахикардии?','Широкие деформированные QRS, R-R ровные, частота больше 100.'],
+[5,'Частота при фибрилляции желудочков?','300–500, беспорядочные волны.'],
+[5,'Можно ли по ЭКГ различить механизм или форму аритмии?','Нет. Постоянная или пароксизмальная определяется по анамнезу.'],
+[6,'Главное отличие СА- и АВ-блокады II степени?','СА: выпадает весь цикл с P. АВ: P на месте, выпадает QRS.'],
+[6,'АВ-блокада I степени?','PQ больше 0,2 с, каждый P проведён.'],
+[6,'Мобитц 1 при АВ-блокаде?','PQ растёт, затем выпал QRS.'],
+[6,'Мобитц 2 при АВ-блокаде?','PQ постоянный, внезапно выпал QRS.'],
+[6,'АВ-блокада III степени?','P и QRS независимы, у каждого свой ровный ритм.'],
+[6,'СА-блокада II тип 1?','R-R укорачиваются, затем пауза меньше 2 R-R.'],
+[6,'СА-блокада II тип 2?','Пауза равна 2 R-R, при выпадении нескольких комплексов кратна R-R.'],
+[6,'Почему СА-блокада I не видна?','Проведение от узла к предсердию не регистрируется.'],
+[6,'Главный признак внутрипредсердной блокады?','P шире 0,1 с.'],
+[7,'Где буква М при блокаде правой и левой ножки?','Правая: V1–V2. Левая: V5–V6.'],
+[7,'Что такое поворотник в V1?','Хвост QRS вверх — правая ножка, вниз — левая.'],
+[7,'Ширина QRS при неполной и полной блокаде?','0,10–0,12 с и больше 0,12 с.'],
+[7,'Что с V1–V2 при блокаде левой ножки?','Низкий r или QS, глубокий S, ST вверх.'],
+[7,'Что с осью при полной блокаде левой ножки?','Горизонтальная, реже влево.'],
+[7,'Блокада передней ветви?','Ось ≤ −60, S > R во II, III, aVF, QRS почти не расширен.'],
+[7,'Блокада задней ветви?','Ось ≥ +120, S > R в I, aVL.'],
+[7,'Значат ли ST и T при полной блокаде ишемию?','Сами по себе нет, это вторичные изменения. Но блокада может скрывать инфаркт.'],
+[8,'Четыре общих признака гипертрофии?','Громче, голоднее, медленнее, тянет к себе: амплитуда, ишемия, проводимость, ось.'],
+[8,'P pulmonale?','Правое предсердие. Высокий острый, больше 2–2,5 мм, не шире нормы, II, III, aVF.'],
+[8,'P mitrale?','Левое предсердие. Двугорбый, шире 0,10–0,12 с, I, II, aVL, V5, V6.'],
+[8,'Индекс Соколова–Лайона?','S V1 + R V5 или V6 ≥ 35 мм.'],
+[8,'Особый признак ГЛЖ по R?','R V6 > V5 > V4.'],
+[8,'Основные признаки ГПЖ?','R V1–V2 > 7 мм, глубокий S в V5–V6, R V1 + S V5(6) > 10,5 мм.'],
+[8,'Почему ГПЖ видна поздно?','Правый желудочек должен перевесить левый.'],
+[9,'Какая зона меняет T, какая ST, какая Q?','Ишемия, повреждение, некроз.'],
+[9,'Что нарушено в каждой зоне?','Ишемия: реполяризация. Повреждение: обе фазы. Некроз: ничего не работает.'],
+[9,'Два правила ST и T?','ST тянется к ране, T убегает от голода.'],
+[9,'ЭКГ при субэндокардиальной ишемии и субэпикардиальной?','Высокий острый T. Отрицательный T.'],
+[9,'ЭКГ при субэндокардиальном и субэпикардиальном повреждении?','ST вниз. ST вверх.'],
+[9,'Что такое кошачья спинка?','Высокий подъём ST, слитый с T. Трансмуральное повреждение.'],
+[9,'ЭКГ при трансмуральном и нетрансмуральном инфаркте?','QS. Патологический Q и сниженный R.'],
+[9,'Что считается патологическим Q?','Глубже ¼ R и шире 0,03 с.'],
+[9,'Порог подъёма ST вне V2–V3?','От 1 мм в двух соседних отведениях.'],
+[9,'Стадии инфаркта по ЭКГ?','Острейшая: ST вверх. Острая: ST снижается, T минус. Подострая: ST на линии, T глубокий. Рубец: остаётся Q.'],
+[9,'Что живёт дольше всех?','Q: ST — дни, T — месяцы, Q — всю жизнь.'],
+[9,'Исключает ли нормальная ЭКГ инфаркт?','Нет.'],
+[10,'Отведения при нижнем инфаркте?','II, III, aVF.'],
+[10,'Отведения при переднеперегородочном?','V1–V3.'],
+[10,'Отведения при передневерхушечном?','V3–V4.'],
+[10,'Отведения при переднебоковом?','I, aVL, V5, V6.'],
+[10,'Отведения при распространённом переднем?','I, aVL, V1–V6.'],
+[10,'Отведения при заднебоковом?','II, III, aVF, V5, V6.'],
+[10,'Что такое реципрокные изменения?','Электрод видит процесс на дальней стенке как субэндокардиальный.'],
+[11,'Признаки WPW?','PQ < 0,12 с, дельта-волна, широкий QRS.'],
+[11,'Признаки LGL?','PQ < 0,12 с, QRS нормальный.'],
+[11,'Какой пучок при WPW и LGL?','Кента и Джеймса.'],
+[11,'Откуда дельта-волна?','Часть желудочка возбудилась по пучку Кента и медленно идёт по мышце.'],
+[12,'Первый признак гиперкалиемии?','Высокий острый узкий T.'],
+[12,'Что дальше при росте калия?','P уплощается, QRS расширяется, потом синусоида.'],
+[12,'Признаки гипокалиемии?','Плоский T, ST вниз, зубец U.'],
+[12,'Формула Базетта?','QTc = QT / √R-R, всё в секундах.'],
+[12,'Какой QTc считается опасным?','Больше 0,50 с: риск пируэтной тахикардии.'],
+[12,'Что такое пируэт?','Полиморфная ЖТ: широкие комплексы вьются вокруг изолинии.'],
+[12,'Чем перикардит отличается от инфаркта?','Подъём ST вогнутый и распространённый, PQ снижен, нет реципрокной депрессии и Q.'],
+[12,'Самый частый признак ТЭЛА на ЭКГ?','Синусовая тахикардия. S1Q3T3 бывает, но не обязателен.'],
+].map((c,i)=>({id:'c'+i,m:c[0],q:c[1],a:c[2]}));
+const Q=[['sinus','Нормальный синусовый ритм','P перед каждым QRS, частота в норме.'],['sinTachy','Синусовая тахикардия','Всё как в норме, только чаще.'],['sinBrady','Синусовая брадикардия','Всё как в норме, только реже.'],['pac','Предсердная экстрасистола','Ранний комплекс, P другой, QRS узкий.'],['jpc','Экстрасистола из АВ-узла','Ранний узкий QRS, P нет.'],['pvc','Желудочковая экстрасистола','Ранний широкий QRS, P нет.'],['bigem','Желудочковая бигеминия','Широкий комплекс через один.'],['atTachy','Предсердная тахикардия','Частый ритм, другой P перед каждым узким QRS.'],['avTachy','Тахикардия из АВ-соединения','Ровно, узко, P не виден.'],['flutter','Трепетание предсердий','Пила, QRS не после каждой волны.'],['af','Фибрилляция предсердий','P нет, R-R разные.'],['vt','Желудочковая тахикардия','Широкие одинаковые комплексы, R-R ровные.'],['vf','Фибрилляция желудочков','Комплексов нет.'],['av1','АВ-блокада I степени','PQ длинный, все P проведены.'],['w1','АВ-блокада II, Мобитц 1','PQ растёт, потом выпал QRS.'],['w2','АВ-блокада II, Мобитц 2','PQ постоянный, внезапно выпал QRS.'],['av3','АВ-блокада III степени','P и QRS не связаны.'],['saM2','СА-блокада II, тип 2','Выпал весь цикл, пауза 2 R-R.'],['wpw','Синдром WPW','Короткий PQ, дельта-волна.'],['lgl','Синдром LGL','Короткий PQ, QRS обычный.']];
+
+/* ---------- новые ленты и комплексы ---------- */
+Object.assign(ST,{
+  longqt(){const w=new W();seq(w,.1,[1,1,1,1,1,1],(w,t)=>sin1(w,t,.16,{k:1.75,ta:.24}));return w},
+  tdp(){const w=new W();w.fn(t=>Math.sin(2*Math.PI*(3.7*t+.25*Math.sin(t*1.3)))*(.3+.85*Math.abs(Math.sin(Math.PI*t/1.7)))*sm(t/.1));return w}
+});
+Object.assign(BT,{
+  k1(){return{w:bt({ta:.85,tn:1,r:.8}),dur:.8}},
+  k2(){return{w:cust((w,t)=>{w.g(.1,.025,.04);w.g(t+.045,.022,.7);w.g(t+.1,.02,-.22);Tw(w,t+.02,.8,1,1)},0),dur:.8}},
+  k3(){return{w:cust((w,t)=>{w.g(t+.08,.05,.65);w.g(t+.22,.05,-.45);w.g(t+.38,.065,.5)},0),dur:.8}},
+  hypoK(){const w=bt({ta:.07,st:-.06});w.g(T0+.5,.05,.15);return{w,dur:.98}},
+  peric(){const w=bt({st:.16,ta:.3});w.g(.235,.022,-.05);return{w,dur:.8}}
+});
+/* ---------- содержание игры ---------- */
+const HOOK={
+1:{story:'На мониторе зубец P, а за ним почти 0,1 с абсолютно ровной линии. Сердце в этот момент бездействует?',o:['Да, импульс пропал','Импульс ждёт в АВ-узле, это норма','Отошёл электрод'],a:1,r:'Импульс не пропал. Он стоит в шлюзе, в АВ-узле. Желудочки получают время наполниться, а на ленте ровная линия, потому что крошечный узел не виден.'},
+2:{story:'Один и тот же импульс в одном отведении рисует зубец вверх, а в другом вниз. Почему?',o:['Отведения по-разному усиливают сигнал','Всё зависит от направления вектора к электроду','В одном из отведений ошибка'],a:1,r:'Вектор идёт к электроду, зубец смотрит вверх. Уходит от него, зубец смотрит вниз. Этот принцип объясняет всю ЭКГ.'},
+3:{story:'Ты держишь ленту, на калькулятор времени нет. Между соседними R 15 мм, скорость 25 мм/с. Какая ЧСС?',o:['60','75','100','150'],a:2,r:'1500 / 15 = 100 в минуту. Считается в уме за секунду.'},
+4:{strip:'pvc',story:'Ровный ритм, и вдруг один широкий уродливый комплекс. Откуда он?',o:['Из предсердия','Из АВ-узла','Из желудочка'],a:2,r:'Широкий QRS без зубца P значит, что импульс родился в самом желудочке и шёл по мышце, а не по проводящим путям.'},
+5:{strip:'af',story:'Пациент жалуется на сердцебиение. Посмотри на расстояния между R. Что это?',o:['Синусовая тахикардия','Трепетание предсердий','Фибрилляция предсердий'],a:2,r:'Все R-R разные, зубцов P нет, вместо них мелкая рябь. Это фибрилляция предсердий.'},
+6:{strip:'w1',story:'P идут ровно, а QRS иногда исчезает. Посмотри на PQ перед паузой. Что это?',o:['Мобитц 1','Мобитц 2','Полная АВ-блокада'],a:0,r:'PQ растёт от удара к удару, потом QRS выпадает. Санитар в шлюзе устаёт: это Мобитц 1.'},
+7:{beat:'rbbbV1',story:'Отведение V1, QRS 0,14 с. Какая ножка заблокирована?',o:['Правая','Левая','Обе целы'],a:0,r:'Буква М в правом отведении и хвост вверх: блокада правой ножки.'},
+8:{beat:'pMitr',story:'Широкий двугорбый P. Какое предсердие перегружено?',o:['Правое','Левое','Оба одинаково'],a:1,r:'Левое предсердие даёт конец зубца P. Оно возбуждается дольше, поэтому появляется второй горб: P mitrale.'},
+9:{beat:'stCat',story:'Боль за грудиной началась час назад. Что лежит под этим электродом?',o:['Старый рубец','Трансмуральное повреждение','Только ишемия'],a:1,r:'Высокий подъём ST, слитый с T, — кошачья спинка. Трансмуральное повреждение, острейшая стадия.'},
+10:{beat:'recip',story:'В III подъём ST, а в V2 депрессия. Сколько тут инфарктов?',o:['Один, второе — зеркало','Два разных','Ни одного'],a:0,r:'Один инфаркт. Электрод V2 видит дальнюю стенку как субэндокардиальную, поэтому показывает её наоборот.'},
+11:{strip:'wpw',story:'Молодой пациент с приступами сердцебиения. Между приступами такая лента. Что необычно?',o:['Длинный PQ','Короткий PQ и пологое начало QRS','Отсутствие зубца P'],a:1,r:'PQ короткий, в начале QRS пологая дельта-волна. Импульс идёт в обход шлюза: синдром WPW.'},
+12:{beat:'k1',story:'Пациент пропустил диализ. На ленте высокие острые T. О чём думаешь в первую очередь?',o:['Инфаркт','Гиперкалиемия','Гипокалиемия'],a:1,r:'Высокий острый узкий T и почечная недостаточность: сначала гиперкалиемия. Это опасно и лечится срочно.'}};
+const CK={
+'1a':['Почему в норме ритм задаёт именно СА-узел?',['Он самый крупный','Его автоматизм самый быстрый','Он ближе к желудочкам'],1,'Кто быстрее разряжается, тот и командует. Остальные очаги просто не успевают.'],
+'1b':['Какой грудной электрод ставят сразу после V2?',['V3','V4','V5'],1,'Сначала V4 на 5-й этаж, а V3 потом ставят посередине.'],
+'2a':['Вектор уходит от электрода. Куда смотрит зубец?',['Вверх','Вниз','Зубца нет'],1,'От электрода значит вниз.'],
+'2b':['QRS занимает 4 малые клетки при 25 мм/с. Это:',['Норма, 0,08 с','Широкий, 0,16 с','Узкий, 0,04 с'],1,'4 × 0,04 = 0,16 с. Широким считается всё от 0,12 с.'],
+'3a':['Между соседними R 4 большие клетки. ЧСС?',['60','75','100'],1,'300, 150, 100, 75: четвёртая клетка даёт 75.'],
+'3b':['P положительный в aVR. Что это значит?',['Норма','Водитель ритма, скорее всего, не синусовый','Высокий вольтаж'],1,'В aVR в норме всё перевёрнуто. Положительный P значит, что заведующий не на месте. Или перепутаны электроды.'],
+'3c':['R в III выше, чем во II, а во II выше, чем в I. Что с осью?',['Норма','Влево','Вправо'],2,'Обратный отсчёт 3-2-1: вправо.'],
+'4a':['Ранний узкий QRS, перед ним P другой формы. Откуда он?',['Предсердие','АВ-узел','Желудочек'],0,'P есть, но другой, QRS прошёл через шлюз. Значит, предсердие.'],
+'4b':['Очаг внизу предсердия. Какой будет P?',['Положительный','Двухфазный','Отрицательный'],2,'Импульс идёт вверх, от электрода.'],
+'5a':['В каком случае QRS будет идти после каждого предсердного импульса?',['При частоте 180','При частоте 300','При частоте 500'],0,'До предела шлюза, примерно 220 в минуту, проходят все.'],
+'5b':['Широкие одинаковые комплексы, R-R ровные, частота 170. Что это?',['Фибрилляция предсердий','Желудочковая тахикардия','Синусовая тахикардия'],1,'Широкий, ровный, частый: ЖТ, пока не доказано другое.'],
+'6a':['P есть, QRS выпал, все PQ одинаковые. Что это?',['Мобитц 1','Мобитц 2','СА-блокада'],1,'PQ не менялся, дверь захлопнулась внезапно.'],
+'6b':['Исчез весь цикл вместе с P, пауза ровно 2 R-R. Что это?',['АВ-блокада Мобитц 2','СА-блокада II, тип 2','Экстрасистола'],1,'Нет P значит, приказ не вышел из кабинета. Это СА-блокада.'],
+'7a':['QRS широкий, хвост в V1 смотрит вниз. Какая ножка?',['Правая','Левая'],1,'Поворотник вниз: налево.'],
+'7b':['Ось −75, S больше R во II. Какая ветвь?',['Передняя','Задняя'],0,'Передняя: влево, S больше R в нижних отведениях.'],
+'8a':['Высокий острый P 3 мм во II. Какое предсердие?',['Правое','Левое'],0,'Правое — Пик.'],
+'8b':['S в V1 20 мм, R в V5 22 мм. Что с индексом Соколова–Лайона?',['Норма','42 мм, признак ГЛЖ'],1,'20 + 22 = 42, это больше 35. Если пациенту 20 лет и он худой, цифра может обмануть.'],
+'9a':['Рана под эндокардом, электрод снаружи. Куда пойдёт ST?',['Вверх','Вниз'],1,'ST тянется к ране, а рана дальше от электрода.'],
+'9b':['Q патологический, ST на изолинии, T обычный. Что это?',['Острейшая стадия','Подострая стадия','Рубец'],2,'ST ушёл, T ушёл, Q остался навсегда.'],
+'10a':['Подъём ST в I, aVL, V5, V6. Какая стенка?',['Нижняя','Боковая','Перегородка'],1,'Левая команда: боковая стенка.'],
+'10b':['Депрессия ST в V1–V3 и подъём в II, III, aVF. Что первично?',['Подъём','Депрессия'],0,'Депрессия здесь, скорее всего, зеркало нижнего инфаркта.'],
+'11a':['PQ 0,09 с, QRS нормальный, дельты нет. Что это?',['WPW','LGL','АВ-блокада'],1,'Короткий PQ, больше ничего: лёгкая версия.'],
+'12a':['Какое изменение обычно появляется первым при росте калия?',['Широкий QRS','Острый T','Синусоида'],1,'Сначала палатка, потом лента тает.'],
+'12b':['R-R 1 с, QT 0,52 с. Какой QTc по Базетту?',['0,52 с','0,42 с','0,62 с'],0,'√1 = 1, поэтому QTc равен QT. Это уже зона риска.'],
+'12c':['Подъём ST почти во всех отведениях, вогнутый, PQ снижен. Что вероятнее?',['Инфаркт','Перикардит'],1,'Улыбка сразу во многих отведениях и никакого зеркала.']};
+const SKILL={1:'Объяснять путь импульса и правильно ставить электроды',2:'Называть, что значит каждый зубец, и видеть норму в клетках',3:'Читать любую ленту по алгоритму и определять ось',4:'Узнавать, откуда пришла экстрасистола',5:'Различать тахикардии по трём вопросам',6:'Отличать СА-блокады от АВ-блокад и Мобитц 1 от Мобитц 2',7:'Видеть блокаду ножки за секунду',8:'Находить гипертрофию любого отдела',9:'Читать зоны и стадии инфаркта',10:'Определять стенку инфаркта и отличать зеркало',11:'Узнавать WPW и LGL',12:'Подозревать калий, длинный QT, перикардит и ТЭЛА'};
+const QCH={sinus:3,sinTachy:4,sinBrady:4,pac:4,jpc:4,pvc:4,bigem:4,atTachy:5,avTachy:5,flutter:5,af:5,vt:5,vf:5,av1:6,w1:6,w2:6,av3:6,saM2:6,wpw:11,lgl:11};
+Q.push(['longqt','Длинный QT','T кончается намного позже середины R-R.'],['tdp','Пируэт (torsades de pointes)','Широкие комплексы вьются вокруг изолинии.'],['vflutter','Трепетание желудочков','Сплошная синусоида без отдельных QRS.']);
+QCH.longqt=12;QCH.tdp=12;QCH.vflutter=5;
+const LV=[[0,'Студент'],[150,'Интерн'],[400,'Ординатор'],[800,'Врач'],[1300,'Старший врач'],[2000,'Заведующий'],[3000,'Профессор']];
+const BADGES=[['first','Первая лента','Первый верный ритм',s=>Object.keys(s.right).length>0],['wenck','Венкебах пойман','Мобитц 1 узнан на ленте',s=>s.right.w1],['saw','Пила','Трепетание предсердий узнано',s=>s.right.flutter],['vt','Широкий и быстрый','ЖТ узнана',s=>s.right.vt],['read','Читаю плёнку','Глава 3 сдана',s=>s.pass[3]],['mi','Кошачья спинка','Глава 9 сдана',s=>s.pass[9]],['all','Синусовый ритм','Все 12 глав сданы',s=>Object.keys(s.pass).length>=12],['sh10','Спокойная смена','10 верных за дежурство',s=>s.shift.best>=10],['sh20','Ночь без потерь','20 верных за дежурство',s=>s.shift.best>=20],['combo','Десятка подряд','10 верных ответов подряд',s=>s.bestCombo>=10],['firm','Долгая память','30 карточек закреплено',s=>Object.values(s.cards).filter(c=>c.b>=3).length>=30],['week','Неделя','7 дней подряд',s=>s.streak.best>=7]];
+/* ---------- состояние ---------- */
+const KEY='ekg-navsegda-site-v1',DAY=864e5,INT=[1,3,7,21,60,180];
+const S0=()=>({xp:0,step:{},hook:{},pass:{},cards:{},quiz:{r:0,n:0},shift:{best:0},badges:{},streak:{n:0,best:0,last:''},daily:{},chk:{},right:{},combo:0,bestCombo:0});
+let S=S0();try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x)S=Object.assign(S0(),x)}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const dayStr=d=>{d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+function touch(){const t=dayStr(),k=S.streak;if(k.last===t)return;const y=new Date();y.setDate(y.getDate()-1);k.n=k.last===dayStr(y)?k.n+1:1;k.last=t;k.best=Math.max(k.best,k.n)}
+const lvl=x=>{let i=0;LV.forEach((l,j)=>{if(x>=l[0])i=j});return i};
+function hud(){const i=lvl(S.xp),a=LV[i][0],b=(LV[i+1]||[a+1])[0],p=LV[i+1]?Math.min(100,(S.xp-a)/(b-a)*100):100;$('hud').innerHTML=`<span class="lv">${LV[i][1]}</span><span class="bar"><i style="width:${p}%"></i></span><span>${S.xp}</span>${S.streak.n>1?`<span>серия ${S.streak.n}</span>`:''}`}
+function fx(n,at){const r=at&&at.getBoundingClientRect?at.getBoundingClientRect():{left:innerWidth/2,top:innerHeight/2,width:0};const f=el('span','fx','+'+n);f.style.left=Math.min(innerWidth-60,r.left+r.width/2)+'px';f.style.top=Math.max(70,r.top)+'px';document.body.append(f);setTimeout(()=>f.remove(),950)}
+let ovQ=[];
+function ov(o){ovQ.push(o);if(!$('ov'))nextOv()}
+function nextOv(){const o=ovQ.shift();if(!o)return;const b=el('div');b.id='ov';b.setAttribute('role','dialog');b.setAttribute('aria-modal','true');const c=el('div','card');c.append(el('div','stamp',o.k));if(o.t)c.append(el('h2','',o.t));const sw=el('div','sw');sw.innerHTML=svgW(ST.sinus(),{dur:DUR,H:24,notag:1});c.append(sw);if(o.b)c.append(el('p','lead',o.b));const x=el('button','pri',o.btn||'Дальше');x.onclick=()=>{b.remove();if(o.go)location.hash=o.go;nextOv()};c.append(x);b.append(c);document.body.append(b);x.focus()}
+function toast(t){const x=el('div','toast',t);document.body.append(x);setTimeout(()=>x.remove(),2600)}
+function checkBadges(){BADGES.forEach(b=>{if(!S.badges[b[0]]&&b[3](S)){S.badges[b[0]]=dayStr();toast('Новый значок: '+b[1])}})}
+function award(n,at){touch();const a=lvl(S.xp);S.xp+=n;if(at!==null)fx(n,at);const h=$('hud');hud();h.classList.remove('beat');void h.offsetWidth;h.classList.add('beat');const b=lvl(S.xp);if(b>a)ov({k:'Новый уровень',t:LV[b][1],b:'Очки дают только за знания, так что это заслуженно.'});checkBadges();save()}
+function answered(ok,key){if(ok){S.combo++;S.bestCombo=Math.max(S.bestCombo,S.combo);if(S.combo>=3&&S.combo%5===0)toast('Верно подряд: '+S.combo);if(key)S.right[key]=(S.right[key]||0)+1}else S.combo=0}
+function mcq(box,opts,a,cb,done){box.innerHTML='';box.className='ans';const bs=opts.map((t,i)=>{const b=el('button','',t);b.type='button';b.onclick=()=>{bs.forEach(x=>x.disabled=true);bs[a].classList.add('right');if(i!==a)b.classList.add('wrong');cb(i===a,i,b)};box.append(b);return b});if(done!==undefined&&done!==null){bs.forEach(x=>x.disabled=true);bs[a].classList.add('right');if(done!==a)bs[done].classList.add('wrong')}}
+/* ---------- глава как путь ---------- */
+const CH_={};
+function pic(h){const f=el('figure','tape');if(h.strip)f.innerHTML=svgW(ST[h.strip](),{dur:DUR,H:28});else if(h.beat){const b=BT[h.beat]();f.style.maxWidth=b.dur>1.2?'520px':'300px';f.innerHTML=svgW(b.w,{dur:b.dur,mm:6,H:22,dt:.002,labels:b.labels,notag:1})}return f}
+function checkBox(id,host){const c=CK[id];host.className='box';host.innerHTML='';host.append(el('span','wt','Проверь себя'),el('p','q2',c[0]));const a=el('div');const why=el('p','why');why.hidden=true;host.append(a,why);const show=r=>{why.hidden=false;why.className='why '+(r?'ok':'no');why.textContent=(r?'Верно. ':'Не совсем. ')+c[3]};
+  const prev=S.chk[id];mcq(a,c[1],c[2],(r,i,b)=>{S.chk[id]=i;answered(r);if(r)award(10,b);else save();show(r);refreshNx(+id.match(/\d+/)[0])},prev);if(prev!==undefined)show(prev===c[2])}
+function buildChapter(sec,m){if(CH_[m])return CH_[m];
+  const kids=[...sec.children],head=kids.splice(0,3),steps=[];let cur=null,figs=0;
+  const open=()=>{cur=el('div','step');steps.push(cur);figs=0};
+  kids.forEach(e=>{const isH=e.tagName==='H3',brk=isH||e.matches('.widget,.qs')||(e.tagName==='FIGURE'&&figs>=3);
+    if(!cur||(brk&&!(cur.children.length===1&&cur.firstElementChild.tagName==='H3')))open();
+    if(e.tagName==='FIGURE')figs++;cur.append(e)});
+  const h=HOOK[m],hb=el('div','box mystery');hb.append(el('span','wt','Загадка главы'));const p=pic(h);if(h.strip||h.beat)hb.append(p);hb.append(el('p','q2',h.story));const ha=el('div');hb.append(ha);const hn=el('p','why');hb.append(hn);
+  const rv=el('div','step'),rb=el('div','box mystery');rv.append(rb);const ex=el('div','step'),eb=el('div','box');ex.append(eb);steps.push(rv,ex);
+  head[2].after(hb);let prevEl=hb;steps.forEach(s=>{s.hidden=true;prevEl.after(s);prevEl=s});
+  const nx=el('div','nx'),nb=el('button','pri','Дальше');nb.type='button';nx.append(nb);prevEl.after(nx);
+  const o={sec,steps,hb,rb,eb,nx,nb,ha,hn,rv,ex};CH_[m]=o;
+  sec.querySelectorAll('[data-check]').forEach(d=>checkBox(d.dataset.check,d));
+  const renderHook=()=>{const v=S.hook[m];box:{ha.innerHTML='';ha.className='ans';h.o.forEach((t,i)=>{const b=el('button',v===i?'pick':'',t);b.type='button';if(v!==undefined)b.disabled=true;b.onclick=()=>{S.hook[m]=i;award(5,b);renderHook();showSteps(m);o.steps[0].scrollIntoView({behavior:'smooth'})};ha.append(b)})}
+    hn.textContent=v===undefined?'Выбери версию. Ответ откроется в конце главы.':'Версия записана. Разгадка в конце главы.';hn.className='why muted small'};
+  renderHook();
+  rb.append(el('span','wt','Разгадка'));const rr=el('p','q2');const rt=el('p','why',h.r);rb.append(rr,rt);o.setReveal=()=>{const v=S.hook[m];rr.textContent=v===h.a?'Верно, и ещё до объяснения: '+h.o[h.a]+'.':'Правильный ответ: '+h.o[h.a]+'.'};
+  nb.onclick=()=>{const c=S.step[m]||0;S.step[m]=c+1;award(5,nb);showSteps(m,true)};
+  return o}
+function refreshNx(m){const o=CH_[m];if(!o)return;const c=Math.min(S.step[m]||0,o.steps.length-1),s=o.steps[c];const pend=[...s.querySelectorAll('[data-check]')].some(d=>S.chk[d.dataset.check]===undefined);
+  const passed=!!S.pass[m];o.nx.hidden=passed||S.hook[m]===undefined||c>=o.steps.length-1||pend;o.nb.textContent=c===o.steps.length-3?'К разгадке':c===o.steps.length-2?'К экзамену':'Дальше'}
+function showSteps(m,fresh){const o=CH_[m],all=!!S.pass[m],c=all?o.steps.length-1:(S.hook[m]===undefined?-1:Math.min(S.step[m]||0,o.steps.length-1));
+  o.steps.forEach((s,i)=>{const was=s.hidden;s.hidden=i>c;if(fresh&&was&&!s.hidden){s.classList.add('new');requestAnimationFrame(()=>s.scrollIntoView({behavior:'smooth'}))}});
+  if(c>=o.steps.length-2&&S.hook[m]!==undefined)o.setReveal();
+  if(c>=o.steps.length-1)renderExam(m);
+  refreshNx(m);bar(m)}
+function bar(m){const o=CH_[m],t=o.steps.length,c=S.pass[m]?t:Math.max(0,Math.min((S.step[m]||0),t-1));$('pfill').style.width=(c/t*100)+'%';$('ptxt').textContent=S.pass[m]?'глава сдана':`шаг ${Math.min(c+1,t)} из ${t}`}
+function examQs(m){const out=[];const strips=shuffle(Q.filter(q=>QCH[q[0]]===m)).slice(0,2);strips.forEach(q=>{const d=shuffle(Q.filter(x=>x!==q&&Math.abs((QCH[x[0]]||0)-m)<=1)).slice(0,3);const op=shuffle([q,...d]);out.push({strip:q[0],q:'Что на ленте?',o:op.map(x=>x[1]),a:op.indexOf(q),why:q[2],key:q[0]})});
+  const cs=C.filter(c=>c.m===m&&c.a.length<=120);shuffle(cs).slice(0,4-out.length).forEach(c=>{const d=shuffle(cs.filter(x=>x!==c&&x.a!==c.a)).slice(0,3);const op=shuffle([c,...d]);out.push({q:c.q,o:op.map(x=>x.a),a:op.indexOf(c),why:''})});return shuffle(out)}
+function renderExam(m,run){const o=CH_[m],b=o.eb;b.innerHTML='';
+  if(!run){b.append(el('span','wt','Экзамен главы'),el('p','q2',S.pass[m]?'Глава сдана. Можно пересдать для тренировки.':'Четыре вопроса. Нужно три верных.'));const go=el('button','pri',S.pass[m]?'Пересдать':'Начать экзамен');go.onclick=()=>renderExam(m,{qs:examQs(m),i:0,r:0});b.append(go);return}
+  const q=run.qs[run.i];b.append(el('span','wt',`Вопрос ${run.i+1} из ${run.qs.length}`));if(q.strip)b.append(pic({strip:q.strip}));b.append(el('p','q2',q.q));const a=el('div');const why=el('p','why');why.hidden=true;const nx=el('button','pri',run.i+1<run.qs.length?'Следующий вопрос':'Итог');nx.hidden=true;b.append(a,why,nx);
+  mcq(a,q.o,q.a,(r,i,bt_)=>{answered(r,q.key);if(r){run.r++;if(!S.pass[m])award(10,bt_);else save()}else save();why.hidden=false;why.className='why '+(r?'ok':'no');why.textContent=(r?'Верно. ':'Правильно: '+q.o[q.a]+'. ')+q.why;nx.hidden=false});
+  nx.onclick=()=>{run.i++;if(run.i<run.qs.length)renderExam(m,run);else finishExam(m,run)}}
+function finishExam(m,run){const ok=run.r>=3,first=ok&&!S.pass[m];if(ok)S.pass[m]=dayStr();const o=CH_[m],b=o.eb;
+  if(first){award(60,null);const nxt=m<12?'m'+(m+1):'trener';ov({k:'Сдано',t:CH[m-1][1],b:'Теперь ты умеешь: '+SKILL[m].toLowerCase()+'. Карточки этой главы добавлены в тренажёр.',btn:m<12?'К главе '+(m+1):'В тренажёр',go:nxt})}
+  save();b.innerHTML='';b.append(el('span','wt','Итог экзамена'),el('p','big',run.r+' из '+run.qs.length),el('p','why',ok?'Сдано.':'Нужно три верных. Вопросы каждый раз другие, попробуй ещё раз.'));const r=el('button',ok?'':'pri','Ещё раз');r.onclick=()=>renderExam(m,{qs:examQs(m),i:0,r:0});b.append(r);showNav();if(ok){const hasPass=S.pass[m];bar(m)}}
+/* ---------- главная ---------- */
+function lentaW(){const w=new W();for(let i=1;i<=12;i++)if(S.pass[i])sin1(w,.1+(i-1)*.72,.15,{k:.82});return w}
+const isDue=c=>{const s=S.cards[c.id];return s&&s.d<=Date.now()};
+function nextCh(){for(let i=1;i<=12;i++)if(!S.pass[i])return i;return 0}
+function renderDaily(){const b=$('daily'),t=dayStr(),n=Math.floor(new Date(t).getTime()/DAY);const q=Q[n%Q.length];b.innerHTML='';b.append(el('span','wt','Лента дня'));const v=S.daily[t];b.append(pic({strip:q[0]}));const a=el('div'),why=el('p','why');why.hidden=true;b.append(el('p','q2','Что это? Если не знаешь, отвечай наугад, ответ всё объяснит.'),a,why);
+  const others=Q.filter(x=>x!==q).sort((x,y)=>((x[0].length*7+n)%11)-((y[0].length*7+n)%11)).slice(0,3);const op=[q,...others].sort((x,y)=>((x[1].length+n)%7)-((y[1].length+n)%7));const ci=op.indexOf(q);
+  const show=r=>{why.hidden=false;why.className='why '+(r?'ok':'no');why.textContent=(r?'Верно. ':'Это '+q[1].toLowerCase()+'. ')+q[2]+' Завтра будет новая лента.'};
+  mcq(a,op.map(x=>x[1]),ci,(r,i,bb)=>{S.daily[t]=i;answered(r,q[0]);award(r?15:5,bb);show(r)},v);if(v!==undefined)show(v===ci)}
+function renderHome(){hud();const p=Object.keys(S.pass).length,due=C.filter(isDue).length,firm=C.filter(c=>(S.cards[c.id]||{}).b>=3).length;
+  $('lentaFig').innerHTML=svgW(lentaW(),{dur:8.8,mm:3,H:24,notag:1});
+  $('lentaTxt').textContent=p===0?'Пока изолиния: 0 ударов из 12. Каждая сданная глава добавит на ленту один удар.':p<12?`Ударов на ленте: ${p} из 12. Заполни её до конца.`:'Все 12 ударов на месте. Синусовый ритм восстановлен.';
+  const n=nextCh(),g=$('goNext');if(n){g.href='#m'+n;g.textContent=p===0&&!S.hook[1]&&S.hook[1]!==0?'Начать с первой загадки':'Продолжить: глава '+n}else{g.href='#trener';g.textContent='В тренажёр'}
+  $('homeStats').innerHTML=`<div><b>${due}</b><span>карточек ждут</span></div><div><b>${firm}</b><span>закреплено</span></div><div><b>${S.streak.n}</b><span>дней подряд, лучшая ${S.streak.best}</span></div><div><b>${S.shift.best}</b><span>рекорд дежурства</span></div>`;
+  $('toc').innerHTML=CH.map(c=>{const m=c[0],st=S.pass[m]?'<span class="st done">сдано</span>':(S.hook[m]!==undefined?'<span class="st now">идёт</span>':'<span class="st"></span>');return`<li><a href="#m${m}"><span class="no">${String(m).padStart(2,'0')}</span><span class="ti">${c[1]}<small>${c[2]}</small></span>${st}</a></li>`}).join('');
+  const sk=Object.keys(S.pass).map(Number).sort((a,b)=>a-b);$('skillsBox').hidden=!sk.length;$('skills').innerHTML=sk.map(m=>`<li>${SKILL[m]}</li>`).join('');
+  $('badges').innerHTML=BADGES.map(b=>`<div class="${S.badges[b[0]]?'on':'off'}"><b>${b[1]}</b><span>${b[2]}</span></div>`).join('');renderDaily()}
+/* ---------- карточки ---------- */
+let queue=[],open_=false;const NEW_PER_DAY=15;
+function pool(){const f=+$('deck').value||0;const got=Object.keys(S.pass).map(Number);if(f)return C.filter(c=>c.m===f);const on=got.length?got:[1];return C.filter(c=>on.includes(c.m)||S.cards[c.id])}
+function buildQueue(){const p=pool();const due=p.filter(isDue),fresh=p.filter(c=>!S.cards[c.id]).slice(0,NEW_PER_DAY);queue=[...due,...fresh];open_=false;$('dueTxt').textContent=`повторить ${due.length} · новых ${fresh.length}`}
+function showCard(){const e=$('flash');e.innerHTML='';if(!queue.length){e.append(el('p','qq','На сегодня всё.'),el('p','muted','Следующие карточки придут по расписанию. Сдай новую главу или выходи на дежурство.'));return}
+  const c=queue[0],st=S.cards[c.id];e.append(el('span','meta',`Глава ${c.m} · ${st?'пауза '+INT[Math.max(0,st.b-1)]+' дн.':'новая'} · осталось ${queue.length}`),el('p','qq',c.q));
+  if(!open_){const b=el('button','pri','Показать ответ');b.onclick=()=>{open_=true;showCard()};e.append(b);return}
+  const r=el('div','row'),no=el('button','','Не помню'),ok=el('button','pri','Помню');no.onclick=()=>grade(false,no);ok.onclick=()=>grade(true,ok);r.append(no,ok);e.append(el('p','aa',c.a),r)}
+function grade(ok,b){const c=queue.shift(),s=S.cards[c.id]||{b:0};if(ok){s.b=Math.min(s.b+1,6);s.d=Date.now()+INT[s.b-1]*DAY}else{s.b=1;s.d=Date.now()+DAY;queue.push(c)}S.cards[c.id]=s;answered(ok);if(ok)award(3,b);else save();open_=false;showCard()}
+/* ---------- что на ленте ---------- */
+let cur=null,last=-1;
+const quizScore=()=>{$('quizScore').textContent=`верно ${S.quiz.r} из ${S.quiz.n}`};
+function nextQuiz(){let i;do{i=Math.floor(Math.random()*Q.length)}while(i===last);last=i;cur=Q[i];$('quizStrip').innerHTML=svgW(ST[cur[0]](),{dur:DUR,H:28});const op=shuffle([cur,...shuffle(Q.filter(x=>x!==cur)).slice(0,3)]);const k=$('quizKey');k.textContent='';$('quizNext').hidden=true;
+  mcq($('quizAns'),op.map(x=>x[1]),op.indexOf(cur),(r,ix,b)=>{S.quiz.n++;if(r)S.quiz.r++;answered(r,cur[0]);if(r)award(5,b);else save();quizScore();k.textContent=(r?'Верно. ':'Правильный ответ: '+cur[1]+'. ')+cur[2];$('quizNext').hidden=false})}
+/* ---------- ночное дежурство ---------- */
+let sh=null;
+function shiftIntro(){const p=$('paneShift');p.innerHTML='';const b=el('div','box');b.append(el('span','wt','60 секунд'),el('p','q2','Ночь, монитор, поток лент. Сколько определишь за минуту?'),el('p','why',`Твой рекорд: ${S.shift.best}. Ошибка не заканчивает смену, но обнуляет серию. В конце будет разбор.`));const g=el('button','pri','Заступить на дежурство');g.onclick=shiftStart;b.append(g);p.append(b)}
+function shiftStart(){sh={t0:Date.now(),n:0,c:0,best:0,miss:[],last:-1,live:true};shiftQ();sh.iv=setInterval(()=>{const l=60-(Date.now()-sh.t0)/1000;const i=$('tb');if(i)i.style.width=Math.max(0,l/60*100)+'%';if(l<=0)shiftEnd()},200)}
+function shiftQ(){let i;do{i=Math.floor(Math.random()*Q.length)}while(i===sh.last);sh.last=i;const q=Q[i],p=$('paneShift');p.innerHTML='';const tb=el('div','tbar'),ib=el('i');ib.id='tb';ib.style.width=Math.max(0,(60-(Date.now()-sh.t0)/1000)/60*100)+'%';tb.append(ib);const r=el('div','row sp');r.append(el('span','mono small',`верно ${sh.n}`),el('span','mono small muted',`серия ${sh.c}`));const f=el('figure','tape');f.innerHTML=svgW(ST[q[0]](),{dur:DUR,H:28});const a=el('div');p.append(tb,r,f,a);const op=shuffle([q,...shuffle(Q.filter(x=>x!==q)).slice(0,3)]);
+  mcq(a,op.map(x=>x[1]),op.indexOf(q),(ok,ix,b)=>{answered(ok,q[0]);if(ok){sh.n++;sh.c++;sh.best=Math.max(sh.best,sh.c)}else{sh.c=0;sh.miss.push(q)}setTimeout(()=>{if(sh&&sh.live)shiftQ()},ok?250:900)})}
+function shiftEnd(){if(!sh||!sh.live)return;sh.live=false;clearInterval(sh.iv);const rec=sh.n>S.shift.best;if(rec)S.shift.best=sh.n;if(sh.n)award(sh.n*3,null);else save();const p=$('paneShift');p.innerHTML='';const b=el('div','box');b.append(el('span','wt',rec?'Новый рекорд':'Смена окончена'),el('p','big',String(sh.n)),el('p','why',`Лучшая серия: ${sh.best}.`));if(sh.miss.length){const m=el('div','miss');m.append(el('b','','Разбор ошибок'));[...new Set(sh.miss)].forEach(q=>m.append(el('p','small',q[1]+': '+q[2])));b.append(m)}const g=el('button','pri','Ещё смена');g.onclick=shiftStart;b.append(g);p.append(b);sh=null}
+function tab(t){['Cards','Quiz','Shift'].forEach(x=>{$('pane'+x).hidden=x!==t;$('tab'+x).classList.toggle('on',x===t)});if(t!=='Shift'&&sh){sh.live=false;clearInterval(sh.iv);sh=null}if(t==='Quiz'&&!cur)nextQuiz();if(t==='Shift'&&!sh)shiftIntro()}
+/* ---------- переходы ---------- */
+const VIEWS=['uroki','trener','shpora','okurse'].concat(CH.map(c=>'m'+c[0]));let inited={};
+function showNav(){const h=location.hash.slice(1),pn=$('pn');if(h[0]==='m'){const n=+h.slice(1);pn.hidden=false;pn.innerHTML=(n>1?`<a class="btn" href="#m${n-1}">← Глава ${n-1}</a>`:'<a class="btn" href="#uroki">Все главы</a>')+(S.pass[n]?(n<12?`<a class="btn pri" href="#m${n+1}">Глава ${n+1} →</a>`:'<a class="btn pri" href="#trener">В тренажёр</a>'):(n<12?`<a class="btn" href="#m${n+1}">Пропустить →</a>`:''))}else pn.hidden=true}
+function route(){let h=location.hash.slice(1);if(!VIEWS.includes(h))h='uroki';if(sh){sh.live=false;clearInterval(sh.iv);sh=null}
+  document.querySelectorAll('section.view').forEach(s=>s.hidden=s.id!==h);document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('on',a.dataset.nav===h||(/^m\d/.test(h)&&a.dataset.nav==='uroki')));
+  const v=$(h);hydrate(v);const isM=/^m\d/.test(h);$('pbar').hidden=!isM;
+  if(h==='m1'&&!inited.m1){inited.m1=1;initRoute();$('chest').innerHTML=chestSvg()}
+  if(h==='m3'&&!inited.m3){inited.m3=1;initAxis()}if(h==='m9'&&!inited.m9){inited.m9=1;initStage()}if(h==='m10'&&!inited.m10){inited.m10=1;initLoc()}
+  if(isM){const m=+h.slice(1);buildChapter(v,m);showSteps(m)}
+  if(h==='trener'){buildQueue();showCard();quizScore();tab($('paneShift').hidden&&$('paneQuiz').hidden?'Cards':!$('paneQuiz').hidden?'Quiz':'Shift')}
+  if(h==='uroki')renderHome();
+  showNav();window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0))}
+$('deck').innerHTML='<option value="0">Мои главы</option>'+CH.map(c=>`<option value="${c[0]}">${c[0]}. ${c[1]}</option>`).join('');
+$('deck').onchange=()=>{buildQueue();showCard()};
+$('tabCards').onclick=()=>tab('Cards');$('tabQuiz').onclick=()=>tab('Quiz');$('tabShift').onclick=()=>tab('Shift');$('quizNext').onclick=nextQuiz;
+(()=>{const b=$('resetBox'),r=el('button','','Сбросить мой прогресс');r.onclick=()=>{b.innerHTML='';const y=el('button','pri','Да, стереть всё'),n=el('button','','Отмена');b.append(el('span','small','Это нельзя отменить.'),y,n);y.onclick=()=>{S=S0();save();location.hash='uroki';location.reload()};n.onclick=()=>{b.innerHTML='';b.append(r)}};b.append(r)})();
+window.addEventListener('hashchange',route);hud();route();
+
+</script>
+
+</body></html>
