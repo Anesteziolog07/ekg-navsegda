@@ -270,6 +270,15 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 .don2 .dcon{margin:14px 0 0;padding-top:12px;border-top:1px dashed #ecd9ab}
 
 .chip .nw{white-space:nowrap}.chip.free svg{flex:none}
+
+/* кнопки доната: одинаковые по размеру, «Поделиться» — бирюзовая в тон плашке «бесплатно» */
+.don2 .dact{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;width:100%;max-width:540px;align-self:flex-start}
+.don2 .dact .btn{width:100%;min-height:52px;margin:0;padding:13px 18px;border-radius:14px;justify-content:center;font-weight:700;font-size:16.5px;gap:8px;white-space:nowrap}
+.don2 .dact .shr{background:linear-gradient(135deg,#17a58f,#0b7d6d);color:#fff;border:none;box-shadow:0 1px 2px rgba(5,60,50,.25),0 4px 10px -6px rgba(10,110,95,.5);transition:transform .15s,box-shadow .15s}
+.don2 .dact .shr:hover{transform:translateY(-1px);box-shadow:0 2px 4px rgba(5,60,50,.25),0 8px 16px -8px rgba(10,110,95,.55)}
+.don2 .dact .shr svg{color:#fff}
+@media (max-width:620px){.don2 .dact{grid-template-columns:1fr;max-width:none;align-self:stretch}}
+.don2.insheet .sug{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}.don2.insheet .sug span{display:flex;flex-direction:column;align-items:center;text-align:center;padding:7px 4px;font-size:12.5px;line-height:1.25}.don2.insheet .sug b{margin:0 0 2px;font-size:15px}
 </style>
 <header class="top" id="top"></header>
 <main class="main" id="view"></main>
