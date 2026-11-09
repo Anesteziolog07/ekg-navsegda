@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="ru"><head><meta charset="utf-8"><script>try{document.documentElement.dataset.theme=localStorage.getItem("ekg-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ЭКГ — это просто — бесплатный курс по чтению ЭКГ</title><meta name="description" content="Бесплатный курс по ЭКГ простым языком: как читать ЭКГ, ритм и ЧСС, аритмии, блокады, инфаркт, WPW. Теория, тренажёр, игры и реальные ленты. Без регистрации и рекламы."><meta name="robots" content="index,follow,max-image-preview:large"><meta name="google-site-verification" content="XnbSUC7N64et7wdcmT2G1ituf-PMd8coSKpBRQ_XHsI"><link rel="canonical" href="https://anesteziolog07.github.io/ekg-navsegda/"><meta property="og:url" content="https://anesteziolog07.github.io/ekg-navsegda/"><meta property="og:image" content="https://anesteziolog07.github.io/ekg-navsegda/icon-512.png"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="ЭКГ — это просто"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "ЭКГ — это просто", "description": "Бесплатный онлайн-курс: как читать ЭКГ простым языком. 12 тем от проведения импульса до инфаркта, WPW и электролитов, тренажёр, мини-игры и реальные ленты с помехами.", "url": "https://anesteziolog07.github.io/ekg-navsegda/", "inLanguage": "ru", "isAccessibleForFree": true, "educationalLevel": "Для студентов-медиков, медсестёр, фельдшеров и молодых врачей", "teaches": "Чтение и расшифровка электрокардиограммы", "provider": {"@type": "Organization", "name": "ЭКГ — это просто", "url": "https://anesteziolog07.github.io/ekg-navsegda/"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB", "category": "Free"}, "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT10H"}}</script>
 <meta property="og:title" content="ЭКГ — это просто"><meta property="og:description" content="Бесплатный курс по ЭКГ простым языком: как читать ЭКГ, ритм и ЧСС, аритмии, блокады, инфаркт, WPW. Теория, тренажёр, игры и реальные ленты. Без регистрации и рекламы."><meta property="og:type" content="website"><meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e5484d'/%3E%3Cpath d='M3 17h7l3-10 5 17 3-7h8' fill='none' stroke='white' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ЭКГ это просто"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="preconnect" href="https://fonts.googleapis.com">
@@ -320,6 +320,134 @@ body::before{background:
  linear-gradient(90deg,var(--g1) 1px,transparent 1px) 0 0/20px 20px,
  linear-gradient(160deg,#f8faff,#fffafb 55%,#f5fbf9)}
 #pl .pf{background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+/* настоящие ЭКГ */
+.rgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.rg{display:flex;flex-direction:row;align-items:center;gap:12px;text-decoration:none;color:inherit}.rg img{flex:none}.rg span{display:flex;flex-direction:column;gap:2px;min-width:0}.rg b{font-size:17px}.rg small{color:var(--muted);font-size:14px;line-height:1.35}.rg em{font-style:normal;font-size:13px;font-weight:700;color:var(--acc)}.rg:hover{border-color:var(--acc)}
+.exban{display:flex;flex-direction:row;align-items:center;gap:14px;text-decoration:none;color:inherit;background:linear-gradient(120deg,#eef4ff,#fff 60%);border-color:#cfdcfb}.exban span{flex:1;display:flex;flex-direction:column;gap:3px}.exban b{font-size:19px}.exban small{color:var(--muted);font-size:14.5px;line-height:1.4}
+.rban{background:linear-gradient(120deg,#fff1f2,#fff 60%)}
+.rq{max-width:980px;margin:0 auto;width:100%}
+.rcv{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid #f1c7cc;background:#fff7f7}
+.rcv canvas{display:block}
+.op.pk{outline:3px solid var(--acc);outline-offset:1px}
+.exintro{align-items:center;text-align:center;max-width:620px;margin:auto}.exintro p{margin:0}
+.exres{max-width:900px;margin:0 auto;width:100%;gap:14px}
+.exsum{display:flex;flex-direction:row;gap:16px;align-items:center}.exsum h2{margin:0 0 4px}.exsum p{margin:0 0 4px}.exsum.ok{border-color:#9fdcc9;background:linear-gradient(120deg,#e9f8f2,#fff 65%)}
+.exwr{display:flex;flex-direction:column;gap:10px}.exwr>div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}.exwr span{color:#c2410c;font-size:14px}.exwr p{margin:0;font-size:15px;line-height:1.45}.exwr a{font-size:14px;font-weight:600}
+.cert{display:flex;flex-direction:column;gap:8px}.cert canvas{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}.cert input{font:inherit;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg)}
+.svp{display:flex;flex-direction:row;gap:14px;align-items:flex-start}.svp>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}.svp b{font-size:17px}.svp p{margin:0}.svp details{margin-top:6px}.svp summary{cursor:pointer;font-weight:600;color:var(--acc)}.svp details[open]{display:flex;flex-direction:column;gap:8px}.svp textarea{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;width:100%;background:var(--card);color:var(--fg)}
+@media (max-width:620px){.svp{flex-direction:column}.exsum{flex-direction:column;text-align:center}}
+.thm{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--fg);display:grid;place-items:center;cursor:pointer;margin-left:auto;margin-right:8px}.thm:hover{border-color:#c9d3e3}
+
+
+.rq .zt2{grid-template-columns:1fr}
+/* ===== тёмная тема (сгенерировано) ===== */
+html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#98a2b3;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
+html[data-theme=dark] body::before{opacity:.8}
+html[data-theme=dark] img{filter:none}
+html[data-theme=dark] .opsvg,html[data-theme=dark] .rcv{filter:brightness(.92)}
+html[data-theme=dark] .tabsn{background:#333840}
+html[data-theme=dark] .btn{background:#333840}
+html[data-theme=dark] /* лента */
+.mon{background:#33383f;border:1px solid #514e54}
+html[data-theme=dark] .rp{background:#333840;border:1px solid #504f55}
+html[data-theme=dark] .tp:hover{background:#323840}
+html[data-theme=dark] .tp .n{background:#31373f}
+html[data-theme=dark] /* плеер */
+#pl{background:#333840}
+html[data-theme=dark] .ph .x:hover{background:#31373f}
+html[data-theme=dark] .bar{background:#31363f}
+html[data-theme=dark] .tx{color:#d3d7de}
+html[data-theme=dark] .img{background:#313740}
+html[data-theme=dark] .tabs{background:#31373f}
+html[data-theme=dark] .tabs button.on{background:#333840}
+html[data-theme=dark] .tag.y{background:#333737}
+html[data-theme=dark] .know div{background:#33383d;border:1px solid #53544b}
+html[data-theme=dark] .op{background:#333840}
+html[data-theme=dark] .op kbd{background:#31373f}
+html[data-theme=dark] .ex.nt{background:#32373f}
+html[data-theme=dark] .ex ul{color:#d5d9e0}
+html[data-theme=dark] #ovl .box{background:#333840}
+html[data-theme=dark] .map::before{background:repeating-linear-gradient(#323138 0 8px,transparent 8px 16px)}
+html[data-theme=dark] .lvl{background:#333840}
+html[data-theme=dark] .lvl:disabled .n{background:#2f353d}
+html[data-theme=dark] .tbar{background:#31363f}
+html[data-theme=dark] select{background:#333840}
+html[data-theme=dark] .brow .t{background:#31373f}
+html[data-theme=dark] .brow.over .t i{background:#333230}
+html[data-theme=dark] details ul{color:#d5d9e0}
+html[data-theme=dark] .dock{background:rgba(18,24,33,.94)}
+html[data-theme=dark] .card.sec{background:rgba(18,24,33,.78)}
+html[data-theme=dark] .mem{background:#333840}
+html[data-theme=dark] .story div{background:#333840}
+html[data-theme=dark] .zones button{background:#333840}
+html[data-theme=dark] details.more p{color:#d3d7de}
+html[data-theme=dark] .ex details.more summary{background:#333840}
+html[data-theme=dark] .ax.y{background:#333737}
+html[data-theme=dark] .ax.y.on{color:#d5d5d4}
+html[data-theme=dark] .ap{background:#32373f;color:#d3d7de}
+html[data-theme=dark] .ap.y{background:#33383d;border:1px solid #53544b}
+html[data-theme=dark] .ex .ax{background:#333840}
+html[data-theme=dark] .ex .ap{background:#333840}
+html[data-theme=dark] .let{background:linear-gradient(160deg,#33352e,#f5b301);color:#d5d5d4}
+html[data-theme=dark] .mm .dd{background:#333840}
+html[data-theme=dark] .mm .obr{background:#333840;border:1px solid #515146}
+html[data-theme=dark] .mm .obr b{color:#d5d5d4}
+html[data-theme=dark] .mm .ww b{color:#d5d5d4}
+html[data-theme=dark] /* кликабельный профиль в шапке */
+.who{background:#333840}
+html[data-theme=dark] .who:hover{border-color:#454c57}
+html[data-theme=dark] .dban{background:linear-gradient(120deg,#33373d,#333840 60%);border-color:#51514a}
+html[data-theme=dark] .cup i{background:linear-gradient(#303238,rgba(230,212,196,0))}
+html[data-theme=dark] .don{background:linear-gradient(140deg,#33373d 0%,#33383f 55%,#333840 100%);border:1px solid #50504a}
+html[data-theme=dark] .don .sug span{background:#333840;border:1px solid #504f46;color:#dcdad4}
+html[data-theme=dark] .don .sug b{color:#d5d5d4}
+html[data-theme=dark] .don .dbtn:disabled{background:#31353a}
+html[data-theme=dark] .me input{background:#333840}
+html[data-theme=dark] .ring{background:conic-gradient(#0c9a86 calc(var(--p)*1%),#30363f 0)}
+html[data-theme=dark] .ring::before{background:#333840}
+html[data-theme=dark] .prow a:hover{background:#323740}
+html[data-theme=dark] .pb2{background:#30363f}
+html[data-theme=dark] .zbar{background:#31353c}
+html[data-theme=dark] .zl a{background:#333840}
+html[data-theme=dark] .zl a.no .n{background:#33353b;color:#e8d8d5}
+html[data-theme=dark] .zc{background:#333840}
+html[data-theme=dark] .zt2>div{background:#333840}
+html[data-theme=dark] .don .vol{background:#333840;border:1px dashed #4d4b42;color:#d9dad9}
+html[data-theme=dark] .chip.free{background:#30373e}
+html[data-theme=dark] .tfb .tfy{background:#30373e;border-color:#425356}
+html[data-theme=dark] .tfb .tfn{background:#33363d;color:#e8d8d5;border-color:#524b4e}
+html[data-theme=dark] .tfr.ok{background:#30373e;color:#cedee1}
+html[data-theme=dark] .tfr.no{background:#33363e;color:#e2d7d6}
+html[data-theme=dark] .don .big0{background:#30373e;color:#cedcdf}
+html[data-theme=dark] /* профиль: значки */
+.who i.ai{background:#333840}
+html[data-theme=dark] .me .av.ai{background:linear-gradient(135deg,#313740,#30373e);border:1px solid #49515c}
+html[data-theme=dark] .avb{background:#333840}
+html[data-theme=dark] .avb:hover{border-color:#454c57}
+html[data-theme=dark] .avb[aria-checked="true"]{background:#313740}
+html[data-theme=dark] .me .av em{background:#333840}
+html[data-theme=dark] .chip.vr{background:#313740;color:#d2dbef}
+html[data-theme=dark] .don2 .fz{background:#30373e;border:1px solid #425356;color:#cedcdf}
+html[data-theme=dark] .don2 .dcon{border-top:1px dashed #4f4e48}
+html[data-theme=dark] /* живая картинка «операционный блок» */
+.oppic{background:#333840;border:1px solid #515146}
+html[data-theme=dark] #pl{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='120'%3E%3Cpath d='M0 80H120q15-16 30 0H196l8 7 12-64 12 76 8-19H300q32-28 64 0H640' fill='none' stroke='%23e5484d' stroke-opacity='.16' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E") left calc(100% - 78px)/640px 120px repeat-x,
+ radial-gradient(55% 40% at 0% 0%,rgba(47,107,237,.11),transparent 70%),
+ radial-gradient(50% 40% at 100% 8%,rgba(12,154,134,.08),transparent 70%),
+ radial-gradient(60% 45% at 100% 100%,rgba(229,72,77,.09),transparent 70%),
+ linear-gradient(var(--g2) 1px,transparent 1px) 0 0/100px 100px,
+ linear-gradient(90deg,var(--g2) 1px,transparent 1px) 0 0/100px 100px,
+ linear-gradient(var(--g1) 1px,transparent 1px) 0 0/20px 20px,
+ linear-gradient(90deg,var(--g1) 1px,transparent 1px) 0 0/20px 20px,
+ linear-gradient(160deg,#323840,#333840 55%,#32383f)}
+html[data-theme=dark] #pl .pf{background:rgba(18,24,33,.78)}
+html[data-theme=dark] .exban{background:linear-gradient(120deg,#313740,#333840 60%);border-color:#474f5e}
+html[data-theme=dark] .rban{background:linear-gradient(120deg,#33363e,#333840 60%)}
+html[data-theme=dark] .exsum.ok{border-color:#394f50;background:linear-gradient(120deg,#30373e,#333840 65%)}
+html[data-theme=dark] .exwr span{color:#e8d8d5}
+html[data-theme=dark] .thm{background:#333840}
+html[data-theme=dark] .thm:hover{border-color:#454c57}
 </style>
 <header class="top" id="top"></header>
 <main class="main" id="view"></main>
@@ -1306,7 +1434,7 @@ function avI(){const k=S.av;if(k&&avOk(k))return`<i class="ai"><img src="${IMG(k
 function avBig(){const k=S.av;if(k&&avOk(k))return`<img src="${IMG(k)}" alt="" width="52" height="52">`;return esc((S.nick||'').trim().charAt(0).toUpperCase()||'?')}
 const pct=(a,b)=>Math.round(a/Math.max(1,b)*100);
 const learned=()=>Object.values(S.cards).filter(c=>c.b>=3).length;
-function progRows(){return[['book','Теория','прочитано тем',dn(),12,'#teoria'],['target','Практика','закреплено тем',pn(),12,'#praktika'],['game','Игра','пройдено уровней',gn(),LEVELS.length,'#igra'],['stethoscope','Как в жизни','решено лент',zDone(),REAL.length,'#zhizn']]}
+function progRows(){return[['book','Теория','прочитано тем',dn(),12,'#teoria'],['target','Практика','закреплено тем',pn(),12,'#praktika'],['game','Игра','пройдено уровней',gn(),LEVELS.length,'#igra'],['stethoscope','Как в жизни','решено лент',zDone(),REAL.length,'#zhizn'],['heart','Настоящие ЭКГ','решено записей',reDone(),reTotal,'#ekg']]}
 function donH(big){const on=!!DONATE_URL;return`<div class="don don2${big?' insheet':''}"><div class="cup">${cupSVG(124)}</div><div class="dt"><h2>На капучино автору</h2><p class="lead">Я врач — анестезиолог-реаниматолог. Мне очень хочется, чтобы каждый студент и молодой доктор научился правильно читать ЭКГ. Для этого я и сделал этот курс.</p><div class="fz">${ic('check',20)}<p>Курс <b>абсолютно бесплатный</b> — без регистрации и рекламы.</p></div><p class="soft">Поблагодарить автора можно, угостив его чашкой капучино. Это только по желанию.</p><p class="soft thx2">А лучшая благодарность — поделиться курсом с однокурсниками и коллегами.</p><div class="sug"><span><b>150 ₽</b> капучино</span><span><b>300 ₽</b> кофе с выпечкой</span><span><b>500 ₽</b> на новую тему</span></div><div class="dact">${on?`<a class="btn pri dbtn" href="${DONATE_URL}" target="_blank" rel="noopener">Угостить капучино${ic('arrow',18)}</a>`:`<button class="btn dbtn" disabled>Ссылка скоро появится</button>`}<button class="btn shr" type="button">Поделиться курсом${ic('arrow',18)}</button></div>${on?`<p class="meta dsafe">${ic('lock',14)} CloudTips: СБП или карта, сумму выбираешь сам.</p>`:''}${TG_BOT?`<p class="soft dcon">Есть вопрос, нашёл ошибку или хочешь что-то предложить? <a href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Напиши автору в Telegram</a>.</p>`:''}</div></div>`}
 function shareCourse(b){const u=location.origin+location.pathname,t='ЭКГ — это просто — бесплатный курс по чтению ЭКГ';if(navigator.share){navigator.share({title:t,url:u}).catch(()=>{})}else{try{navigator.clipboard.writeText(u);b.textContent='Ссылка скопирована'}catch(e){}}}
 function openDon(){const b=document.createElement('div');b.id='ovl';b.className='dsheet';b.setAttribute('role','dialog');b.setAttribute('aria-modal','true');b.setAttribute('aria-label','На капучино автору');b.innerHTML=`<div class="box">${donH(true)}<button class="btn" id="dcl">Закрыть</button></div>`;document.body.append(b);const cl=()=>b.remove();$('dcl').onclick=cl;b.onclick=e=>{if(e.target===b)cl()};b.querySelector('.shr').onclick=e=>shareCourse(e.currentTarget);$('dcl').focus()}
@@ -1319,12 +1447,12 @@ function vProf(v){document.documentElement.style.setProperty('--acc',C_TH[0]);do
  v.innerHTML=`<div class="view"><div class="pt"><h1 id="pnm">${esc((S.nick||'').trim()||'Профиль')}</h1><p>Твой прогресс, значок и имя. Всё хранится только на этом устройстве.</p></div><div class="card me"><button type="button" class="av${S.av&&avOk(S.av)?' ai':''}" id="avbtn" aria-label="Выбрать значок профиля">${avBig()}${PEN}</button><div class="mi"><label for="nk" class="meta">Имя профиля</label><input id="nk" maxlength="24" autocomplete="nickname" placeholder="Например, Будущий кардиолог" value="${esc(S.nick||'').replace(/"/g,'&quot;')}"><p class="meta">Нажми на кружок, чтобы выбрать значок. Имя и прогресс никуда не отправляются.</p></div></div>
  <div class="card pall"><div class="ring" style="--p:${p}"><b>${p}%</b><span>пройдено</span></div><div><h2>${p>=100?'Курс пройден целиком':'Осталось '+(100-p)+'%'}</h2><p class="meta">Уровень: <b>${LV[L][1]}</b>, ${S.xp} очков${nxL?`. До уровня «${nxL[1]}» ещё ${nxL[0]-S.xp}`:''}.</p><p class="meta">Дней подряд: ${S.streak.n||0}, рекорд ${S.streak.best||0}. Выучено карточек: ${learned()}.</p>${s?`<a class="btn pri" href="#${s.k}${s.m}">${s.k==='t'?'Дальше: тема '+s.m:'Дальше: практика по теме '+s.m}${ic('arrow',18)}</a>`:`<a class="btn pri" href="#zhizn">Дальше: ленты как в жизни${ic('arrow',18)}</a>`}</div></div>
  <div class="card prow">${R.map(r=>`<a href="${r[5]}"><img src="${IMG(r[0])}" alt="" width="40" height="40"><span><b>${r[1]}</b><small>${r[2]}: ${r[3]} из ${r[4]}${r[3]<r[4]?`, осталось ${r[4]-r[3]}`:', всё'}</small></span><span class="pb2"><i style="width:${pct(r[3],r[4])}%"></i></span></a>`).join('')}</div>
- ${TG_BOT?`<div class="card inst pcon"><img src="${IMG('envelope')}" alt="" width="56" height="56"><div><b>Связаться с автором</b><p class="meta">Есть вопрос, нашёл ошибку или хочешь что-то предложить? Напиши — автор прочитает и ответит.</p><a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a></div></div>`:''}${instH()}${donH(false)}</div>`;
+ <div id="pcert"></div>${S.exam&&S.exam.best&&!S.exam.pass?`<a class="card inst" href="#ekzamen"><img src="${IMG('grad')}" alt="" width="56" height="56"><div><b>Итоговый экзамен</b><p class="meta">Лучший результат: ${S.exam.best} из 30. Для сертификата нужно 24.</p></div></a>`:''}${saveH()}${TG_BOT?`<div class="card inst pcon"><img src="${IMG('envelope')}" alt="" width="56" height="56"><div><b>Связаться с автором</b><p class="meta">Есть вопрос, нашёл ошибку или хочешь что-то предложить? Напиши — автор прочитает и ответит.</p><a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a></div></div>`:''}${instH()}${donH(false)}</div>`;
  const nk=$('nk'),avEl=$('avbtn'),drawAv=()=>{avEl.className='av'+(S.av&&avOk(S.av)?' ai':'');avEl.innerHTML=avBig()+PEN};
  nk.oninput=()=>{S.nick=nk.value.slice(0,24);save();who();$('pnm').textContent=S.nick.trim()||'Профиль';drawAv()};
  avEl.onclick=()=>openAv(drawAv);
  const ib=$('ib');if(ib)ib.onclick=async()=>{instEv.prompt();try{await instEv.userChoice}catch(e){}instEv=null;vProf(v)};
- v.querySelector('.shr').onclick=e=>shareCourse(e.currentTarget)}
+ v.querySelector('.shr').onclick=e=>shareCourse(e.currentTarget);certProf(v);saveInit(v)}
 /* ---------- связаться с автором: через Telegram-бота-посредника, личные контакты автора не показываются ---------- */
 const TG_BOT='EKG_prosto_bot';
 function vSv(v){document.documentElement.style.setProperty('--acc',C_TH[0]);document.documentElement.style.setProperty('--acc-b',C_TH[1]);const on=!!TG_BOT;
@@ -1332,6 +1460,17 @@ function vSv(v){document.documentElement.style.setProperty('--acc',C_TH[0]);docu
  <div class="card sv"><img src="${IMG('envelope')}" alt="" width="72" height="72"><div><h2>Написать в Telegram</h2><p>Сообщение придёт автору, и он ответит тебе прямо в Telegram.</p>${on?`<a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a>`:`<button class="btn" disabled>Кнопка скоро появится</button>`}</div></div>
  <div class="card"><h2>О чём можно написать</h2><ul class="svl"><li>Ошибка или неточность в курсе — лучше с номером темы.</li><li>Место, которое стоит объяснить проще.</li><li>Идея для новой темы, игры или ленты.</li><li>Просто «спасибо» — это тоже очень приятно.</li></ul><p class="meta">Пожалуйста, не присылай данные пациентов и снимки ЭКГ с именами.</p></div></div>`}
 if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+/* ---------- сохранить и восстановить прогресс (без сервера) ---------- */
+const progCode=()=>'EKG1:'+btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+function saveH(){return`<div class="card svp"><img src="${IMG('clipboard')}" alt="" width="56" height="56"><div><b>Сохранить прогресс</b><p class="meta">Прогресс хранится в этом браузере. Сохрани его, чтобы продолжить на другом телефоне или после очистки браузера.</p><div class="rowb"><button class="btn" id="svf" type="button">Скачать файл</button><button class="btn" id="svc" type="button">Скопировать код</button></div><details><summary>Восстановить прогресс</summary><p class="meta">Выбери сохранённый файл или вставь код.</p><input type="file" id="svi" accept=".txt,text/plain"><textarea id="svt" rows="3" placeholder="Вставь код, который начинается с EKG1:"></textarea><button class="btn pri" id="svr" type="button">Восстановить</button><p class="meta" id="svm"></p></details></div></div>`}
+function progLoad(code,msg){code=(code||'').trim();try{if(!code.startsWith('EKG1:'))throw 0;const o=JSON.parse(decodeURIComponent(escape(atob(code.slice(5)))));if(!o||typeof o.xp!=='number')throw 0;
+ if(!confirm('Заменить текущий прогресс сохранённым?'))return;localStorage.setItem(KEY,JSON.stringify(Object.assign(S0(),o)));location.reload()}catch(e){msg.textContent='Код не подошёл. Проверь, что скопирован целиком.'}}
+function saveInit(v){const f=v.querySelector('#svf');if(!f)return;const m=v.querySelector('#svm');
+ f.onclick=()=>{const b=new Blob([progCode()],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ekg-progress-'+dayStr()+'.txt';document.body.append(a);a.click();a.remove()};
+ v.querySelector('#svc').onclick=e=>{const c=progCode(),btn=e.currentTarget;(navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).then(()=>{btn.textContent='Код скопирован'}).catch(()=>{v.querySelector('details').open=true;v.querySelector('#svt').value=c;btn.textContent='Код ниже — скопируй вручную'})};
+ v.querySelector('#svi').onchange=e=>{const fl=e.target.files[0];if(!fl)return;fl.text().then(t=>progLoad(t,m))};
+ v.querySelector('#svr').onclick=()=>progLoad(v.querySelector('#svt').value,m)}
 
 /* ---------- мини-игры: пульс на глаз, верно или неверно, найди на ленте ---------- */
 /* только навык: очки за верные ответы, никаких случайных наград */
@@ -1423,6 +1562,129 @@ function mgEnd(){const k=MG.k,sc=MG.ok,rec=sc>(S.mg[k]||0);if(rec)S.mg[k]=sc;sav
  h.innerHTML=`<div class="solo col" style="text-align:center;align-items:center"><span class="tag">${rec?'Новый рекорд':'Игра окончена'}</span><div class="big">${sc}</div><p class="tx">${k==='tf'?'верных ответов за минуту':'из '+MG.n}. Лучшая серия: ${MG.best}.</p>${miss.length?`<div class="ex nt" style="text-align:left;width:100%"><span class="sub">Разбор ошибок</span><ul>${miss.join('')}</ul></div>`:'<p class="tx">Без единой ошибки!</p>'}<div class="rowb" style="width:100%"><button class="btn" id="mgb">К играм</button><button class="btn pri" id="mga">Ещё раз</button></div></div>`;
  $('mga').onclick=()=>openMG(k);$('mgb').onclick=()=>{location.hash='igra'};if(rec&&sc>3)confetti();const m=MG;MG=null}
 
+/* ---------- Настоящие ЭКГ (база PTB-XL, PhysioNet, CC BY 4.0) + итоговый экзамен и сертификат ---------- */
+/* диагнозы: название, как узнать, тема курса */
+const RX={
+NORM:['Норма: синусовый ритм','Перед каждым QRS обычный зубец P, PQ 0,12–0,20 с, QRS узкий, ST на изолинии, T направлен туда же, куда главный зубец QRS.',3],
+AX_L:['Отклонение оси влево','Самый высокий R в отведении I, а во II и особенно в III зубец S глубже R. Порядок «один, два, три»: I > II > III.',3],
+AX_R:['Отклонение оси вправо','Самый высокий R в отведении III, а в I зубец S глубже R. Обратный отсчёт: III > II > I.',3],
+STACH:['Синусовая тахикардия','Ритм синусовый — обычный P перед каждым QRS, — но частый: между соседними R около трёх больших клеток или меньше, то есть 100 в минуту и выше.',4],
+SBRAD:['Синусовая брадикардия','Ритм синусовый, но редкий: между соседними R больше пяти больших клеток — меньше 60 в минуту.',4],
+SARRH:['Синусовая аритмия','Зубцы P одинаковые и стоят перед каждым QRS, но расстояния R-R плавно меняются — чаще всего вместе с дыханием.',4],
+PVC:['Желудочковая экстрасистола','Ранний широкий QRS, не похожий на остальные, без зубца P перед ним. T направлен против QRS, после удара часто пауза.',4],
+PAC:['Предсердная экстрасистола','Ранний удар с зубцом P другой формы и обычным узким QRS.',4],
+BIGU:['Бигеминия','Каждый второй удар — ранний: обычный, ранний, обычный, ранний…',4],
+TRIGU:['Тригеминия','Ранний удар после каждых двух обычных: обычный, обычный, ранний…',4],
+AFIB:['Фибрилляция предсердий','Зубцов P нет, вместо них мелкая неровная рябь. Все интервалы R-R разные — ритм «как попало».',5],
+AFLT:['Трепетание предсердий','Вместо P — ровные «зубья пилы» (волны F), лучше видны во II, III, aVF и V1. QRS узкие.',5],
+SVT:['Наджелудочковая тахикардия','Частый ровный ритм с узкими QRS. Обычных P перед комплексами не видно или они другой формы.',5],
+'1AVB':['АВ-блокада I степени','Каждый P проводится к QRS, но интервал PQ длиннее 0,20 с — больше одной большой клетки.',6],
+'2AVB':['АВ-блокада II степени','Часть зубцов P не проводится: после некоторых P нет комплекса QRS.',6],
+'3AVB':['Полная АВ-блокада (III степени)','P и QRS идут каждый в своём ритме: PQ всё время разный, комплексов QRS меньше, чем зубцов P.',6],
+CRBBB:['Полная блокада правой ножки','QRS шире 0,12 с. В V1 форма rsR′ — «заячьи уши», в I и V6 широкий зубец S.',7],
+CLBBB:['Полная блокада левой ножки','QRS шире 0,12 с. В I, V5–V6 широкий зазубренный R без q, в V1 глубокий широкий S. ST и T направлены против QRS.',7],
+IRBBB:['Неполная блокада правой ножки','Форма rsR′ в V1, как при блокаде правой ножки, но QRS не шире 0,12 с.',7],
+LAFB:['Блокада передней ветви левой ножки','Ось резко влево. Во II, III, aVF зубец S глубже, чем R высокий. QRS почти не расширен.',7],
+LPFB:['Блокада задней ветви левой ножки','Ось вправо. В I и aVL зубец S глубже R, во II, III, aVF высокий R. QRS почти не расширен. Ставят после того, как исключили гипертрофию правого желудочка.',7],
+LVH:['Гипертрофия левого желудочка','Высокие R в V5–V6 и глубокие S в V1–V2: сумма S в V1 и R в V5 или V6 — 35 мм и больше. Часто ST вниз и T отрицательный в левых отведениях.',8],
+RVH:['Гипертрофия правого желудочка','Высокий R в V1 (R не меньше S), ось вправо, в V5–V6 глубокий S.',8],
+LAE:['Перегрузка левого предсердия','Зубец P широкий, больше 0,10 с, часто двугорбый во II. В V1 у P большая отрицательная часть.',8],
+RAE:['Перегрузка правого предсердия','Зубец P высокий и острый, больше 2,5 мм, лучше виден во II, III, aVF.',8],
+ISC:['Ишемия миокарда','Изменения зубца T (сглаженный или отрицательный) и небольшое смещение ST в группе соседних отведений.',9],
+INJ:['Субэндокардиальное повреждение','Депрессия сегмента ST в группе соседних отведений.',9],
+OLDMI:['Рубцовые изменения после инфаркта','Патологические зубцы Q или комплексы QS в группе отведений при ST на изолинии — след перенесённого инфаркта.',9],
+IMI:['Инфаркт нижней стенки','Изменения (Q, ST, T) во II, III и aVF — «пол» комнаты.',10],
+ASMI:['Инфаркт передне-перегородочной области','Изменения в V1–V3: часто QS или маленький r, который не растёт.',10],
+AMI:['Передний инфаркт','Изменения в передних грудных отведениях V1–V4 — «фасад».',10],
+ALMI:['Переднебоковой инфаркт','Изменения в передних и боковых отведениях: V3–V6, I, aVL.',10],
+LMI:['Боковой инфаркт','Изменения в I, aVL, V5–V6 — «стена» комнаты.',10],
+WPW:['Синдром WPW','Короткий PQ (меньше 0,12 с), пологое начало QRS — дельта-волна, широкий QRS.',11],
+LNGQT:['Удлинённый интервал QT','Зубец T заканчивается позже середины между соседними R. Скорректированный QT (QTc) больше нормы.',12],
+EL:['Электролитные нарушения или действие лекарств','Изменения ST, T и интервала QT во многих отведениях сразу, не похожие на ишемию. По одной ЭКГ точную причину не назвать — смотрят анализы и список лекарств.',12]};
+/* разделы: файл, название, картинка, описание */
+const RG=[[1,'Норма','heart','Как выглядит здоровая ЭКГ'],[3,'Электрическая ось','compass','Влево, вправо или норма'],[4,'Ритм и экстрасистолы','speaker','Тахикардия, брадикардия, ранние удары'],[5,'Тахикардии и фибрилляция','saw','Фибрилляция, трепетание, тахикардии'],[6,'АВ-блокады','lock','I, II и III степень'],[7,'Блокады ножек','door','Правая, левая, ветви'],[8,'Гипертрофии','muscle','Желудочки и предсердия'],[9,'Ишемия, повреждение, рубец','fire','Дым, огонь и угли'],[10,'Где инфаркт','house','Пол, стена, фасад'],[11,'WPW','elevator','Чёрный ход мимо шлюза'],[12,'QT и электролиты','hourglass','Длинный QT и другое']];
+const RE={};                                  // загруженные разделы
+const reLoad=t=>RE[t]?Promise.resolve(RE[t]):fetch('real/t'+t+'.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>(RE[t]=j));
+const LEADS=['I','II','III','aVR','aVL','aVF','V1','V2','V3','V4','V5','V6'];
+function reDec(it){if(it._L)return it._L;const b=atob(it.d),n=b.length,a=new Float32Array(n);let v=0,k=0;const seg=625;const out=[];
+ for(let i=0;i<n;i++){let d=b.charCodeAt(i);if(d>127)d-=256;if(i===0||i%seg===0&&i<12*seg||i===12*seg)v=0;v+=d;a[i]=v*0.02}
+ for(let l=0;l<12;l++)out.push(a.subarray(l*seg,(l+1)*seg));out.push(a.subarray(12*seg));return(it._L=out)}
+/* рисуем ЭКГ как на бумаге: 4 колонки × 3 отведения + длинная II */
+function reDraw(cv,it){const L=reDec(it),PX=Math.max(2.6,Math.min(4,((cv.parentElement&&cv.parentElement.clientWidth)||780)/258)),mm=PX,ml=8*mm,W=ml+250*mm,rowH=32*mm,H=rowH*4+10*mm,dpr=Math.min(2,window.devicePixelRatio||1);
+ cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';const g=cv.getContext('2d');g.scale(dpr,dpr);
+ g.fillStyle='#fff7f7';g.fillRect(0,0,W,H);
+ for(let x=0;x<=W;x+=mm){g.strokeStyle=(Math.round(x/mm)%5===0)?'rgba(229,72,77,.32)':'rgba(229,72,77,.12)';g.lineWidth=(Math.round(x/mm)%5===0)?1:.5;g.beginPath();g.moveTo(x+.5,0);g.lineTo(x+.5,H);g.stroke()}
+ for(let y=0;y<=H;y+=mm){g.strokeStyle=(Math.round(y/mm)%5===0)?'rgba(229,72,77,.32)':'rgba(229,72,77,.12)';g.lineWidth=(Math.round(y/mm)%5===0)?1:.5;g.beginPath();g.moveTo(0,y+.5);g.lineTo(W,y+.5);g.stroke()}
+ g.strokeStyle='#1a2230';g.lineWidth=1.35;g.lineJoin='round';g.lineCap='round';g.fillStyle='#1a2230';g.font='600 12px Onest,system-ui,sans-serif';
+ const base=r=>rowH*r+rowH*0.62,sx=250*mm/2500;
+ for(let r=0;r<4;r++){const y0=base(r);g.beginPath();g.moveTo(1,y0);g.lineTo(2*mm,y0);g.lineTo(2*mm,y0-10*mm);g.lineTo(7*mm,y0-10*mm);g.lineTo(7*mm,y0);g.lineTo(ml,y0);g.stroke()}
+ const COL=[[0,1,2],[3,4,5],[6,7,8],[9,10,11]];
+ COL.forEach((ls,c)=>ls.forEach((l,r)=>{const s=L[l],y0=base(r),x0=ml+c*62.5*mm;g.beginPath();for(let i=0;i<s.length;i++){const x=x0+i*sx,y=y0-s[i]*10*mm;i?g.lineTo(x,y):g.moveTo(x,y)}g.stroke();
+  g.fillText(LEADS[l],x0+4,rowH*r+14);if(c){g.beginPath();g.moveTo(x0,y0-4*mm);g.lineTo(x0,y0+4*mm);g.stroke()}}));
+ const s=L[12],y0=base(3);g.beginPath();for(let i=0;i<s.length;i++){const x=ml+i*sx,y=y0-s[i]*10*mm;i?g.lineTo(x,y):g.moveTo(x,y)}g.stroke();g.fillText('II',ml+4,rowH*3+14);
+ g.fillStyle='#667085';g.font='500 11px Onest,system-ui,sans-serif';g.fillText('25 мм/с · 10 мм/мВ',W-118,H-6)}
+const reDone=()=>Object.keys(S.re||{}).length;
+const reTotal=198;
+function reOpts(it,pool){const right=it.c,codes=[...new Set(pool.map(x=>x.c))].filter(c=>c!==right);let o=shuffle(codes).slice(0,3);
+ if(o.length<3){const all=shuffle(Object.keys(RX).filter(c=>c!==right&&!o.includes(c)));o=o.concat(all.slice(0,3-o.length))}return shuffle([right,...o])}
+function vEkg(v){document.documentElement.style.setProperty('--acc',C_PR[0]);document.documentElement.style.setProperty('--acc-b',C_PR[1]);S.re=S.re||{};
+ v.innerHTML=`<div class="view"><div class="pt"><h1>Настоящие ЭКГ</h1><p>Почти 200 записей реальных пациентов из открытой научной базы. Заключения к ним делали кардиологи. Смотри ленту, выбирай ответ и сверяйся с разбором.</p></div>
+ <a class="card exban" href="#ekzamen"><img src="${IMG('grad')}" alt="" width="64" height="64"><span><b>Итоговый экзамен</b><small>30 настоящих ЭКГ. Сдашь на 80% и больше — получишь сертификат о прохождении курса.${S.exam&&S.exam.best?` Лучший результат: ${S.exam.best} из 30.`:''}</small></span>${ic('arrow',20)}</a>
+ <div class="rgs">${RG.map((g,i)=>`<a class="card rg" href="#ekg-${i+1}"><img src="${IMG(g[2])}" alt="" width="52" height="52"><span><b>${g[1]}</b><small>${g[3]}</small><em id="rgc${i}"></em></span></a>`).join('')}</div>
+ <p class="note">Записи: база PTB-XL (PhysioNet), лицензия CC BY 4.0. Названия диагнозов переведены и упрощены для учёбы. Это учебный материал, а не медицинское заключение.</p></div>`;
+ RG.forEach((g,i)=>reLoad(g[0]).then(a=>{const d=a.filter(x=>S.re[x.id]).length,e=$('rgc'+i);if(e)e.textContent=`Решено ${d} из ${a.length}`}).catch(()=>{}))}
+function openEG(gi){const g=RG[gi];if(!g)return(location.hash='ekg');shell({t:'Настоящие ЭКГ · '+g[1],back:'ekg',acc:C_PR[0],accb:C_PR[1]});$('pv').style.visibility='hidden';
+ body(1).innerHTML='<div class="solo col"><p class="meta">Загружаю записи…</p></div>';
+ reLoad(g[0]).then(a=>{RUN={k:'re',g:gi,a:shuffle(a.slice()),i:0};reQ()}).catch(()=>{body(1).innerHTML='<div class="solo col"><p>Не получилось загрузить записи. Проверь интернет и открой раздел ещё раз.</p></div>'})}
+function reCase(h,it,pool,onAns,label){const o=reOpts(it,pool);
+ h.innerHTML=`<div class="col rq"><span class="tag">${label}</span><h2>Что на этой ЭКГ?</h2><div class="rcv"><canvas></canvas></div><p class="meta zsh">12 отведений: четыре колонки по 2,5 секунды, внизу — длинная лента II. На телефоне листай пальцем вправо.</p><div class="opts">${o.map((c,k)=>`<button class="op"><kbd>${k+1}</kbd><span>${RX[c][0]}</span></button>`).join('')}</div><div class="exb"></div></div>`;
+ reDraw(h.querySelector('canvas'),it);const bs=[...h.querySelectorAll('.op')],a=o.indexOf(it.c);
+ bs.forEach((b,k)=>b.onclick=()=>{bs.forEach(x=>x.disabled=true);bs[a].classList.add('ok');const ok=k===a;if(!ok)b.classList.add('no');onAns(ok,b,o[k])});
+ h._pick=k=>{if(bs[k]&&!bs[k].disabled)bs[k].click()};return o}
+function reQ(){const R=RUN,g=RG[R.g],it=R.a[R.i],h=body(1);setBar(R.i+1,R.a.length);nxt(false);
+ reCase(h,it,R.a,(ok,b,pick)=>{const first=!S.re[it.id];S.re[it.id]=ok?1:(S.re[it.id]===1?1:2);if(ok&&first)award(6,b);else save();const d=RX[it.c],exb=h.querySelector('.exb');
+  exb.innerHTML=`<div class="ex ${ok?'ok':'no'}"><h4>${ok?'Верно':'Не совсем'}</h4>${ok?'':`<p>Твой ответ: ${RX[pick][0]}.</p>`}<div class="zc"><span>Заключение</span><p><b>${d[0]}</b>${it.a?` · ${it.s==='м'?'мужчина':'женщина'}, ${it.a} лет`:''}</p></div><div class="zt2"><div><span>${ic('bulb',16)} Как узнать</span><p>${d[1]}</p></div></div><p class="meta"><a href="#t${d[2]}">Повторить тему ${d[2]}</a></p></div>`;
+  requestAnimationFrame(()=>exb.scrollIntoView({behavior:'smooth',block:'nearest'}));
+  nxt(true,R.i+1<R.a.length?'Следующая ЭКГ':'К разделам',()=>{if(R.i+1<R.a.length){R.i++;reQ()}else location.hash='ekg'})},`ЭКГ ${R.i+1} из ${R.a.length} · ${g[1]}`)}
+/* ---------- итоговый экзамен ---------- */
+function openExam(){shell({t:'Итоговый экзамен',back:'ekg',acc:C_TH[0],accb:C_TH[1]});$('pv').style.visibility='hidden';const h=body(1);
+ h.innerHTML=`<div class="solo col exintro"><img src="${IMG('grad')}" alt="" width="96" height="96"><h2>Итоговый экзамен</h2><p>30 настоящих ЭКГ из всех тем курса. На каждую — один ответ, подсказок нет, разбор будет в конце.</p><p><b>Сдал — значит 24 правильных ответа и больше (80%).</b> Тогда откроется сертификат о прохождении курса с твоим именем.</p><p class="meta">Время не ограничено, но мы его посчитаем.</p></div>`;
+ nxt(false,'Загружаю…');Promise.all(RG.map(g=>reLoad(g[0]))).then(all=>{let q=[];all.forEach(a=>q=q.concat(shuffle(a.slice()).slice(0,3)));q=shuffle(q).slice(0,30);
+  RUN={k:'ex',q,i:0,ok:0,wr:[],t0:0,pool:all.flat()};nxt(true,'Начать экзамен',()=>{RUN.t0=Date.now();exQ()})}).catch(()=>{nxt(false,'Нет связи');h.innerHTML+='<p>Не получилось загрузить записи. Проверь интернет.</p>'})}
+function exQ(){const R=RUN,it=R.q[R.i],h=body(1);setBar(R.i,R.q.length);nxt(false,'Дальше');const grp=R.pool.filter(x=>RX[x.c][2]===RX[it.c][2]);
+ reCase(h,it,grp,(ok,b,pick)=>{if(ok)R.ok++;else R.wr.push([it,pick]);nxt(true,R.i+1<R.q.length?'Следующая':'Завершить',()=>{if(R.i+1<R.q.length){R.i++;exQ()}else exEnd()})},`Вопрос ${R.i+1} из ${R.q.length}`);
+ h.querySelectorAll('.op').forEach(b=>b.addEventListener('click',()=>{h.querySelectorAll('.op').forEach(x=>x.classList.remove('ok','no'));b.classList.add('pk')}))}
+function exEnd(){const R=RUN,h=body(1),n=R.q.length,p=Math.round(R.ok/n*100),pass=R.ok>=24,min=Math.max(1,Math.round((Date.now()-R.t0)/60000));setBar(1,1);
+ S.exam=S.exam||{};S.exam.best=Math.max(S.exam.best||0,R.ok);if(pass){S.exam.pass=1;S.exam.score=Math.max(S.exam.score||0,R.ok);S.exam.date=S.exam.date||new Date().toISOString().slice(0,10)}save();if(pass&&typeof confetti==='function')confetti();
+ h.innerHTML=`<div class="col exres"><div class="card exsum ${pass?'ok':''}"><img src="${IMG(pass?'trophy':'books')}" alt="" width="80" height="80"><div><h2>${pass?'Экзамен сдан!':'Пока не хватило совсем немного'}</h2><p><b>${R.ok} из ${n}</b> (${p}%) · примерно ${min} мин.</p><p>${pass?'Поздравляем! Ниже — твой сертификат.':'Для сертификата нужно 24 правильных ответа. Повтори темы из разбора и попробуй ещё раз — каждый раз ленты другие.'}</p></div></div>
+ ${pass?certBlock():''}
+ ${R.wr.length?`<div class="card"><h2>Разбор ошибок</h2><div class="exwr">${R.wr.map(([it,pk])=>`<div><b>${RX[it.c][0]}</b><span>Твой ответ: ${RX[pk][0]}</span><p>${RX[it.c][1]}</p><a href="#t${RX[it.c][2]}">Тема ${RX[it.c][2]}</a></div>`).join('')}</div></div>`:''}</div>`;
+ nxt(true,'Пройти ещё раз',()=>openExam());if(pass)certInit(h)}
+/* ---------- сертификат ---------- */
+const certName=()=>(S.nick||'').trim();
+function certBlock(){return`<div class="card cert"><h2>Сертификат</h2><label class="meta" for="cn">Имя для сертификата</label><input id="cn" maxlength="40" placeholder="Например, Айдар Каримов" value="${esc(certName()).replace(/"/g,'&quot;')}"><canvas id="cc"></canvas><div class="rowb"><button class="btn pri" id="cdl">Скачать картинку${ic('arrow',18)}</button><button class="btn" id="csh">Поделиться</button></div><p class="meta">Это учебный сертификат сайта. Он не является документом об образовании.</p></div>`}
+function certDraw(cv,name,score,date){const W=1600,H=1130;cv.width=W;cv.height=H;const g=cv.getContext('2d');
+ const gr=g.createLinearGradient(0,0,W,H);gr.addColorStop(0,'#f6f9ff');gr.addColorStop(.5,'#ffffff');gr.addColorStop(1,'#f3fbf8');g.fillStyle=gr;g.fillRect(0,0,W,H);
+ g.strokeStyle='rgba(229,72,77,.07)';g.lineWidth=1;for(let x=0;x<W;x+=25){g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke()}for(let y=0;y<H;y+=25){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke()}
+ g.strokeStyle='#2f6bed';g.lineWidth=10;g.strokeRect(40,40,W-80,H-80);g.strokeStyle='#e5484d';g.lineWidth=2;g.strokeRect(62,62,W-124,H-124);
+ g.strokeStyle='#e5484d';g.lineWidth=5;g.lineJoin='round';g.beginPath();const y=282;g.moveTo(160,y);g.lineTo(560,y);g.quadraticCurveTo(590,y-18,620,y);g.lineTo(680,y);g.lineTo(698,y+12);g.lineTo(726,y-62);g.lineTo(754,y+26);g.lineTo(772,y);g.lineTo(870,y);g.quadraticCurveTo(930,y-34,990,y);g.lineTo(1440,y);g.stroke();
+ g.textAlign='center';g.fillStyle='#1a2230';g.font='800 92px Onest,system-ui,sans-serif';g.fillText('СЕРТИФИКАТ',W/2,190);
+ g.font='500 38px Onest,system-ui,sans-serif';g.fillStyle='#475467';g.fillText('о прохождении курса',W/2,350);
+ g.font='800 60px Onest,system-ui,sans-serif';g.fillStyle='#2f6bed';g.fillText('«ЭКГ — это просто»',W/2,430);
+ g.font='500 34px Onest,system-ui,sans-serif';g.fillStyle='#475467';g.fillText('Выдан',W/2,530);
+ let fs=78;g.font=`800 ${fs}px Onest,system-ui,sans-serif`;while(g.measureText(name).width>W-320&&fs>40){fs-=4;g.font=`800 ${fs}px Onest,system-ui,sans-serif`}g.fillStyle='#1a2230';g.fillText(name||'Имя Фамилия',W/2,625);
+ g.strokeStyle='#d0d5dd';g.lineWidth=2;g.beginPath();g.moveTo(400,655);g.lineTo(W-400,655);g.stroke();
+ g.font='500 36px Onest,system-ui,sans-serif';g.fillStyle='#344054';g.fillText(`Итоговый экзамен сдан: ${score} из 30 настоящих ЭКГ`,W/2,740);
+ g.fillText('12 тем: ритм, блокады, гипертрофии, инфаркт, WPW, QT',W/2,795);
+ g.font='600 32px Onest,system-ui,sans-serif';g.fillStyle='#667085';g.fillText(new Date(date).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}),W/2,880);
+ g.font='500 24px Onest,system-ui,sans-serif';g.fillText('anesteziolog07.github.io · учебный сертификат, не является документом об образовании',W/2,H-110)}
+function certInit(h){const cv=h.querySelector('#cc'),inp=h.querySelector('#cn'),draw=()=>certDraw(cv,inp.value.trim(),S.exam.score,S.exam.date);draw();
+ inp.oninput=()=>{draw();if(!S.nick){}};
+ h.querySelector('#cdl').onclick=()=>{const a=document.createElement('a');a.download='sertifikat-ekg.png';a.href=cv.toDataURL('image/png');document.body.append(a);a.click();a.remove()};
+ h.querySelector('#csh').onclick=()=>cv.toBlob(b=>{const f=new File([b],'sertifikat-ekg.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Сертификат «ЭКГ — это просто»'}).catch(()=>{});else{const u=URL.createObjectURL(b);window.open(u,'_blank')}})}
+/* сертификат в профиле, если экзамен уже сдан */
+function certProf(v){const box=v.querySelector('#pcert');if(!box||!(S.exam&&S.exam.pass))return;box.innerHTML=certBlock();certInit(box)}
+
 /* ---------- основа ---------- */
 const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -1433,7 +1695,7 @@ const star=(on,s)=>`<svg class="${on?'':'off'}" viewBox="0 0 24 24" width="${s||
 const stars=(n,s)=>`<span class="stars">${[1,2,3].map(i=>star(i<=n,s)).join('')}</span>`;
 /* ---------- состояние ---------- */
 const KEY='ekg-navsegda-v3',DAY=864e5,INT=[1,3,7,21,60,180];
-const S0=()=>({xp:0,th:{},pr:{},lv:{},cards:{},shift:{best:0},daily:{},streak:{n:0,best:0,last:''},rl:{},nick:'',mg:{},av:''});
+const S0=()=>({xp:0,th:{},pr:{},lv:{},cards:{},shift:{best:0},daily:{},streak:{n:0,best:0,last:''},rl:{},nick:'',mg:{},av:'',re:{},exam:{}});
 let S=S0();try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x)S=Object.assign(S0(),x)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const dayStr=d=>{d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
@@ -1535,13 +1797,15 @@ function vHome(v){document.documentElement.style.setProperty('--acc',C_TH[0]);do
  <a class="card sec p" href="#praktika"><img class="ico3" src="${IMG('target')}" alt="" width="64" height="64"><h2>Практика</h2><p>Вопросы по темам с разбором ответа и карточки на память.</p><span class="pg"><span>Закреплено ${pn()} из 12</span>${ic('arrow',18)}</span></a>
  <a class="card sec g" href="#igra"><img class="ico3" src="${IMG('game')}" alt="" width="64" height="64"><h2>Игра</h2><p>Определи ленту: уровни от нормы до ночной смены.</p><span class="pg"><span>Пройдено ${gn()} из ${LEVELS.length}</span>${ic('arrow',18)}</span></a></div>
  <a class="card zban" href="#zhizn"><img src="${IMG('stethoscope')}" alt="" width="56" height="56"><span><b>Как в жизни</b><small>${REAL.length} неидеальных лент: дрожь, наводка, артефакты, скрытые блокады и ранний инфаркт. Решено ${zDone()} из ${REAL.length}.</small></span>${ic('arrow',20)}</a>
+ <a class="card zban rban" href="#ekg"><img src="${IMG('heart')}" alt="" width="56" height="56"><span><b>Настоящие ЭКГ</b><small>Почти 200 записей реальных пациентов с заключениями кардиологов. Решено ${reDone()} из ${reTotal}. Здесь же — итоговый экзамен с сертификатом.</small></span>${ic('arrow',20)}</a>
  <button class="card dban" id="dban" type="button"><span class="cup sm">${cupSVG(60)}</span><span><b>На капучино автору</b><small>Курс бесплатный, без регистрации и рекламы. А поблагодарить автора можно чашкой капучино — по желанию<img class="emo" src="${IMG('smile2')}" alt="" width="20" height="20"></small></span>${ic('arrow',20)}</button>
  <p class="foot"><a href="#profil">Мой прогресс</a> · <a href="#shpora">Шпаргалка</a> · <a href="#okurse">О курсе</a>${TG_BOT?' · <a href="#svyaz">Связаться с автором</a>':''} · Учебный материал, не медицинская рекомендация.</p></div>`;mountTapes(v);$('dban').onclick=openDon}
 function topics(v,mode){const s=step(),openG=GROUPS.findIndex(g=>g[1].includes(s?s.m:1));const done=m=>mode==='t'?!!(S.th[m]&&S.th[m].done):!!(S.pr[m]&&S.pr[m].stars);const box=document.createElement('div');box.style.cssText='display:flex;flex-direction:column;gap:12px';
  GROUPS.forEach((g,gi)=>{const d=g[1].filter(done).length;const c=document.createElement('div');c.className='card grp'+(gi===openG?' open':'');c.innerHTML=`<button><b>${g[0]}</b><span style="display:flex;align-items:center;gap:8px">${d} из ${g[1].length}${ic('down',18,'ch')}</span></button><div class="rows" ${gi===openG?'':'hidden'}>${g[1].map(m=>{const ch=COURSE[m-1],dn_=done(m),cur=s&&s.m===m&&((mode==='t'&&s.k==='t')||(mode==='p'));return`<a class="tp ${dn_?'done':cur?'cur':''}" href="#${mode}${m}"><span class="n">${m}</span><span><b>${ch.t}</b><small>${ch.d}</small></span><span class="s">${mode==='p'&&S.pr[m]?stars(S.pr[m].stars,15):dn_?'готово':cur?'сейчас':''}</span></a>`}).join('')}</div>`;c.firstChild.onclick=()=>{const r=c.querySelector('.rows');r.hidden=!r.hidden;c.classList.toggle('open',!r.hidden)};box.append(c)});v.append(box)}
 function vTeoria(v){document.documentElement.style.setProperty('--acc',C_TH[0]);document.documentElement.style.setProperty('--acc-b',C_TH[1]);v.innerHTML=`<div class="view" id="vv"><div class="pt"><h1>Теория</h1><p>Иди сверху вниз. Каждая тема занимает 5–10 минут и заканчивается блоками «Знать наизусть» и «Как легче всего прочитать».</p></div></div>`;topics($('vv'),'t');$('vv').insertAdjacentHTML('beforeend','<p class="foot"><a href="#shpora">Открыть шпаргалку</a></p>')}
 function vPrak(v){document.documentElement.style.setProperty('--acc',C_PR[0]);document.documentElement.style.setProperty('--acc-b',C_PR[1]);const p=pool(),due=p.filter(isDue).length,fr=Math.min(NEWD,p.filter(c=>!S.cards[c.id]).length);v.innerHTML=`<div class="view" id="vv"><div class="pt"><h1>Практика</h1><p>Вопросы по темам с разбором. Чтобы закрепить тему, нужно 70% верных.</p></div><a class="card" href="#povtor" style="flex-direction:row;align-items:center;justify-content:space-between;gap:14px"><span><b style="font-size:18px">Повторение на сегодня</b><br><span class="meta">${due?`Ждут ${due} карточек`:fr?`Новых карточек: ${fr}`:'На сегодня всё повторено'}</span></span>${ic('arrow',20)}</a></div>`;topics($('vv'),'p')}
-function vIgra(v){document.documentElement.style.setProperty('--acc',C_GM[0]);document.documentElement.style.setProperty('--acc-b',C_GM[1]);const t=dayStr(),done=S.daily[t]!==undefined;v.innerHTML=`<div class="view"><div class="pt"><h1>Игра: определи ленту</h1><p>Уровни открываются по очереди. Три звезды — без единой ошибки.</p></div><div class="map" id="mp">${LEVELS.map((l,i)=>`<button class="lvl" data-i="${i}" ${lvOpen(i)?'':'disabled'}><span class="n">${lvOpen(i)?i+1:ic('lock',20)}</span><span><b>${l.t}</b><small>${l.d}</small></span>${stars(S.lv[i]||0,15)}</button>`).join('')}</div><a class="card zban" href="#zhizn"><img src="${IMG('stethoscope')}" alt="" width="56" height="56"><span><b>Как в жизни</b><small>Ленты с помехами и ловушками, как на настоящем мониторе. Решено ${zDone()} из ${REAL.length}.</small></span>${ic('arrow',20)}</a><h2 class="mgh">Мини-игры</h2>${mgCards()}<div class="three" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))"><button class="card" id="gs" style="text-align:left"><b style="font-size:18px">Ночное дежурство</b><span class="meta">60 секунд, рекорд ${S.shift.best}</span></button><a class="card" href="#den"><b style="font-size:18px">Лента дня</b><span class="meta">${done?'Сегодня уже разгадано':'Одна новая лента каждый день'}</span></a></div></div>`;[...$('mp').children].forEach(b=>b.onclick=()=>{location.hash='l'+(+b.dataset.i+1)});$('gs').onclick=()=>{location.hash='smena'}}
+function vIgra(v){document.documentElement.style.setProperty('--acc',C_GM[0]);document.documentElement.style.setProperty('--acc-b',C_GM[1]);const t=dayStr(),done=S.daily[t]!==undefined;v.innerHTML=`<div class="view"><div class="pt"><h1>Игра: определи ленту</h1><p>Уровни открываются по очереди. Три звезды — без единой ошибки.</p></div><div class="map" id="mp">${LEVELS.map((l,i)=>`<button class="lvl" data-i="${i}" ${lvOpen(i)?'':'disabled'}><span class="n">${lvOpen(i)?i+1:ic('lock',20)}</span><span><b>${l.t}</b><small>${l.d}</small></span>${stars(S.lv[i]||0,15)}</button>`).join('')}</div><a class="card zban" href="#zhizn"><img src="${IMG('stethoscope')}" alt="" width="56" height="56"><span><b>Как в жизни</b><small>Ленты с помехами и ловушками, как на настоящем мониторе. Решено ${zDone()} из ${REAL.length}.</small></span>${ic('arrow',20)}</a>
+ <a class="card zban rban" href="#ekg"><img src="${IMG('heart')}" alt="" width="56" height="56"><span><b>Настоящие ЭКГ</b><small>Почти 200 записей реальных пациентов с заключениями кардиологов. Решено ${reDone()} из ${reTotal}. Здесь же — итоговый экзамен с сертификатом.</small></span>${ic('arrow',20)}</a><h2 class="mgh">Мини-игры</h2>${mgCards()}<div class="three" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))"><button class="card" id="gs" style="text-align:left"><b style="font-size:18px">Ночное дежурство</b><span class="meta">60 секунд, рекорд ${S.shift.best}</span></button><a class="card" href="#den"><b style="font-size:18px">Лента дня</b><span class="meta">${done?'Сегодня уже разгадано':'Одна новая лента каждый день'}</span></a></div></div>`;[...$('mp').children].forEach(b=>b.onclick=()=>{location.hash='l'+(+b.dataset.i+1)});$('gs').onclick=()=>{location.hash='smena'}}
 /* карточки */
 let queue=[],open_=false;const NEWD=15;
 function pool(){const got=Object.keys(S.pr).filter(k=>S.pr[k].stars).map(Number);const on=got.length?got:[1];return C.filter(c=>on.includes(c.m)||S.cards[c.id])}
@@ -1556,14 +1820,20 @@ function vSh(v){const k=Object.keys(SH);v.innerHTML=`<div class="view"><div clas
 function vAb(v){v.innerHTML=`<div class="view"><div class="pt"><h1>О курсе</h1><p>Для студентов, медсестёр, фельдшеров и молодых врачей.</p></div><div class="wrn">${ic('warn')}<p>Сайт не ставит диагнозов и не заменяет врача. Цифры сверяй с действующими рекомендациями и протоколами. Если есть боль в груди, одышка, обморок или другие тревожные симптомы, вызывай скорую помощь.</p></div><div class="card"><details open><summary>Честные правила</summary><ul><li>Очки дают только за знания, случайных наград нет.</li><li>Нет рекламы и покупок.</li><li>Пропущенный день ничего не сжигает.</li><li>Регистрации нет, прогресс хранится только в этом браузере.</li></ul></details><details><summary>Где источники расходятся</summary><ul><li>Норма ЧСС: 60–90 в минуту в российских учебниках, 60–100 в минуту чаще за рубежом.</li><li>Нормальная ось: от +30° до +69° или вся зона от −30° до +90°.</li><li>Граница QTc: около 0,45 с у мужчин, 0,46–0,47 с у женщин.</li><li>Сроки стадий инфаркта различаются, здесь даны ориентиры.</li><li>Частоты аритмий — учебные ориентиры.</li></ul></details><details><summary>Чего здесь нет</summary><ul><li>Лечения и доз препаратов.</li><li>Детской ЭКГ, ритмов кардиостимулятора, синдрома Бругада.</li><li>Критериев инфаркта на фоне блокады левой ножки.</li></ul></details><details><summary>Проверочные материалы</summary><ul><li><a href="https://litfl.com/ecg-criteria-for-left-ventricular-hypertrophy/">LITFL, критерии ГЛЖ</a></li><li><a href="https://en.ecgpedia.org/wiki/Rvh">ECGpedia, ГПЖ</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/30165617/">Четвёртое универсальное определение ИМ</a></li><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9075358">Обзор критериев подъёма ST</a></li></ul></details>${TG_BOT?'<details open><summary>Связаться с автором</summary><p>Нашёл ошибку или есть идея? <a href="#svyaz">Напиши автору в Telegram</a> — он прочитает и ответит.</p></details>':''}<details open><summary>Что почитать дальше</summary><p class="meta">Книги, по которым учатся в медвузах. Берите последнее издание.</p><p class="bkh">Для начала</p><ul class="bk"><li><b>Хэмптон Дж. «Основы ЭКГ».</b> Тонкая и очень понятная книга для первого знакомства с ЭКГ (в оригинале «The ECG Made Easy»).</li><li><b>Давей П. «Наглядная ЭКГ».</b> Короткие главы, много схем и наглядных лент.</li></ul><p class="bkh">Основательно</p><ul class="bk"><li><b>Мурашко В. В., Струтынский А. В. «Электрокардиография».</b> Классический учебник для студентов, выдержал много переизданий.</li><li><b>Ярцев С. «Электрокардиография. Практическое руководство-справочник для врачей».</b> Кратко и по делу, удобно держать под рукой.</li><li><b>Белялов Ф. И. «Аритмии сердца».</b> Для тех, кто хочет глубже разобраться в нарушениях ритма.</li></ul><p class="bkh">На английском</p><ul class="bk"><li><b>Thaler M. «The Only EKG Book You’ll Ever Need».</b> Простым языком, с множеством лент.</li><li><b>Goldberger A. L. и соавт. «Goldberger’s Clinical Electrocardiography: A Simplified Approach».</b> Понятный и при этом клинически точный учебник.</li><li><b>Strauss D. G., Schocken D. D. «Marriott’s Practical Electrocardiography».</b> Классика практической электрокардиографии.</li></ul></details></div><div class="rowb" id="rs" style="max-width:420px"><button class="btn" id="rz">Сбросить мой прогресс</button></div></div>`;$('rz').onclick=()=>{$('rs').innerHTML='<button class="btn" id="ry">Да, стереть всё</button><button class="btn" id="rn">Отмена</button>';$('rn').onclick=()=>vAb(v);$('ry').onclick=()=>{S=S0();save();location.hash='';location.reload()}}}
 /* ---------- маршруты ---------- */
 function route(){const h=location.hash.slice(1)||'glavnaya',v=$('view');let m;
- if(m=h.match(/^t(\d+)$/))return openTh(+m[1]);if(m=h.match(/^p(\d+)$/))return openPr(+m[1]);if(m=h.match(/^l(\d+)$/)){const i=+m[1]-1;if(lvOpen(i))return openLv(i)}if(m=h.match(/^z(\d+)$/)){const i=+m[1]-1;if(REAL[i])return openZ(i)}if(m=h.match(/^mg-(hr|tf|tap)$/))return openMG(m[1]);if(h==='smena')return openShift();if(h==='den')return openDen();if(h==='povtor')return openCards();
- closeShell();killTapes(v);document.querySelectorAll('[data-n]').forEach(a=>a.classList.toggle('on',a.dataset.n===h));if(h==='teoria')vTeoria(v);else if(h==='praktika')vPrak(v);else if(h==='igra')vIgra(v);else if(h==='shpora')vSh(v);else if(h==='okurse')vAb(v);else if(h==='zhizn')vZh(v);else if(h==='profil')vProf(v);else if(h==='svyaz')vSv(v);else vHome(v);who();window.scrollTo(0,0)}
+ if(m=h.match(/^t(\d+)$/))return openTh(+m[1]);if(m=h.match(/^p(\d+)$/))return openPr(+m[1]);if(m=h.match(/^l(\d+)$/)){const i=+m[1]-1;if(lvOpen(i))return openLv(i)}if(m=h.match(/^z(\d+)$/)){const i=+m[1]-1;if(REAL[i])return openZ(i)}if(m=h.match(/^mg-(hr|tf|tap)$/))return openMG(m[1]);if(m=h.match(/^ekg-(\d+)$/))return openEG(+m[1]-1);if(h==='ekzamen')return openExam();if(h==='smena')return openShift();if(h==='den')return openDen();if(h==='povtor')return openCards();
+ closeShell();killTapes(v);document.querySelectorAll('[data-n]').forEach(a=>a.classList.toggle('on',a.dataset.n===h));if(h==='teoria')vTeoria(v);else if(h==='praktika')vPrak(v);else if(h==='igra')vIgra(v);else if(h==='shpora')vSh(v);else if(h==='okurse')vAb(v);else if(h==='zhizn')vZh(v);else if(h==='profil')vProf(v);else if(h==='svyaz')vSv(v);else if(h==='ekg')vEkg(v);else vHome(v);who();window.scrollTo(0,0)}
 const NAV=[['teoria','Теория','book','t'],['praktika','Практика','target','p'],['igra','Игра','game','g']];
-$('top').innerHTML=`<div class="in"><a class="logo" href="#glavnaya"><i>${ic('pulse',18)}</i>ЭКГ — это просто</a><nav class="tabsn" aria-label="Разделы">${NAV.map(n=>`<a class="${n[3]}" href="#${n[0]}" data-n="${n[0]}">${n[1]}</a>`).join('')}</nav><a class="who" id="who" href="#profil" aria-label="Мой профиль и прогресс"></a></div>`;
+$('top').innerHTML=`<div class="in"><a class="logo" href="#glavnaya"><i>${ic('pulse',18)}</i>ЭКГ — это просто</a><nav class="tabsn" aria-label="Разделы">${NAV.map(n=>`<a class="${n[3]}" href="#${n[0]}" data-n="${n[0]}">${n[1]}</a>`).join('')}</nav><button class="thm" id="thm" type="button" aria-label="Тёмная или светлая тема"></button><a class="who" id="who" href="#profil" aria-label="Мой профиль и прогресс"></a></div>`;
 $('dock').innerHTML=NAV.map(n=>`<a class="${n[3]}" href="#${n[0]}" data-n="${n[0]}">${ic(n[2],22)}${n[1]}</a>`).join('');
 addEventListener('keydown',e=>{if(!$('pl')||$('ovl')||/INPUT|SELECT/.test(e.target.tagName))return;const n=$('nx');if(e.key==='ArrowRight'||e.key==='Enter'){if(!n.hidden&&!n.disabled&&e.target.tagName!=='BUTTON'&&e.target.tagName!=='A'){n.click();e.preventDefault()}}else if(e.key==='ArrowLeft'&&RUN&&RUN.k==='th')thGo(-1);else if(/^[1-4]$/.test(e.key)){const s=$('sl');if(s&&s._pick)s._pick(+e.key-1)}});
 addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.ax');if(!b)return;const w=b.closest('.acts'),on=b.classList.contains('on');w.querySelectorAll('.ax').forEach(x=>x.classList.remove('on'));w.querySelectorAll('.ap').forEach(x=>x.hidden=true);if(!on){b.classList.add('on');const p=w.querySelector('.ap[data-p="'+b.dataset.p+'"]');p.hidden=false;p.scrollIntoView({behavior:'smooth',block:'nearest'})}hint()});
 addEventListener('hashchange',route);route();
+
+/* ---------- тёмная тема ---------- */
+const MOON='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',SUN='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
+function themeSet(t){document.documentElement.dataset.theme=t;const b=$('thm');if(b){b.innerHTML=t==='dark'?SUN:MOON;b.title=t==='dark'?'Светлая тема':'Тёмная тема'}const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#0f141c':'#ffffff'}
+function themeInit(){let t='light';try{t=localStorage.getItem('ekg-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}themeSet(t);const b=$('thm');if(b)b.onclick=()=>{const n=document.documentElement.dataset.theme==='dark'?'light':'dark';themeSet(n);try{localStorage.setItem('ekg-theme',n)}catch(e){}}}
+themeInit();
 
 </script>
 
