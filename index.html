@@ -354,6 +354,8 @@ body::before{background:
 
 
 
+.cert .cnl{font-weight:700;font-size:16px}.cert input{font-size:19px;font-weight:600;border:2px solid var(--acc)}.cert .btn:disabled{opacity:.45}
+
 /* ===== тёмная тема (сгенерировано) ===== */
 html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#a7b1c1;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
 html[data-theme=dark] body::before{opacity:.8}
@@ -1734,7 +1736,7 @@ function reQ(){const R=RUN,g=RG[R.g],it=R.a[R.i],h=body(1);setBar(R.i+1,R.a.leng
   nxt(true,R.i+1<R.a.length?'Следующая ЭКГ':'К разделам',()=>{if(R.i+1<R.a.length){R.i++;reQ()}else location.hash='ekg'})},`ЭКГ ${R.i+1} из ${R.a.length} · ${g[1]}`)}
 /* ---------- итоговый экзамен ---------- */
 function openExam(){shell({t:'Итоговый экзамен',back:'ekg',acc:C_TH[0],accb:C_TH[1]});$('pv').style.visibility='hidden';const h=body(1);
- h.innerHTML=`<div class="solo col exintro"><img src="${IMG('grad')}" alt="" width="96" height="96"><h2>Итоговый экзамен</h2><p>30 настоящих ЭКГ реальных пациентов. Берём только записи, заключение к которым кардиолог подтвердил на 100%. В каждом экзамене есть ленты из всех разделов: норма, ритм, тахикардии, АВ-блокады, блокады ножек, гипертрофии, ишемия, инфаркт, WPW и QT — минимум по две из каждого.</p><p>На каждую ленту — один ответ, подсказок по ходу нет. В конце — баллы, оценка, результат по разделам и разбор ошибок.</p><div class="exrule"><img src="${IMG('trophy')}" alt="" width="44" height="44"><p><b>Сертификат выдаётся только за отличный результат — все 30 ответов верные, без единой ошибки.</b> В сертификате будет твоё имя из профиля${certName()?`: <b>${esc(certName())}</b>`:''}.</p></div>${certName()?'':`<p class="meta">Имя в профиле пока не указано. Его можно вписать в <a href="#profil">профиле</a> или прямо перед получением сертификата.</p>`}<p class="meta">Время не ограничено, но мы его посчитаем. Каждый раз ленты новые.</p></div>`;
+ h.innerHTML=`<div class="solo col exintro"><img src="${IMG('grad')}" alt="" width="96" height="96"><h2>Итоговый экзамен</h2><p>30 настоящих ЭКГ реальных пациентов. Берём только записи, заключение к которым кардиолог подтвердил на 100%. В каждом экзамене есть ленты из всех разделов: норма, ритм, тахикардии, АВ-блокады, блокады ножек, гипертрофии, ишемия, инфаркт, WPW и QT — минимум по две из каждого.</p><p>На каждую ленту — один ответ, подсказок по ходу нет. В конце — баллы, оценка, результат по разделам и разбор ошибок.</p><div class="exrule"><img src="${IMG('trophy')}" alt="" width="44" height="44"><p><b>Сертификат выдаётся только за отличный результат — все 30 ответов верные, без единой ошибки.</b> Имя для сертификата ты впишешь сам — сразу после экзамена.</p></div><p class="meta">Время не ограничено, но мы его посчитаем. Каждый раз ленты новые.</p></div>`;
  nxt(false,'Загружаю…');Promise.all(RG.map(g=>reLoad(g[0]))).then(all=>{const q=exPick(all);
   RUN={k:'ex',q,i:0,ok:0,wr:[],t0:0,pool:all.flat().filter(x=>x.x),gs:{}};nxt(true,'Начать экзамен',()=>{RUN.t0=Date.now();exQ()})}).catch(()=>{nxt(false,'Нет связи');h.innerHTML+='<p>Не получилось загрузить записи. Проверь интернет.</p>'})}
 /* 30 вопросов: из каждого раздела минимум 2 (разные диагнозы, если есть), остальное — случайно, не больше 4 из раздела */
@@ -1754,8 +1756,8 @@ function exEnd(){const R=RUN,h=body(1),n=R.q.length,p=Math.round(R.ok/n*100),pas
  nxt(true,'Пройти ещё раз',()=>openExam());if(pass)certInit(h)}
 const exGrade=k=>k>=30?'отлично':k>=27?'очень хорошо':k>=23?'хорошо':k>=18?'удовлетворительно':'стоит повторить темы';
 /* ---------- сертификат ---------- */
-const certName=()=>(S.nick||'').trim();
-function certBlock(){return`<div class="card cert"><h2>Сертификат</h2><label class="meta" for="cn">Имя в сертификате — то же, что в профиле</label><input id="cn" maxlength="24" placeholder="Например, Айдар Каримов" value="${esc(certName()).replace(/"/g,'&quot;')}"><canvas id="cc"></canvas><div class="rowb"><button class="btn pri" id="cdl">Скачать картинку${ic('arrow',18)}</button><button class="btn" id="csh">Поделиться</button></div><p class="meta">Это учебный сертификат сайта. Он не является документом об образовании.</p></div>`}
+const certName=()=>((S.exam&&S.exam.name)||'').trim();
+function certBlock(){return`<div class="card cert"><h2>Сертификат</h2><label class="cnl" for="cn">Впиши имя, которое будет в сертификате</label><input id="cn" maxlength="40" autocomplete="name" placeholder="Например, Айдар Каримов" value="${esc(certName()).replace(/"/g,'&quot;')}"><canvas id="cc"></canvas><p class="meta" id="cnh">Как только впишешь имя, можно скачать сертификат или поделиться им.</p><div class="rowb"><button class="btn pri" id="cdl">Скачать картинку${ic('arrow',18)}</button><button class="btn" id="csh">Поделиться</button></div><p class="meta">Это учебный сертификат сайта. Он не является документом об образовании.</p></div>`}
 function certDraw(cv,name,score,date){const W=1600,H=1130;cv.width=W;cv.height=H;const g=cv.getContext('2d');
  const gr=g.createLinearGradient(0,0,W,H);gr.addColorStop(0,'#f6f9ff');gr.addColorStop(.5,'#ffffff');gr.addColorStop(1,'#f3fbf8');g.fillStyle=gr;g.fillRect(0,0,W,H);
  g.strokeStyle='rgba(229,72,77,.07)';g.lineWidth=1;for(let x=0;x<W;x+=25){g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke()}for(let y=0;y<H;y+=25){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke()}
@@ -1765,16 +1767,18 @@ function certDraw(cv,name,score,date){const W=1600,H=1130;cv.width=W;cv.height=H
  g.font='500 38px Onest,system-ui,sans-serif';g.fillStyle='#475467';g.fillText('о прохождении курса',W/2,350);
  g.font='800 60px Onest,system-ui,sans-serif';g.fillStyle='#2f6bed';g.fillText('«ЭКГ — это просто»',W/2,430);
  g.font='500 34px Onest,system-ui,sans-serif';g.fillStyle='#475467';g.fillText('Выдан',W/2,530);
- let fs=78;g.font=`800 ${fs}px Onest,system-ui,sans-serif`;while(g.measureText(name).width>W-320&&fs>40){fs-=4;g.font=`800 ${fs}px Onest,system-ui,sans-serif`}g.fillStyle='#1a2230';g.fillText(name||'Имя Фамилия',W/2,625);
+ let fs=78;g.font=`800 ${fs}px Onest,system-ui,sans-serif`;while(g.measureText(name).width>W-320&&fs>40){fs-=4;g.font=`800 ${fs}px Onest,system-ui,sans-serif`}g.fillStyle='#1a2230';g.fillStyle=name?'#1a2230':'#c0c6d0';g.fillText(name||'Твоё имя',W/2,625);
  g.strokeStyle='#d0d5dd';g.lineWidth=2;g.beginPath();g.moveTo(400,655);g.lineTo(W-400,655);g.stroke();
  g.font='500 36px Onest,system-ui,sans-serif';g.fillStyle='#344054';g.fillText(`Итоговый экзамен сдан на отлично: ${score} из 30 настоящих ЭКГ`,W/2,740);
  g.fillText('12 тем: ритм, блокады, гипертрофии, инфаркт, WPW, QT',W/2,795);
  g.font='600 32px Onest,system-ui,sans-serif';g.fillStyle='#667085';g.fillText(new Date(date).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}),W/2,880);
  g.font='500 24px Onest,system-ui,sans-serif';g.fillText('anesteziolog07.github.io · учебный сертификат, не является документом об образовании',W/2,H-110)}
-function certInit(h){const cv=h.querySelector('#cc'),inp=h.querySelector('#cn'),draw=()=>certDraw(cv,inp.value.trim(),S.exam.score,S.exam.date);draw();
- inp.oninput=()=>{draw();S.nick=inp.value.slice(0,24);save();who()};
- h.querySelector('#cdl').onclick=()=>{const a=document.createElement('a');a.download='sertifikat-ekg.png';a.href=cv.toDataURL('image/png');document.body.append(a);a.click();a.remove()};
- h.querySelector('#csh').onclick=()=>cv.toBlob(b=>{const f=new File([b],'sertifikat-ekg.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Сертификат «ЭКГ — это просто»'}).catch(()=>{});else{const u=URL.createObjectURL(b);window.open(u,'_blank')}})}
+function certInit(h){const cv=h.querySelector('#cc'),inp=h.querySelector('#cn'),dl=h.querySelector('#cdl'),sh=h.querySelector('#csh'),hint=h.querySelector('#cnh');
+ const draw=()=>{const n=inp.value.trim();certDraw(cv,n,S.exam.score,S.exam.date);dl.disabled=sh.disabled=!n;hint.hidden=!!n};draw();
+ inp.oninput=()=>{S.exam.name=inp.value.slice(0,40);save();draw()};
+ dl.onclick=()=>{if(!inp.value.trim())return inp.focus();const a=document.createElement('a');a.download='sertifikat-ekg.png';a.href=cv.toDataURL('image/png');document.body.append(a);a.click();a.remove()};
+ sh.onclick=()=>{if(!inp.value.trim())return inp.focus();cv.toBlob(b=>{const f=new File([b],'sertifikat-ekg.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Сертификат «ЭКГ — это просто»'}).catch(()=>{});else{const u=URL.createObjectURL(b);window.open(u,'_blank')}})};
+ if(!inp.value.trim())setTimeout(()=>inp.focus({preventScroll:true}),400)}
 /* сертификат в профиле, если экзамен уже сдан */
 function certProf(v){const box=v.querySelector('#pcert');if(!box||!(S.exam&&S.exam.pass))return;box.innerHTML=certBlock();certInit(box)}
 
