@@ -1265,7 +1265,7 @@ function vProf(v){document.documentElement.style.setProperty('--acc',C_TH[0]);do
  const ib=$('ib');if(ib)ib.onclick=async()=>{instEv.prompt();try{await instEv.userChoice}catch(e){}instEv=null;vProf(v)};
  v.querySelector('.shr').onclick=e=>shareCourse(e.currentTarget)}
 /* ---------- связаться с автором: через Telegram-бота-посредника, личные контакты автора не показываются ---------- */
-const TG_BOT='';
+const TG_BOT='EKG_prosto_bot';
 function vSv(v){document.documentElement.style.setProperty('--acc',C_TH[0]);document.documentElement.style.setProperty('--acc-b',C_TH[1]);const on=!!TG_BOT;
  v.innerHTML=`<div class="view"><div class="pt"><h1>Связаться с автором</h1><p>Нашёл ошибку, есть вопрос или идея для курса? Напиши — автор читает каждое сообщение.</p></div>
  <div class="card sv"><img src="${IMG('envelope')}" alt="" width="72" height="72"><div><h2>Написать в Telegram</h2><p>Сообщение придёт автору через бота-помощника. Личные контакты автора нигде не показываются.</p>${on?`<a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a>`:`<button class="btn" disabled>Кнопка скоро появится</button>`}</div></div>
