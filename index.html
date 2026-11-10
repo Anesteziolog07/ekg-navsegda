@@ -289,20 +289,21 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 .opsvg text{fill:#1f2937}
 .opsvg .mid{text-anchor:middle}
 .opsvg .t1{font-size:22px;font-weight:800}
-.opsvg .t2{font-size:22px;font-weight:800;fill:#2856c4}
+.opsvg .t2{font-size:20px;font-weight:800;fill:#2856c4}
 .opsvg .t3{font-size:19px;font-weight:700;fill:#1f2937}
-.opsvg .t4{font-size:18px;font-weight:600;fill:#2856c4}
-.opsvg .hrt{fill:#ffe9ec;stroke:#e5484d;stroke-width:4}
-.opsvg .rm{fill:#ffd84d;opacity:0;transition:opacity .35s}.opsvg .rm.on{opacity:.28}
-.opsvg .rmb rect{fill:#fff;stroke:#e9c2c6;stroke-width:2.5;transition:stroke .3s,fill .3s}.opsvg .rmb.on>rect:first-child{stroke:#f59e0b;fill:#fff7d6;stroke-width:4}
-.opsvg .rmb .pusk{fill:#e5484d;stroke:none!important;transition:transform .15s;transform-origin:194px 168px}.opsvg .rmb .pusk.press{transform:scale(.9)}
+.opsvg .t4{font-size:15.5px;font-weight:600;fill:#4a6fc9}
+.opsvg .hrt{fill:none;stroke:#e5484d;stroke-width:5}
+.opsvg .room.ra{fill:#fff1e8}.opsvg .room.rv{fill:#eef3fd}.opsvg .room.rs{fill:#f7e3e6}
+.opsvg .wall{stroke:#e6b9bf;stroke-width:5;fill:none}
+.opsvg .rm{fill:#ffd84d;opacity:0;transition:opacity .35s}.opsvg .rm.on{opacity:.3}
+.opsvg .rmb>rect:first-child,.opsvg .pill rect{fill:#fff;stroke:#ecc9cd;stroke-width:2;filter:url(#osh);transition:stroke .3s,fill .3s}.opsvg .rmb.on>rect:first-child{stroke:#f59e0b;fill:#fff7d6;stroke-width:3.5}
+.opsvg .rmb .pusk{fill:#e5484d;transition:transform .15s;transform-origin:214px 174px}.opsvg .rmb .pusk.press{transform:scale(.9)}
 .opsvg .tp{fill:#fff;font-size:15px;font-weight:800;text-anchor:middle;pointer-events:none}
-.opsvg .cor{fill:#f6dfe2;stroke:#e9c2c6;stroke-width:2;transition:fill .3s}.opsvg .cor.on{fill:#ffe9a8;stroke:#f59e0b}
-.opsvg .pill rect{fill:#fff;stroke:#e9c2c6;stroke-width:2}
+.opsvg .cor{fill:#f7e3e6;stroke:#e6b9bf;stroke-width:3;transition:fill .3s}.opsvg .cor.on{fill:#ffe9a8;stroke:#f59e0b}
 .opsvg .door rect{fill:#a8763e;transition:fill .3s}.opsvg .door.on rect{fill:#f59e0b}
 .opsvg .wire path{fill:none;stroke:#c9b37a;stroke-width:3;stroke-linecap:round;transition:stroke .3s}.opsvg .wire .lp{fill:#fff5cc;stroke:#c9a400;stroke-width:2;transition:fill .3s}
 .opsvg .wire.on path{stroke:#f59e0b}.opsvg .wire.on .lp{fill:#ffd84d;filter:drop-shadow(0 0 6px #ffd84d)}
-.opsvg circle.bd{fill:#1f2937}.opsvg .bn{fill:#fff;font-size:15px;font-weight:800;text-anchor:middle}
+.opsvg circle.bd{fill:#1f2937}.opsvg .bn{fill:#fff;font-size:14px;font-weight:800;text-anchor:middle}
 .opcap{display:flex;gap:12px;align-items:flex-start;background:#fff8e6;border:1px solid #f3dc9b;border-radius:14px;padding:10px 14px;min-height:76px}
 .opcap .opn{flex:none;min-width:34px;height:34px;padding:0 8px;border-radius:17px;background:#1f2937;color:#fff;display:grid;place-items:center;font-size:16px}
 .opcap .opn[hidden]{display:none}
@@ -322,15 +323,20 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 .chest{display:flex;flex-direction:column;gap:8px;min-width:0}
 .chest .chn{margin:0;font-size:15px;color:var(--muted)}
 .chsvg{display:block;width:100%;max-width:520px;height:auto;margin:0 auto;font-family:inherit;background:#fff;border-radius:14px}
-.chsvg .tor{fill:#fdf1ea;stroke:#d9b8a6;stroke-width:2.5}
-.chsvg .clv{fill:none;stroke:#b89b8a;stroke-width:6;stroke-linecap:round}
-.chsvg .rib{fill:none;stroke:#e6cfc2;stroke-width:3;stroke-linecap:round}
-.chsvg .stn{fill:#efe1d7;stroke:#cfb3a2;stroke-width:2}
+.chsvg .tol{fill:none;stroke:#d8ae95;stroke-width:2.5;stroke-linejoin:round}
+.chsvg .ribo{fill:none;stroke:#e1c6b4;stroke-width:10;stroke-linecap:round}.chsvg .ribi{fill:none;stroke:#fbf4ef;stroke-width:5.5;stroke-linecap:round}
+.chsvg .archo{fill:none;stroke:#e3c9b8;stroke-width:8;stroke-linecap:round}.chsvg .archi{fill:none;stroke:#f9efe8;stroke-width:4;stroke-linecap:round}
+.chsvg .clvo{fill:none;stroke:#c9a58e;stroke-width:14;stroke-linecap:round}.chsvg .clvi{fill:none;stroke:#f8eee7;stroke-width:8;stroke-linecap:round}
+.chsvg .nk{fill:none;stroke:#e6c2ab;stroke-width:2.5;stroke-linecap:round}
+.chsvg .stn{fill:#f6ece5;stroke:#d2b19c;stroke-width:2}
+.chsvg .flr{fill:none;stroke-width:17;stroke-linecap:round;opacity:.42}.chsvg .f4{stroke:#5b8def}.chsvg .f5{stroke:#2fae7f}
 .chsvg .ln{stroke:#6b7a99;stroke-width:1.6;stroke-dasharray:5 5;fill:none}.chsvg .lnk{stroke:#6b7a99;stroke-width:1.2;fill:none}
-.chsvg .flr{fill:none;stroke-width:9;stroke-linecap:round;opacity:.3}.chsvg .f4{stroke:#2f6fe0}.chsvg .f5{stroke:#0f8a5f}
-.chsvg .lad{stroke:#a8763e;stroke-width:3;fill:none}.chsvg .rung{stroke:#a8763e;stroke-width:2.5}
-.chsvg .el{stroke:#fff;stroke-width:3}
-.chsvg text{fill:#1f2937}.chsvg .ce{font-size:16px;font-weight:800}.chsvg .cs{font-size:13.5px;fill:#4b5563}.chsvg .cl{font-size:13px;fill:#3d4a66;font-weight:600}.chsvg .cv{font-size:16px;font-weight:800}
+.chsvg .lvl{stroke:#6b7a99;stroke-width:1.6;stroke-dasharray:1.5 4;stroke-linecap:round;fill:none}
+.chsvg .lad{stroke:#a8763e;stroke-width:2.2;fill:none}.chsvg .rung{stroke:#a8763e;stroke-width:2.2}
+.chsvg .el{stroke:#fff;stroke-width:3;filter:url(#chsh)}
+.chsvg .pl rect{fill:#fff;stroke-width:2}.chsvg .pl path{stroke-width:1.6;fill:none}.chsvg .p4 rect,.chsvg .p4 path{stroke:#5b8def}.chsvg .p4 circle{fill:#5b8def}.chsvg .p5 rect,.chsvg .p5 path{stroke:#2fae7f}.chsvg .p5 circle{fill:#2fae7f}
+.chsvg text{fill:#1f2937}.chsvg .ce{font-size:15px;font-weight:800}.chsvg .cs{font-size:12.5px;fill:#4b5563}.chsvg .cl{font-size:13px;fill:#3d4a66;font-weight:600}
+.chsvg .cv{font-size:16px;font-weight:800;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
 .chest .chl{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:16px;line-height:1.45}
 .story+.img,.oppic+.story{margin-top:4px}
 
@@ -393,6 +399,9 @@ body::before{background:
 .cert .cnl{font-weight:700;font-size:16px}.cert input{font-size:19px;font-weight:600;border:2px solid var(--acc)}.cert .btn:disabled{opacity:.45}
 
 .trust{display:flex;gap:12px;align-items:flex-start;background:#e9f8f2;border:1px solid #9fdcc9;border-radius:14px;padding:12px 14px;color:#0b5d52;max-width:760px}.trust svg{flex:none;margin-top:2px;color:#0c9a86}.trust b{display:block;font-size:16.5px;color:#08604f}.trust span{display:block;font-size:15px;line-height:1.45;margin-top:2px}
+
+
+
 
 
 
@@ -1420,26 +1429,32 @@ const OPST=[
  {r:['r5'],n:'5',h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка летит в правую дверь, другая — в левую.',t:600},
  {r:['r6','r7'],n:'6–7',h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'Искра попадает в проводку, и в обеих операционных разом вспыхивает свет. Желудочки сокращаются — на ленте узкий QRS.',t:1100},
  {r:['r6'],n:'',h:'Отдых — восстановление желудочков',p:'Операция сделана, свет гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:1200}];
-/* точки пути искры по этапам (координаты схемы); на этапах 4–5 искр две */
-const OPP=[[[258,146],[258,146]],[[258,146],[410,262],[224,272]],[[224,272],[224,272]],[[224,272],[270,322],[270,362]],[[270,362],[238,378]],[[238,378],[186,470]]];
-const OPP2=[null,null,null,null,[[270,362],[304,378]],[[304,378],[410,470]]];
-function opPic(){return`<div class="oppic" data-op="1"><span class="opk">Сердце — операционный блок</span>
+/* точки пути искры по этапам (координаты схемы); на этапах 5–6 искр две */
+const OPP=[[[214,174],[214,174]],[[214,174],[300,224],[452,256],[336,266],[238,287]],[[238,287],[238,287]],[[238,287],[300,334],[300,389]],[[300,389],[274,389]],[[274,389],[238,428],[178,470]]];
+const OPP2=[null,null,null,null,[[300,389],[326,389]],[[326,389],[362,428],[422,470]]];
+/* плашка-подпись: номер внутри, текст рядом */
+const opPill=(x,y,w,n,t,cls)=>`<g class="pill"><rect x="${x}" y="${y}" width="${w}" height="34" rx="17"/><circle cx="${x+19}" cy="${y+17}" r="12" class="bd"/><text x="${x+19}" y="${y+22}" class="bn">${n}</text><text x="${x+38}" y="${y+24}" class="${cls||'t3'}">${t}</text></g>`;
+const opRoom=(x,t)=>`<g class="pill"><rect x="${x}" y="303" width="156" height="56" rx="16"/><circle cx="${x+19}" cy="331" r="12" class="bd"/><text x="${x+19}" y="336" class="bn">6</text><text x="${x+38}" y="327" class="t2">${t}</text><text x="${x+38}" y="348" class="t4">операционная</text></g>`;
+function opPic(){const LL=[[128,446],[178,470],[232,466]],LR=LL.map(p=>[600-p[0],p[1]]);
+ const wires=(j,d,ls)=>`<path d="M${d[0]} ${d[1]} L${j[0]} ${j[1]}${ls.map(p=>` M${j[0]} ${j[1]} L${p[0]} ${p[1]}`).join('')}"/>${ls.map(p=>`<circle class="lp" cx="${p[0]}" cy="${p[1]}" r="9"/>`).join('')}`;
+ return`<div class="oppic" data-op="1"><span class="opk">Сердце — операционный блок</span>
 <svg class="opsvg" viewBox="20 46 560 562" role="img" aria-label="Сердце как операционный блок: кабинет заведующего — СА-узел, предоперационная — предсердия, шлюз — АВ-узел, коридор — пучок Гиса, две двери — ножки, операционные — желудочки, лампы — волокна Пуркинье">
-<defs><clipPath id="ohc"><path d="${OPH}" transform="translate(300 330) scale(.955) translate(-300 -330)"/></clipPath>
+<defs><clipPath id="ohc"><path d="${OPH}"/></clipPath>
 <radialGradient id="osp"><stop offset="0" stop-color="#fffbe6"/><stop offset=".55" stop-color="#ffd84d"/><stop offset="1" stop-color="#f59e0b"/></radialGradient>
-<filter id="ogl" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="6"/></filter></defs>
+<filter id="ogl" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="osh" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#9b2c3a" flood-opacity=".16"/></filter></defs>
+<g clip-path="url(#ohc)"><rect class="room ra" x="0" y="0" width="600" height="296"/><rect class="room rv" x="0" y="296" width="280" height="330"/><rect class="room rv" x="320" y="296" width="280" height="330"/><rect class="room rs" x="280" y="296" width="40" height="330"/>
+<rect class="rm" data-r="r2" x="0" y="0" width="600" height="296"/><rect class="rm" data-r="r6" x="0" y="296" width="280" height="330"/><rect class="rm" data-r="r6" x="320" y="296" width="280" height="330"/>
+<path class="wall" d="M0 296 H600"/></g>
+<g class="wire" data-r="r7">${wires([238,428],[272,392],LL)}${wires([362,428],[328,392],LR)}</g>
+<rect class="cor" data-r="r4" x="280" y="330" width="40" height="142"/>
+<g class="door" data-r="r5"><rect x="268" y="370" width="12" height="38" rx="2"/><rect x="320" y="370" width="12" height="38" rx="2"/></g>
+<g class="rmb" data-r="r1"><rect x="84" y="116" width="214" height="80" rx="16"/><image href="${IMG('doctor')}" x="92" y="125" width="62" height="62"/><circle cx="176" cy="142" r="12" class="bd"/><text x="176" y="147" class="bn">1</text><text x="196" y="150" class="t1">Кабинет</text><rect x="166" y="160" width="96" height="28" rx="14" class="pusk"/><text x="214" y="180" class="tp">ПУСК</text></g>
+${opPill(316,184,240,'2','Предоперационная')}<image href="${IMG('bed')}" x="420" y="224" width="64" height="64"/>
+<g class="rmb" data-r="r3"><rect x="208" y="254" width="184" height="76" rx="16"/><image href="${IMG('sanitar')}" x="212" y="256" width="72" height="72"/><circle cx="304" cy="292" r="12" class="bd"/><text x="304" y="297" class="bn">3</text><text x="324" y="300" class="t1">Шлюз</text></g>
+${opRoom(46,'Правая')}${opRoom(398,'Левая')}
+${opPill(338,368,128,'4','Коридор')}${opPill(148,368,114,'5','Двери')}${opPill(246,484,108,'7','Лампы')}
 <path d="${OPH}" class="hrt"/>
-<g clip-path="url(#ohc)"><rect class="rm r2" data-r="r2" x="0" y="150" width="600" height="138"/><rect class="rm r6" data-r="r6" x="0" y="296" width="242" height="330"/><rect class="rm r6" data-r="r6" x="298" y="296" width="302" height="330"/></g>
-<g class="wire" data-r="r7"><path d="M238 380 L228 452 M228 452 L134 470 M228 452 L186 496 M228 452 L226 478 M304 380 L316 452 M316 452 L366 478 M316 452 L410 496 M316 452 L458 470"/>${[[134,470],[186,496],[226,478],[366,478],[410,496],[458,470]].map(p=>`<circle class="lp" cx="${p[0]}" cy="${p[1]}" r="9"/>`).join('')}</g>
-<g class="rmb" data-r="r1"><rect x="90" y="108" width="190" height="84" rx="14"/><image href="${IMG('doctor')}" x="98" y="122" width="46" height="46"/><text x="152" y="144" class="t1">Кабинет</text><rect x="152" y="154" width="84" height="28" rx="14" class="pusk"/><text x="194" y="174" class="tp">ПУСК</text></g>
-<text x="432" y="212" class="t1 mid">Предоперационная</text><image href="${IMG('bed')}" x="402" y="222" width="58" height="58"/>
-<g class="rmb" data-r="r3"><rect x="190" y="240" width="190" height="76" rx="14"/><image href="${IMG('sanitar')}" x="194" y="242" width="72" height="72"/><text x="276" y="288" class="t1">Шлюз</text></g>
-<rect class="cor" data-r="r4" x="248" y="314" width="44" height="170"/>
-<g class="pill"><rect x="300" y="322" width="124" height="32" rx="16"/><circle cx="318" cy="338" r="12" class="bd"/><text x="318" y="343" class="bn">4</text><text x="372" y="345" class="t3 mid">Коридор</text></g>
-<g class="door" data-r="r5"><rect x="236" y="356" width="12" height="42" rx="2"/><rect x="292" y="352" width="12" height="22" rx="2"/><rect x="292" y="378" width="12" height="22" rx="2"/></g>
-<text x="165" y="404" class="t2 mid">Правая</text><text x="165" y="426" class="t4 mid">операционная</text>
-<text x="432" y="404" class="t2 mid">Левая</text><text x="432" y="426" class="t4 mid">операционная</text>
-${[[90,108,'1'],[300,205,'2'],[190,240,'3'],[222,378,'5'],[165,378,'6'],[432,378,'6'],[300,506,'7']].map(b=>`<circle cx="${b[0]}" cy="${b[1]}" r="14" class="bd"/><text x="${b[0]}" y="${b[1]+5}" class="bn">${b[2]}</text>`).join('')}
 <g class="spk" data-k="a"><circle r="22" fill="#ffd84d" opacity=".55" filter="url(#ogl)"/><circle r="10" fill="url(#osp)" stroke="#fff" stroke-width="2.5"/></g>
 <g class="spk" data-k="b"><circle r="22" fill="#ffd84d" opacity=".55" filter="url(#ogl)"/><circle r="10" fill="url(#osp)" stroke="#fff" stroke-width="2.5"/></g>
 </svg>
@@ -1473,24 +1488,38 @@ function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const sv
 new MutationObserver(()=>document.querySelectorAll('.oppic[data-op]:not([data-ready])').forEach(opInit)).observe(document.documentElement,{childList:true,subtree:true});
 
 /* ---------- «Дом на груди»: где ставить грудные электроды ---------- */
-function chestSVG(L){const E=[['V1',184,175,'#e5484d','n'],['V2',236,175,'#f5b301','n'],['V3',261,194,'#18a058','w'],['V4',286,212,'#8a5a2b','s'],['V5',338,219,'#1a2230','s'],['V6',374,223,'#8e44ad','n']];
- const rib=(y,side)=>side<0?`M196 ${y} Q130 ${y+5} 46 ${y+20}`:`M224 ${y} Q300 ${y+5} 388 ${y+22}`;
- const lab=(e)=>{const [n,x,y]=e,p=e[4];const dx=p==='e'?-17:p==='w'?-20:0,dy=p==='n'?-17:p==='s'?30:5,an=p==='e'||p==='w'?'end':'middle';return`<text x="${x+dx}" y="${y+dy}" class="cv" text-anchor="${an}">${n}</text>`};
- return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="0 0 420 372" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
-<text x="14" y="22" class="cs">← правая сторона пациента</text><text x="406" y="22" class="cs" text-anchor="end">левая сторона →</text>
-<path class="tor" d="M150 34 Q210 56 270 34 L372 50 Q402 64 404 104 L392 300 L28 300 L16 104 Q18 64 48 50 Z"/>
-<path class="clv" d="M200 62 Q140 48 66 58 M220 62 Q280 48 354 58"/>
-${[70,100,130,160,190,220,250].map(y=>`<path class="rib" d="${rib(y,-1)}"/><path class="rib" d="${rib(y,1)}"/>`).join('')}
-<rect class="stn" x="196" y="58" width="28" height="200" rx="8"/><text x="210" y="276" class="cs" text-anchor="middle">грудина</text>
-<path class="ln" d="M286 54 V300"/><path class="ln" d="M338 70 V300"/><path class="ln" d="M374 82 V300"/>
-<text x="290" y="320" class="cl" text-anchor="end">среднеключичная линия</text><text x="342" y="340" class="cl" text-anchor="end">передняя подмышечная</text><text x="406" y="360" class="cl" text-anchor="end">средняя подмышечная</text>
-<path class="lnk" d="M286 300 V307 M338 300 V327 M374 300 V347"/>
-<path class="flr f4" d="M150 177 Q172 176 196 175 M224 175 Q300 180 392 194"/><path class="flr f5" d="M150 207 Q172 206 196 205 M224 205 Q300 211 392 226"/>
-<text x="24" y="168" class="ce">4 этаж</text><text x="24" y="184" class="cs">= 4-е межреберье</text>
-<text x="24" y="236" class="ce">5 этаж</text><text x="24" y="252" class="cs">= 5-е межреберье</text>
-<path class="lad" d="M236 175 L286 212"/>${[0.25,0.5,0.75].map(t=>{const x=236+50*t,y=175+37*t;return`<path class="rung" d="M${x-4} ${y+5} L${x+4} ${y-5}"/>`}).join('')}
-${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="11" fill="${e[3]}" class="el"/>`).join('')}${E.map(lab).join('')}
-</svg>${L?`<ul class="chl"><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии, <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
+/* Рисунок анатомический: шея, плечи, ключицы, грудина (рукоятка, тело, мечевидный отросток), рёбра, рёберная дуга.
+   Вид спереди: правая сторона пациента — слева на рисунке. Межреберья: 4-е на уровне y=175 у грудины, 5-е — y=205. */
+function chestSVG(L){const A=.0006,q=(y,l,x0)=>`M${x0} ${y} Q${x0+l/2} ${y} ${x0+l} ${(y+A*l*l).toFixed(1)}`;
+ const RIBS=[[72,96],[100,138],[130,156],[160,162],[190,164],[220,162],[250,150]];
+ const half=`<path class="flr f4" d="${q(175,158,224)}"/><path class="flr f5" d="${q(205,158,224)}"/>
+${RIBS.map(r=>`<path class="ribo" d="${q(r[0],r[1],224)}"/>`).join('')}${RIBS.map(r=>`<path class="ribi" d="${q(r[0],r[1],224)}"/>`).join('')}
+<path class="archo" d="M214 266 C246 288 300 300 372 314"/><path class="archi" d="M214 266 C246 288 300 300 372 314"/>
+<path class="clvo" d="M230 62 C262 70 300 46 354 44"/><path class="clvi" d="M230 62 C262 70 300 46 354 44"/>
+<path class="nk" d="M240 10 Q234 38 224 58"/>`;
+ const E=[['V1',184,175,'#e5484d',184,157,'middle'],['V2',236,175,'#f5b301',236,157,'middle'],['V3',261,191.5,'#18a058',242,197,'end'],['V4',286,208,'#8a5a2b',286,237,'middle'],['V5',338,208,'#1a2230',338,237,'middle'],['V6',374,208,'#8e44ad',374,190,'middle']];
+ const rail=(o)=>`M${236+o[0]} ${175+o[1]} L${286+o[0]} ${208+o[1]}`;
+ return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="0 0 420 426" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у края грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
+<defs><linearGradient id="chsk" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#eecab4"/><stop offset=".22" stop-color="#f8e2d4"/><stop offset=".5" stop-color="#fcece2"/><stop offset=".78" stop-color="#f8e2d4"/><stop offset="1" stop-color="#eecab4"/></linearGradient>
+<linearGradient id="chfd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".84" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+<mask id="chmk" maskUnits="userSpaceOnUse" x="0" y="-10" width="420" height="352"><rect x="0" y="-10" width="420" height="352" fill="url(#chfd)"/></mask>
+<filter id="chsh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000" flood-opacity=".28"/></filter></defs>
+<text x="10" y="18" class="cs">← правая сторона пациента</text><text x="410" y="18" class="cs" text-anchor="end">левая сторона пациента →</text>
+<g transform="translate(0 30)"><g mask="url(#chmk)">
+<path fill="url(#chsk)" d="M174 0 C176 14 172 26 158 32 C128 44 92 44 62 52 C32 60 16 84 16 112 L22 200 L28 342 L392 342 L398 200 L404 112 C404 84 388 60 358 52 C328 44 292 44 262 32 C248 26 244 14 246 0 Z"/>
+<g>${half}</g><g transform="translate(420 0) scale(-1 1)">${half}</g>
+<path class="stn" d="M190 60 Q210 70 230 60 L234 66 L232 96 L224 104 L225 246 Q220 262 214 274 L206 274 Q200 262 195 246 L196 104 L188 96 L186 66 Z"/>
+<path class="tol" d="M174 0 C176 14 172 26 158 32 C128 44 92 44 62 52 C32 60 16 84 16 112 L22 200 L28 342 M246 0 C244 14 248 26 262 32 C292 44 328 44 358 52 C388 60 404 84 404 112 L398 200 L392 342"/></g>
+<text x="210" y="296" class="cs" text-anchor="middle">грудина</text>
+<path class="ln" d="M286 44 V330"/><path class="ln" d="M338 60 V330"/><path class="ln" d="M374 78 V330"/>
+<path class="lnk" d="M286 330 V341 M338 330 V359 M374 330 V377"/>
+<text x="290" y="352" class="cl" text-anchor="end">среднеключичная линия</text><text x="342" y="370" class="cl" text-anchor="end">передняя подмышечная</text><text x="406" y="388" class="cl" text-anchor="end">средняя подмышечная</text>
+<g class="pl p4"><path d="M79 156 V178"/><circle cx="79" cy="182" r="3.5"/><rect x="20" y="116" width="120" height="40" rx="12"/><text x="32" y="133" class="ce">4 этаж</text><text x="32" y="149" class="cs">4-е межреберье</text></g>
+<g class="pl p5"><path d="M79 230 V217"/><circle cx="79" cy="213" r="3.5"/><rect x="20" y="230" width="120" height="40" rx="12"/><text x="32" y="247" class="ce">5 этаж</text><text x="32" y="263" class="cs">5-е межреберье</text></g>
+<path class="lvl" d="M286 208 H374"/>
+<path class="lad" d="${rail([-2.2,3.3])}"/><path class="lad" d="${rail([2.2,-3.3])}"/>${[.2,.34,.66,.8].map(t=>{const x=236+50*t,y=175+33*t;return`<path class="rung" d="M${(x-3).toFixed(1)} ${(y+4.6).toFixed(1)} L${(x+3).toFixed(1)} ${(y-4.6).toFixed(1)}"/>`}).join('')}
+${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="11" fill="${e[3]}" class="el"/>`).join('')}${E.map(e=>`<text x="${e[4]}" y="${e[5]}" class="cv" text-anchor="${e[6]}">${e[0]}</text>`).join('')}
+</g></svg>${L?`<ul class="chl"><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии, <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной — все три на одной высоте.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
 
 /* ---------- «Как в жизни»: неидеальные ленты с помехами и неочевидными находками ---------- */
 /* помехи: дрейф изолинии, мышечная дрожь, сетевая наводка 50 Гц, двигательный артефакт, обрыв электрода, низкий вольтаж */
