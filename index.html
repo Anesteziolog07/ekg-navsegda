@@ -428,6 +428,22 @@ body::before{background:
 
 
 
+.hzw{position:relative;width:100%;max-width:470px;margin:0 auto}
+.hzs{display:block;width:100%;height:auto;max-width:none}
+.hzs .cg ellipse{fill:url(#hzg);mix-blend-mode:screen}.hzs .cg{opacity:0}
+.hzs .spk{opacity:0}
+.hzs .ldr path{stroke:#4b5565;stroke-width:1.1;fill:none;opacity:.75;transition:stroke .4s,opacity .4s}.hzs .ldr circle{fill:#4b5565;opacity:.85;transition:fill .4s}
+.hzs .ldr g.on path{stroke:#e0a100;stroke-width:2;opacity:1}.hzs .ldr g.on circle{fill:#e0a100}
+.hzl{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:4px 9px 5px;border-radius:10px;border:1px solid #ead2d5;background:rgba(255,255,255,.93);box-shadow:0 2px 8px rgba(80,20,30,.12);font:inherit;text-align:left;cursor:pointer;color:#1f2937;line-height:1.15;transition:background .4s,border-color .4s,box-shadow .4s,transform .4s;max-width:46%}
+.hzl.rt{align-items:flex-end;text-align:right}
+.hzl b{font-size:13.5px;font-weight:800}.hzl span{font-size:11.5px;color:#6b7280;font-weight:600}
+.hzl.on{background:#fff6cf;border-color:#f0b400;box-shadow:0 0 0 3px rgba(255,207,64,.35),0 4px 12px rgba(120,80,0,.18)}
+.hzl:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.hzc{margin:0;font-size:11.5px;color:var(--muted);text-align:center}.hzc a{color:inherit}
+.hzt{margin:0;font-size:13px;color:var(--muted);text-align:center}
+@media (max-width:620px){.hzl{padding:3px 7px 4px;border-radius:9px}.hzl b{font-size:12px}.hzl span{font-size:10.5px}}
+
+
 /* ===== тёмная тема (сгенерировано) ===== */
 html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#a7b1c1;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
 html[data-theme=dark] body::before{opacity:.8}
@@ -596,6 +612,9 @@ html[data-theme=dark] .opsvg,html[data-theme=dark] .chsvg,html[data-theme=dark] 
 :where(html[data-theme=dark]) .trust{background:#193e2f;border:1px solid #2f6a57;color:#86f4e5}
 :where(html[data-theme=dark]) .trust svg{color:#81f8e7}
 :where(html[data-theme=dark]) .trust b{color:#82f8e1}
+:where(html[data-theme=dark]) .hzl{border:1px solid #683138;background:rgba(18,24,33,.93);color:#a9b9d0}
+:where(html[data-theme=dark]) .hzl span{color:#e7ebf2}
+:where(html[data-theme=dark]) .hzl.on{background:#3e3719}
 
 /* ручная доводка тёмной темы */
 html[data-theme=dark] .mon,html[data-theme=dark] [style*="background:#fffaf8"]{--muted:#667085;color:#1a2230}
@@ -1440,112 +1459,86 @@ const STORY={
 12:{t:'Калий вверх — T вверх',tech:'Запомни предмет, и он подскажет диагноз.',s:[['tent','Палатка','Высокий калий: острый узкий T'],['candle','Тающая свеча','Калий растёт: P исчезает, QRS расплывается'],['balloon','Сдутый шарик','Низкий калий: плоский T и зубец U'],['cyclone','Скручивание вершин','Пируэт'],['smile','Улыбка','Перикардит: вогнутый ST']]}};
 
 /* ---------- живая схема «Сердце — операционный блок» ----------
-   Сердце в разрезе (как в атласе): четыре камеры, сосуды, проводящая система.
-   Анимация медленная: искра идёт по проводящей системе, по камерам расходится мягкая волна света, камеры чуть сжимаются, лента ЭКГ рисуется синхронно. */
+   Рисунок сердца: Servier Medical Art (smart.servier.com), CC BY 4.0. Подписи-аналогии и анимация добавлены поверх.
+   Свет бежит точно по жёлтой проводке рисунка: для каждого её пикселя заранее посчитано расстояние от СА-узла (предсердия)
+   и от АВ-узла (желудочки) — слои heart_ca.png и heart_cv.png, расстояние/2 записано в красный канал. */
+const OPG={"ia":[[73,211,1],[73,214,4],[75,217,7.8],[78,220,12.1],[81,222,15.9],[84,224,19.7],[87,226,23.6],[90,227,27],[93,229,30.8],[96,231,34.6],[99,232,38],[102,234,41.9],[105,235,45.3],[108,237,49.1],[111,239,52.9],[114,242,57.2],[117,245,61.4],[120,247,65.3],[123,246,68.7],[126,247,72.1],[129,249,75.9],[127,251,79.3],[124,252,82.7],[121,255,87]],"his":[[123,255,2],[126,255,5],[129,255,8],[132,254,11.4],[135,256,15.2],[138,256,18.2],[141,256,21.2],[144,258,25.1],[147,259,28.5],[150,261,32.3],[153,263,36.1],[156,265,40],[159,267,43.8],[162,269,47.6],[165,271,51.5],[168,273,55.3],[171,276,59.5],[174,279,63.8],[177,282,68],[180,285,72.3],[183,288,76.5],[186,291,80.7],[189,294,85],[192,297,89.2],[194,300,93.1],[197,303,97.3],[200,306,101.5],[202,309,105.4],[204,312,109.2],[205,315,112.6],[205,318,115.6]],"r":[[123,255,2],[126,255,5],[129,255,8],[132,254,11.4],[135,256,15.2],[138,256,18.2],[141,256,21.2],[144,258,25.1],[147,259,28.5],[150,261,32.3],[153,263,36.1],[156,265,40],[159,267,43.8],[162,269,47.6],[165,271,51.5],[168,273,55.3],[171,276,59.5],[174,279,63.8],[177,282,68],[180,285,72.3],[183,288,76.5],[186,291,80.7],[189,294,85],[192,297,89.2],[194,300,93.1],[197,303,97.3],[200,306,101.5],[202,309,105.4],[204,312,109.2],[205,315,112.6],[208,318,116.9],[211,321,121.1],[213,324,124.9],[215,327,128.8],[216,330,132.2],[218,333,136],[219,336,139.4],[220,339,142.8],[221,342,146.2],[221,345,149.2],[221,348,152.2],[224,351,156.5],[226,354,160.3],[229,357,164.6],[232,360,168.8],[235,363,173],[238,366,177.3],[241,369,181.5],[244,372,185.8],[247,375,190],[249,378,193.8],[250,381,197.2],[253,384,201.5],[256,387,205.7],[258,390,209.6],[260,393,213.4],[262,396,217.2],[264,399,221],[265,402,224.5],[266,405,227.9],[267,408,231.3],[268,411,234.7],[268,414,237.7],[270,417,241.5],[273,420,245.8],[276,423,250],[279,426,254.3],[282,428,258.1],[285,429,261.5],[288,430,264.9],[291,432,268.7],[294,432,271.7],[297,433,275.2],[300,436,279.4]],"l":[[122,255,1],[125,255,4],[128,255,7],[131,254,10.4],[134,255,13.8],[137,256,17.2],[140,256,20.2],[143,257,23.7],[146,259,27.5],[149,261,31.3],[152,262,34.7],[155,264,38.6],[158,266,42.4],[161,268,46.2],[164,270,50],[167,273,54.3],[170,275,58.1],[173,277,61.9],[176,279,65.8],[179,282,70],[182,284,73.8],[185,286,77.7],[188,289,81.9],[191,292,86.2],[194,295,90.4],[197,298,94.6],[200,301,98.9],[203,304,103.1],[206,307,107.4],[209,310,111.6],[212,313,115.9],[215,316,120.1],[218,319,124.3],[221,322,128.6],[224,325,132.8],[227,328,137.1],[230,331,141.3],[233,334,145.6],[236,337,149.8],[238,340,153.6],[241,343,157.9],[244,346,162.1],[246,349,165.9],[248,352,169.8],[249,355,173.2],[251,358,177],[252,361,180.4],[253,364,183.8],[255,367,187.7],[256,370,191.1],[258,373,194.9],[260,376,198.7],[261,379,202.1],[263,382,206],[265,385,209.8],[267,388,213.6],[269,391,217.5],[272,394,221.7],[275,397,225.9],[278,400,230.2],[281,403,234.4],[284,406,238.7],[287,408,242.5],[290,410,246.3],[293,411,249.7],[296,412,253.2],[299,412,256.2],[302,412,259.2],[305,412,262.2],[308,412,265.2],[311,412,268.2],[314,412,271.2],[317,412,274.2],[320,412,277.2],[323,411,280.6],[326,408,284.8],[329,405,289.1],[331,402,292.9],[333,399,296.7],[335,396,300.5],[336,393,304],[337,390,307.4],[338,387,310.8],[338,384,313.8],[339,381,317.2],[340,378,320.6],[340,375,323.6],[340,372,326.6],[341,369,330],[341,366,333],[342,363,336.4],[342,360,339.4],[342,357,342.4],[343,354,345.9],[343,351,348.9],[343,348,351.9],[343,345,354.9],[343,342,357.9],[344,339,361.3],[344,336,364.3],[344,333,367.3],[343,330,370.7]]};
 const OPST=[
- {m:[1],n:'1',h:'Кабинет заведующего — СА‑узел',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1400},
- {m:[2],n:'2',h:'Предоперационная — предсердия',p:'Искра проходит по предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2000},
- {m:[3],n:'3',h:'Шлюз — АВ‑узел',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:1900},
- {m:[4],n:'4',h:'Коридор — пучок Гиса',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1100},
- {m:[5],n:'5',h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1100},
- {m:[6,7],n:'6–7',h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'По проводке-Пуркинье свет разом вспыхивает в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:1700},
- {m:[],n:'',h:'Отдых — восстановление желудочков',p:'Операция сделана, свет медленно гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:2100}];
-/* геометрия сердца */
-const HZ={
- body:'M152 150 C112 162 92 212 100 262 C105 302 120 332 140 362 C182 432 262 500 368 520 C438 512 482 452 492 380 C502 300 500 220 470 172 C450 138 402 128 362 136 L262 136 C222 126 182 132 152 150 Z',
- rc:'M184 300 C150 292 128 262 132 228 C136 192 166 170 200 170 C236 170 262 194 266 232 C268 258 262 282 258 298 C272 312 284 330 286 352 L286 430 C286 458 268 472 246 466 C208 454 170 414 158 370 C150 340 162 316 184 300 Z',
- lc:'M330 302 C302 282 296 240 312 210 C330 178 372 168 410 172 C448 176 470 206 466 240 C462 270 446 290 424 300 C444 318 454 350 452 384 C448 430 426 474 398 490 C378 500 356 488 346 464 C328 422 320 370 322 340 C323 324 326 312 330 302 Z',
- valve:'M184 300 C196 312 202 324 204 338 M258 298 C250 312 246 324 246 338 M330 302 C342 314 350 326 352 340 M424 300 C414 314 406 326 404 340',
- /* проводящая система */
- inter:'M196 156 C214 206 248 252 274 298', bach:'M204 154 C260 146 320 156 390 176',
- his:'M274 298 C288 308 300 320 304 336',
- rbb:'M304 336 C298 372 294 410 284 440 C278 456 270 462 262 466', lbb:'M304 336 C312 370 318 410 330 440 C336 456 342 466 350 474', lbb2:'M310 360 C318 372 324 384 328 398',
- pkR:'M262 466 C240 476 206 466 176 434 C156 410 146 380 148 350 C148 336 150 326 154 318', pkL:'M350 474 C364 496 392 506 414 494 C440 478 458 440 462 398 C464 370 460 344 452 326',
- pkS:'M206 466 C204 454 198 446 190 440 M154 360 C164 362 172 368 176 376 M392 504 C394 492 398 484 404 478 M458 430 C448 428 440 432 434 438 M462 372 C452 370 444 374 438 380'};
-const HZM=[[1,148,122,192,152],[2,392,236],[3,232,282,272,297],[4,262,346],[5,262,410],[6,398,404],[7,192,410]];
-function opPic(){return`<div class="oppic" data-op="1"><span class="opk">Сердце — операционный блок</span>
-<svg class="opsvg hz" viewBox="68 4 464 540" role="img" aria-label="Сердце в разрезе как операционный блок: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз, пучок Гиса — коридор, ножки — двери, желудочки — операционные, волокна Пуркинье — лампы">
-<defs>
-<radialGradient id="hzMy" cx=".38" cy=".34" r=".78"><stop offset="0" stop-color="#f4848c"/><stop offset=".55" stop-color="#dc4a58"/><stop offset="1" stop-color="#a92a3c"/></radialGradient>
-<radialGradient id="hzCv" cx=".5" cy=".42" r=".7"><stop offset="0" stop-color="#fff6f6"/><stop offset="1" stop-color="#f9d9dc"/></radialGradient>
-<linearGradient id="hzVn" x1="0" x2="1"><stop offset="0" stop-color="#5d6fc4"/><stop offset=".5" stop-color="#8396e3"/><stop offset="1" stop-color="#5465b8"/></linearGradient>
-<linearGradient id="hzAo" x1="0" x2="1"><stop offset="0" stop-color="#c8384a"/><stop offset=".5" stop-color="#e8707a"/><stop offset="1" stop-color="#b52f42"/></linearGradient>
-<radialGradient id="hzWv"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".95"/><stop offset=".72" stop-color="#ffd25e" stop-opacity=".75"/><stop offset="1" stop-color="#ffd25e" stop-opacity="0"/></radialGradient>
-<radialGradient id="hzSp"><stop offset="0" stop-color="#fffdf2"/><stop offset=".5" stop-color="#ffe27a"/><stop offset="1" stop-color="#f5a623"/></radialGradient>
-<radialGradient id="hzHalo"><stop offset="0" stop-color="#fff3c4" stop-opacity=".9"/><stop offset="1" stop-color="#ffd25e" stop-opacity="0"/></radialGradient>
-<radialGradient id="hzBg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffecee"/><stop offset="1" stop-color="#ffecee" stop-opacity="0"/></radialGradient>
-<filter id="hzGl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<filter id="hzSh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#7a1426" flood-opacity=".22"/></filter>
-<filter id="hzIn"><feGaussianBlur stdDeviation="2.5"/></filter>
-<clipPath id="hzCc"><path d="${HZ.rc}"/><path d="${HZ.lc}"/></clipPath><linearGradient id="hzMg" gradientUnits="userSpaceOnUse" x1="0" y1="286" x2="0" y2="330"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><linearGradient id="hzMg2" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="336"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="hzTop" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="600"><rect width="600" height="600" fill="url(#hzMg)"/></mask><mask id="hzBot" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="600"><rect width="600" height="600" fill="url(#hzMg2)"/></mask></defs>
-<ellipse cx="300" cy="300" rx="240" ry="250" fill="url(#hzBg)"/>
-<g class="hzv"><rect x="174" y="8" width="44" height="160" rx="18" fill="url(#hzVn)"/>
-<path d="M300 170 C298 96 330 56 382 56 C426 56 446 90 446 150" fill="none" stroke="url(#hzAo)" stroke-width="44" stroke-linecap="round"/>
-<path d="M346 64 L342 22 M376 56 L378 14 M408 62 L418 24" stroke="#cf4b5a" stroke-width="14" stroke-linecap="round"/>
-</g>
-<g class="hzb"><path d="${HZ.body}" fill="url(#hzMy)" filter="url(#hzSh)"/>
-<ellipse cx="190" cy="214" rx="64" ry="30" transform="rotate(-28 190 214)" fill="#fff" opacity=".13" filter="url(#hzIn)"/>
-<path d="${HZ.rc}" class="cav"/><path d="${HZ.lc}" class="cav"/><g clip-path="url(#hzCc)"><g mask="url(#hzTop)"><circle class="wv wa" cx="196" cy="156" r="0" fill="url(#hzWv)"/></g><g mask="url(#hzBot)"><circle class="wv wb" cx="300" cy="380" r="0" fill="url(#hzWv)"/></g></g>
-<path class="vlv" d="${HZ.valve}"/>
-<path class="cs0" d="${HZ.inter} ${HZ.bach} ${HZ.his} ${HZ.rbb} ${HZ.lbb} ${HZ.lbb2} ${HZ.pkR} ${HZ.pkL} ${HZ.pkS}"/>
-<g class="cs1" filter="url(#hzGl)">${['inter','bach','his','rbb','lbb','lbb2','pkR','pkL','pkS'].map(k=>`<path data-c="${k}" pathLength="1" d="${HZ[k]}"/>`).join('')}</g>
-<ellipse class="nd sa" cx="196" cy="155" rx="11" ry="7" transform="rotate(-20 196 155)"/><ellipse class="nd av" cx="274" cy="298" rx="9" ry="6" transform="rotate(30 274 298)"/></g>
-${HZM.map(m=>`<g class="mk" data-m="${m[0]}">${m[3]?`<path class="ml" d="M${m[1]} ${m[2]} L${m[3]} ${m[4]}"/><circle class="mdot" cx="${m[3]}" cy="${m[4]}" r="2.5"/>`:''}<g transform="translate(${m[1]} ${m[2]})"><circle class="mr" r="17"/><circle class="mc" r="15"/><text y="6">${m[0]}</text></g></g>`).join('')}
-<g class="trail">${Array.from({length:10},()=>'<circle r="4"/>').join('')}</g><g class="trail tb">${Array.from({length:10},()=>'<circle r="4"/>').join('')}</g>
-<g class="spk" data-k="a"><circle r="26" fill="url(#hzHalo)"/><circle r="7.5" fill="url(#hzSp)" stroke="#fff" stroke-width="2"/></g>
-<g class="spk" data-k="b"><circle r="26" fill="url(#hzHalo)"/><circle r="7.5" fill="url(#hzSp)" stroke="#fff" stroke-width="2"/></g>
-</svg>
-<div class="opcap" aria-live="polite"><b class="opn"></b><div><b class="oph"></b><p class="opp"></p></div></div>
+ {l:[0],h:'Кабинет заведующего — СА‑узел',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1500},
+ {l:[1],h:'Предоперационная — предсердия',p:'Искра бежит по предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2200},
+ {l:[2],h:'Шлюз — АВ‑узел',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:2000},
+ {l:[3],h:'Коридор — пучок Гиса',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1300},
+ {l:[4],h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1300},
+ {l:[5,6],h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'Свет бежит по проводке-Пуркинье и разом зажигается в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:2000},
+ {l:[],h:'Отдых — восстановление желудочков',p:'Операция сделана, свет медленно гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:2300}];
+/* подписи на рисунке: [аналогия, термин, где плашка (x,y в % от рамки; r — прижать к правому краю), куда указывает] */
+const OPL=[['Заведующий','СА‑узел',{x:1,y:28.5},[[73,210]]],['Предоперационная','предсердия',{x:1,y:25,r:1},[[256,200]]],['Шлюз с санитаром','АВ‑узел',{x:31,y:37},[[121,255]]],
+ ['Коридор','пучок Гиса',{x:1,y:40,r:1},[[168,274]]],['Две двери','ножки пучка',{x:1,y:51.5,r:1},[[205,318]]],['Операционные','желудочки',{x:1,y:93.2},[[160,372],[288,345]]],['Лампы','волокна Пуркинье',{x:1,y:93.2,r:1},[[322,412],[250,420]]]];
+function opPic(){return`<div class="oppic hz2" data-op="1"><span class="opk">Сердце — операционный блок</span>
+<div class="hzw"><svg class="opsvg hzs" viewBox="0 0 383 500" role="img" aria-label="Сердце в разрезе: заведующий — СА-узел, предоперационная — предсердия, шлюз с санитаром — АВ-узел, коридор — пучок Гиса, две двери — ножки, операционные — желудочки, лампы — волокна Пуркинье">
+<defs>${['a','v'].map(k=>`<filter id="hzf${k}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 .96  0 0 0 0 .62  0 0 0 0 0" result="m"/><feComposite in="m" in2="SourceAlpha" operator="in" result="c"/><feGaussianBlur in="c" stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="c"/></feMerge></filter>`).join('')}
+<radialGradient id="hzg"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset=".6" stop-color="#ffd966" stop-opacity=".5"/><stop offset="1" stop-color="#ffd966" stop-opacity="0"/></radialGradient>
+<radialGradient id="hzh"><stop offset="0" stop-color="#fffbe6"/><stop offset=".35" stop-color="#ffe680" stop-opacity=".9"/><stop offset="1" stop-color="#ffcf33" stop-opacity="0"/></radialGradient></defs>
+<g class="hzb"><image href="${IMG('heart_servier')}" width="383" height="460"/>
+<g class="cg cga"><ellipse cx="64" cy="280" rx="46" ry="58"/><ellipse cx="256" cy="200" rx="58" ry="30"/></g>
+<g class="cg cgv"><ellipse cx="168" cy="372" rx="82" ry="46" transform="rotate(18 168 372)"/><ellipse cx="292" cy="350" rx="48" ry="74"/></g>
+<image class="cl cla" href="${IMG('heart_ca')}" width="383" height="460" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_cv')}" width="383" height="460" filter="url(#hzfv)"/></g>
+<g class="ldr"></g>
+${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="15" fill="url(#hzh)"/><circle r="4.2" fill="#fffef5"/></g>`).join('')}
+</svg>${OPL.map((l,i)=>`<button type="button" class="hzl${l[2].r?' rt':''}" data-i="${i}" style="${l[2].r?'right':'left'}:${l[2].x}%;top:${l[2].y}%"><b>${l[0]}</b><span>${l[1]}</span></button>`).join('')}</div>
+<p class="hzc">Рисунок сердца: <a href="https://smart.servier.com/" target="_blank" rel="noopener">Servier Medical Art</a>, лицензия <a href="https://creativecommons.org/licenses/by/4.0/deed.ru" target="_blank" rel="noopener">CC BY 4.0</a>; подписи и анимация добавлены.</p>
+<div class="opcap" aria-live="polite"><div><b class="oph"></b><p class="opp"></p></div></div>
 <div class="opstrip"><span class="opl">Что рисуется на ленте</span><svg viewBox="0 0 600 128" class="opecg"><path class="eb" d="M14 64 H586"/>
 <path class="es e1" pathLength="1" d="M20 64 H40 Q75 30 110 64"/><path class="es e2" pathLength="1" d="M110 64 H210"/><path class="es e3" pathLength="1" d="M210 64 L220 72 L234 10 L250 90 L260 64"/><path class="es e4" pathLength="1" d="M260 64 H330 Q384 22 438 64 H586"/><circle class="ehd" r="5"/>
 <text x="75" y="122" class="el l1">P</text><text x="160" y="122" class="el l2">пауза</text><text x="235" y="122" class="el l3">QRS</text><text x="384" y="122" class="el l4">T</text></svg></div>
 <div class="opbtn"><button type="button" class="btn opgo">${ic('pause',16)}<span>Пауза</span></button><button type="button" class="btn oprs">${ic('replay',16)}<span>Повторить</span></button></div>
-<ol class="oplg">${[['1','Кабинет заведующего','СА‑узел'],['2','Предоперационная','предсердия'],['3','Шлюз с санитаром','АВ‑узел'],['4','Коридор','пучок Гиса'],['5','Две двери','правая и левая ножки'],['6','Две операционные','желудочки'],['7','Лампы под потолком','волокна Пуркинье']].map((x,i)=>`<li data-i="${i}"><b>${x[0]}</b><span>${x[1]} <em>= ${x[2]}</em></span></li>`).join('')}</ol></div>`}
+<p class="hzt">Нажми на любую подпись на рисунке — схема остановится на этом месте.</p></div>`}
 /* управление анимацией */
-function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.opsvg'),$q=s=>svg.querySelector(s),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
- cap=[root.querySelector('.opn'),root.querySelector('.oph'),root.querySelector('.opp')],segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
- lg=[...root.querySelectorAll('.oplg li')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),mk=[...svg.querySelectorAll('.mk')],
- C={};svg.querySelectorAll('.cs1 path').forEach(p=>C[p.dataset.c]=p);const wa=$q('.wa'),wb=$q('.wb'),gb=$q('.hzb'),san=$q('.sa'),avn=$q('.av'),
- trA=[...svg.querySelectorAll('.trail:not(.tb) circle')],trB=[...svg.querySelectorAll('.trail.tb circle')];
+function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.hzs'),$q=s=>svg.querySelector(s),wrap=root.querySelector('.hzw'),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
+ cap=[root.querySelector('.oph'),root.querySelector('.opp')],capb=root.querySelector('.opcap'),segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
+ pills=[...root.querySelectorAll('.hzl')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),ldr=$q('.ldr'),
+ fa=svg.querySelector('#hzfa feColorMatrix'),fv=svg.querySelector('#hzfv feColorMatrix'),cla=$q('.cla'),clv=$q('.clv'),cga=$q('.cga'),cgv=$q('.cgv'),hb=$q('.hzb');
  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let el=0,last=0,play=!RM,raf=0,cur=-1;const REST=900,total=OPST.reduce((a,s)=>a+s.t,0)+REST;
- const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));            // плавный старт и финиш
- const pt=(k,p)=>{const e=C[k],l=e.getTotalLength(),q=e.getPointAtLength(l*Math.min(1,Math.max(0,p)));return[q.x,q.y]};
+ const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));
+ /* подсветка проводки до расстояния T (в пикселях рисунка) */
+ const K=22,thr=(m,T)=>m.setAttribute('values',`0 0 0 0 1  0 0 0 0 .96  0 0 0 0 .62  ${-K} 0 0 0 ${T<=0?0:(K*T/510+1).toFixed(3)}`);
+ const at=(P,T)=>{if(T<=P[0][2])return P[0];for(let i=1;i<P.length;i++)if(P[i][2]>=T){const a=P[i-1],b=P[i],f=(T-a[2])/(b[2]-a[2]);return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]}return P[P.length-1]};
+ const AV=87,SPL=116,ENDV=480;
+ /* выноски от подписей к местам на рисунке */
+ function lead(){const W=wrap.getBoundingClientRect();if(!W.width)return;const k=383/W.width;let h='';
+  pills.forEach((b,i)=>{const r=b.getBoundingClientRect(),x0=(r.left-W.left)*k,x1=(r.right-W.left)*k,y0=(r.top-W.top)*k,y1=(r.bottom-W.top)*k;
+   OPL[i][3].forEach(t=>{const sx=Math.min(Math.max(t[0],x0+8),x1-8),sy=t[1]>y1?y1:t[1]<y0?y0:(t[0]<x0?x0:x1);const vx=t[1]>y1||t[1]<y0;
+    h+=`<g data-i="${i}"><path d="M${vx?sx:(t[0]<x0?x0:x1)} ${vx?sy:(y0+y1)/2} L${t[0]} ${t[1]}"/><circle cx="${t[0]}" cy="${t[1]}" r="2.6"/></g>`})});
+  ldr.innerHTML=h;mark(cur)}
+ function mark(s){const S=OPST[s]||{l:[]};pills.forEach((b,i)=>b.classList.toggle('on',S.l.includes(i)));ldr.querySelectorAll('g').forEach(g=>g.classList.toggle('on',S.l.includes(+g.dataset.i)))}
  const SEG=[[],[[0,0,1]],[[1,0,.75]],[[1,.75,.88]],[[1,.88,1]],[[2,0,1]],[[3,0,1]]];
- const histA=[],histB=[];
- const put=(g,tr,hist,xy,o)=>{if(!xy){g.style.opacity=0;hist.length=0;tr.forEach(c=>c.style.opacity=0);return}g.style.opacity=o==null?1:o;g.setAttribute('transform',`translate(${xy[0].toFixed(1)} ${xy[1].toFixed(1)})`);
-  hist.unshift(xy);if(hist.length>tr.length)hist.length=tr.length;tr.forEach((c,i)=>{const h=hist[i];if(!h){c.style.opacity=0;return}c.setAttribute('cx',h[0]);c.setAttribute('cy',h[1]);c.setAttribute('r',(6-i*.5).toFixed(1));c.style.opacity=((1-i/tr.length)*.45*(o==null?1:o)).toFixed(2)})};
- const lit=(k,v)=>{C[k].style.strokeDashoffset=String(1-Math.min(1,Math.max(0,v)))};
- const sc=(g,s,cx,cy)=>g.setAttribute('transform',`translate(${cx} ${cy}) scale(${s.toFixed(4)}) translate(${-cx} ${-cy})`);
+ const put=(g,xy,o)=>{if(!xy||o<=0){g.style.opacity=0;return}g.style.opacity=o;g.setAttribute('transform',`translate(${xy[0].toFixed(1)} ${xy[1].toFixed(1)})`)};
  function show(s,p){const S=OPST[s];
-  if(s!==cur){cur=s;cap[0].textContent=S.n;cap[0].hidden=!S.n;cap[1].textContent=S.h;cap[2].textContent=S.p;root.querySelector('.opcap').classList.remove('opfx');void root.offsetWidth;root.querySelector('.opcap').classList.add('opfx');
-   lg.forEach((li,i)=>li.classList.toggle('on',S.m.includes(i+1)));mk.forEach(g=>g.classList.toggle('on',S.m.includes(+g.dataset.m)))}
+  if(s!==cur){cur=s;cap[0].textContent=S.h;cap[1].textContent=S.p;capb.classList.remove('opfx');void capb.offsetWidth;capb.classList.add('opfx');mark(s)}
   const e=sm(p);
-  /* проводящая система: что уже «зажглось» */
-  lit('inter',s>1?1:s===1?e:0);lit('bach',s>1?1:s===1?sm(p*1.3):0);lit('his',s>3?1:s===3?e:0);lit('rbb',s>4?1:s===4?e:0);lit('lbb',s>4?1:s===4?e:0);lit('lbb2',s>4?1:s===4?sm(p*1.2-.2):0);
-  ['pkR','pkL'].forEach(k=>lit(k,s>5?1:s===5?sm(p*1.6):0));lit('pkS',s>5?1:s===5?sm(p*1.6-.5):0);
-  svg.querySelector('.cs1').style.opacity=s===6?String(1-sm(p*1.4)):'1';
-  /* узлы */
-  san.classList.toggle('on',s<=1);avn.classList.toggle('on',s>=2&&s<=3);
-  /* волна по предсердиям и желудочкам */
-  const aR=s===1?e*300:s>1&&s<6?300:0,aO=s===1?.9:s===2?.9-.5*e:s===3?.4-.4*e:0;wa.setAttribute('r',aR.toFixed(1));wa.style.opacity=aO;
-  const vR=s===5?sm(p*1.15)*280:s===6?280:0,vO=s===5?.95:s===6?.95*(1-sm(p)):0;wb.setAttribute('r',vR.toFixed(1));wb.style.opacity=vO;
-  /* лёгкое сокращение камер */
-  const ba=s===1?.008*Math.sin(Math.PI*Math.min(1,Math.max(0,(p-.4)/.6))):s===2?.008*Math.sin(Math.PI*(.5+p*.5))*(1-p):0,bv=s===5?.022*sm((p-.2)/.8):s===6?.022*(1-sm(p)):0;sc(gb,1-ba-bv,300,360);
+  /* проводка предсердий и желудочков */
+  const T1=s===0?6*e:s===1?6+154*e:s<6?170:170,T2=s<2?0:s===2?10*e:s===3?10+(SPL-10)*e:s===4?SPL+(232-SPL)*e:s===5?232+(ENDV-232)*sm(p*1.1):ENDV;
+  thr(fa,T1);thr(fv,T2);const fade=s===6?1-sm(p*1.3):1;cla.style.opacity=fade*(s>=4?1-.6*sm(s===4?p:1):1);clv.style.opacity=fade;
+  /* мягкий свет в камерах */
+  cga.style.opacity=s===1?.75*sm((p-.15)/.6):s===2?.75*(1-sm(p)):0;cgv.style.opacity=s===5?.8*sm((p-.2)/.6):s===6?.8*(1-sm(p)):0;
+  /* сердце чуть сжимается при QRS */
+  const bv=s===5?.018*sm((p-.25)/.75):s===6?.018*(1-sm(p)):0;hb.setAttribute('transform',`translate(190 330) scale(${(1-bv).toFixed(4)}) translate(-190 -330)`);
   /* искры */
   let A=null,B=null,oa=1;
-  if(s===0){A=[196,155];oa=sm(p*2)}else if(s===1)A=pt('inter',e);else if(s===2){A=[274,298];oa=.75+.25*Math.cos(p*Math.PI*4)}else if(s===3)A=pt('his',e);
-  else if(s===4){A=pt('rbb',e);B=pt('lbb',e)}else if(s===5&&p<.75){A=pt('pkR',sm(p/.75));B=pt('pkL',sm(p/.75));oa=1-sm((p-.45)/.3)}
-  put(sa,trA,histA,A,oa);put(sb,trB,histB,B,oa);
+  if(s===0){A=[73,210];oa=sm(p*1.8)}else if(s===1)A=at(OPG.ia,Math.min(AV,T1));else if(s===2){A=[121,255];oa=.7+.3*Math.cos(p*Math.PI*4)}else if(s===3)A=at(OPG.his,T2);
+  else if(s===4){A=at(OPG.r,T2);B=at(OPG.l,T2)}else if(s===5){A=at(OPG.r,Math.min(279,T2));B=at(OPG.l,Math.min(370,T2));oa=1-sm((p-.35)/.4)}
+  put(sa,A,oa);put(sb,B,oa);
   /* лента */
   let head=null;segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a,b] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b);else if(q===s){v=Math.max(v,a+(b-a)*p);head=[g,a+(b-a)*p]}}}
    g.style.strokeDashoffset=String(1-v);g.style.opacity=v>0?1:0;g.classList.toggle('on',SEG[s].some(x=>x[0]===i))});
-  if(head){const l=head[0].getTotalLength(),q=head[0].getPointAtLength(l*head[1]);ehd.setAttribute('cx',q.x);ehd.setAttribute('cy',q.y);ehd.style.opacity=1}else ehd.style.opacity=s===6?0:ehd.style.opacity;
+  if(head){const l=head[0].getTotalLength(),q=head[0].getPointAtLength(l*head[1]);ehd.setAttribute('cx',q.x);ehd.setAttribute('cy',q.y);ehd.style.opacity=1}else if(s===6||s===0)ehd.style.opacity=0;
   labs.forEach((l,i)=>l.classList.toggle('on',SEG[s].some(x=>x[0]===i)))}
  function frame(t){if(!root.isConnected){cancelAnimationFrame(raf);return}if(play){if(last)el+=Math.min(t-last,60);last=t;if(el>=total){el=0;segs.forEach(g=>{g.style.opacity=0})}let a=el,s=0;while(s<OPST.length&&a>=OPST[s].t){a-=OPST[s].t;s++}if(s>=OPST.length)show(6,1);else show(s,a/OPST[s].t)}else last=0;raf=requestAnimationFrame(frame)}
  const setBtn=()=>{go.innerHTML=play?`${ic('pause',16)}<span>Пауза</span>`:`${ic('play',16)}<span>Продолжить</span>`;go.classList.toggle('pri',!play)};
  go.onclick=()=>{play=!play;setBtn()};rs.onclick=()=>{el=0;cur=-1;play=true;setBtn();show(0,0)};
- lg.forEach((li,i)=>li.onclick=()=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.7:s===0?.9:.6;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;histA.length=0;histB.length=0;show(s,f)});
- show(0,0);setBtn();raf=requestAnimationFrame(frame)}
+ pills.forEach((b,i)=>b.onclick=()=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.75:s===0?.9:s===1?.8:.65;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;show(s,f)});
+ if(window.ResizeObserver)new ResizeObserver(lead).observe(wrap);else addEventListener('resize',lead);
+ show(0,0);lead();setBtn();raf=requestAnimationFrame(frame)}
 new MutationObserver(()=>document.querySelectorAll('.oppic[data-op]:not([data-ready])').forEach(opInit)).observe(document.documentElement,{childList:true,subtree:true});
 
 /* ---------- «Дом на груди»: где ставить грудные электроды ---------- */
