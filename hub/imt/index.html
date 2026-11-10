@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Индекс массы тела</title>
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../icon-192.png">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>try{var t=localStorage.getItem("ekg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#161a23;--mu:#667085;--bd:#e4e7ee;--acc:#e5484d;--sh:0 1px 2px rgba(16,24,40,.06),0 6px 18px rgba(16,24,40,.06);--c1:#4c8dff;--c2:#2eb67d;--c3:#f0b429;--c4:#f08a29;--c5:#e5484d;--c6:#b3262f}
+:root[data-theme=dark]{--bg:#0f141c;--card:#171e29;--tx:#eef1f6;--mu:#97a1b3;--bd:#263041;--sh:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;padding:max(18px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+.w{max-width:560px;margin:0 auto}
+a.back{display:inline-block;color:var(--mu);text-decoration:none;font-size:15px;margin:0 0 6px}
+h1{font-size:26px;line-height:1.2;margin:4px 0 16px;letter-spacing:-.01em}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:16px;box-shadow:var(--sh);margin:0 0 14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:14px;color:var(--mu);margin:0 0 6px}
+input{width:100%;font:inherit;font-size:20px;font-weight:600;color:var(--tx);background:var(--bg);border:1.5px solid var(--bd);border-radius:14px;padding:12px 14px;outline:none}
+input:focus{border-color:var(--acc)}
+.err{color:var(--acc);font-size:14px;min-height:20px;margin:10px 0 0}
+#res{display:none}
+.big{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.cat{font-size:18px;font-weight:700;margin:6px 0 14px}
+.bar{position:relative;display:flex;height:12px;border-radius:8px;overflow:hidden;margin:22px 0 6px}
+.bar i{display:block;height:100%}
+.pin{position:absolute;top:-8px;width:4px;height:28px;border-radius:2px;background:var(--tx);transform:translateX(-2px);box-shadow:0 0 0 2px var(--card)}
+.sc{position:relative;height:16px;font-size:12px;color:var(--mu)}
+.sc span{position:absolute;transform:translateX(-50%)}
+.sc span:first-child{transform:none}
+.sc span:last-child{transform:translateX(-100%)}
+.rng{margin:16px 0 0;font-size:15px}
+.rng b{white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:7px 0;border-top:1px solid var(--bd)}
+td:last-child{text-align:right;color:var(--mu);white-space:nowrap}
+tr.on td{font-weight:700;color:var(--tx)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.note{color:var(--mu);font-size:13px;line-height:1.5}
+</style></head><body>
+<div class="w">
+ <a class="back" id="bk" href="../">‹ Все приложения</a>
+ <h1>Индекс массы тела</h1>
+ <div class="card">
+  <div class="row">
+   <div><label for="h">Рост, см</label><input id="h" type="number" inputmode="decimal" min="100" max="250" placeholder="175"></div>
+   <div><label for="w">Вес, кг</label><input id="w" type="number" inputmode="decimal" min="20" max="400" placeholder="70"></div>
+  </div>
+  <div class="err" id="err"></div>
+ </div>
+ <div class="card" id="res">
+  <div class="big" id="v">0</div>
+  <div class="cat" id="c"></div>
+  <div class="bar" id="bar"></div>
+  <div class="sc" id="sc"></div>
+  <p class="rng" id="rng"></p>
+ </div>
+ <div class="card">
+  <table id="tb"></table>
+ </div>
+ <p class="note">Формула: масса (кг) ÷ рост (м) в квадрате. Классификация ВОЗ для взрослых от 18 лет. Не подходит для детей, беременных, спортсменов с большой мышечной массой и пожилых: там ИМТ может вводить в заблуждение, он не учитывает состав тела и распределение жира. Это справка, а не диагноз: решения принимает врач.</p>
+</div>
+<script>
+(function(){
+ var C=[
+  {n:'Выраженный дефицит массы',a:0,b:16,c:'--c1'},
+  {n:'Недостаточная масса',a:16,b:18.5,c:'--c1'},
+  {n:'Норма',a:18.5,b:25,c:'--c2'},
+  {n:'Избыточная масса (предожирение)',a:25,b:30,c:'--c3'},
+  {n:'Ожирение I степени',a:30,b:35,c:'--c4'},
+  {n:'Ожирение II степени',a:35,b:40,c:'--c5'},
+  {n:'Ожирение III степени',a:40,b:99,c:'--c6'}];
+ var $=function(i){return document.getElementById(i)};
+ var fmt=function(x,d){return x.toFixed(d).replace('.',',')};
+ var lo=15,hi=45;
+ $('bar').innerHTML=C.map(function(k){var a=Math.max(k.a,lo),b=Math.min(k.b,hi);return'<i style="width:'+((b-a)/(hi-lo)*100)+'%;background:var('+k.c+')"></i>'}).join('')+'<span class="pin" id="pin"></span>';
+ $('sc').innerHTML=[[15,'15'],[18.5,'18,5'],[25,'25'],[30,'30'],[35,'35'],[40,'40']].map(function(t){return'<span style="left:'+((t[0]-lo)/(hi-lo)*100)+'%">'+t[1]+'</span>'}).join('');
+ var R=['меньше 16','16 – 18,4','18,5 – 24,9','25 – 29,9','30 – 34,9','35 – 39,9','40 и больше'];
+ function table(on){$('tb').innerHTML=C.map(function(k,i){var r=R[i];
+  return'<tr'+(i===on?' class="on"':'')+'><td><span class="dot" style="background:var('+k.c+')"></span>'+k.n+'</td><td>'+r+'</td></tr>'}).join('')}
+ table(-1);
+ function calc(){
+  var h=parseFloat($('h').value.replace(',','.')),w=parseFloat($('w').value.replace(',','.')),e=$('err'),res=$('res');
+  e.textContent='';res.style.display='none';table(-1);
+  if(!$('h').value&&!$('w').value)return;
+  if(!h||!w)return;
+  if(h<100||h>250){e.textContent='Рост должен быть от 100 до 250 см';return}
+  if(w<20||w>400){e.textContent='Вес должен быть от 20 до 400 кг';return}
+  var m=h/100,b=w/(m*m),i=0;for(var j=0;j<C.length;j++)if(b>=C[j].a)i=j;
+  var k=C[i];res.style.display='block';
+  $('v').textContent=fmt(b,1);$('v').style.color='var('+k.c+')';
+  $('c').textContent=k.n;
+  var p=(Math.min(Math.max(b,lo),hi)-lo)/(hi-lo)*100;$('pin').style.left=p+'%';
+  var a=18.5*m*m,z=24.9*m*m;
+  $('rng').innerHTML='Нормальный вес для роста '+fmt(h,h%1?1:0)+' см: <b>'+fmt(a,1)+' – '+fmt(z,1)+' кг</b>.';
+  table(i);
+ }
+ $('h').addEventListener('input',calc);$('w').addEventListener('input',calc);
+ var W=window.Telegram&&window.Telegram.WebApp;
+ if(!W||!W.initData)return;
+ function sf(f){try{return f()}catch(e){}}
+ sf(function(){W.ready()});sf(function(){W.expand()});sf(function(){W.disableVerticalSwipes()});
+ function theme(){var t;try{t=localStorage.getItem('ekg-theme')}catch(e){}t=t||W.colorScheme||'light';document.documentElement.dataset.theme=t;
+  var c=t==='dark'?'#0f141c':'#f6f7fb';sf(function(){W.setHeaderColor(c)});sf(function(){W.setBackgroundColor(c)});sf(function(){W.setBottomBarColor(c)})}
+ theme();W.onEvent('themeChanged',theme);
+ $('bk').style.display='none';
+ sf(function(){W.BackButton.show();W.BackButton.onClick(function(){location.href='../'})});
+})();
+</script>
+</body></html>
