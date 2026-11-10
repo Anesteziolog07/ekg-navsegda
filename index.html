@@ -407,6 +407,27 @@ body::before{background:
 
 
 
+.opsvg.hz{max-width:560px}
+.opsvg.hz .cav{fill:url(#hzCv);stroke:#a92a3c;stroke-opacity:.35;stroke-width:2}
+.opsvg.hz .vlv{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;opacity:.85}
+.opsvg.hz .cs0{fill:none;stroke:#f2c14e;stroke-width:3;opacity:.5;stroke-linecap:round}
+.opsvg.hz .cs1 path{fill:none;stroke:#ffd54f;stroke-width:4.5;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1}
+.opsvg.hz .cs1 path[data-c=pkS]{stroke-width:3}
+.opsvg.hz .nd{fill:#f2b632;stroke:#fff;stroke-width:2;transition:fill .6s}.opsvg.hz .nd.on{fill:#fff0a8}
+.opsvg.hz .trail circle{fill:#ffd54f;opacity:0}
+.opsvg.hz .spk{opacity:0}
+.opsvg.hz .mk .ml{stroke:#fff;stroke-width:1.6;opacity:.9}.opsvg.hz .mk .mdot{fill:#fff}
+.opsvg.hz .mk .mc{fill:#fff;stroke:#e3b3b9;stroke-width:1.5;transition:fill .5s}.opsvg.hz .mk text{font-size:16px;font-weight:800;fill:#1f2937;text-anchor:middle;transition:fill .5s}
+.opsvg.hz .mk .mr{fill:none;stroke:#ffcf40;stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}
+.opsvg.hz .mk.on .mc{fill:#1f2937;stroke:#fff}.opsvg.hz .mk.on text{fill:#fff}.opsvg.hz .mk.on .mr{animation:hzp 1.8s ease-out infinite}
+@keyframes hzp{from{transform:scale(1);opacity:.95}to{transform:scale(1.9);opacity:0}}
+.opcap.opfx{animation:hzf .7s ease}@keyframes hzf{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:none}}
+.opecg .ehd{fill:#e5484d;opacity:0;filter:drop-shadow(0 0 4px rgba(229,72,77,.8))}
+@media (prefers-reduced-motion:reduce){.opsvg.hz .mk.on .mr,.opcap.opfx{animation:none}}
+
+
+
+
 /* ===== тёмная тема (сгенерировано) ===== */
 html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#a7b1c1;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
 html[data-theme=dark] body::before{opacity:.8}
@@ -1418,72 +1439,112 @@ const STORY={
 11:{t:'Волна Пологая Вначале',tech:'По-настоящему WPW — это фамилии врачей: Вольф, Паркинсон и Уайт. А чтобы запомнить главный признак, прочитай эти буквы как три слова.',s:[['W','Волна','Дельта-волна'],['P','Пологая','Медленный старт через мышцу'],['W','Вначале','В начале QRS'],['elevator','Чёрный ход','Пучок Кента: мимо шлюза, без задержки и без фильтра']]},
 12:{t:'Калий вверх — T вверх',tech:'Запомни предмет, и он подскажет диагноз.',s:[['tent','Палатка','Высокий калий: острый узкий T'],['candle','Тающая свеча','Калий растёт: P исчезает, QRS расплывается'],['balloon','Сдутый шарик','Низкий калий: плоский T и зубец U'],['cyclone','Скручивание вершин','Пируэт'],['smile','Улыбка','Перикардит: вогнутый ST']]}};
 
-/* ---------- живые схемы: «Сердце — операционный блок» и «Дом на груди» (грудные электроды) ---------- */
-const OPH="M300 600 C190 540 30 440 30 250 C30 135 105 55 200 55 C250 55 285 80 300 105 C315 80 350 55 400 55 C495 55 570 135 570 250 C570 440 410 540 300 600 Z";
-/* этапы: что подсвечиваем, подпись под схемой, длительность, путь искры */
+/* ---------- живая схема «Сердце — операционный блок» ----------
+   Сердце в разрезе (как в атласе): четыре камеры, сосуды, проводящая система.
+   Анимация медленная: искра идёт по проводящей системе, по камерам расходится мягкая волна света, камеры чуть сжимаются, лента ЭКГ рисуется синхронно. */
 const OPST=[
- {r:['r1'],n:'1',h:'Кабинет заведующего — СА‑узел',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:700},
- {r:['r2'],n:'2',h:'Предоперационная — предсердия',p:'Искра пролетает предсердия, пациента закатывают в операционную. На ленте — зубец P.',t:1100},
- {r:['r3'],n:'3',h:'Шлюз — АВ‑узел',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:1300},
- {r:['r4'],n:'4',h:'Коридор — пучок Гиса',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:700},
- {r:['r5'],n:'5',h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка летит в правую дверь, другая — в левую.',t:600},
- {r:['r6','r7'],n:'6–7',h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'Искра попадает в проводку, и в обеих операционных разом вспыхивает свет. Желудочки сокращаются — на ленте узкий QRS.',t:1100},
- {r:['r6'],n:'',h:'Отдых — восстановление желудочков',p:'Операция сделана, свет гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:1200}];
-/* точки пути искры по этапам (координаты схемы); на этапах 5–6 искр две */
-const OPP=[[[214,174],[214,174]],[[214,174],[300,224],[452,256],[336,266],[238,287]],[[238,287],[238,287]],[[238,287],[300,334],[300,389]],[[300,389],[274,389]],[[274,389],[238,428],[178,470]]];
-const OPP2=[null,null,null,null,[[300,389],[326,389]],[[326,389],[362,428],[422,470]]];
-/* плашка-подпись: номер внутри, текст рядом */
-const opPill=(x,y,w,n,t,cls)=>`<g class="pill"><rect x="${x}" y="${y}" width="${w}" height="34" rx="17"/><circle cx="${x+19}" cy="${y+17}" r="12" class="bd"/><text x="${x+19}" y="${y+22}" class="bn">${n}</text><text x="${x+38}" y="${y+24}" class="${cls||'t3'}">${t}</text></g>`;
-const opRoom=(x,t)=>`<g class="pill"><rect x="${x}" y="303" width="156" height="56" rx="16"/><circle cx="${x+19}" cy="331" r="12" class="bd"/><text x="${x+19}" y="336" class="bn">6</text><text x="${x+38}" y="327" class="t2">${t}</text><text x="${x+38}" y="348" class="t4">операционная</text></g>`;
-function opPic(){const LL=[[128,446],[178,470],[232,466]],LR=LL.map(p=>[600-p[0],p[1]]);
- const wires=(j,d,ls)=>`<path d="M${d[0]} ${d[1]} L${j[0]} ${j[1]}${ls.map(p=>` M${j[0]} ${j[1]} L${p[0]} ${p[1]}`).join('')}"/>${ls.map(p=>`<circle class="lp" cx="${p[0]}" cy="${p[1]}" r="9"/>`).join('')}`;
- return`<div class="oppic" data-op="1"><span class="opk">Сердце — операционный блок</span>
-<svg class="opsvg" viewBox="20 46 560 562" role="img" aria-label="Сердце как операционный блок: кабинет заведующего — СА-узел, предоперационная — предсердия, шлюз — АВ-узел, коридор — пучок Гиса, две двери — ножки, операционные — желудочки, лампы — волокна Пуркинье">
-<defs><clipPath id="ohc"><path d="${OPH}"/></clipPath>
-<radialGradient id="osp"><stop offset="0" stop-color="#fffbe6"/><stop offset=".55" stop-color="#ffd84d"/><stop offset="1" stop-color="#f59e0b"/></radialGradient>
-<filter id="ogl" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="6"/></filter>
-<filter id="osh" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#9b2c3a" flood-opacity=".16"/></filter></defs>
-<g clip-path="url(#ohc)"><rect class="room ra" x="0" y="0" width="600" height="296"/><rect class="room rv" x="0" y="296" width="280" height="330"/><rect class="room rv" x="320" y="296" width="280" height="330"/><rect class="room rs" x="280" y="296" width="40" height="330"/>
-<rect class="rm" data-r="r2" x="0" y="0" width="600" height="296"/><rect class="rm" data-r="r6" x="0" y="296" width="280" height="330"/><rect class="rm" data-r="r6" x="320" y="296" width="280" height="330"/>
-<path class="wall" d="M0 296 H600"/></g>
-<g class="wire" data-r="r7">${wires([238,428],[272,392],LL)}${wires([362,428],[328,392],LR)}</g>
-<rect class="cor" data-r="r4" x="280" y="330" width="40" height="142"/>
-<g class="door" data-r="r5"><rect x="268" y="370" width="12" height="38" rx="2"/><rect x="320" y="370" width="12" height="38" rx="2"/></g>
-<g class="rmb" data-r="r1"><rect x="84" y="116" width="214" height="80" rx="16"/><image href="${IMG('doctor')}" x="92" y="125" width="62" height="62"/><circle cx="176" cy="142" r="12" class="bd"/><text x="176" y="147" class="bn">1</text><text x="196" y="150" class="t1">Кабинет</text><rect x="166" y="160" width="96" height="28" rx="14" class="pusk"/><text x="214" y="180" class="tp">ПУСК</text></g>
-${opPill(316,184,240,'2','Предоперационная')}<image href="${IMG('bed')}" x="420" y="224" width="64" height="64"/>
-<g class="rmb" data-r="r3"><rect x="208" y="254" width="184" height="76" rx="16"/><image href="${IMG('sanitar')}" x="212" y="256" width="72" height="72"/><circle cx="304" cy="292" r="12" class="bd"/><text x="304" y="297" class="bn">3</text><text x="324" y="300" class="t1">Шлюз</text></g>
-${opRoom(46,'Правая')}${opRoom(398,'Левая')}
-${opPill(338,368,128,'4','Коридор')}${opPill(148,368,114,'5','Двери')}${opPill(246,484,108,'7','Лампы')}
-<path d="${OPH}" class="hrt"/>
-<g class="spk" data-k="a"><circle r="22" fill="#ffd84d" opacity=".55" filter="url(#ogl)"/><circle r="10" fill="url(#osp)" stroke="#fff" stroke-width="2.5"/></g>
-<g class="spk" data-k="b"><circle r="22" fill="#ffd84d" opacity=".55" filter="url(#ogl)"/><circle r="10" fill="url(#osp)" stroke="#fff" stroke-width="2.5"/></g>
+ {m:[1],n:'1',h:'Кабинет заведующего — СА‑узел',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1400},
+ {m:[2],n:'2',h:'Предоперационная — предсердия',p:'Искра проходит по предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2000},
+ {m:[3],n:'3',h:'Шлюз — АВ‑узел',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:1900},
+ {m:[4],n:'4',h:'Коридор — пучок Гиса',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1100},
+ {m:[5],n:'5',h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1100},
+ {m:[6,7],n:'6–7',h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'По проводке-Пуркинье свет разом вспыхивает в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:1700},
+ {m:[],n:'',h:'Отдых — восстановление желудочков',p:'Операция сделана, свет медленно гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:2100}];
+/* геометрия сердца */
+const HZ={
+ body:'M152 150 C112 162 92 212 100 262 C105 302 120 332 140 362 C182 432 262 500 368 520 C438 512 482 452 492 380 C502 300 500 220 470 172 C450 138 402 128 362 136 L262 136 C222 126 182 132 152 150 Z',
+ rc:'M184 300 C150 292 128 262 132 228 C136 192 166 170 200 170 C236 170 262 194 266 232 C268 258 262 282 258 298 C272 312 284 330 286 352 L286 430 C286 458 268 472 246 466 C208 454 170 414 158 370 C150 340 162 316 184 300 Z',
+ lc:'M330 302 C302 282 296 240 312 210 C330 178 372 168 410 172 C448 176 470 206 466 240 C462 270 446 290 424 300 C444 318 454 350 452 384 C448 430 426 474 398 490 C378 500 356 488 346 464 C328 422 320 370 322 340 C323 324 326 312 330 302 Z',
+ valve:'M184 300 C196 312 202 324 204 338 M258 298 C250 312 246 324 246 338 M330 302 C342 314 350 326 352 340 M424 300 C414 314 406 326 404 340',
+ /* проводящая система */
+ inter:'M196 156 C214 206 248 252 274 298', bach:'M204 154 C260 146 320 156 390 176',
+ his:'M274 298 C288 308 300 320 304 336',
+ rbb:'M304 336 C298 372 294 410 284 440 C278 456 270 462 262 466', lbb:'M304 336 C312 370 318 410 330 440 C336 456 342 466 350 474', lbb2:'M310 360 C318 372 324 384 328 398',
+ pkR:'M262 466 C240 476 206 466 176 434 C156 410 146 380 148 350 C148 336 150 326 154 318', pkL:'M350 474 C364 496 392 506 414 494 C440 478 458 440 462 398 C464 370 460 344 452 326',
+ pkS:'M206 466 C204 454 198 446 190 440 M154 360 C164 362 172 368 176 376 M392 504 C394 492 398 484 404 478 M458 430 C448 428 440 432 434 438 M462 372 C452 370 444 374 438 380'};
+const HZM=[[1,148,122,192,152],[2,392,236],[3,232,282,272,297],[4,262,346],[5,262,410],[6,398,404],[7,192,410]];
+function opPic(){return`<div class="oppic" data-op="1"><span class="opk">Сердце — операционный блок</span>
+<svg class="opsvg hz" viewBox="68 4 464 540" role="img" aria-label="Сердце в разрезе как операционный блок: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз, пучок Гиса — коридор, ножки — двери, желудочки — операционные, волокна Пуркинье — лампы">
+<defs>
+<radialGradient id="hzMy" cx=".38" cy=".34" r=".78"><stop offset="0" stop-color="#f4848c"/><stop offset=".55" stop-color="#dc4a58"/><stop offset="1" stop-color="#a92a3c"/></radialGradient>
+<radialGradient id="hzCv" cx=".5" cy=".42" r=".7"><stop offset="0" stop-color="#fff6f6"/><stop offset="1" stop-color="#f9d9dc"/></radialGradient>
+<linearGradient id="hzVn" x1="0" x2="1"><stop offset="0" stop-color="#5d6fc4"/><stop offset=".5" stop-color="#8396e3"/><stop offset="1" stop-color="#5465b8"/></linearGradient>
+<linearGradient id="hzAo" x1="0" x2="1"><stop offset="0" stop-color="#c8384a"/><stop offset=".5" stop-color="#e8707a"/><stop offset="1" stop-color="#b52f42"/></linearGradient>
+<radialGradient id="hzWv"><stop offset="0" stop-color="#ffe9a0" stop-opacity=".95"/><stop offset=".72" stop-color="#ffd25e" stop-opacity=".75"/><stop offset="1" stop-color="#ffd25e" stop-opacity="0"/></radialGradient>
+<radialGradient id="hzSp"><stop offset="0" stop-color="#fffdf2"/><stop offset=".5" stop-color="#ffe27a"/><stop offset="1" stop-color="#f5a623"/></radialGradient>
+<radialGradient id="hzHalo"><stop offset="0" stop-color="#fff3c4" stop-opacity=".9"/><stop offset="1" stop-color="#ffd25e" stop-opacity="0"/></radialGradient>
+<radialGradient id="hzBg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffecee"/><stop offset="1" stop-color="#ffecee" stop-opacity="0"/></radialGradient>
+<filter id="hzGl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="hzSh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#7a1426" flood-opacity=".22"/></filter>
+<filter id="hzIn"><feGaussianBlur stdDeviation="2.5"/></filter>
+<clipPath id="hzCc"><path d="${HZ.rc}"/><path d="${HZ.lc}"/></clipPath><linearGradient id="hzMg" gradientUnits="userSpaceOnUse" x1="0" y1="286" x2="0" y2="330"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><linearGradient id="hzMg2" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="336"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient><mask id="hzTop" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="600"><rect width="600" height="600" fill="url(#hzMg)"/></mask><mask id="hzBot" maskUnits="userSpaceOnUse" x="0" y="0" width="600" height="600"><rect width="600" height="600" fill="url(#hzMg2)"/></mask></defs>
+<ellipse cx="300" cy="300" rx="240" ry="250" fill="url(#hzBg)"/>
+<g class="hzv"><rect x="174" y="8" width="44" height="160" rx="18" fill="url(#hzVn)"/>
+<path d="M300 170 C298 96 330 56 382 56 C426 56 446 90 446 150" fill="none" stroke="url(#hzAo)" stroke-width="44" stroke-linecap="round"/>
+<path d="M346 64 L342 22 M376 56 L378 14 M408 62 L418 24" stroke="#cf4b5a" stroke-width="14" stroke-linecap="round"/>
+</g>
+<g class="hzb"><path d="${HZ.body}" fill="url(#hzMy)" filter="url(#hzSh)"/>
+<ellipse cx="190" cy="214" rx="64" ry="30" transform="rotate(-28 190 214)" fill="#fff" opacity=".13" filter="url(#hzIn)"/>
+<path d="${HZ.rc}" class="cav"/><path d="${HZ.lc}" class="cav"/><g clip-path="url(#hzCc)"><g mask="url(#hzTop)"><circle class="wv wa" cx="196" cy="156" r="0" fill="url(#hzWv)"/></g><g mask="url(#hzBot)"><circle class="wv wb" cx="300" cy="380" r="0" fill="url(#hzWv)"/></g></g>
+<path class="vlv" d="${HZ.valve}"/>
+<path class="cs0" d="${HZ.inter} ${HZ.bach} ${HZ.his} ${HZ.rbb} ${HZ.lbb} ${HZ.lbb2} ${HZ.pkR} ${HZ.pkL} ${HZ.pkS}"/>
+<g class="cs1" filter="url(#hzGl)">${['inter','bach','his','rbb','lbb','lbb2','pkR','pkL','pkS'].map(k=>`<path data-c="${k}" pathLength="1" d="${HZ[k]}"/>`).join('')}</g>
+<ellipse class="nd sa" cx="196" cy="155" rx="11" ry="7" transform="rotate(-20 196 155)"/><ellipse class="nd av" cx="274" cy="298" rx="9" ry="6" transform="rotate(30 274 298)"/></g>
+${HZM.map(m=>`<g class="mk" data-m="${m[0]}">${m[3]?`<path class="ml" d="M${m[1]} ${m[2]} L${m[3]} ${m[4]}"/><circle class="mdot" cx="${m[3]}" cy="${m[4]}" r="2.5"/>`:''}<g transform="translate(${m[1]} ${m[2]})"><circle class="mr" r="17"/><circle class="mc" r="15"/><text y="6">${m[0]}</text></g></g>`).join('')}
+<g class="trail">${Array.from({length:10},()=>'<circle r="4"/>').join('')}</g><g class="trail tb">${Array.from({length:10},()=>'<circle r="4"/>').join('')}</g>
+<g class="spk" data-k="a"><circle r="26" fill="url(#hzHalo)"/><circle r="7.5" fill="url(#hzSp)" stroke="#fff" stroke-width="2"/></g>
+<g class="spk" data-k="b"><circle r="26" fill="url(#hzHalo)"/><circle r="7.5" fill="url(#hzSp)" stroke="#fff" stroke-width="2"/></g>
 </svg>
 <div class="opcap" aria-live="polite"><b class="opn"></b><div><b class="oph"></b><p class="opp"></p></div></div>
 <div class="opstrip"><span class="opl">Что рисуется на ленте</span><svg viewBox="0 0 600 128" class="opecg"><path class="eb" d="M14 64 H586"/>
-<path class="es e1" pathLength="1" d="M20 64 H40 Q75 30 110 64"/><path class="es e2" pathLength="1" d="M110 64 H210"/><path class="es e3" pathLength="1" d="M210 64 L220 72 L234 10 L250 90 L260 64"/><path class="es e4" pathLength="1" d="M260 64 H330 Q384 22 438 64 H586"/>
+<path class="es e1" pathLength="1" d="M20 64 H40 Q75 30 110 64"/><path class="es e2" pathLength="1" d="M110 64 H210"/><path class="es e3" pathLength="1" d="M210 64 L220 72 L234 10 L250 90 L260 64"/><path class="es e4" pathLength="1" d="M260 64 H330 Q384 22 438 64 H586"/><circle class="ehd" r="5"/>
 <text x="75" y="122" class="el l1">P</text><text x="160" y="122" class="el l2">пауза</text><text x="235" y="122" class="el l3">QRS</text><text x="384" y="122" class="el l4">T</text></svg></div>
 <div class="opbtn"><button type="button" class="btn opgo">${ic('pause',16)}<span>Пауза</span></button><button type="button" class="btn oprs">${ic('replay',16)}<span>Повторить</span></button></div>
 <ol class="oplg">${[['1','Кабинет заведующего','СА‑узел'],['2','Предоперационная','предсердия'],['3','Шлюз с санитаром','АВ‑узел'],['4','Коридор','пучок Гиса'],['5','Две двери','правая и левая ножки'],['6','Две операционные','желудочки'],['7','Лампы под потолком','волокна Пуркинье']].map((x,i)=>`<li data-i="${i}"><b>${x[0]}</b><span>${x[1]} <em>= ${x[2]}</em></span></li>`).join('')}</ol></div>`}
-/* управление анимацией: этапы, пауза, «сначала», синхронная лента */
-function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.opsvg'),sa=svg.querySelector('[data-k="a"]'),sb=svg.querySelector('[data-k="b"]'),cap=[root.querySelector('.opn'),root.querySelector('.oph'),root.querySelector('.opp')],
- segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],lg=[...root.querySelectorAll('.oplg li')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs');
- const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let st=0,el=0,last=0,play=!RM,raf=0;const total=OPST.reduce((a,s)=>a+s.t,0)+700;
- const lerp=(p,a,b)=>[a[0]+(b[0]-a[0])*p,a[1]+(b[1]-a[1])*p];
- const along=(pts,p)=>{if(pts.length<3)return lerp(p,pts[0],pts[1]);const L=[];let T=0;for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);L.push(d);T+=d}let x=p*T;for(let i=0;i<L.length;i++){if(x<=L[i])return lerp(x/L[i],pts[i],pts[i+1]);x-=L[i]}return pts[pts.length-1]};
- const ease=p=>p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
- // какой кусок ленты рисуется на каждом этапе: [номер куска, доля начала, доля конца]
- const SEG=[[],[[0,0,1]],[[1,0,.7]],[[1,.7,.85]],[[1,.85,1]],[[2,0,1]],[[3,0,1]]];
- function show(s,p){const S=OPST[s];svg.querySelectorAll('[data-r]').forEach(e=>e.classList.toggle('on',S.r.includes(e.dataset.r)));
-  cap[0].textContent=S.n;cap[0].hidden=!S.n;cap[1].textContent=S.h;cap[2].textContent=S.p;lg.forEach((li,i)=>li.classList.toggle('on',(s<5&&i===s)||(s===5&&i>=5)));
-  const k=s===0?0:s>=6?1:ease(p),pa=OPP[s]?along(OPP[s],k):null,pb=OPP2[s]?along(OPP2[s],k):null;
-  sa.style.display=pa?'':'none';if(pa)sa.setAttribute('transform',`translate(${pa[0]} ${pa[1]})`);sb.style.display=pb?'':'none';if(pb)sb.setAttribute('transform',`translate(${pb[0]} ${pb[1]})`);
-  segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a,b] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b);else if(q===s)v=Math.max(v,a+(b-a)*p)}}g.style.strokeDashoffset=String(1-v);g.style.opacity=v>0?1:0;g.classList.toggle('on',SEG[s].some(x=>x[0]===i))});
-  labs.forEach((l,i)=>l.classList.toggle('on',SEG[s].some(x=>x[0]===i)));
-  svg.querySelector('.pusk').classList.toggle('press',s===0&&p<.5)}
- function frame(t){if(!root.isConnected){cancelAnimationFrame(raf);return}if(play){if(last)el+=t-last;last=t;if(el>=total)el=0;let a=el,s=0;while(s<OPST.length&&a>=OPST[s].t){a-=OPST[s].t;s++}if(s>=OPST.length){show(6,1)}else{st=s;show(s,a/OPST[s].t)}}else last=0;raf=requestAnimationFrame(frame)}
+/* управление анимацией */
+function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.opsvg'),$q=s=>svg.querySelector(s),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
+ cap=[root.querySelector('.opn'),root.querySelector('.oph'),root.querySelector('.opp')],segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
+ lg=[...root.querySelectorAll('.oplg li')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),mk=[...svg.querySelectorAll('.mk')],
+ C={};svg.querySelectorAll('.cs1 path').forEach(p=>C[p.dataset.c]=p);const wa=$q('.wa'),wb=$q('.wb'),gb=$q('.hzb'),san=$q('.sa'),avn=$q('.av'),
+ trA=[...svg.querySelectorAll('.trail:not(.tb) circle')],trB=[...svg.querySelectorAll('.trail.tb circle')];
+ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let el=0,last=0,play=!RM,raf=0,cur=-1;const REST=900,total=OPST.reduce((a,s)=>a+s.t,0)+REST;
+ const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));            // плавный старт и финиш
+ const pt=(k,p)=>{const e=C[k],l=e.getTotalLength(),q=e.getPointAtLength(l*Math.min(1,Math.max(0,p)));return[q.x,q.y]};
+ const SEG=[[],[[0,0,1]],[[1,0,.75]],[[1,.75,.88]],[[1,.88,1]],[[2,0,1]],[[3,0,1]]];
+ const histA=[],histB=[];
+ const put=(g,tr,hist,xy,o)=>{if(!xy){g.style.opacity=0;hist.length=0;tr.forEach(c=>c.style.opacity=0);return}g.style.opacity=o==null?1:o;g.setAttribute('transform',`translate(${xy[0].toFixed(1)} ${xy[1].toFixed(1)})`);
+  hist.unshift(xy);if(hist.length>tr.length)hist.length=tr.length;tr.forEach((c,i)=>{const h=hist[i];if(!h){c.style.opacity=0;return}c.setAttribute('cx',h[0]);c.setAttribute('cy',h[1]);c.setAttribute('r',(6-i*.5).toFixed(1));c.style.opacity=((1-i/tr.length)*.45*(o==null?1:o)).toFixed(2)})};
+ const lit=(k,v)=>{C[k].style.strokeDashoffset=String(1-Math.min(1,Math.max(0,v)))};
+ const sc=(g,s,cx,cy)=>g.setAttribute('transform',`translate(${cx} ${cy}) scale(${s.toFixed(4)}) translate(${-cx} ${-cy})`);
+ function show(s,p){const S=OPST[s];
+  if(s!==cur){cur=s;cap[0].textContent=S.n;cap[0].hidden=!S.n;cap[1].textContent=S.h;cap[2].textContent=S.p;root.querySelector('.opcap').classList.remove('opfx');void root.offsetWidth;root.querySelector('.opcap').classList.add('opfx');
+   lg.forEach((li,i)=>li.classList.toggle('on',S.m.includes(i+1)));mk.forEach(g=>g.classList.toggle('on',S.m.includes(+g.dataset.m)))}
+  const e=sm(p);
+  /* проводящая система: что уже «зажглось» */
+  lit('inter',s>1?1:s===1?e:0);lit('bach',s>1?1:s===1?sm(p*1.3):0);lit('his',s>3?1:s===3?e:0);lit('rbb',s>4?1:s===4?e:0);lit('lbb',s>4?1:s===4?e:0);lit('lbb2',s>4?1:s===4?sm(p*1.2-.2):0);
+  ['pkR','pkL'].forEach(k=>lit(k,s>5?1:s===5?sm(p*1.6):0));lit('pkS',s>5?1:s===5?sm(p*1.6-.5):0);
+  svg.querySelector('.cs1').style.opacity=s===6?String(1-sm(p*1.4)):'1';
+  /* узлы */
+  san.classList.toggle('on',s<=1);avn.classList.toggle('on',s>=2&&s<=3);
+  /* волна по предсердиям и желудочкам */
+  const aR=s===1?e*300:s>1&&s<6?300:0,aO=s===1?.9:s===2?.9-.5*e:s===3?.4-.4*e:0;wa.setAttribute('r',aR.toFixed(1));wa.style.opacity=aO;
+  const vR=s===5?sm(p*1.15)*280:s===6?280:0,vO=s===5?.95:s===6?.95*(1-sm(p)):0;wb.setAttribute('r',vR.toFixed(1));wb.style.opacity=vO;
+  /* лёгкое сокращение камер */
+  const ba=s===1?.008*Math.sin(Math.PI*Math.min(1,Math.max(0,(p-.4)/.6))):s===2?.008*Math.sin(Math.PI*(.5+p*.5))*(1-p):0,bv=s===5?.022*sm((p-.2)/.8):s===6?.022*(1-sm(p)):0;sc(gb,1-ba-bv,300,360);
+  /* искры */
+  let A=null,B=null,oa=1;
+  if(s===0){A=[196,155];oa=sm(p*2)}else if(s===1)A=pt('inter',e);else if(s===2){A=[274,298];oa=.75+.25*Math.cos(p*Math.PI*4)}else if(s===3)A=pt('his',e);
+  else if(s===4){A=pt('rbb',e);B=pt('lbb',e)}else if(s===5&&p<.75){A=pt('pkR',sm(p/.75));B=pt('pkL',sm(p/.75));oa=1-sm((p-.45)/.3)}
+  put(sa,trA,histA,A,oa);put(sb,trB,histB,B,oa);
+  /* лента */
+  let head=null;segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a,b] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b);else if(q===s){v=Math.max(v,a+(b-a)*p);head=[g,a+(b-a)*p]}}}
+   g.style.strokeDashoffset=String(1-v);g.style.opacity=v>0?1:0;g.classList.toggle('on',SEG[s].some(x=>x[0]===i))});
+  if(head){const l=head[0].getTotalLength(),q=head[0].getPointAtLength(l*head[1]);ehd.setAttribute('cx',q.x);ehd.setAttribute('cy',q.y);ehd.style.opacity=1}else ehd.style.opacity=s===6?0:ehd.style.opacity;
+  labs.forEach((l,i)=>l.classList.toggle('on',SEG[s].some(x=>x[0]===i)))}
+ function frame(t){if(!root.isConnected){cancelAnimationFrame(raf);return}if(play){if(last)el+=Math.min(t-last,60);last=t;if(el>=total){el=0;segs.forEach(g=>{g.style.opacity=0})}let a=el,s=0;while(s<OPST.length&&a>=OPST[s].t){a-=OPST[s].t;s++}if(s>=OPST.length)show(6,1);else show(s,a/OPST[s].t)}else last=0;raf=requestAnimationFrame(frame)}
  const setBtn=()=>{go.innerHTML=play?`${ic('pause',16)}<span>Пауза</span>`:`${ic('play',16)}<span>Продолжить</span>`;go.classList.toggle('pri',!play)};
- go.onclick=()=>{play=!play;setBtn()};rs.onclick=()=>{el=0;st=0;play=true;setBtn();show(0,0)};
- lg.forEach((li,i)=>li.onclick=()=>{play=false;setBtn();const s=Math.min(i,5);el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*.99;show(s,.99)});
+ go.onclick=()=>{play=!play;setBtn()};rs.onclick=()=>{el=0;cur=-1;play=true;setBtn();show(0,0)};
+ lg.forEach((li,i)=>li.onclick=()=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.7:s===0?.9:.6;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;histA.length=0;histB.length=0;show(s,f)});
  show(0,0);setBtn();raf=requestAnimationFrame(frame)}
 new MutationObserver(()=>document.querySelectorAll('.oppic[data-op]:not([data-ready])').forEach(opInit)).observe(document.documentElement,{childList:true,subtree:true});
 
