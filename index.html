@@ -282,6 +282,18 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 
 .emo{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.28em;margin-left:5px}
 
+/* «Курс всегда под рукой» */
+.anyw{display:flex;flex-direction:column;gap:12px;margin-top:14px;background:linear-gradient(120deg,#eaf6fd,#fff 62%);border-color:#c5e3f5}
+.anyw h2{display:flex;align-items:center;gap:8px;margin:0;font-size:20px}.anyw h2 svg{color:#2aabee;flex:none}
+.anyg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.anyg.one{grid-template-columns:1fr}
+.anyt{display:flex;flex-direction:row;gap:12px;align-items:flex-start;background:rgba(255,255,255,.75);border:1px solid #d8e9f4;border-radius:14px;padding:12px}
+.anyt>div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.anyt>div>b{font-size:17px}.anyt p{margin:0;font-size:14.5px;line-height:1.45}
+.anyi{flex:none;width:56px;height:56px;display:block}.anyi img,.anyi svg{display:block}
+.anyt .btn{margin-top:6px}.anyt small{font-size:13px}
+.anyd{margin-top:4px;width:100%;border:0;padding:0}.anyd summary{cursor:pointer;font-weight:700;color:#1b7fc0;font-size:15px}.anyd .ist{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.45}
+#ovl.dsheet .anyw{margin:0 0 10px;background:none;border:0;padding:0}#ovl.dsheet .anyg{grid-template-columns:1fr}
+@media (max-width:620px){.anyg{grid-template-columns:1fr}}
+
 /* живая картинка «операционный блок» */
 .oppic{background:#fff;border:1px solid #f3e4a6;border-radius:16px;padding:12px 12px 12px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .oppic>.opk{display:block;font-size:13px;font-weight:700;color:#8a6500}
@@ -337,6 +349,9 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 .chsvg .pl rect{fill:#fff;stroke-width:2}.chsvg .pl path{stroke-width:1.6;fill:none}.chsvg .p4 rect,.chsvg .p4 path{stroke:#5b8def}.chsvg .p4 circle{fill:#5b8def}.chsvg .p5 rect,.chsvg .p5 path{stroke:#2fae7f}.chsvg .p5 circle{fill:#2fae7f}
 .chsvg text{fill:#1f2937}.chsvg .ce{font-size:15px;font-weight:800}.chsvg .cs{font-size:12.5px;fill:#4b5563}.chsvg .cl{font-size:13px;fill:#3d4a66;font-weight:600}
 .chsvg .cv{font-size:16px;font-weight:800;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.chsvg .tso{fill:#fbf1ea;stroke:#e3cdbf;stroke-width:2}
+.chsvg .pa rect,.chsvg .pa path{stroke:#8a6d5a}.chsvg .pa circle{fill:#8a6d5a}
+.chest .hzc{margin-top:-2px}
 .chest .chl{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:16px;line-height:1.45}
 .story+.img,.oppic+.story{margin-top:4px}
 
@@ -428,20 +443,30 @@ body::before{background:
 
 
 
-.hzw{position:relative;width:100%;max-width:470px;margin:0 auto}
+.hzw{position:relative;width:100%;max-width:560px;margin:0 auto}
 .hzs{display:block;width:100%;height:auto;max-width:none}
 .hzs .cg ellipse{fill:url(#hzg);mix-blend-mode:screen}.hzs .cg{opacity:0}
 .hzs .spk{opacity:0}
-.hzs .ldr path{stroke:#4b5565;stroke-width:1.1;fill:none;opacity:.75;transition:stroke .4s,opacity .4s}.hzs .ldr circle{fill:#4b5565;opacity:.85;transition:fill .4s}
-.hzs .ldr g.on path{stroke:#e0a100;stroke-width:2;opacity:1}.hzs .ldr g.on circle{fill:#e0a100}
-.hzl{position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:4px 9px 5px;border-radius:10px;border:1px solid #ead2d5;background:rgba(255,255,255,.93);box-shadow:0 2px 8px rgba(80,20,30,.12);font:inherit;text-align:left;cursor:pointer;color:#1f2937;line-height:1.15;transition:background .4s,border-color .4s,box-shadow .4s,transform .4s;max-width:46%}
-.hzl.rt{align-items:flex-end;text-align:right}
-.hzl b{font-size:13.5px;font-weight:800}.hzl span{font-size:11.5px;color:#6b7280;font-weight:600}
-.hzl.on{background:#fff6cf;border-color:#f0b400;box-shadow:0 0 0 3px rgba(255,207,64,.35),0 4px 12px rgba(120,80,0,.18)}
-.hzl:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.hzs .ldr path{stroke:#5b6475;stroke-width:2.6;fill:none;opacity:.7;stroke-linecap:round;transition:stroke .4s,opacity .4s}.hzs .ldr circle{fill:#5b6475;opacity:.85;transition:fill .4s}
+.hzs .ldr g.on path{stroke:#e0a100;stroke-width:4;opacity:1}.hzs .ldr g.on circle{fill:#e0a100}
+.hzl{--ic:48px;position:absolute;transform:translate(-50%,calc(var(--ic) / -2));display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;margin:0;border:0;background:none;font:inherit;color:#1f2937;cursor:pointer;width:max-content;max-width:132px;line-height:1.1;-webkit-tap-highlight-color:transparent}
+.hzl i{width:var(--ic);height:var(--ic);border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 2px #fff,0 3px 10px rgba(70,25,35,.22);transition:box-shadow .4s,transform .4s}
+.hzl i img{width:78%;height:78%;display:block}
+.hzl span{display:flex;flex-direction:column;align-items:center;text-align:center;padding:2px 7px 3px;border-radius:8px;background:rgba(255,255,255,.94);box-shadow:0 1px 5px rgba(70,25,35,.14);transition:background .4s}
+.hzl b{font-size:13.5px;font-weight:800}.hzl small{font-size:11.5px;font-weight:600;color:#6b7280}
+.hzl.on i{box-shadow:0 0 0 3px #ffcf40,0 0 18px 4px rgba(255,200,40,.75);transform:scale(1.1)}
+.hzl.on span{background:#fff3c4}
+.hzl:focus-visible{outline:none}.hzl:focus-visible i{box-shadow:0 0 0 3px var(--acc)}
 .hzc{margin:0;font-size:11.5px;color:var(--muted);text-align:center}.hzc a{color:inherit}
 .hzt{margin:0;font-size:13px;color:var(--muted);text-align:center}
-@media (max-width:620px){.hzl{padding:3px 7px 4px;border-radius:9px}.hzl b{font-size:12px}.hzl span{font-size:10.5px}}
+@media (max-width:620px){.hzl{--ic:34px;gap:2px;max-width:96px}.hzl span{padding:1px 5px 2px;border-radius:7px}.hzl b{font-size:11.5px}.hzl small{font-size:10px}}
+
+
+
+
+
+
+
 
 
 /* ===== тёмная тема (сгенерировано) ===== */
@@ -582,6 +607,10 @@ html[data-theme=dark] .opsvg,html[data-theme=dark] .chsvg,html[data-theme=dark] 
 :where(html[data-theme=dark]) .don2 .fz b{color:#80fae9}
 :where(html[data-theme=dark]) .don2 .dcon a{color:#efb58a}
 :where(html[data-theme=dark]) .don2 .dcon{border-top:1px dashed #6a592f}
+:where(html[data-theme=dark]) /* «Курс всегда под рукой» */
+.anyw{background:linear-gradient(120deg,#19303e,#171e2a 62%);border-color:#2f546a}
+:where(html[data-theme=dark]) .anyt{background:rgba(18,24,33,.75);border:1px solid #2f536a}
+:where(html[data-theme=dark]) .anyd summary{color:#88c8f1}
 :where(html[data-theme=dark]) /* живая картинка «операционный блок» */
 .oppic{background:#171e2a;border:1px solid #6a5e2f}
 :where(html[data-theme=dark]) .oppic>.opk{color:#ffdb7a}
@@ -612,9 +641,11 @@ html[data-theme=dark] .opsvg,html[data-theme=dark] .chsvg,html[data-theme=dark] 
 :where(html[data-theme=dark]) .trust{background:#193e2f;border:1px solid #2f6a57;color:#86f4e5}
 :where(html[data-theme=dark]) .trust svg{color:#81f8e7}
 :where(html[data-theme=dark]) .trust b{color:#82f8e1}
-:where(html[data-theme=dark]) .hzl{border:1px solid #683138;background:rgba(18,24,33,.93);color:#a9b9d0}
-:where(html[data-theme=dark]) .hzl span{color:#e7ebf2}
-:where(html[data-theme=dark]) .hzl.on{background:#3e3719}
+:where(html[data-theme=dark]) .hzl{color:#a9b9d0}
+:where(html[data-theme=dark]) .hzl i{background:#171e2a}
+:where(html[data-theme=dark]) .hzl span{background:rgba(18,24,33,.94)}
+:where(html[data-theme=dark]) .hzl small{color:#e7ebf2}
+:where(html[data-theme=dark]) .hzl.on span{background:#3e3619}
 
 /* ручная доводка тёмной темы */
 html[data-theme=dark] .mon,html[data-theme=dark] [style*="background:#fffaf8"]{--muted:#667085;color:#1a2230}
@@ -1459,74 +1490,70 @@ const STORY={
 12:{t:'Калий вверх — T вверх',tech:'Запомни предмет, и он подскажет диагноз.',s:[['tent','Палатка','Высокий калий: острый узкий T'],['candle','Тающая свеча','Калий растёт: P исчезает, QRS расплывается'],['balloon','Сдутый шарик','Низкий калий: плоский T и зубец U'],['cyclone','Скручивание вершин','Пируэт'],['smile','Улыбка','Перикардит: вогнутый ST']]}};
 
 /* ---------- живая схема «Сердце — операционный блок» ----------
-   Рисунок сердца: Servier Medical Art (smart.servier.com), CC BY 4.0. Подписи-аналогии и анимация добавлены поверх.
+   Рисунок сердца создан нейросетью Google Gemini по описанию автора; иконки — Microsoft Fluent (MIT); подписи и анимация добавлены поверх.
    Свет бежит точно по жёлтой проводке рисунка: для каждого её пикселя заранее посчитано расстояние от СА-узла (предсердия)
-   и от АВ-узла (желудочки) — слои heart_ca.png и heart_cv.png, расстояние/2 записано в красный канал. */
-const OPG={"ia":[[73,211,1],[73,214,4],[75,217,7.8],[78,220,12.1],[81,222,15.9],[84,224,19.7],[87,226,23.6],[90,227,27],[93,229,30.8],[96,231,34.6],[99,232,38],[102,234,41.9],[105,235,45.3],[108,237,49.1],[111,239,52.9],[114,242,57.2],[117,245,61.4],[120,247,65.3],[123,246,68.7],[126,247,72.1],[129,249,75.9],[127,251,79.3],[124,252,82.7],[121,255,87]],"his":[[123,255,2],[126,255,5],[129,255,8],[132,254,11.4],[135,256,15.2],[138,256,18.2],[141,256,21.2],[144,258,25.1],[147,259,28.5],[150,261,32.3],[153,263,36.1],[156,265,40],[159,267,43.8],[162,269,47.6],[165,271,51.5],[168,273,55.3],[171,276,59.5],[174,279,63.8],[177,282,68],[180,285,72.3],[183,288,76.5],[186,291,80.7],[189,294,85],[192,297,89.2],[194,300,93.1],[197,303,97.3],[200,306,101.5],[202,309,105.4],[204,312,109.2],[205,315,112.6],[205,318,115.6]],"r":[[123,255,2],[126,255,5],[129,255,8],[132,254,11.4],[135,256,15.2],[138,256,18.2],[141,256,21.2],[144,258,25.1],[147,259,28.5],[150,261,32.3],[153,263,36.1],[156,265,40],[159,267,43.8],[162,269,47.6],[165,271,51.5],[168,273,55.3],[171,276,59.5],[174,279,63.8],[177,282,68],[180,285,72.3],[183,288,76.5],[186,291,80.7],[189,294,85],[192,297,89.2],[194,300,93.1],[197,303,97.3],[200,306,101.5],[202,309,105.4],[204,312,109.2],[205,315,112.6],[208,318,116.9],[211,321,121.1],[213,324,124.9],[215,327,128.8],[216,330,132.2],[218,333,136],[219,336,139.4],[220,339,142.8],[221,342,146.2],[221,345,149.2],[221,348,152.2],[224,351,156.5],[226,354,160.3],[229,357,164.6],[232,360,168.8],[235,363,173],[238,366,177.3],[241,369,181.5],[244,372,185.8],[247,375,190],[249,378,193.8],[250,381,197.2],[253,384,201.5],[256,387,205.7],[258,390,209.6],[260,393,213.4],[262,396,217.2],[264,399,221],[265,402,224.5],[266,405,227.9],[267,408,231.3],[268,411,234.7],[268,414,237.7],[270,417,241.5],[273,420,245.8],[276,423,250],[279,426,254.3],[282,428,258.1],[285,429,261.5],[288,430,264.9],[291,432,268.7],[294,432,271.7],[297,433,275.2],[300,436,279.4]],"l":[[122,255,1],[125,255,4],[128,255,7],[131,254,10.4],[134,255,13.8],[137,256,17.2],[140,256,20.2],[143,257,23.7],[146,259,27.5],[149,261,31.3],[152,262,34.7],[155,264,38.6],[158,266,42.4],[161,268,46.2],[164,270,50],[167,273,54.3],[170,275,58.1],[173,277,61.9],[176,279,65.8],[179,282,70],[182,284,73.8],[185,286,77.7],[188,289,81.9],[191,292,86.2],[194,295,90.4],[197,298,94.6],[200,301,98.9],[203,304,103.1],[206,307,107.4],[209,310,111.6],[212,313,115.9],[215,316,120.1],[218,319,124.3],[221,322,128.6],[224,325,132.8],[227,328,137.1],[230,331,141.3],[233,334,145.6],[236,337,149.8],[238,340,153.6],[241,343,157.9],[244,346,162.1],[246,349,165.9],[248,352,169.8],[249,355,173.2],[251,358,177],[252,361,180.4],[253,364,183.8],[255,367,187.7],[256,370,191.1],[258,373,194.9],[260,376,198.7],[261,379,202.1],[263,382,206],[265,385,209.8],[267,388,213.6],[269,391,217.5],[272,394,221.7],[275,397,225.9],[278,400,230.2],[281,403,234.4],[284,406,238.7],[287,408,242.5],[290,410,246.3],[293,411,249.7],[296,412,253.2],[299,412,256.2],[302,412,259.2],[305,412,262.2],[308,412,265.2],[311,412,268.2],[314,412,271.2],[317,412,274.2],[320,412,277.2],[323,411,280.6],[326,408,284.8],[329,405,289.1],[331,402,292.9],[333,399,296.7],[335,396,300.5],[336,393,304],[337,390,307.4],[338,387,310.8],[338,384,313.8],[339,381,317.2],[340,378,320.6],[340,375,323.6],[340,372,326.6],[341,369,330],[341,366,333],[342,363,336.4],[342,360,339.4],[342,357,342.4],[343,354,345.9],[343,351,348.9],[343,348,351.9],[343,345,354.9],[343,342,357.9],[344,339,361.3],[344,336,364.3],[344,333,367.3],[343,330,370.7]]};
+   и от АВ-узла (желудочки) — слои heart_ai_a.png и heart_ai_v.png, расстояние/4 записано в красный канал. */
+const OPG={"ia":[[124,182,1],[124,186,5],[124,190,9],[124,194,13],[126,198,17.8],[126,202,21.8],[126,206,25.8],[126,210,29.8],[127,214,34.2],[127,218,38.2],[128,222,42.7],[129,226,47.1],[131,230,51.9],[133,234,56.7],[135,238,61.6],[136,242,66],[138,246,70.8],[141,250,76],[145,254,81.7],[149,258,87.4],[153,262,93],[157,266,98.7],[161,270,104.3],[165,273,109.6],[169,277,115.2],[173,280,120.5],[177,283,125.7],[181,285,130.5],[185,287,135.4],[189,289,140.2],[193,291,145],[197,293,149.9],[201,295,154.7],[205,296,159.1],[209,298,163.9],[213,299,168.3],[217,300,172.8],[221,300,176.8],[225,300,180.8],[229,300,184.8],[233,300,188.8],[237,300,192.8],[241,301,197.2],[245,305,202.8]],"r":[[246,305,1],[250,306,5.4],[254,310,11.1],[258,313,16.3],[262,313,20.3],[266,313,24.3],[270,313,28.3],[274,314,32.7],[278,318,38.4],[282,322,44],[286,326,49.7],[290,330,55.4],[294,334,61],[298,338,66.7],[302,342,72.3],[306,346,78],[309,350,83.2],[311,354,88.1],[312,358,92.5],[312,362,96.5],[312,366,100.5],[312,370,104.5],[312,374,108.5],[312,378,112.5],[312,382,116.5],[312,386,120.5],[312,390,124.5],[312,394,128.5],[312,398,132.5],[312,402,136.5],[312,406,140.5],[312,410,144.5],[312,414,148.5],[312,418,152.5],[312,422,156.5],[312,426,160.5],[312,430,164.5],[312,434,168.5],[312,438,172.5],[312,442,176.5],[312,446,180.5],[313,450,184.9],[314,454,189.3],[315,458,193.7],[316,462,198.1],[317,466,202.5],[318,470,207],[319,474,211.4],[320,478,215.8],[322,482,220.6],[323,486,225],[324,490,229.4],[325,494,233.9],[326,498,238.3],[328,502,243.1],[329,506,247.5],[330,510,251.9],[331,514,256.3],[333,518,261.2],[334,522,265.6],[335,526,270],[337,530,274.8],[338,534,279.2],[340,538,284.1],[341,542,288.5],[342,546,292.9],[344,550,297.7],[345,554,302.1],[346,558,306.6],[348,562,311.4],[350,566,316.2],[351,570,320.6],[353,574,325.4],[354,578,329.9],[356,582,334.7],[357,586,339.1],[359,590,343.9],[360,594,348.3],[362,598,353.2],[364,602,358],[365,606,362.4],[367,610,367.2],[369,614,372.1],[371,618,376.9],[372,622,381.3],[374,626,386.1],[376,630,391],[378,634,395.8],[379,638,400.2],[381,642,405],[383,646,409.9],[384,650,414.3],[386,654,419.1],[387,658,423.5],[388,662,427.9],[389,666,432.4],[390,670,436.8],[390,674,440.8],[390,678,444.8],[390,682,448.8],[390,686,452.8],[388,690,457.6],[384,694,463.3],[380,698,468.9],[376,700,473.7],[372,702,478.6],[368,703,483],[364,703,487],[360,704,491.4],[356,704,495.4],[352,704,499.4],[348,704,503.4],[344,704,507.4],[340,701,512.6],[336,701,516.6],[332,701,520.6],[328,701,524.6],[324,701,528.6],[320,701,532.6],[316,701,536.6],[312,701,540.6],[308,701,544.6],[304,699,549.5],[300,697,554.3],[296,696,558.7],[292,694,563.5],[288,692,568.4],[284,690,573.2],[280,688,578],[276,686,582.9],[272,684,587.7],[268,682,592.5],[264,680,597.3],[260,678,602.2],[256,676,607],[252,674,611.8],[248,671,617.1],[244,669,621.9],[240,666,627.1],[236,664,632],[232,661,637.2],[228,658,642.5],[224,655,647.7],[220,653,652.5],[216,649,658.2],[212,645,663.8],[208,641,669.5],[204,637,675.2],[200,633,680.8],[196,629,686.5],[192,625,692.1],[188,621,697.8],[184,617,703.4],[180,613,709.1],[176,609,714.8],[172,605,720.4],[168,601,726.1],[164,597,731.7],[160,593,737.4],[156,589,743],[152,585,748.7],[149,581,753.9],[145,577,759.6],[142,573,764.8],[138,569,770.5],[135,565,775.7],[132,561,781],[129,557,786.2],[127,553,791],[124,549,796.3],[121,545,801.5],[119,541,806.4],[116,537,811.6],[114,533,816.4],[111,529,821.7],[109,525,826.5]],"l":[[245,305,0],[249,305,4],[253,309,9.7],[257,313,15.3],[261,313,19.3],[265,313,23.3],[269,313,27.3],[273,313,31.3],[277,317,37],[281,321,42.6],[285,325,48.3],[289,329,53.9],[293,333,59.6],[297,337,65.3],[301,341,70.9],[305,345,76.6],[308,349,81.8],[310,353,86.6],[312,357,91.5],[312,361,95.5],[315,365,100.7],[319,369,106.4],[323,373,112],[326,377,117.3],[328,381,122.1],[330,385,126.9],[331,389,131.3],[333,393,136.2],[335,397,141],[337,401,145.8],[338,405,150.2],[340,409,155.1],[341,413,159.5],[343,417,164.3],[344,421,168.7],[346,425,173.6],[347,429,178],[349,433,182.8],[350,437,187.2],[351,441,191.6],[353,445,196.4],[354,449,200.9],[355,453,205.3],[356,457,209.7],[358,461,214.5],[359,465,218.9],[360,469,223.3],[361,473,227.8],[362,477,232.2],[364,481,237],[365,485,241.4],[366,489,245.8],[367,493,250.2],[368,497,254.7],[370,501,259.5],[371,505,263.9],[372,509,268.3],[373,513,272.7],[374,517,277.1],[375,521,281.6],[377,525,286.4],[378,529,290.8],[379,533,295.2],[380,537,299.6],[382,541,304.5],[383,545,308.9],[384,549,313.3],[386,553,318.1],[387,557,322.5],[388,561,326.9],[390,565,331.8],[391,569,336.2],[393,573,341],[394,577,345.4],[396,581,350.3],[397,585,354.7],[399,589,359.5],[400,593,363.9],[402,597,368.7],[404,601,373.6],[405,605,378],[407,609,382.8],[408,613,387.2],[410,617,392.1],[412,621,396.9],[414,625,401.7],[417,629,407],[419,633,411.8],[421,637,416.6],[423,641,421.4],[426,645,426.7],[430,649,432.3],[434,653,438],[438,657,443.7],[442,661,449.3],[446,665,455],[450,669,460.6],[454,673,466.3],[458,677,471.9],[462,680,477.2],[466,682,482],[470,684,486.8],[474,684,490.8],[478,684,494.8],[482,684,498.8],[486,684,502.8],[490,682,507.7],[494,679,512.9],[498,679,516.9],[502,675,522.6],[506,671,528.2],[510,667,533.9],[514,663,539.5],[518,659,545.2],[522,655,550.9],[526,651,556.5],[529,647,561.8],[532,643,567],[535,639,572.2],[538,635,577.5],[540,631,582.3],[543,627,587.6],[545,623,592.4],[547,619,597.2],[549,615,602],[551,611,606.9],[553,607,611.7],[555,603,616.5],[557,599,621.3],[557,595,625.3],[557,591,629.3],[559,587,634.2],[563,583,639.8],[565,579,644.7],[566,575,649.1],[567,571,653.5],[569,567,658.3],[570,563,662.7],[571,559,667.1],[572,555,671.6],[573,551,676],[574,547,680.4],[575,543,684.8],[575,539,688.8],[576,535,693.2],[576,531,697.2],[577,527,701.6],[577,523,705.6],[577,519,709.6],[577,515,713.6],[577,511,717.6],[577,507,721.6],[578,503,726],[579,499,730.5],[579,495,734.5],[579,491,738.5],[579,487,742.5],[579,483,746.5],[579,479,750.5],[579,475,754.5],[579,471,758.5],[579,467,762.5],[578,463,766.9],[577,459,771.3],[576,455,775.7],[576,451,779.7],[575,447,784.1],[573,443,788.9],[572,439,793.4],[571,435,797.8],[570,431,802.2],[569,427,806.6]]};
 const OPST=[
- {l:[0],h:'Кабинет заведующего — СА‑узел',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1500},
- {l:[1],h:'Предоперационная — предсердия',p:'Искра бежит по предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2200},
- {l:[2],h:'Шлюз — АВ‑узел',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:2000},
- {l:[3],h:'Коридор — пучок Гиса',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1300},
- {l:[4],h:'Две двери — правая и левая ножки',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1300},
- {l:[5,6],h:'Операционные и лампы — желудочки и волокна Пуркинье',p:'Свет бежит по проводке-Пуркинье и разом зажигается в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:2000},
+ {l:[0],h:'СА‑узел — кабинет заведующего',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1500},
+ {l:[1],h:'Предсердия — предоперационная',p:'Искра бежит по предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2200},
+ {l:[2],h:'АВ‑узел — шлюз с санитаром',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:2000},
+ {l:[3],h:'Пучок Гиса — коридор',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1300},
+ {l:[4],h:'Ножки пучка Гиса — две двери',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1500},
+ {l:[5,6],h:'Желудочки и волокна Пуркинье — операционные и лампы',p:'Свет бежит по проводке-Пуркинье и разом зажигается в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:2000},
  {l:[],h:'Отдых — восстановление желудочков',p:'Операция сделана, свет медленно гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:2300}];
-/* подписи на рисунке: [аналогия, термин, где плашка (x,y в % от рамки; r — прижать к правому краю), куда указывает] */
-const OPL=[['Заведующий','СА‑узел',{x:1,y:28.5},[[73,210]]],['Предоперационная','предсердия',{x:1,y:25,r:1},[[256,200]]],['Шлюз с санитаром','АВ‑узел',{x:31,y:37},[[121,255]]],
- ['Коридор','пучок Гиса',{x:1,y:40,r:1},[[168,274]]],['Две двери','ножки пучка',{x:1,y:51.5,r:1},[[205,318]]],['Операционные','желудочки',{x:1,y:93.2},[[160,372],[288,345]]],['Лампы','волокна Пуркинье',{x:1,y:93.2,r:1},[[322,412],[250,420]]]];
-function opPic(){return`<div class="oppic hz2" data-op="1"><span class="opk">Сердце — операционный блок</span>
-<div class="hzw"><svg class="opsvg hzs" viewBox="0 0 383 500" role="img" aria-label="Сердце в разрезе: заведующий — СА-узел, предоперационная — предсердия, шлюз с санитаром — АВ-узел, коридор — пучок Гиса, две двери — ножки, операционные — желудочки, лампы — волокна Пуркинье">
-<defs>${['a','v'].map(k=>`<filter id="hzf${k}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 .96  0 0 0 0 .62  0 0 0 0 0" result="m"/><feComposite in="m" in2="SourceAlpha" operator="in" result="c"/><feGaussianBlur in="c" stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="c"/></feMerge></filter>`).join('')}
+/* значки на рисунке: [термин, аналогия, иконка, центр значка (x,y в координатах рисунка), куда указывает] */
+const OPL=[['СА‑узел','заведующий','doctor',[-8,92],[[124,181]]],['Предсердия','предоперационная','bed',[412,262],[]],['АВ‑узел','шлюз, санитар','sanitar',[-8,392],[[245,305]]],
+ ['Пучок Гиса','коридор','corridor',[190,470],[[302,346]]],['Ножки','две двери','door_double',[648,414],[[346,426]]],['Желудочки','операционные','hospital',[452,488],[]],['Пуркинье','лампы','bulb',[648,560],[[566,540]]]];
+const OPV={x:-70,w:780,h:782};
+function opPic(){const P=p=>`left:${((p[0]-OPV.x)/OPV.w*100).toFixed(2)}%;top:${(p[1]/OPV.h*100).toFixed(2)}%`;
+ return`<div class="oppic hz2" data-op="1"><span class="opk">Сердце — операционный блок</span>
+<div class="hzw"><svg class="opsvg hzs" viewBox="${OPV.x} 0 ${OPV.w} ${OPV.h}" role="img" aria-label="Сердце в разрезе: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз с санитаром, пучок Гиса — коридор, ножки — две двери, желудочки — операционные, волокна Пуркинье — лампы">
+<defs>${['a','v'].map(k=>`<filter id="hzf${k}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .7  0 0 0 0 0" result="m"/><feComposite in="m" in2="SourceAlpha" operator="in" result="c"/><feGaussianBlur in="c" stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="c"/></feMerge></filter>`).join('')}
 <radialGradient id="hzg"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset=".6" stop-color="#ffd966" stop-opacity=".5"/><stop offset="1" stop-color="#ffd966" stop-opacity="0"/></radialGradient>
 <radialGradient id="hzh"><stop offset="0" stop-color="#fffbe6"/><stop offset=".35" stop-color="#ffe680" stop-opacity=".9"/><stop offset="1" stop-color="#ffcf33" stop-opacity="0"/></radialGradient></defs>
-<g class="hzb"><image href="${IMG('heart_servier')}" width="383" height="460"/>
-<g class="cg cga"><ellipse cx="64" cy="280" rx="46" ry="58"/><ellipse cx="256" cy="200" rx="58" ry="30"/></g>
-<g class="cg cgv"><ellipse cx="168" cy="372" rx="82" ry="46" transform="rotate(18 168 372)"/><ellipse cx="292" cy="350" rx="48" ry="74"/></g>
-<image class="cl cla" href="${IMG('heart_ca')}" width="383" height="460" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_cv')}" width="383" height="460" filter="url(#hzfv)"/></g>
-<g class="ldr"></g>
-${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="15" fill="url(#hzh)"/><circle r="4.2" fill="#fffef5"/></g>`).join('')}
-</svg>${OPL.map((l,i)=>`<button type="button" class="hzl${l[2].r?' rt':''}" data-i="${i}" style="${l[2].r?'right':'left'}:${l[2].x}%;top:${l[2].y}%"><b>${l[0]}</b><span>${l[1]}</span></button>`).join('')}</div>
-<p class="hzc">Рисунок сердца: <a href="https://smart.servier.com/" target="_blank" rel="noopener">Servier Medical Art</a>, лицензия <a href="https://creativecommons.org/licenses/by/4.0/deed.ru" target="_blank" rel="noopener">CC BY 4.0</a>; подписи и анимация добавлены.</p>
+<g class="hzb"><image href="${IMG('heart_ai')}" width="640" height="782"/>
+<g class="cg cga"><ellipse cx="150" cy="250" rx="110" ry="120"/><ellipse cx="410" cy="230" rx="110" ry="95"/></g>
+<g class="cg cgv"><ellipse cx="215" cy="560" rx="120" ry="130"/><ellipse cx="455" cy="500" rx="95" ry="165"/></g>
+<image class="cl cla" href="${IMG('heart_ai_a')}" width="640" height="782" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_ai_v')}" width="640" height="782" filter="url(#hzfv)"/></g>
+<g class="ldr">${OPL.map((l,i)=>l[4].map(t=>`<g data-i="${i}"><path d="M${l[3][0]} ${l[3][1]} L${t[0]} ${t[1]}"/><circle cx="${t[0]}" cy="${t[1]}" r="6"/></g>`).join('')).join('')}</g>
+${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="24" fill="url(#hzh)"/><circle r="6.5" fill="#fffef5"/></g>`).join('')}
+</svg>${OPL.map((l,i)=>`<button type="button" class="hzl" data-i="${i}" style="${P(l[3])}"><i><img src="${IMG(l[2])}" alt="" width="40" height="40"></i><span><b>${l[0]}</b><small>${l[1]}</small></span></button>`).join('')}</div>
+<p class="hzc">Рисунок сердца создан нейросетью Google Gemini, иконки — Microsoft Fluent; подписи и анимация добавлены.</p>
 <div class="opcap" aria-live="polite"><div><b class="oph"></b><p class="opp"></p></div></div>
 <div class="opstrip"><span class="opl">Что рисуется на ленте</span><svg viewBox="0 0 600 128" class="opecg"><path class="eb" d="M14 64 H586"/>
 <path class="es e1" pathLength="1" d="M20 64 H40 Q75 30 110 64"/><path class="es e2" pathLength="1" d="M110 64 H210"/><path class="es e3" pathLength="1" d="M210 64 L220 72 L234 10 L250 90 L260 64"/><path class="es e4" pathLength="1" d="M260 64 H330 Q384 22 438 64 H586"/><circle class="ehd" r="5"/>
 <text x="75" y="122" class="el l1">P</text><text x="160" y="122" class="el l2">пауза</text><text x="235" y="122" class="el l3">QRS</text><text x="384" y="122" class="el l4">T</text></svg></div>
 <div class="opbtn"><button type="button" class="btn opgo">${ic('pause',16)}<span>Пауза</span></button><button type="button" class="btn oprs">${ic('replay',16)}<span>Повторить</span></button></div>
-<p class="hzt">Нажми на любую подпись на рисунке — схема остановится на этом месте.</p></div>`}
+<p class="hzt">Нажми на любой значок на рисунке — схема остановится на этом месте.</p></div>`}
 /* управление анимацией */
-function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.hzs'),$q=s=>svg.querySelector(s),wrap=root.querySelector('.hzw'),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
+function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.hzs'),$q=s=>svg.querySelector(s),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
  cap=[root.querySelector('.oph'),root.querySelector('.opp')],capb=root.querySelector('.opcap'),segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
- pills=[...root.querySelectorAll('.hzl')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),ldr=$q('.ldr'),
+ pills=[...root.querySelectorAll('.hzl')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),ldr=[...svg.querySelectorAll('.ldr g')],
  fa=svg.querySelector('#hzfa feColorMatrix'),fv=svg.querySelector('#hzfv feColorMatrix'),cla=$q('.cla'),clv=$q('.clv'),cga=$q('.cga'),cgv=$q('.cgv'),hb=$q('.hzb');
  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let el=0,last=0,play=!RM,raf=0,cur=-1;const REST=900,total=OPST.reduce((a,s)=>a+s.t,0)+REST;
  const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));
- /* подсветка проводки до расстояния T (в пикселях рисунка) */
- const K=22,thr=(m,T)=>m.setAttribute('values',`0 0 0 0 1  0 0 0 0 .96  0 0 0 0 .62  ${-K} 0 0 0 ${T<=0?0:(K*T/510+1).toFixed(3)}`);
+ /* подсветка проводки до расстояния T (в пикселях рисунка; в слое записано расстояние/4) */
+ const K=22,thr=(m,T)=>m.setAttribute('values',`0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .7  ${-K} 0 0 0 ${T<=0?0:(K*T/1020+1).toFixed(3)}`);
  const at=(P,T)=>{if(T<=P[0][2])return P[0];for(let i=1;i<P.length;i++)if(P[i][2]>=T){const a=P[i-1],b=P[i],f=(T-a[2])/(b[2]-a[2]);return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]}return P[P.length-1]};
- const AV=87,SPL=116,ENDV=480;
- /* выноски от подписей к местам на рисунке */
- function lead(){const W=wrap.getBoundingClientRect();if(!W.width)return;const k=383/W.width;let h='';
-  pills.forEach((b,i)=>{const r=b.getBoundingClientRect(),x0=(r.left-W.left)*k,x1=(r.right-W.left)*k,y0=(r.top-W.top)*k,y1=(r.bottom-W.top)*k;
-   OPL[i][3].forEach(t=>{const sx=Math.min(Math.max(t[0],x0+8),x1-8),sy=t[1]>y1?y1:t[1]<y0?y0:(t[0]<x0?x0:x1);const vx=t[1]>y1||t[1]<y0;
-    h+=`<g data-i="${i}"><path d="M${vx?sx:(t[0]<x0?x0:x1)} ${vx?sy:(y0+y1)/2} L${t[0]} ${t[1]}"/><circle cx="${t[0]}" cy="${t[1]}" r="2.6"/></g>`})});
-  ldr.innerHTML=h;mark(cur)}
- function mark(s){const S=OPST[s]||{l:[]};pills.forEach((b,i)=>b.classList.toggle('on',S.l.includes(i)));ldr.querySelectorAll('g').forEach(g=>g.classList.toggle('on',S.l.includes(+g.dataset.i)))}
+ const AV=203,ATR=392,SPL=95,BOT=480,ENDV=830;
+ function mark(s){const S=OPST[s]||{l:[]};pills.forEach((b,i)=>b.classList.toggle('on',S.l.includes(i)));ldr.forEach(g=>g.classList.toggle('on',S.l.includes(+g.dataset.i)))}
  const SEG=[[],[[0,0,1]],[[1,0,.75]],[[1,.75,.88]],[[1,.88,1]],[[2,0,1]],[[3,0,1]]];
  const put=(g,xy,o)=>{if(!xy||o<=0){g.style.opacity=0;return}g.style.opacity=o;g.setAttribute('transform',`translate(${xy[0].toFixed(1)} ${xy[1].toFixed(1)})`)};
  function show(s,p){const S=OPST[s];
   if(s!==cur){cur=s;cap[0].textContent=S.h;cap[1].textContent=S.p;capb.classList.remove('opfx');void capb.offsetWidth;capb.classList.add('opfx');mark(s)}
   const e=sm(p);
   /* проводка предсердий и желудочков */
-  const T1=s===0?6*e:s===1?6+154*e:s<6?170:170,T2=s<2?0:s===2?10*e:s===3?10+(SPL-10)*e:s===4?SPL+(232-SPL)*e:s===5?232+(ENDV-232)*sm(p*1.1):ENDV;
+  const T1=s===0?6*e:s===1?6+(ATR-6)*e:ATR,T2=s<2?0:s===2?14*e:s===3?14+(SPL-14)*e:s===4?SPL+(BOT-SPL)*e:s===5?BOT+(ENDV-BOT)*sm(p*1.1):ENDV;
   thr(fa,T1);thr(fv,T2);const fade=s===6?1-sm(p*1.3):1;cla.style.opacity=fade*(s>=4?1-.6*sm(s===4?p:1):1);clv.style.opacity=fade;
   /* мягкий свет в камерах */
   cga.style.opacity=s===1?.75*sm((p-.15)/.6):s===2?.75*(1-sm(p)):0;cgv.style.opacity=s===5?.8*sm((p-.2)/.6):s===6?.8*(1-sm(p)):0;
   /* сердце чуть сжимается при QRS */
-  const bv=s===5?.018*sm((p-.25)/.75):s===6?.018*(1-sm(p)):0;hb.setAttribute('transform',`translate(190 330) scale(${(1-bv).toFixed(4)}) translate(-190 -330)`);
+  const bv=s===5?.018*sm((p-.25)/.75):s===6?.018*(1-sm(p)):0;hb.setAttribute('transform',`translate(330 430) scale(${(1-bv).toFixed(4)}) translate(-330 -430)`);
   /* искры */
   let A=null,B=null,oa=1;
-  if(s===0){A=[73,210];oa=sm(p*1.8)}else if(s===1)A=at(OPG.ia,Math.min(AV,T1));else if(s===2){A=[121,255];oa=.7+.3*Math.cos(p*Math.PI*4)}else if(s===3)A=at(OPG.his,T2);
-  else if(s===4){A=at(OPG.r,T2);B=at(OPG.l,T2)}else if(s===5){A=at(OPG.r,Math.min(279,T2));B=at(OPG.l,Math.min(370,T2));oa=1-sm((p-.35)/.4)}
+  if(s===0){A=[124,181];oa=sm(p*1.8)}else if(s===1)A=at(OPG.ia,Math.min(AV,T1));else if(s===2){A=[245,305];oa=.7+.3*Math.cos(p*Math.PI*4)}else if(s===3)A=at(OPG.r,T2);
+  else if(s===4){A=at(OPG.r,T2);B=at(OPG.l,T2)}else if(s===5){A=at(OPG.r,Math.min(791,T2));B=at(OPG.l,Math.min(793,T2));oa=1-sm((p-.35)/.4)}
   put(sa,A,oa);put(sb,B,oa);
   /* лента */
   let head=null;segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a,b] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b);else if(q===s){v=Math.max(v,a+(b-a)*p);head=[g,a+(b-a)*p]}}}
@@ -1536,44 +1563,32 @@ function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const sv
  function frame(t){if(!root.isConnected){cancelAnimationFrame(raf);return}if(play){if(last)el+=Math.min(t-last,60);last=t;if(el>=total){el=0;segs.forEach(g=>{g.style.opacity=0})}let a=el,s=0;while(s<OPST.length&&a>=OPST[s].t){a-=OPST[s].t;s++}if(s>=OPST.length)show(6,1);else show(s,a/OPST[s].t)}else last=0;raf=requestAnimationFrame(frame)}
  const setBtn=()=>{go.innerHTML=play?`${ic('pause',16)}<span>Пауза</span>`:`${ic('play',16)}<span>Продолжить</span>`;go.classList.toggle('pri',!play)};
  go.onclick=()=>{play=!play;setBtn()};rs.onclick=()=>{el=0;cur=-1;play=true;setBtn();show(0,0)};
- pills.forEach((b,i)=>b.onclick=()=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.75:s===0?.9:s===1?.8:.65;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;show(s,f)});
- if(window.ResizeObserver)new ResizeObserver(lead).observe(wrap);else addEventListener('resize',lead);
- show(0,0);lead();setBtn();raf=requestAnimationFrame(frame)}
+ pills.forEach((b,i)=>b.onclick=()=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.75:s===0?.9:s===1?.8:s===4?.8:.65;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;show(s,f)});
+ show(0,0);setBtn();raf=requestAnimationFrame(frame)}
 new MutationObserver(()=>document.querySelectorAll('.oppic[data-op]:not([data-ready])').forEach(opInit)).observe(document.documentElement,{childList:true,subtree:true});
 
-/* ---------- «Дом на груди»: где ставить грудные электроды ---------- */
-/* Рисунок анатомический: шея, плечи, ключицы, грудина (рукоятка, тело, мечевидный отросток), рёбра, рёберная дуга.
-   Вид спереди: правая сторона пациента — слева на рисунке. Межреберья: 4-е на уровне y=175 у грудины, 5-е — y=205. */
-function chestSVG(L){const A=.0006,q=(y,l,x0)=>`M${x0} ${y} Q${x0+l/2} ${y} ${x0+l} ${(y+A*l*l).toFixed(1)}`;
- const RIBS=[[72,96],[100,138],[130,156],[160,162],[190,164],[220,162],[250,150]];
- const half=`<path class="flr f4" d="${q(175,158,224)}"/><path class="flr f5" d="${q(205,158,224)}"/>
-${RIBS.map(r=>`<path class="ribo" d="${q(r[0],r[1],224)}"/>`).join('')}${RIBS.map(r=>`<path class="ribi" d="${q(r[0],r[1],224)}"/>`).join('')}
-<path class="archo" d="M214 266 C246 288 300 300 372 314"/><path class="archi" d="M214 266 C246 288 300 300 372 314"/>
-<path class="clvo" d="M230 62 C262 70 300 46 354 44"/><path class="clvi" d="M230 62 C262 70 300 46 354 44"/>
-<path class="nk" d="M240 10 Q234 38 224 58"/>`;
- const E=[['V1',184,175,'#e5484d',184,157,'middle'],['V2',236,175,'#f5b301',236,157,'middle'],['V3',261,191.5,'#18a058',242,197,'end'],['V4',286,208,'#8a5a2b',286,237,'middle'],['V5',338,208,'#1a2230',338,237,'middle'],['V6',374,208,'#8e44ad',374,190,'middle']];
- const rail=(o)=>`M${236+o[0]} ${175+o[1]} L${286+o[0]} ${208+o[1]}`;
- return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="0 0 420 426" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у края грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
-<defs><linearGradient id="chsk" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#eecab4"/><stop offset=".22" stop-color="#f8e2d4"/><stop offset=".5" stop-color="#fcece2"/><stop offset=".78" stop-color="#f8e2d4"/><stop offset="1" stop-color="#eecab4"/></linearGradient>
-<linearGradient id="chfd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".84" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
-<mask id="chmk" maskUnits="userSpaceOnUse" x="0" y="-10" width="420" height="352"><rect x="0" y="-10" width="420" height="352" fill="url(#chfd)"/></mask>
-<filter id="chsh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000" flood-opacity=".28"/></filter></defs>
-<text x="10" y="18" class="cs">← правая сторона пациента</text><text x="410" y="18" class="cs" text-anchor="end">левая сторона пациента →</text>
-<g transform="translate(0 30)"><g mask="url(#chmk)">
-<path fill="url(#chsk)" d="M174 0 C176 14 172 26 158 32 C128 44 92 44 62 52 C32 60 16 84 16 112 L22 200 L28 342 L392 342 L398 200 L404 112 C404 84 388 60 358 52 C328 44 292 44 262 32 C248 26 244 14 246 0 Z"/>
-<g>${half}</g><g transform="translate(420 0) scale(-1 1)">${half}</g>
-<path class="stn" d="M190 60 Q210 70 230 60 L234 66 L232 96 L224 104 L225 246 Q220 262 214 274 L206 274 Q200 262 195 246 L196 104 L188 96 L186 66 Z"/>
-<path class="tol" d="M174 0 C176 14 172 26 158 32 C128 44 92 44 62 52 C32 60 16 84 16 112 L22 200 L28 342 M246 0 C244 14 248 26 262 32 C292 44 328 44 358 52 C388 60 404 84 404 112 L398 200 L392 342"/></g>
-<text x="210" y="296" class="cs" text-anchor="middle">грудина</text>
-<path class="ln" d="M286 44 V330"/><path class="ln" d="M338 60 V330"/><path class="ln" d="M374 78 V330"/>
-<path class="lnk" d="M286 330 V341 M338 330 V359 M374 330 V377"/>
-<text x="290" y="352" class="cl" text-anchor="end">среднеключичная линия</text><text x="342" y="370" class="cl" text-anchor="end">передняя подмышечная</text><text x="406" y="388" class="cl" text-anchor="end">средняя подмышечная</text>
-<g class="pl p4"><path d="M79 156 V178"/><circle cx="79" cy="182" r="3.5"/><rect x="20" y="116" width="120" height="40" rx="12"/><text x="32" y="133" class="ce">4 этаж</text><text x="32" y="149" class="cs">4-е межреберье</text></g>
-<g class="pl p5"><path d="M79 230 V217"/><circle cx="79" cy="213" r="3.5"/><rect x="20" y="230" width="120" height="40" rx="12"/><text x="32" y="247" class="ce">5 этаж</text><text x="32" y="263" class="cs">5-е межреберье</text></g>
-<path class="lvl" d="M286 208 H374"/>
-<path class="lad" d="${rail([-2.2,3.3])}"/><path class="lad" d="${rail([2.2,-3.3])}"/>${[.2,.34,.66,.8].map(t=>{const x=236+50*t,y=175+33*t;return`<path class="rung" d="M${(x-3).toFixed(1)} ${(y+4.6).toFixed(1)} L${(x+3).toFixed(1)} ${(y-4.6).toFixed(1)}"/>`}).join('')}
-${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="11" fill="${e[3]}" class="el"/>`).join('')}${E.map(e=>`<text x="${e[4]}" y="${e[5]}" class="cv" text-anchor="${e[6]}">${e[0]}</text>`).join('')}
-</g></svg>${L?`<ul class="chl"><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии, <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной — все три на одной высоте.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
+/* ---------- «Дом на груди»: где ставить грудные электроды ----------
+   Рёбра, грудина и сердце: Mikael Häggström, Wikimedia Commons, «Precordial leads in ECG.svg», CC0 (фото тела и английские подписи убраны).
+   Места электродов взяты из этой же схемы. Вид спереди: правая сторона пациента — слева на рисунке. */
+function chestSVG(L){
+ const E=[['V1',207,277,'#e5484d',-24,6,'end'],['V2',263,277,'#f5b301',24,6,'start'],['V3',304,301,'#18a058',-22,10,'end'],['V4',345,325,'#8a5a2b',9,30,'start'],['V5',402,325,'#1a2230',0,-20,'middle'],['V6',440,325,'#8e44ad',0,-20,'middle']];
+ const rail=o=>`M${263+o[0]} ${277+o[1]} L${345+o[0]} ${325+o[1]}`;
+ const torso='M188 40 C190 62 182 80 160 88 C120 100 70 104 44 122 C18 140 14 170 18 210 L26 330 L30 470 L440 470 L444 330 L452 210 C456 170 452 140 426 122 C400 104 350 100 310 88 C288 80 280 62 282 40 Z';
+ return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="-6 20 482 484" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у краёв грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
+<defs><linearGradient id="chfd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".86" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+<mask id="chmk" maskUnits="userSpaceOnUse" x="-10" y="20" width="490" height="452"><rect x="-10" y="20" width="490" height="452" fill="url(#chfd)"/></mask>
+<filter id="chsh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000" flood-opacity=".3"/></filter></defs>
+<g mask="url(#chmk)"><path class="tso" d="${torso}"/><image href="${IMG('chest_ribs').replace('.png','.svg')}" width="465" height="615"/></g>
+<path class="ln" d="M345 104 V452"/><path class="ln" d="M402 118 V468"/><path class="ln" d="M440 132 V484"/>
+<text x="341" y="463" class="cl" text-anchor="end">среднеключичная</text><text x="398" y="479" class="cl" text-anchor="end">передняя подмышечная</text><text x="436" y="495" class="cl" text-anchor="end">средняя подмышечная</text>
+
+<g class="pl p4"><path d="M128 277 H186"/><rect x="0" y="257" width="128" height="40" rx="12"/><text x="10" y="274" class="ce">4 этаж</text><text x="10" y="290" class="cs">4-е межреберье</text></g>
+<g class="pl p5"><path d="M345 372 V340"/><rect x="281" y="372" width="128" height="40" rx="12"/><text x="291" y="389" class="ce">5 этаж</text><text x="291" y="405" class="cs">5-е межреберье</text></g>
+<path class="lvl" d="M345 325 H440"/>
+<path class="lad" d="${rail([-2.6,4])}"/><path class="lad" d="${rail([2.6,-4])}"/>${[.22,.38,.62,.78].map(t=>{const x=263+82*t,y=277+48*t;return`<path class="rung" d="M${(x-3.4).toFixed(1)} ${(y+5.6).toFixed(1)} L${(x+3.4).toFixed(1)} ${(y-5.6).toFixed(1)}"/>`}).join('')}
+${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="11" fill="${e[3]}" class="el"/>`).join('')}${E.map(e=>`<text x="${e[1]+e[4]}" y="${e[2]+e[5]}" class="cv" text-anchor="${e[6]}">${e[0]}</text>`).join('')}
+<text x="236" y="430" class="cs" text-anchor="middle">грудина</text>
+</svg><p class="hzc">Рисунок рёбер и сердца: Mikael Häggström, <a href="https://commons.wikimedia.org/wiki/File:Precordial_leads_in_ECG.svg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC0; подписи добавлены.</p>${L?`<ul class="chl"><li><b>Найди угол грудины</b> — бугорок, где рукоятка переходит в тело грудины. К нему крепится 2-е ребро, под ним 2-е межреберье. Считай вниз до 4-го.</li><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии; <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной — все три на одной высоте.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
 
 /* ---------- «Как в жизни»: неидеальные ленты с помехами и неочевидными находками ---------- */
 /* помехи: дрейф изолинии, мышечная дрожь, сетевая наводка 50 Гц, двигательный артефакт, обрыв электрода, низкий вольтаж */
@@ -1742,15 +1757,37 @@ const isIOS=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platfor
 const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 function instH(){if(standalone())return`<div class="card inst"><img src="${IMG('phone')}" alt="" width="56" height="56"><div><b>Курс уже на экране «Домой»</b><p class="meta">Открывается как приложение, без адресной строки.</p></div></div>`;
  return`<div class="card inst"><img src="${IMG('phone')}" alt="" width="56" height="56"><div><b>Добавь курс на экран телефона</b><p class="meta">Будет открываться как приложение, одним касанием, без адресной строки.</p>${instEv?'<button class="btn pri" id="ib">Установить</button>':`<ol class="ist"><li><b>iPhone:</b> открой сайт в Safari, нажми «Поделиться» (квадрат со стрелкой вверх), затем «На экран Домой» и «Добавить».</li><li><b>Android:</b> в Chrome нажми меню ⋮ и выбери «Установить приложение» или «Добавить на главный экран».</li></ol>`}</div></div>`}
+/* ---------- «Курс всегда под рукой»: Telegram и экран «Домой» ---------- */
+const TG_APP='https://t.me/EKG_prosto_app_bot/ekg',TG_APP_BOT='EKG_prosto_app_bot';
+const inTG=()=>{const W=window.Telegram&&window.Telegram.WebApp;return !!(W&&W.initData)};
+const tgHome=()=>{const W=window.Telegram&&window.Telegram.WebApp;return W&&W.addToHomeScreen&&W.isVersionAtLeast&&W.isVersionAtLeast('8.0')?W:null};
+const PLANE='<svg viewBox="0 0 48 48" width="56" height="56" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#2aabee"/><path d="M11 23.4 34.6 14c1.1-.4 2.1.3 1.7 2l-4 18.9c-.3 1.3-1.1 1.6-2.2 1l-6-4.4-2.9 2.8c-.3.3-.6.6-1.2.6l.4-6.2 11.2-10.1c.5-.4-.1-.7-.8-.3l-13.8 8.7-6-1.9c-1.3-.4-1.3-1.3.3-1.9Z" fill="#fff"/></svg>';
+function instSteps(){const ios=isIOS(),and=/Android/i.test(navigator.userAgent);
+ const I='<li><b>iPhone:</b> открой сайт в Safari, нажми «Поделиться» (квадрат со стрелкой вверх), затем «На экран Домой» и «Добавить».</li>',A='<li><b>Android:</b> в Chrome нажми меню ⋮ и выбери «Установить приложение» или «Добавить на главный экран».</li>';
+ return`<ul class="ist">${ios?I:and?A:I+A+'<li><b>Компьютер:</b> в Chrome или Edge нажми значок установки справа в адресной строке.</li>'}</ol>`}
+function anyH(sheet){const tg=inTG(),st=standalone(),th=tg&&tgHome();
+ const tgT=tg?'':`<div class="anyt"><span class="anyi">${PLANE}</span><div><b>В Telegram</b><p class="meta">Курс открывается прямо в Telegram, как приложение: нажми кнопку — и учись. Прогресс там свой; перенести его можно в профиле.</p><a class="btn pri" href="${TG_APP}" target="_blank" rel="noopener">Открыть в Telegram${ic('arrow',18)}</a><small class="meta">Бот @${TG_APP_BOT}</small></div></div>`;
+ const hmT=st||(tg&&!th)?'':`<div class="anyt"><span class="anyi"><img src="${IMG('phone')}" alt="" width="56" height="56"></span><div><b>На экран телефона</b><p class="meta">Значок курса появится рядом с другими приложениями. Открывается одним касанием, без адресной строки.</p>${th?'<button class="btn pri anyhome" type="button">Добавить на экран</button>':instEv?'<button class="btn pri anyinst" type="button">Установить</button>':`<details class="anyd"${sheet?' open':''}><summary>Как добавить</summary>${instSteps()}</details>`}</div></div>`;
+ if(!tgT&&!hmT)return'';
+ return`<section class="${sheet?'':'card '}anyw"><h2>Курс всегда под рукой</h2><div class="anyg${tgT&&hmT?'':' one'}">${tgT}${hmT}</div></section>`}
+function anyInit(root,redo){const h=root.querySelector('.anyhome');if(h)h.onclick=()=>{const W=tgHome();if(W)try{W.addToHomeScreen()}catch(e){}};
+ const b=root.querySelector('.anyinst');if(b)b.onclick=async()=>{instEv.prompt();try{await instEv.userChoice}catch(e){}instEv=null;if(redo)redo()}}
+/* одно окошко на телефоне при первом визите (не в Telegram и не в уже установленном приложении) */
+function anyTip(){let seen=null;try{seen=localStorage.getItem('ekg-tip-anyw')}catch(e){return}
+ if(seen||inTG()||standalone()||!matchMedia('(pointer:coarse)').matches||innerWidth>820)return;
+ setTimeout(()=>{if($('ovl')||inTG()||document.hidden)return;const html=anyH(true);if(!html)return;try{localStorage.setItem('ekg-tip-anyw','1')}catch(e){}
+  const b=document.createElement('div');b.id='ovl';b.className='dsheet';b.setAttribute('role','dialog');b.setAttribute('aria-modal','true');b.setAttribute('aria-label','Курс всегда под рукой');
+  b.innerHTML=`<div class="box">${html}<button class="btn" id="acl" type="button">Понятно</button></div>`;document.body.append(b);
+  const cl=()=>b.remove();$('acl').onclick=cl;b.onclick=e=>{if(e.target===b)cl()};anyInit(b,cl);b.querySelectorAll('a[href^="https://t.me"]').forEach(a=>a.addEventListener('click',()=>setTimeout(cl,300)))},9000)}
 function vProf(v){document.documentElement.style.setProperty('--acc',C_TH[0]);document.documentElement.style.setProperty('--acc-b',C_TH[1]);const R=progRows(),tot=R.reduce((s,r)=>s+r[4],0),got=R.reduce((s,r)=>s+r[3],0),p=pct(got,tot),s=step(),L=lvl(S.xp),nxL=LV[L+1];
  v.innerHTML=`<div class="view"><div class="pt"><h1 id="pnm">${esc((S.nick||'').trim()||'Профиль')}</h1><p>Твой прогресс, значок и имя. Всё хранится только на этом устройстве.</p></div><div class="card me"><button type="button" class="av${S.av&&avOk(S.av)?' ai':''}" id="avbtn" aria-label="Выбрать значок профиля">${avBig()}${PEN}</button><div class="mi"><label for="nk" class="meta">Имя профиля</label><input id="nk" maxlength="24" autocomplete="nickname" placeholder="Например, Будущий кардиолог" value="${esc(S.nick||'').replace(/"/g,'&quot;')}"><p class="meta">Нажми на кружок, чтобы выбрать значок. Имя и прогресс никуда не отправляются.</p></div></div>
  <div class="card pall"><div class="ring" style="--p:${p}"><b>${p}%</b><span>пройдено</span></div><div><h2>${p>=100?'Курс пройден целиком':'Осталось '+(100-p)+'%'}</h2><p class="meta">Уровень: <b>${LV[L][1]}</b>, ${S.xp} очков${nxL?`. До уровня «${nxL[1]}» ещё ${nxL[0]-S.xp}`:''}.</p><p class="meta">Дней подряд: ${S.streak.n||0}, рекорд ${S.streak.best||0}. Выучено карточек: ${learned()}.</p>${s?`<a class="btn pri" href="#${s.k}${s.m}">${s.k==='t'?'Дальше: тема '+s.m:'Дальше: практика по теме '+s.m}${ic('arrow',18)}</a>`:`<a class="btn pri" href="#zhizn">Дальше: ленты как в жизни${ic('arrow',18)}</a>`}</div></div>
  <div class="card prow">${R.map(r=>`<a href="${r[5]}"><img src="${IMG(r[0])}" alt="" width="40" height="40"><span><b>${r[1]}</b><small>${r[2]}: ${r[3]} из ${r[4]}${r[3]<r[4]?`, осталось ${r[4]-r[3]}`:', всё'}</small></span><span class="pb2"><i style="width:${pct(r[3],r[4])}%"></i></span></a>`).join('')}</div>
- <div id="pcert"></div>${S.exam&&S.exam.best&&!S.exam.pass?`<a class="card inst" href="#ekzamen"><img src="${IMG('grad')}" alt="" width="56" height="56"><div><b>Итоговый экзамен</b><p class="meta">Лучший результат: ${S.exam.best} из 30. Сертификат — за 30 из 30, без единой ошибки.</p></div></a>`:''}${saveH()}${TG_BOT?`<div class="card inst pcon"><img src="${IMG('envelope')}" alt="" width="56" height="56"><div><b>Связаться с автором</b><p class="meta">Есть вопрос, нашёл ошибку или хочешь что-то предложить? Напиши — автор прочитает и ответит.</p><a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a></div></div>`:''}${instH()}${donH(false)}</div>`;
+ <div id="pcert"></div>${S.exam&&S.exam.best&&!S.exam.pass?`<a class="card inst" href="#ekzamen"><img src="${IMG('grad')}" alt="" width="56" height="56"><div><b>Итоговый экзамен</b><p class="meta">Лучший результат: ${S.exam.best} из 30. Сертификат — за 30 из 30, без единой ошибки.</p></div></a>`:''}${saveH()}${TG_BOT?`<div class="card inst pcon"><img src="${IMG('envelope')}" alt="" width="56" height="56"><div><b>Связаться с автором</b><p class="meta">Есть вопрос, нашёл ошибку или хочешь что-то предложить? Напиши — автор прочитает и ответит.</p><a class="btn pri" href="https://t.me/${TG_BOT}" target="_blank" rel="noopener">Написать автору${ic('arrow',18)}</a></div></div>`:''}${anyH(false)}${donH(false)}</div>`;
  const nk=$('nk'),avEl=$('avbtn'),drawAv=()=>{avEl.className='av'+(S.av&&avOk(S.av)?' ai':'');avEl.innerHTML=avBig()+PEN};
  nk.oninput=()=>{S.nick=nk.value.slice(0,24);save();who();$('pnm').textContent=S.nick.trim()||'Профиль';drawAv()};
  avEl.onclick=()=>openAv(drawAv);
- const ib=$('ib');if(ib)ib.onclick=async()=>{instEv.prompt();try{await instEv.userChoice}catch(e){}instEv=null;vProf(v)};
+ anyInit(v,()=>vProf(v));
  v.querySelector('.shr').onclick=e=>shareCourse(e.currentTarget);certProf(v);saveInit(v)}
 /* ---------- связаться с автором: через Telegram-бота-посредника, личные контакты автора не показываются ---------- */
 const TG_BOT='EKG_prosto_bot';
@@ -2109,8 +2146,8 @@ function vHome(v){document.documentElement.style.setProperty('--acc',C_TH[0]);do
  <a class="card sec z" href="#zhizn"><img class="ico3" src="${IMG('stethoscope')}" alt="" width="64" height="64"><h2>Как в жизни</h2><p>Неидеальные ленты: дрожь, наводка, артефакты, скрытые блокады и ранний инфаркт.</p><span class="pg"><span>Решено ${zDone()} из ${REAL.length}</span>${ic('arrow',18)}</span></a>
  <a class="card sec e" href="#ekg"><img class="ico3" src="${IMG('heart')}" alt="" width="64" height="64"><h2>Настоящие ЭКГ</h2><p>616 записей реальных пациентов. Каждое заключение подтверждено кардиологом.</p><span class="pg"><span>Решено ${reDone()} из ${reTotal}</span>${ic('arrow',18)}</span></a>
  <a class="card sec x" href="#ekzamen"><img class="ico3" src="${IMG('grad')}" alt="" width="64" height="64"><h2>Экзамен</h2><p>30 настоящих ЭКГ. Ответишь на все без единой ошибки — получишь сертификат с твоим именем.</p><span class="pg"><span>${S.exam&&S.exam.pass?'Сертификат получен':S.exam&&S.exam.best?'Лучший результат: '+S.exam.best+' из 30':'Проверь себя'}</span>${ic('arrow',18)}</span></a></div>
- <button class="card dban" id="dban" type="button"><span class="cup sm">${cupSVG(60)}</span><span><b>На капучино автору</b><small>Курс бесплатный, без регистрации и рекламы. А поблагодарить автора можно чашкой капучино — по желанию<img class="emo" src="${IMG('smile2')}" alt="" width="20" height="20"></small></span>${ic('arrow',20)}</button>
- <p class="foot"><a href="#profil">Мой прогресс</a> · <a href="#shpora">Шпаргалка</a> · <a href="#okurse">О курсе</a>${TG_BOT?' · <a href="#svyaz">Связаться с автором</a>':''} · Учебный материал, не медицинская рекомендация.</p></div>`;mountTapes(v);$('dban').onclick=openDon}
+ ${anyH(false)}<button class="card dban" id="dban" type="button"><span class="cup sm">${cupSVG(60)}</span><span><b>На капучино автору</b><small>Курс бесплатный, без регистрации и рекламы. А поблагодарить автора можно чашкой капучино — по желанию<img class="emo" src="${IMG('smile2')}" alt="" width="20" height="20"></small></span>${ic('arrow',20)}</button>
+ <p class="foot"><a href="#profil">Мой прогресс</a> · <a href="#shpora">Шпаргалка</a> · <a href="#okurse">О курсе</a>${TG_BOT?' · <a href="#svyaz">Связаться с автором</a>':''} · Учебный материал, не медицинская рекомендация.</p></div>`;mountTapes(v);anyInit(v,()=>vHome(v));$('dban').onclick=openDon}
 function topics(v,mode){const s=step(),openG=GROUPS.findIndex(g=>g[1].includes(s?s.m:1));const done=m=>mode==='t'?!!(S.th[m]&&S.th[m].done):!!(S.pr[m]&&S.pr[m].stars);const box=document.createElement('div');box.style.cssText='display:flex;flex-direction:column;gap:12px';
  GROUPS.forEach((g,gi)=>{const d=g[1].filter(done).length;const c=document.createElement('div');c.className='card grp'+(gi===openG?' open':'');c.innerHTML=`<button><b>${g[0]}</b><span style="display:flex;align-items:center;gap:8px">${d} из ${g[1].length}${ic('down',18,'ch')}</span></button><div class="rows" ${gi===openG?'':'hidden'}>${g[1].map(m=>{const ch=COURSE[m-1],dn_=done(m),cur=s&&s.m===m&&((mode==='t'&&s.k==='t')||(mode==='p'));return`<a class="tp ${dn_?'done':cur?'cur':''}" href="#${mode}${m}"><span class="n">${m}</span><span><b>${ch.t}</b><small>${ch.d}</small></span><span class="s">${mode==='p'&&S.pr[m]?stars(S.pr[m].stars,15):dn_?'готово':cur?'сейчас':''}</span></a>`}).join('')}</div>`;c.firstChild.onclick=()=>{const r=c.querySelector('.rows');r.hidden=!r.hidden;c.classList.toggle('open',!r.hidden)};box.append(c)});v.append(box)}
 function vTeoria(v){document.documentElement.style.setProperty('--acc',C_TH[0]);document.documentElement.style.setProperty('--acc-b',C_TH[1]);v.innerHTML=`<div class="view" id="vv"><div class="pt"><h1>Теория</h1><p>Иди сверху вниз. Каждая тема занимает 5–10 минут и заканчивается блоками «Знать наизусть» и «Как легче всего прочитать».</p></div></div>`;topics($('vv'),'t');$('vv').insertAdjacentHTML('beforeend','<p class="foot"><a href="#shpora">Открыть шпаргалку</a></p>')}
@@ -2138,7 +2175,7 @@ $('top').innerHTML=`<div class="in"><a class="logo" href="#glavnaya"><i>${ic('pu
 $('dock').innerHTML=NAV.map(n=>`<a class="${n[3]}" href="#${n[0]}" data-n="${n[0]}">${ic(n[2],22)}${n[1]}</a>`).join('');
 addEventListener('keydown',e=>{if(!$('pl')||$('ovl')||/INPUT|SELECT/.test(e.target.tagName))return;const n=$('nx');if(e.key==='ArrowRight'||e.key==='Enter'){if(!n.hidden&&!n.disabled&&e.target.tagName!=='BUTTON'&&e.target.tagName!=='A'){n.click();e.preventDefault()}}else if(e.key==='ArrowLeft'&&RUN&&RUN.k==='th')thGo(-1);else if(/^[1-4]$/.test(e.key)){const s=$('sl');if(s&&s._pick)s._pick(+e.key-1)}});
 addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.ax');if(!b)return;const w=b.closest('.acts'),on=b.classList.contains('on');w.querySelectorAll('.ax').forEach(x=>x.classList.remove('on'));w.querySelectorAll('.ap').forEach(x=>x.hidden=true);if(!on){b.classList.add('on');const p=w.querySelector('.ap[data-p="'+b.dataset.p+'"]');p.hidden=false;p.scrollIntoView({behavior:'smooth',block:'nearest'})}hint()});
-addEventListener('hashchange',route);route();
+addEventListener('hashchange',route);route();anyTip();
 
 /* ---------- тёмная тема ---------- */
 const MOON='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',SUN='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
