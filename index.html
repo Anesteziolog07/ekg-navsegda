@@ -501,6 +501,31 @@ body::before{background:
 html[data-theme=dark] .hz3 .hzs{background:#f7f3f0;border-radius:14px}
 
 
+/* сердце (учебный рисунок) и грудь v4 */
+.hz4 .hzs{display:block;width:100%;max-width:640px;height:auto;margin:0 auto;font-family:inherit}
+.hz4 .hzs .cg ellipse{fill:url(#hzg);mix-blend-mode:screen}.hz4 .hzs .cg{opacity:0}.hz4 .hzs .spk{opacity:0;pointer-events:none}
+.hz4 .hzs .ldr path{stroke:#6b7280;stroke-width:3;fill:none;stroke-linecap:round;transition:stroke .3s}.hz4 .hzs .ldr circle{fill:#6b7280;transition:fill .3s}
+.hz4 .hzs .ldr g.on path{stroke:#e0a100;stroke-width:5}.hz4 .hzs .ldr g.on circle{fill:#e0a100}
+.hz4 .hzs .hk{cursor:pointer;outline:none}.hz4 .hzs .nb{fill:#fff;filter:url(#hzsh);transition:fill .3s}.hz4 .hzs .hk.on .nb{fill:#fff3c4;stroke:#ffc21a;stroke-width:4}
+.hz4 .hzs .nt{font-size:40px;font-weight:800;fill:#1f2937}.hz4 .hzs .rt{font-size:38px;font-weight:800;fill:#2d4aa8}.hz4 .hzs .rt.lt{fill:#a3303f}
+.hz4 .hzs .hk.on .nt,.hz4 .hzs .hk.on .rt{fill:#b07700}
+.hz4 .oplg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px}
+.hz4 .oplg li{display:flex;gap:10px;align-items:center;padding:4px 8px;border-radius:10px;cursor:pointer;font-size:15px;line-height:1.3;transition:background .3s}
+.hz4 .oplg li img{flex:none}.hz4 .oplg li b{all:unset;font-weight:800}.hz4 .oplg li.on{background:#fff1bf}
+@media (max-width:620px){.hz4 .oplg{grid-template-columns:1fr}}
+html[data-theme=dark] .hz4 .hzs{background:#fff;border-radius:14px}
+.chsvg .ldl path{stroke-width:3.5;fill:none}.chsvg .ldl .pa{stroke:#8a6d5a;fill:#8a6d5a}.chsvg .ldl path.pa{fill:none}.chsvg .ldl .p4{stroke:#5b8def}.chsvg .ldl .p5{stroke:#2fae7f}
+.chsvg .pl rect{fill:#fff;stroke-width:3.5}.chsvg .pa rect{stroke:#8a6d5a}
+.chsvg{max-width:640px}.chsvg .ce{font-size:36px;font-weight:800}.chsvg .cs{font-size:28px;fill:#4b5563}
+.chsvg .cv{font-size:38px;font-weight:800;paint-order:stroke;stroke:#fff;stroke-width:8px;stroke-linejoin:round}
+.chsvg .el{stroke:#fff;stroke-width:5;filter:url(#chsh)}
+.chsvg .lvl{stroke:#3d4a66;stroke-width:3.5;stroke-dasharray:3 9;stroke-linecap:round;fill:none}
+.chsvg .lad{stroke:#a8763e;stroke-width:4;fill:none}.chsvg .rung{stroke:#a8763e;stroke-width:4}
+
+
+
+
+
 /* ===== тёмная тема (сгенерировано) ===== */
 html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#a7b1c1;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
 html[data-theme=dark] body::before{opacity:.8}
@@ -679,6 +704,7 @@ html[data-theme=dark] .opsvg,html[data-theme=dark] .chsvg,html[data-theme=dark] 
 :where(html[data-theme=dark]) .hzl small{color:#e7ebf2}
 :where(html[data-theme=dark]) .hzl.on span{background:#3e3619}
 :where(html[data-theme=dark]) .hz3 .oplg li.on{background:#3e3619}
+:where(html[data-theme=dark]) .hz4 .oplg li.on{background:#3e3619}
 
 /* ручная доводка тёмной темы */
 html[data-theme=dark] .mon,html[data-theme=dark] [style*="background:#fffaf8"]{--muted:#667085;color:#1a2230}
@@ -1523,129 +1549,111 @@ const STORY={
 12:{t:'Калий вверх — T вверх',tech:'Запомни предмет, и он подскажет диагноз.',s:[['tent','Палатка','Высокий калий: острый узкий T'],['candle','Тающая свеча','Калий растёт: P исчезает, QRS расплывается'],['balloon','Сдутый шарик','Низкий калий: плоский T и зубец U'],['cyclone','Скручивание вершин','Пируэт'],['smile','Улыбка','Перикардит: вогнутый ST']]}};
 
 /* ---------- живая схема «Сердце — операционный блок» ----------
-   Схема нарисована векторно: четыре «комнаты» (оба предсердия и оба желудочка подписаны), проводящая система, иконки-аналогии Microsoft Fluent (MIT).
-   АВ-узел — внизу межпредсердной перегородки со стороны правого предсердия, над трёхстворчатым клапаном. Вид спереди: правые отделы — слева на рисунке. */
+   Рисунок сердца создан нейросетью Google Gemini по описанию автора (учебный стиль); иконки — Microsoft Fluent (MIT); подписи и анимация добавлены поверх.
+   Свет бежит точно по жёлтой проводке рисунка: для каждого её пикселя заранее посчитано расстояние от СА-узла (предсердия)
+   и от АВ-узла (желудочки) — слои heart_tb_a.png и heart_tb_v.png, расстояние/4 записано в красный канал. Вид спереди: правые отделы — слева. */
+const OPG={"ia":[[128,313,0],[132,313,4],[136,313,8],[140,314,12.4],[144,316,17.2],[148,316,21.2],[152,316,25.2],[156,319,30.5],[160,323,36.1],[164,327,41.8],[168,331,47.5],[171,335,52.7],[173,339,57.5],[175,343,62.4],[177,347,67.2],[178,351,71.6],[179,355,76],[180,359,80.4],[180,363,84.4],[181,367,88.8],[182,371,93.3],[182,375,97.3],[183,379,101.7],[184,383,106.1],[185,387,110.5],[186,391,114.9],[187,395,119.3],[189,399,124.2],[190,403,128.6],[192,407,133.4],[193,411,137.8],[193,415,141.8],[193,419,145.8],[196,423,151.1],[200,427,156.7]],"r":[[202,427,2],[206,427,6],[210,429,10.8],[214,433,16.5],[218,433,20.5],[222,433,24.5],[226,433,28.5],[230,433,32.5],[234,433,36.5],[238,435,41.3],[242,436,45.7],[246,437,50.1],[250,438,54.6],[254,438,58.6],[258,439,63],[262,439,67],[266,439,71],[270,439,75],[274,439,79],[278,439,83],[282,439,87],[286,439,91],[290,440,95.4],[294,444,101],[298,448,106.7],[302,452,112.4],[306,456,118],[310,460,123.7],[314,464,129.3],[318,468,135],[321,472,140.2],[324,476,145.5],[327,480,150.7],[328,484,155.1],[330,488,160],[332,492,164.8],[332,496,168.8],[334,500,173.6],[335,504,178],[336,508,182.4],[336,512,186.4],[337,516,190.9],[337,520,194.9],[338,524,199.3],[339,528,203.7],[340,532,208.1],[341,536,212.5],[342,540,216.9],[343,544,221.3],[343,548,225.3],[345,552,230.2],[347,556,235],[348,560,239.4],[350,564,244.2],[351,568,248.7],[355,572,254.3],[356,576,258.7],[357,580,263.1],[359,584,268],[361,588,272.8],[361,592,276.8],[365,596,282.4],[367,600,287.3],[367,604,291.3],[369,608,296.1],[371,612,300.9],[371,616,304.9],[375,620,310.6],[379,624,316.2],[382,628,321.5],[384,632,326.3],[387,636,331.6],[389,640,336.4],[391,644,341.2],[393,648,346],[396,652,351.3],[398,656,356.1],[400,660,360.9],[403,664,366.2],[405,668,371],[408,672,376.3],[410,676,381.1],[413,680,386.3],[415,684,391.2],[417,688,396],[420,692,401.2],[422,696,406.1],[425,700,411.3],[427,704,416.1],[430,708,421.4],[432,712,426.2],[435,716,431.4],[437,720,436.3],[439,724,441.1],[440,728,445.5],[442,732,450.3],[445,736,455.6],[446,740,460],[448,744,464.8],[449,748,469.2],[450,752,473.7],[450,756,477.7],[450,760,481.7],[449,764,486.1],[445,768,491.7],[441,771,497],[437,772,501.4],[433,773,505.8],[429,774,510.2],[425,774,514.2],[421,774,518.2],[417,774,522.2],[413,774,526.2],[409,774,530.2],[405,774,534.2],[401,774,538.2],[397,774,542.2],[393,774,546.2],[389,774,550.2],[385,774,554.2],[381,774,558.2],[377,773,562.6],[373,772,567],[369,770,571.9],[365,769,576.3],[361,768,580.7],[357,766,585.5],[353,765,589.9],[349,764,594.4],[345,763,598.8],[341,762,603.2],[337,760,608],[333,759,612.4],[329,758,616.8],[325,757,621.3],[321,757,625.3],[317,754,630.5],[313,753,634.9],[309,752,639.3],[305,750,644.2],[301,749,648.6],[297,748,653],[293,747,657.4],[289,745,662.2],[285,744,666.6],[281,742,671.5],[277,741,675.9],[273,739,680.7],[269,738,685.1],[265,737,689.5],[261,734,694.8],[257,730,700.4],[253,726,706.1],[249,722,711.8],[245,718,717.4],[241,714,723.1],[237,710,728.7],[236,706,733.1]],"l":[[202,427,2],[206,427,6],[210,429,10.8],[214,433,16.5],[218,433,20.5],[222,433,24.5],[226,433,28.5],[230,433,32.5],[234,433,36.5],[238,435,41.3],[242,436,45.7],[246,437,50.1],[250,438,54.6],[254,438,58.6],[258,439,63],[262,439,67],[266,439,71],[270,439,75],[274,439,79],[278,439,83],[282,439,87],[286,439,91],[290,440,95.4],[294,444,101],[298,448,106.7],[302,452,112.4],[306,456,118],[310,460,123.7],[314,464,129.3],[318,468,135],[321,472,140.2],[324,476,145.5],[328,480,151.1],[332,484,156.8],[336,488,162.4],[340,492,168.1],[344,496,173.8],[348,500,179.4],[352,504,185.1],[356,508,190.7],[359,512,196],[362,516,201.2],[365,520,206.4],[368,524,211.7],[369,528,216.1],[373,532,221.8],[376,536,227],[378,540,231.8],[380,544,236.7],[383,548,241.9],[385,552,246.7],[387,556,251.6],[390,560,256.8],[391,564,261.2],[393,568,266],[395,572,270.9],[397,576,275.7],[399,580,280.5],[400,584,284.9],[403,588,290.2],[405,592,295],[407,596,299.8],[409,600,304.7],[411,604,309.5],[413,608,314.3],[415,612,319.2],[417,616,324],[419,620,328.8],[421,624,333.6],[423,628,338.5],[425,632,343.3],[427,636,348.1],[429,640,353],[430,644,357.4],[433,648,362.6],[435,652,367.4],[437,656,372.3],[438,660,376.7],[442,664,382.3],[443,668,386.8],[447,672,392.4],[450,676,397.7],[454,680,403.3],[458,684,409],[462,688,414.6],[466,692,420.3],[470,696,425.9],[474,700,431.6],[478,704,437.3],[482,708,442.9],[486,712,448.6],[490,716,454.2],[494,720,459.9],[498,724,465.5],[502,728,471.2],[506,732,476.9],[510,736,482.5],[514,738,487.3],[518,742,493],[522,745,498.2],[526,745,502.2],[530,749,507.9],[534,750,512.3],[538,750,516.3],[542,750,520.3],[546,747,525.5],[550,743,531.2],[554,739,536.9],[557,735,542.1],[557,731,546.1],[559,727,550.9],[560,723,555.3],[561,719,559.8],[563,715,564.6],[563,711,568.6],[567,707,574.2],[571,703,579.9],[573,699,584.7],[574,695,589.1],[574,691,593.1],[576,687,598],[577,683,602.4],[578,679,606.8],[579,675,611.2],[579,671,615.2],[579,667,619.2],[579,663,623.2],[579,659,627.2],[579,655,631.2],[579,651,635.2],[579,647,639.2],[579,643,643.2],[582,639,648.5],[584,635,653.3],[584,631,657.3],[585,627,661.7],[585,623,665.7],[585,619,669.7],[585,615,673.7],[585,611,677.7],[585,607,681.7],[585,603,685.7],[582,599,690.9]]};
 const OPST=[
  {l:[0],h:'СА‑узел — кабинет заведующего',p:'Заведующий жмёт кнопку ПУСК — рождается искра. Так начинается каждый удар сердца.',t:1500},
  {l:[1],h:'Предсердия — предоперационная',p:'Искра бежит по обоим предсердиям, они сокращаются и «закатывают пациента» — доталкивают кровь в желудочки. На ленте — зубец P.',t:2200},
  {l:[2],h:'АВ‑узел — шлюз с санитаром',p:'Санитар ловит искру и держит её около 0,08 с, пока пациента не закатят. На ленте — ровная линия после P.',t:2000},
  {l:[3],h:'Пучок Гиса — коридор',p:'Санитар отпускает искру, и она мчится по коридору в перегородке между желудочками.',t:1300},
  {l:[4],h:'Ножки пучка Гиса — две двери',p:'Искра делится надвое: одна половинка уходит в правую дверь, другая — в левую.',t:1500},
- {l:[5,6],h:'Желудочки и волокна Пуркинье — операционные и лампы',p:'Свет бежит по волокнам Пуркинье и разом зажигает лампы в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:2000},
+ {l:[5,6],h:'Желудочки и волокна Пуркинье — операционные и лампы',p:'Свет бежит по проводке-Пуркинье и разом зажигается в обеих операционных. Желудочки сокращаются — на ленте узкий QRS.',t:2000},
  {l:[],h:'Отдых — восстановление желудочков',p:'Операция сделана, свет медленно гаснет, желудочки восстанавливаются. На ленте — зубец T. Потом всё сначала.',t:2300}];
+/* подписи на рисунке: [номер этапа, иконка или '', строки текста, якорь текста (x,y), 'end'|'start', центр иконки, выноска от, выноска к] */
+const OPL=[[0,'doctor',['СА‑узел'],[-118,264],'end',[-56,250],[-14,262],[128,313]],
+ [1,'',['Правое','предсердие'],[-24,398],'end',0,[-12,412],[96,424]],
+ [2,'sanitar',['АВ‑узел'],[-118,574],'end',[-56,560],[-14,556],[198,428]],
+ [5,'',['Правый','желудочек'],[-24,712],'end',0,[-12,728],[232,646]],
+ [1,'',['Левое','предсердие'],[694,252],'start',0,[684,268],[452,332]],
+ [3,'corridor',['Пучок Гиса'],[786,434],'start',[734,420],[692,422],[284,440]],
+ [4,'door_double',['Ножки'],[786,554],'start',[734,540],[692,542],[348,554]],
+ [5,'',['Левый','желудочек'],[694,664],'start',0,[684,680],[522,640]],
+ [6,'bulb',['Пуркинье'],[786,812],'start',[734,798],[692,792],[586,702]]];
 /* легенда: [иконка, термин, аналогия] */
 const OPLG=[['doctor','СА‑узел','кабинет заведующего: кнопка ПУСК'],['bed','Предсердия','предоперационная'],['sanitar','АВ‑узел','шлюз с санитаром'],['corridor','Пучок Гиса','коридор'],['door_double','Ножки пучка Гиса','две двери'],['hospital','Желудочки','операционные'],['bulb','Волокна Пуркинье','лампы']];
-const OPH={o:'M320 190 C287 124 209 100 145 120 C75 142 40 214 52 300 C66 400 170 520 320 600 C470 520 574 400 588 300 C600 214 565 142 495 120 C431 100 353 124 320 190Z',
- i:'M320 214 C290 150 214 124 152 140 C92 158 60 222 70 300 C84 392 180 500 320 576 C460 500 556 392 570 300 C580 222 548 158 488 140 C426 124 350 150 320 214Z',
- p1:'M205 160 C255 172 292 225 302 290',p2:'M205 160 C214 228 250 276 302 290',bb:'M205 160 C250 242 400 240 458 182',his:'M302 290 C314 298 320 310 320 334 L320 372',
- r:'M320 372 C310 430 306 490 308 535 C306 562 288 566 270 552 C240 530 196 500 166 462 C138 428 112 392 98 350 C90 326 86 310 84 296'};
-const OPTW=[[262,546,272,524],[208,502,226,484],[158,452,180,444],[108,384,132,386],[90,322,114,330]];
-function opPic(){const tw=[...OPTW,...OPTW.map(t=>[640-t[0],t[1],640-t[2],t[3]])];
- const ico=(n,x,y,i)=>`<circle cx="${x}" cy="${y}" r="27" class="nb"/><image href="${IMG(n)}" x="${x-21}" y="${y-21}" width="42" height="42"/>`;
- const tx=(t,x,y,a,c)=>`<text x="${x}" y="${y}" class="${c||'nt'}" text-anchor="${a||'middle'}">${t}</text>`;
- const g=(i,body)=>`<g class="hk" data-i="${i}" tabindex="0" role="button" aria-label="${OPLG[i][1]} — ${OPLG[i][2]}">${body}</g>`;
- return`<div class="oppic hz3" data-op="1"><span class="opk">Сердце — операционный блок</span>
-<svg class="opsvg hzs" viewBox="0 18 640 596" role="img" aria-label="Схема сердца: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз с санитаром, пучок Гиса — коридор, ножки — две двери, желудочки — операционные, волокна Пуркинье — лампы">
-<defs><clipPath id="hzin"><path d="${OPH.i}"/></clipPath>
-<filter id="hzgl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<filter id="hzsh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#5a2030" flood-opacity=".22"/></filter>
+function opPic(){
+ return`<div class="oppic hz4" data-op="1"><span class="opk">Сердце — операционный блок</span>
+<svg class="opsvg hzs" viewBox="-330 -6 1400 846" role="img" aria-label="Схема сердца: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз с санитаром, пучок Гиса — коридор, ножки — две двери, желудочки — операционные, волокна Пуркинье — лампы">
+<defs>${['a','v'].map(k=>`<filter id="hzf${k}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .7  0 0 0 0 0" result="m"/><feComposite in="m" in2="SourceAlpha" operator="in" result="c"/><feGaussianBlur in="c" stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="c"/></feMerge></filter>`).join('')}
+<filter id="hzsh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#5a2030" flood-opacity=".22"/></filter>
+<radialGradient id="hzg"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset=".6" stop-color="#ffd966" stop-opacity=".5"/><stop offset="1" stop-color="#ffd966" stop-opacity="0"/></radialGradient>
 <radialGradient id="hzh"><stop offset="0" stop-color="#fffbe6"/><stop offset=".35" stop-color="#ffe680" stop-opacity=".9"/><stop offset="1" stop-color="#ffcf33" stop-opacity="0"/></radialGradient></defs>
-<path class="ves vv" d="M168 30 H222 V170 H168Z"/><path class="ves va" d="M318 196 V112 C318 64 392 52 414 100" />
-<g class="hzb"><path class="wall" d="${OPH.o}"/>
-<g clip-path="url(#hzin)"><rect class="rmm ra" x="0" y="0" width="314" height="297"/><rect class="rmm la" x="326" y="0" width="314" height="297"/><rect class="rmm rv" x="0" y="313" width="306" height="300"/><rect class="rmm lv" x="334" y="313" width="306" height="300"/>
-<rect class="gl ga" x="0" y="0" width="640" height="297"/><rect class="gl gv" x="0" y="313" width="640" height="300"/>
-<path class="vlv" d="M150 297 h80 v16 h-80Z M410 297 h80 v16 h-80Z"/><path class="lfl" d="M154 300 L172 326 M226 300 L208 326 M414 300 L432 326 M486 300 L468 326"/></g>
-<path class="wire" d="${OPH.p1}"/><path class="wire" d="${OPH.p2}"/><path class="wire" d="${OPH.bb}"/><path class="wire wt" d="${OPH.his}"/><path class="wire wt" d="${OPH.r}"/><path class="wire wt" d="${OPH.r.replace(/[\d.]+ [\d.]+/g,m=>{const[x,y]=m.split(' ');return(640-x)+' '+y})}"/>
-${tw.map(t=>`<path class="twig" d="M${t[0]} ${t[1]} L${t[2]} ${t[3]}"/>`).join('')}
-<g class="lit"><path class="lw la1" pathLength="1" d="${OPH.p1}"/><path class="lw la2" pathLength="1" d="${OPH.p2}"/><path class="lw la3" pathLength="1" d="${OPH.bb}"/><path class="lw lh wt" pathLength="1" d="${OPH.his}"/><path class="lw lr wt" pathLength="1" d="${OPH.r}"/><path class="lw ll wt" pathLength="1" d="${OPH.r.replace(/[\d.]+ [\d.]+/g,m=>{const[x,y]=m.split(' ');return(640-x)+' '+y})}"/>
-<g class="ltw">${tw.map(t=>`<path d="M${t[0]} ${t[1]} L${t[2]} ${t[3]}"/>`).join('')}</g></g>
-${tw.map(t=>`<circle class="lamp" cx="${t[2]}" cy="${t[3]}" r="5.5"/>`).join('')}
-<circle class="nd sa" cx="205" cy="160" r="12"/><circle class="nd av" cx="302" cy="290" r="11"/></g>
-${g(1,`${ico('bed',160,205)}${tx('Правое',160,262,0,'rt')}${tx('предсердие',160,286,0,'rt')}${ico('bed',484,210)}${tx('Левое',484,262,0,'rt lt')}${tx('предсердие',484,286,0,'rt lt')}`)}
-${g(5,`${tx('Правый',205,400,0,'rt')}${tx('желудочек',205,424,0,'rt')}${tx('Левый желудочек',440,362,0,'rt lt')}`)}
-<g class="ldr"><path data-i="0" d="M112 94 L196 152"/><path data-i="2" d="M280 323 L298 300"/><path data-i="3" d="M356 392 L323 352"/><path data-i="4" d="M356 455 L336 455"/><path data-i="6" d="M538 514 L478 466"/></g>
-${g(0,`${ico('doctor',92,76)}${tx('СА‑узел',92,132)}`)}
-${g(2,`${ico('sanitar',262,346)}${tx('АВ‑узел',230,354,'end')}`)}
-${g(3,`${ico('corridor',378,400)}${tx('пучок Гиса',410,408,'start')}`)}
-${g(4,`${ico('door_double',378,455)}${tx('ножки',410,463,'start')}`)}
-${g(6,`${ico('bulb',560,520)}${tx('волокна',560,574)}${tx('Пуркинье',560,598)}`)}
-${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="22" fill="url(#hzh)"/><circle r="6" fill="#fffef5"/></g>`).join('')}
+<g class="hzb"><image href="${IMG('heart_tb')}" width="660" height="840"/>
+<g class="cg cga"><ellipse cx="130" cy="400" rx="110" ry="120"/><ellipse cx="470" cy="330" rx="100" ry="80"/></g>
+<g class="cg cgv"><ellipse cx="250" cy="640" rx="140" ry="110"/><ellipse cx="510" cy="600" rx="100" ry="170"/></g>
+<image class="cl cla" href="${IMG('heart_tb_a')}" width="660" height="840" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_tb_v')}" width="660" height="840" filter="url(#hzfv)"/></g>
+<g class="ldr">${OPL.map(l=>`<g data-i="${l[0]}"><path d="M${l[6][0]} ${l[6][1]} L${l[7][0]} ${l[7][1]}"/><circle cx="${l[7][0]}" cy="${l[7][1]}" r="7"/></g>`).join('')}</g>
+${OPL.map(l=>`<g class="hk" data-i="${l[0]}" tabindex="0" role="button" aria-label="${l[2].join(' ')}">${l[1]?`<circle class="nb" cx="${l[5][0]}" cy="${l[5][1]}" r="40"/><image href="${IMG(l[1])}" x="${l[5][0]-31}" y="${l[5][1]-31}" width="62" height="62"/>`:''}${l[2].map((t,j)=>`<text class="${l[1]?'nt':'rt'}${l[4]==='start'&&!l[1]?' lt':''}" x="${l[3][0]}" y="${l[3][1]+j*40}" text-anchor="${l[4]}">${t}</text>`).join('')}</g>`).join('')}
+${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="26" fill="url(#hzh)"/><circle r="7" fill="#fffef5"/></g>`).join('')}
 </svg>
 <ul class="oplg">${OPLG.map((x,i)=>`<li data-i="${i}" tabindex="0" role="button"><img src="${IMG(x[0])}" alt="" width="34" height="34"><span><b>${x[1]}</b> — ${x[2]}</span></li>`).join('')}</ul>
+<p class="hzc">Рисунок сердца создан нейросетью Google Gemini, иконки — Microsoft Fluent; подписи и анимация добавлены.</p>
 <div class="opcap" aria-live="polite"><div><b class="oph"></b><p class="opp"></p></div></div>
 <div class="opstrip"><span class="opl">Что рисуется на ленте</span><svg viewBox="0 0 600 128" class="opecg"><path class="eb" d="M14 64 H586"/>
 <path class="es e1" pathLength="1" d="M20 64 H40 Q75 30 110 64"/><path class="es e2" pathLength="1" d="M110 64 H210"/><path class="es e3" pathLength="1" d="M210 64 L220 72 L234 10 L250 90 L260 64"/><path class="es e4" pathLength="1" d="M260 64 H330 Q384 22 438 64 H586"/><circle class="ehd" r="5"/>
 <text x="75" y="122" class="el l1">P</text><text x="160" y="122" class="el l2">пауза</text><text x="235" y="122" class="el l3">QRS</text><text x="384" y="122" class="el l4">T</text></svg></div>
 <div class="opbtn"><button type="button" class="btn opgo">${ic('pause',16)}<span>Пауза</span></button><button type="button" class="btn oprs">${ic('replay',16)}<span>Повторить</span></button></div>
-<p class="hzt">Нажми на значок на рисунке или на строку под ним — схема остановится на этом месте.</p></div>`}
+<p class="hzt">Нажми на подпись на рисунке или на строку под ним — схема остановится на этом месте.</p></div>`}
 /* управление анимацией */
 function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.hzs'),$q=s=>svg.querySelector(s),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
  cap=[root.querySelector('.oph'),root.querySelector('.opp')],capb=root.querySelector('.opcap'),segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
- hk=[...root.querySelectorAll('.hk,.oplg li,.ldr path')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),
- A=[$q('.la1'),$q('.la2'),$q('.la3')],H=$q('.lh'),R=$q('.lr'),Lp=$q('.ll'),tw=$q('.ltw'),lamps=[...svg.querySelectorAll('.lamp')],ga=$q('.ga'),gv=$q('.gv'),hb=$q('.hzb'),nsa=$q('.nd.sa'),nav=$q('.nd.av'),lit=$q('.lit');
+ pills=[...root.querySelectorAll('.hk,.oplg li')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),ldr=[...svg.querySelectorAll('.ldr g')],
+ fa=svg.querySelector('#hzfa feColorMatrix'),fv=svg.querySelector('#hzfv feColorMatrix'),cla=$q('.cla'),clv=$q('.clv'),cga=$q('.cga'),cgv=$q('.cgv'),hb=$q('.hzb');
  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let el=0,last=0,play=!RM,raf=0,cur=-1;const REST=900,total=OPST.reduce((a,s)=>a+s.t,0)+REST;
  const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));
- const len=p=>p.getTotalLength(),pt=(p,f)=>{const q=p.getPointAtLength(len(p)*Math.min(1,Math.max(0,f)));return[q.x,q.y]};
- /* доля пути R/L, проходящая по перегородке (до поворота у верхушки) */
- const FS=.33;
- const set=(p,f)=>{p.style.strokeDashoffset=String(1-Math.min(1,Math.max(0,f)))};
- function mark(s){const S=OPST[s]||{l:[]};hk.forEach(e=>e.classList.toggle('on',S.l.includes(+e.dataset.i)))}
+ /* подсветка проводки до расстояния T (в пикселях рисунка; в слое записано расстояние/4) */
+ const K=22,thr=(m,T)=>m.setAttribute('values',`0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .7  ${-K} 0 0 0 ${T<=0?0:(K*T/1020+1).toFixed(3)}`);
+ const at=(P,T)=>{if(T<=P[0][2])return P[0];for(let i=1;i<P.length;i++)if(P[i][2]>=T){const a=P[i-1],b=P[i],f=(T-a[2])/(b[2]-a[2]);return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]}return P[P.length-1]};
+ const AV=157,ATR=190,SPL=150,BOT=490,ENDV=830;
+ function mark(s){const S=OPST[s]||{l:[]};pills.forEach(b=>b.classList.toggle('on',S.l.includes(+b.dataset.i)));ldr.forEach(g=>g.classList.toggle('on',S.l.includes(+g.dataset.i)))}
  const SEG=[[],[[0,0,1]],[[1,0,.75]],[[1,.75,.88]],[[1,.88,1]],[[2,0,1]],[[3,0,1]]];
  const put=(g,xy,o)=>{if(!xy||o<=0){g.style.opacity=0;return}g.style.opacity=o;g.setAttribute('transform',`translate(${xy[0].toFixed(1)} ${xy[1].toFixed(1)})`)};
  function show(s,p){const S=OPST[s];
   if(s!==cur){cur=s;cap[0].textContent=S.h;cap[1].textContent=S.p;capb.classList.remove('opfx');void capb.offsetWidth;capb.classList.add('opfx');mark(s)}
   const e=sm(p);
-  /* проводка */
-  const fa=s===0?0:s===1?e:1;A.forEach(x=>set(x,fa));A.forEach(x=>x.style.opacity=s<=1?1:s===2?1-.5*e:s<6?.5:.5*(1-sm(p*1.3)));
-  const fh=s<3?0:s===3?e:1;set(H,fh);const fr=s<4?0:s===4?FS*e:s===5?FS+(1-FS)*sm(p*1.15):1;set(R,fr);set(Lp,fr);
-  const fv=s===6?1-sm(p*1.3):1;[H,R,Lp].forEach(x=>x.style.opacity=fv);
-  tw.style.opacity=s===5?sm((p-.45)/.35):s===6?1-sm(p*1.3):0;
-  lamps.forEach(l=>l.classList.toggle('on',(s===5&&p>.6)||(s===6&&p<.6)));
-  nsa.classList.toggle('on',s===0||(s===1&&p<.3));nav.classList.toggle('on',s===2);
-  /* свет в комнатах */
-  ga.style.opacity=s===1?.55*sm((p-.15)/.6):s===2?.55*(1-sm(p)):0;gv.style.opacity=s===5?.55*sm((p-.35)/.5):s===6?.55*(1-sm(p)):0;
+  /* проводка предсердий и желудочков */
+  const T1=s===0?6*e:s===1?6+(ATR-6)*e:ATR,T2=s<2?0:s===2?14*e:s===3?14+(SPL-14)*e:s===4?SPL+(BOT-SPL)*e:s===5?BOT+(ENDV-BOT)*sm(p*1.1):ENDV;
+  thr(fa,T1);thr(fv,T2);const fade=s===6?1-sm(p*1.3):1;cla.style.opacity=fade*(s>=4?1-.6*sm(s===4?p:1):1);clv.style.opacity=fade;
+  /* мягкий свет в камерах */
+  cga.style.opacity=s===1?.75*sm((p-.15)/.6):s===2?.75*(1-sm(p)):0;cgv.style.opacity=s===5?.8*sm((p-.2)/.6):s===6?.8*(1-sm(p)):0;
   /* сердце чуть сжимается при QRS */
-  const bv=s===5?.016*sm((p-.35)/.65):s===6?.016*(1-sm(p)):0;hb.setAttribute('transform',`translate(320 400) scale(${(1-bv).toFixed(4)}) translate(-320 -400)`);
+  const bv=s===5?.018*sm((p-.25)/.75):s===6?.018*(1-sm(p)):0;hb.setAttribute('transform',`translate(360 470) scale(${(1-bv).toFixed(4)}) translate(-360 -470)`);
   /* искры */
-  let a=null,b=null,oa=1;
-  if(s===0){a=[205,160];oa=sm(p*1.8)}else if(s===1)a=pt(A[0],e);else if(s===2){a=[302,290];oa=.7+.3*Math.cos(p*Math.PI*4)}else if(s===3)a=pt(H,e);
-  else if(s===4){a=pt(R,fr);b=pt(Lp,fr)}else if(s===5){a=pt(R,fr);b=pt(Lp,fr);oa=1-sm((p-.5)/.35)}
-  put(sa,a,oa);put(sb,b,oa);
+  let A=null,B=null,oa=1;
+  if(s===0){A=[128,313];oa=sm(p*1.8)}else if(s===1)A=at(OPG.ia,Math.min(AV,T1));else if(s===2){A=[200,427];oa=.7+.3*Math.cos(p*Math.PI*4)}else if(s===3)A=at(OPG.r,T2);
+  else if(s===4){A=at(OPG.r,T2);B=at(OPG.l,T2)}else if(s===5){A=at(OPG.r,Math.min(733,T2));B=at(OPG.l,Math.min(708,T2));oa=1-sm((p-.35)/.4)}
+  put(sa,A,oa);put(sb,B,oa);
   /* лента */
-  let head=null;segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a0,b0] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b0);else if(q===s){v=Math.max(v,a0+(b0-a0)*p);head=[g,a0+(b0-a0)*p]}}}
+  let head=null;segs.forEach((g,i)=>{let v=0;for(let q=1;q<=6;q++){for(const [si,a,b] of SEG[q]){if(si!==i)continue;if(q<s)v=Math.max(v,b);else if(q===s){v=Math.max(v,a+(b-a)*p);head=[g,a+(b-a)*p]}}}
    g.style.strokeDashoffset=String(1-v);g.style.opacity=v>0?1:0;g.classList.toggle('on',SEG[s].some(x=>x[0]===i))});
   if(head){const l=head[0].getTotalLength(),q=head[0].getPointAtLength(l*head[1]);ehd.setAttribute('cx',q.x);ehd.setAttribute('cy',q.y);ehd.style.opacity=1}else if(s===6||s===0)ehd.style.opacity=0;
   labs.forEach((l,i)=>l.classList.toggle('on',SEG[s].some(x=>x[0]===i)))}
  function frame(t){if(!root.isConnected){cancelAnimationFrame(raf);return}if(play){if(last)el+=Math.min(t-last,60);last=t;if(el>=total){el=0;segs.forEach(g=>{g.style.opacity=0})}let a=el,s=0;while(s<OPST.length&&a>=OPST[s].t){a-=OPST[s].t;s++}if(s>=OPST.length)show(6,1);else show(s,a/OPST[s].t)}else last=0;raf=requestAnimationFrame(frame)}
  const setBtn=()=>{go.innerHTML=play?`${ic('pause',16)}<span>Пауза</span>`:`${ic('play',16)}<span>Продолжить</span>`;go.classList.toggle('pri',!play)};
  go.onclick=()=>{play=!play;setBtn()};rs.onclick=()=>{el=0;cur=-1;play=true;setBtn();show(0,0)};
- const jump=i=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.8:s===0?.9:s===1?.8:s===4?.8:.65;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;cur=-1;show(s,f)};
- root.querySelectorAll('.hk,.oplg li').forEach(e=>{e.onclick=()=>jump(+e.dataset.i);e.onkeydown=k=>{if(k.key==='Enter'||k.key===' '){k.preventDefault();jump(+e.dataset.i)}}});
+ const jump=i=>{play=false;setBtn();const s=Math.min(i,5),f=s===5?.75:s===0?.9:s===1?.8:s===4?.8:.65;el=OPST.slice(0,s).reduce((a,x)=>a+x.t,0)+OPST[s].t*f;cur=-1;show(s,f)};
+ pills.forEach(b=>{b.onclick=()=>jump(+b.dataset.i);b.onkeydown=k=>{if(k.key==='Enter'||k.key===' '){k.preventDefault();jump(+b.dataset.i)}}});
  show(0,0);setBtn();raf=requestAnimationFrame(frame)}
 new MutationObserver(()=>document.querySelectorAll('.oppic[data-op]:not([data-ready])').forEach(opInit)).observe(document.documentElement,{childList:true,subtree:true});
 
 /* ---------- «Дом на груди»: где ставить грудные электроды ----------
-   Рёбра, грудина и сердце: Mikael Häggström, Wikimedia Commons, «Precordial leads in ECG.svg», CC0 (фото тела и английские подписи убраны).
-   Места электродов взяты из этой же схемы. Вид спереди: правая сторона пациента — слева на рисунке. */
+   Рисунок груди создан нейросетью Google Gemini (учебный стиль). Межреберья размечены по рисунку: угол грудины — 2-е ребро,
+   4-е межреберье у грудины y≈358, 5-е межреберье по среднеключичной линии (x≈665) y≈436. Вид спереди: правая сторона пациента — слева. */
 function chestSVG(L){
- const E=[['V1',207,277,'#e5484d',-24,6,'end'],['V2',263,277,'#f5b301',24,6,'start'],['V3',304,301,'#18a058',-22,10,'end'],['V4',345,325,'#8a5a2b',16,32,'start'],['V5',402,325,'#1a2230',0,-20,'middle'],['V6',440,325,'#8e44ad',0,-20,'middle']];
- const rail=o=>`M${263+o[0]} ${277+o[1]} L${345+o[0]} ${325+o[1]}`;
- const torso='M188 40 C190 62 182 80 160 88 C120 100 56 104 28 122 C4 140 0 172 4 212 L10 330 L14 560 L456 560 L460 330 L466 212 C470 172 466 140 442 122 C414 104 350 100 310 88 C288 80 280 62 282 40 Z';
- return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="-6 20 482 530" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у краёв грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
-<defs><linearGradient id="chfd" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".86" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
-<mask id="chmk" maskUnits="userSpaceOnUse" x="-10" y="20" width="490" height="532"><rect x="-10" y="20" width="490" height="532" fill="url(#chfd)"/></mask>
-<filter id="chsh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000" flood-opacity=".3"/></filter></defs>
-<g mask="url(#chmk)"><path class="tso" d="${torso}"/><image href="${IMG('chest_ribs').replace('.png','.svg')}" width="465" height="615"/></g>
-<path class="ln" d="M345 112 V535"/><path class="ln" d="M402 124 V535"/><path class="ln" d="M440 140 V535"/>
-<text class="cl" transform="translate(357 532) rotate(-90)">среднеключичная</text><text class="cl" transform="translate(414 532) rotate(-90)">передняя подмышечная</text><text class="cl" transform="translate(452 532) rotate(-90)">средняя подмышечная</text>
-
-<g class="pl p4"><path d="M128 277 H186"/><rect x="0" y="257" width="128" height="40" rx="12"/><text x="10" y="274" class="ce">4 этаж</text><text x="10" y="290" class="cs">4-е межреберье</text></g>
-<g class="pl p5"><path d="M318 372 L337 333"/><rect x="198" y="372" width="128" height="40" rx="12"/><text x="208" y="389" class="ce">5 этаж</text><text x="208" y="405" class="cs">5-е межреберье</text></g>
-<path class="lvl" d="M345 325 H440"/>
-<path class="lad" d="${rail([-2.6,4])}"/><path class="lad" d="${rail([2.6,-4])}"/>${[.22,.38,.62,.78].map(t=>{const x=263+82*t,y=277+48*t;return`<path class="rung" d="M${(x-3.4).toFixed(1)} ${(y+5.6).toFixed(1)} L${(x+3.4).toFixed(1)} ${(y-5.6).toFixed(1)}"/>`}).join('')}
-${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="11" fill="${e[3]}" class="el"/>`).join('')}${E.map(e=>`<text x="${e[1]+e[4]}" y="${e[2]+e[5]}" class="cv" text-anchor="${e[6]}">${e[0]}</text>`).join('')}
-<text x="236" y="452" class="cs" text-anchor="middle">грудина</text>
-</svg><p class="hzc">Рисунок рёбер и сердца: Mikael Häggström, <a href="https://commons.wikimedia.org/wiki/File:Precordial_leads_in_ECG.svg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC0; подписи добавлены.</p>${L?`<ul class="chl"><li><b>Найди угол грудины</b> — бугорок, где рукоятка переходит в тело грудины. К нему крепится 2-е ребро, под ним 2-е межреберье. Считай вниз до 4-го.</li><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии; <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной — все три на одной высоте.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
+ const E=[['V1',450,478,'#e5484d',-34,12,'end'],['V2',572,481,'#f5b301',34,12,'start'],['V3',618,518,'#18a058',-32,30,'end'],['V4',665,556,'#8a5a2b',-26,50,'end'],['V5',745,556,'#1a2230',0,62,'middle'],['V6',800,556,'#8e44ad',0,-34,'middle']];
+ const rail=o=>`M${572+o[0]} ${481+o[1]} L${665+o[0]} ${556+o[1]}`;
+ const pill=(c,x,y,w,t1,t2)=>`<g class="pl ${c}"><rect x="${x}" y="${y}" width="${w}" height="92" rx="22"/><text x="${x+22}" y="${y+40}" class="ce">${t1}</text><text x="${x+22}" y="${y+76}" class="cs">${t2}</text></g>`;
+ return`<div class="chest"><p class="chn">Смотрим на пациента спереди: его правая сторона — слева на рисунке.</p><svg class="chsvg" viewBox="0 120 1024 904" role="img" aria-label="Расположение грудных электродов: V1 и V2 в 4-м межреберье у краёв грудины, V4 в 5-м межреберье по среднеключичной линии, V3 посередине между V2 и V4, V5 и V6 на уровне V4 по передней и средней подмышечным линиям">
+<defs><filter id="chsh" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".3"/></filter></defs>
+<image href="${IMG('chest_tb').replace('.png','.jpg')}" width="1024" height="1024"/>
+<g class="ldl"><path class="pa" d="M300 336 L470 342"/><circle class="pa" cx="470" cy="342" r="7"/><path class="p4" d="M300 478 L414 478"/><path class="p5" d="M665 686 L665 594"/></g>
+${pill('pa',14,290,286,'Угол грудины','здесь 2-е ребро')}${pill('p4',14,432,286,'4 этаж','4-е межреберье')}${pill('p5',532,686,286,'5 этаж','5-е межреберье')}
+<path class="lvl" d="M665 556 H800"/>
+<path class="lad" d="${rail([-4,5])}"/><path class="lad" d="${rail([4,-5])}"/>${[.22,.4,.6,.78].map(t=>{const x=572+93*t,y=481+75*t;return`<path class="rung" d="M${(x-5).toFixed(1)} ${(y+6).toFixed(1)} L${(x+5).toFixed(1)} ${(y-6).toFixed(1)}"/>`}).join('')}
+${E.map(e=>`<circle cx="${e[1]}" cy="${e[2]}" r="20" fill="${e[3]}" class="el"/>`).join('')}${E.map(e=>`<text x="${e[1]+e[4]}" y="${e[2]+e[5]}" class="cv" text-anchor="${e[6]}">${e[0]}</text>`).join('')}
+</svg><p class="hzc">Рисунок груди создан нейросетью Google Gemini; подписи и электроды добавлены.</p>${L?`<ul class="chl"><li><b>Найди угол грудины</b> — бугорок, где рукоятка переходит в тело грудины. К нему крепится 2-е ребро, под ним 2-е межреберье. Считай вниз до 4-го.</li><li><b>4 этаж</b> — <b>V1</b> справа от грудины, <b>V2</b> слева от неё.</li><li><b>5 этаж</b> — <b>V4</b> на среднеключичной линии (середина ключицы); <b>V5</b> на передней подмышечной, <b>V6</b> на средней подмышечной — все три на одной высоте.</li><li><b>V3</b> — на «лестнице», ровно посередине между V2 и V4.</li></ul>`:''}</div>`}
 
 /* ---------- «Как в жизни»: неидеальные ленты с помехами и неочевидными находками ---------- */
 /* помехи: дрейф изолинии, мышечная дрожь, сетевая наводка 50 Гц, двигательный артефакт, обрыв электрода, низкий вольтаж */
