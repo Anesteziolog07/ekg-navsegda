@@ -503,7 +503,7 @@ html[data-theme=dark] .hz3 .hzs{background:#f7f3f0;border-radius:14px}
 
 /* сердце (учебный рисунок) и грудь v4 */
 .hz4 .hzs{display:block;width:100%;max-width:640px;height:auto;margin:0 auto;font-family:inherit}
-.hz4 .hzs .cg ellipse{fill:url(#hzg);mix-blend-mode:screen}.hz4 .hzs .cg{opacity:0}.hz4 .hzs .spk{opacity:0;pointer-events:none}
+.hz4 .hzs .cg ellipse{fill:#ffe45c}.hz4 .hzs .bbo{fill:none;stroke:#b8951a;stroke-width:9;stroke-linecap:round}.hz4 .hzs .bbi{fill:none;stroke:#ffe23d;stroke-width:5.5;stroke-linecap:round}.hz4 .hzs .bbl{fill:none;stroke:#fff6b0;stroke-width:7;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;filter:url(#hzgw)}.hz4 .hzs .cg{opacity:0}.hz4 .hzs .spk{opacity:0;pointer-events:none}
 .hz4 .hzs .ldr path{stroke:#6b7280;stroke-width:3;fill:none;stroke-linecap:round;transition:stroke .3s}.hz4 .hzs .ldr circle{fill:#6b7280;transition:fill .3s}
 .hz4 .hzs .ldr g.on path{stroke:#e0a100;stroke-width:5}.hz4 .hzs .ldr g.on circle{fill:#e0a100}
 .hz4 .hzs .hk{cursor:pointer;outline:none}.hz4 .hzs .nb{fill:#fff;filter:url(#hzsh);transition:fill .3s}.hz4 .hzs .hk.on .nb{fill:#fff3c4;stroke:#ffc21a;stroke-width:4}
@@ -521,6 +521,7 @@ html[data-theme=dark] .hz4 .hzs{background:#fff;border-radius:14px}
 .chsvg .el{stroke:#fff;stroke-width:5;filter:url(#chsh)}
 .chsvg .lvl{stroke:#3d4a66;stroke-width:3.5;stroke-dasharray:3 9;stroke-linecap:round;fill:none}
 .chsvg .lad{stroke:#a8763e;stroke-width:4;fill:none}.chsvg .rung{stroke:#a8763e;stroke-width:4}
+
 
 
 
@@ -1578,12 +1579,13 @@ function opPic(){
 <svg class="opsvg hzs" viewBox="-330 -6 1400 846" role="img" aria-label="Схема сердца: СА-узел — кабинет заведующего, предсердия — предоперационная, АВ-узел — шлюз с санитаром, пучок Гиса — коридор, ножки — две двери, желудочки — операционные, волокна Пуркинье — лампы">
 <defs>${['a','v'].map(k=>`<filter id="hzf${k}" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .7  0 0 0 0 0" result="m"/><feComposite in="m" in2="SourceAlpha" operator="in" result="c"/><feGaussianBlur in="c" stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="c"/></feMerge></filter>`).join('')}
 <filter id="hzsh" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#5a2030" flood-opacity=".22"/></filter>
-<radialGradient id="hzg"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset=".6" stop-color="#ffd966" stop-opacity=".5"/><stop offset="1" stop-color="#ffd966" stop-opacity="0"/></radialGradient>
+<filter id="hzbl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter><filter id="hzgw" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="hzg"><stop offset="0" stop-color="#fff2b0" stop-opacity=".95"/><stop offset=".6" stop-color="#ffd966" stop-opacity=".5"/><stop offset="1" stop-color="#ffd966" stop-opacity="0"/></radialGradient>
 <radialGradient id="hzh"><stop offset="0" stop-color="#fffbe6"/><stop offset=".35" stop-color="#ffe680" stop-opacity=".9"/><stop offset="1" stop-color="#ffcf33" stop-opacity="0"/></radialGradient></defs>
 <g class="hzb"><image href="${IMG('heart_tb')}" width="660" height="840"/>
-<g class="cg cga"><ellipse cx="130" cy="400" rx="110" ry="120"/><ellipse cx="470" cy="330" rx="100" ry="80"/></g>
-<g class="cg cgv"><ellipse cx="250" cy="640" rx="140" ry="110"/><ellipse cx="510" cy="600" rx="100" ry="170"/></g>
-<image class="cl cla" href="${IMG('heart_tb_a')}" width="660" height="840" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_tb_v')}" width="660" height="840" filter="url(#hzfv)"/></g>
+<g class="cg cga" filter="url(#hzbl)"><ellipse cx="130" cy="405" rx="88" ry="105"/><ellipse cx="468" cy="338" rx="78" ry="58"/></g>
+<g class="cg cgv" filter="url(#hzbl)"><ellipse cx="262" cy="648" rx="118" ry="92"/><ellipse cx="490" cy="575" rx="72" ry="150"/></g>
+<path class="bbo" d="M134 306 C200 262 330 262 468 318"/><path class="bbi" d="M134 306 C200 262 330 262 468 318"/>
+<path class="bbl" pathLength="1" d="M134 306 C200 262 330 262 468 318"/><image class="cl cla" href="${IMG('heart_tb_a')}" width="660" height="840" filter="url(#hzfa)"/><image class="cl clv" href="${IMG('heart_tb_v')}" width="660" height="840" filter="url(#hzfv)"/></g>
 <g class="ldr">${OPL.map(l=>`<g data-i="${l[0]}"><path d="M${l[6][0]} ${l[6][1]} L${l[7][0]} ${l[7][1]}"/><circle cx="${l[7][0]}" cy="${l[7][1]}" r="7"/></g>`).join('')}</g>
 ${OPL.map(l=>`<g class="hk" data-i="${l[0]}" tabindex="0" role="button" aria-label="${l[2].join(' ')}">${l[1]?`<circle class="nb" cx="${l[5][0]}" cy="${l[5][1]}" r="40"/><image href="${IMG(l[1])}" x="${l[5][0]-31}" y="${l[5][1]-31}" width="62" height="62"/>`:''}${l[2].map((t,j)=>`<text class="${l[1]?'nt':'rt'}${l[4]==='start'&&!l[1]?' lt':''}" x="${l[3][0]}" y="${l[3][1]+j*40}" text-anchor="${l[4]}">${t}</text>`).join('')}</g>`).join('')}
 ${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="26" fill="url(#hzh)"/><circle r="7" fill="#fffef5"/></g>`).join('')}
@@ -1600,7 +1602,7 @@ ${['a','b'].map(k=>`<g class="spk" data-k="${k}"><circle r="26" fill="url(#hzh)"
 function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const svg=root.querySelector('.hzs'),$q=s=>svg.querySelector(s),sa=$q('[data-k="a"]'),sb=$q('[data-k="b"]'),
  cap=[root.querySelector('.oph'),root.querySelector('.opp')],capb=root.querySelector('.opcap'),segs=[...root.querySelectorAll('.es')],labs=[...root.querySelectorAll('.el')],ehd=root.querySelector('.ehd'),
  pills=[...root.querySelectorAll('.hk,.oplg li')],go=root.querySelector('.opgo'),rs=root.querySelector('.oprs'),ldr=[...svg.querySelectorAll('.ldr g')],
- fa=svg.querySelector('#hzfa feColorMatrix'),fv=svg.querySelector('#hzfv feColorMatrix'),cla=$q('.cla'),clv=$q('.clv'),cga=$q('.cga'),cgv=$q('.cgv'),hb=$q('.hzb');
+ fa=svg.querySelector('#hzfa feColorMatrix'),fv=svg.querySelector('#hzfv feColorMatrix'),cla=$q('.cla'),bbl=$q('.bbl'),clv=$q('.clv'),cga=$q('.cga'),cgv=$q('.cgv'),hb=$q('.hzb');
  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;let el=0,last=0,play=!RM,raf=0,cur=-1;const REST=900,total=OPST.reduce((a,s)=>a+s.t,0)+REST;
  const sm=p=>.5-.5*Math.cos(Math.PI*Math.min(1,Math.max(0,p)));
  /* подсветка проводки до расстояния T (в пикселях рисунка; в слое записано расстояние/4) */
@@ -1615,9 +1617,9 @@ function opInit(root){if(root.dataset.ready)return;root.dataset.ready=1;const sv
   const e=sm(p);
   /* проводка предсердий и желудочков */
   const T1=s===0?6*e:s===1?6+(ATR-6)*e:ATR,T2=s<2?0:s===2?14*e:s===3?14+(SPL-14)*e:s===4?SPL+(BOT-SPL)*e:s===5?BOT+(ENDV-BOT)*sm(p*1.1):ENDV;
-  thr(fa,T1);thr(fv,T2);const fade=s===6?1-sm(p*1.3):1;cla.style.opacity=fade*(s>=4?1-.6*sm(s===4?p:1):1);clv.style.opacity=fade;
+  thr(fa,T1);thr(fv,T2);const fade=s===6?1-sm(p*1.3):1;cla.style.opacity=fade*(s>=4?1-.6*sm(s===4?p:1):1);bbl.style.strokeDashoffset=String(1-(s===0?0:s===1?Math.min(1,T1/ATR*1.15):1));bbl.style.opacity=cla.style.opacity;clv.style.opacity=fade;
   /* мягкий свет в камерах */
-  cga.style.opacity=s===1?.75*sm((p-.15)/.6):s===2?.75*(1-sm(p)):0;cgv.style.opacity=s===5?.8*sm((p-.2)/.6):s===6?.8*(1-sm(p)):0;
+  cga.style.opacity=s===1?.6*sm((p-.2)/.5):s===2?.6*(1-sm(p)):0;cgv.style.opacity=s===5?.6*sm((p-.3)/.5):s===6?.6*(1-sm(p)):0;
   /* сердце чуть сжимается при QRS */
   const bv=s===5?.018*sm((p-.25)/.75):s===6?.018*(1-sm(p)):0;hb.setAttribute('transform',`translate(360 470) scale(${(1-bv).toFixed(4)}) translate(-360 -470)`);
   /* искры */
