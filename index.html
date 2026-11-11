@@ -112,7 +112,8 @@ table{border-collapse:collapse;width:100%;font-size:16px}td{padding:10px 12px 10
 details{border-top:1px solid var(--line);padding:12px 0}details:last-of-type{border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:600}details ul{margin:8px 0 0;padding-left:20px;color:#3a4558}
 @media (max-width:860px){
  .top .in{justify-content:space-between}.tabsn{display:none}
- .main{padding-bottom:100px}
+ .main{padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+ .dock{transition:transform .28s ease,opacity .28s ease}.dock.hid{transform:translate(-50%,calc(100% + 24px));opacity:0;pointer-events:none}
  .dock{display:flex;position:fixed;z-index:20;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom,0px));gap:4px;padding:6px;border-radius:20px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:0 10px 30px -12px rgba(16,24,40,.3)}
  .dock a{display:flex;flex-direction:column;align-items:center;gap:1px;width:92px;padding:7px 0 5px;border-radius:14px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none}.dock a.t.on{background:var(--th-b);color:var(--th)}.dock a.p.on{background:var(--pr-b);color:var(--pr)}.dock a.g.on{background:var(--gm-b);color:var(--gm)}
  .hero{grid-template-columns:minmax(0,1fr);gap:16px}.three{grid-template-columns:minmax(0,1fr);gap:10px}.sec{min-height:0;display:grid;grid-template-columns:46px minmax(0,1fr);column-gap:13px;padding:15px}.sec h2{font-size:20px}.sec p{grid-column:2}.sec .pg{grid-column:2;margin-top:2px}
@@ -543,6 +544,7 @@ html[data-theme=dark] .hz4 .hzs{background:#fff;border-radius:14px}
 @media (min-width:860px){.hz4 .opmain{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:18px}}
 .hz4 .opstrip{background-color:#fff8f8;background-image:linear-gradient(rgba(229,72,77,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(229,72,77,.18) 1px,transparent 1px),linear-gradient(rgba(229,72,77,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(229,72,77,.07) 1px,transparent 1px);background-size:25px 25px,25px 25px,5px 5px,5px 5px;box-shadow:0 2px 10px rgba(229,72,77,.10)}
 .hz4 .opstrip .opecg .eb{stroke:transparent}
+
 
 
 
@@ -2276,6 +2278,8 @@ $('dock').innerHTML=NAV.map(n=>`<a class="${n[3]}" href="#${n[0]}" data-n="${n[0
 addEventListener('keydown',e=>{if(!$('pl')||$('ovl')||/INPUT|SELECT/.test(e.target.tagName))return;const n=$('nx');if(e.key==='ArrowRight'||e.key==='Enter'){if(!n.hidden&&!n.disabled&&e.target.tagName!=='BUTTON'&&e.target.tagName!=='A'){n.click();e.preventDefault()}}else if(e.key==='ArrowLeft'&&RUN&&RUN.k==='th')thGo(-1);else if(/^[1-4]$/.test(e.key)){const s=$('sl');if(s&&s._pick)s._pick(+e.key-1)}});
 addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.ax');if(!b)return;const w=b.closest('.acts'),on=b.classList.contains('on');w.querySelectorAll('.ax').forEach(x=>x.classList.remove('on'));w.querySelectorAll('.ap').forEach(x=>x.hidden=true);if(!on){b.classList.add('on');const p=w.querySelector('.ap[data-p="'+b.dataset.p+'"]');p.hidden=false;p.scrollIntoView({behavior:'smooth',block:'nearest'})}hint()});
 addEventListener('hashchange',route);route();anyTip();
+/* нижняя панель на телефоне: прячется, когда листаешь вниз, и возвращается, когда листаешь вверх или дошёл до конца */
+(()=>{let y=scrollY;const d=$('dock');addEventListener('scroll',()=>{const n=scrollY,dy=n-y,end=n+innerHeight>=document.documentElement.scrollHeight-40;if(Math.abs(dy)<6&&!end)return;d.classList.toggle('hid',dy>0&&n>80&&!end);y=n},{passive:true});addEventListener('hashchange',()=>{d.classList.remove('hid');y=0})})();
 
 /* ---------- тёмная тема ---------- */
 const MOON='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',SUN='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>';
