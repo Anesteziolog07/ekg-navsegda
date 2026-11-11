@@ -289,8 +289,8 @@ img[src$="rock.png"]{filter:brightness(.42) contrast(1.25) drop-shadow(0 4px 5px
 .anyt{display:flex;flex-direction:row;gap:14px;align-items:flex-start;background:rgba(255,255,255,.75);border:1px solid #d8e9f4;border-radius:16px;padding:16px}
 .anyt>div{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;gap:6px}.anyt>div>b{font-size:18px;line-height:1.25}.anyt p{margin:0;font-size:15px;line-height:1.45}
 .anyi{flex:none;width:52px;height:52px;display:flex;align-items:center;justify-content:center}.anyi img,.anyi svg{display:block;width:52px;height:52px}
-.anyt>div>.btn{margin-top:8px}.anyt>div>.btn,.anyd>summary{min-width:200px;justify-content:center}
-.anyt details.anyd{width:100%;border:0;padding:8px 0 0;margin:0}.anyd>summary{list-style:none;display:inline-flex;cursor:pointer;background:#fff;color:#1b7fc0;border:1px solid #9fcdec}.anyd>summary::-webkit-details-marker{display:none}.anyd[open]>summary{background:#eaf6fd}
+.anyt>div>.btn{margin-top:8px}.anyt>div>.btn,.anyd>summary{min-width:240px;justify-content:center}
+.anyt details.anyd{width:100%;border:0;padding:8px 0 0;margin:0}.anyd>summary{list-style:none;display:inline-flex;cursor:pointer}.anyd>summary::-webkit-details-marker{display:none}.anyt .btn.anyb{background:#7c4ddb;border-color:#7c4ddb;color:#fff}.anyt .btn.anyb:hover{background:#6a3cc9;border-color:#6a3cc9}.anyb svg{transition:transform .2s}.anyd[open]>summary svg{transform:rotate(90deg)}
 .anyd .ist{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.45}
 #ovl.dsheet .anyw{margin:0 0 10px;background:none;border:0;padding:0}#ovl.dsheet .anyg{grid-template-columns:minmax(0,1fr)}
 @media (max-width:620px){.anyg{grid-template-columns:minmax(0,1fr)}.anyt{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:12px;row-gap:8px;align-items:center;padding:14px}.anyt>div{display:contents}.anyi,.anyi img,.anyi svg{width:44px;height:44px}.anyt>div>p,.anyt>div>.btn,.anyt details.anyd{grid-column:1/-1}.anyt>div>.btn,.anyd>summary{width:100%;min-width:0;margin-top:2px}.anyt details.anyd{padding-top:0}}
@@ -553,6 +553,7 @@ html[data-theme=dark] .hz4 .hzs{background:#fff;border-radius:14px}
 
 
 
+
 /* ===== тёмная тема (сгенерировано) ===== */
 html[data-theme=dark]{color-scheme:dark;--bg:#0f141c;--card:#171e2a;--fg:#e7ebf2;--line:#2a3343;--muted:#a7b1c1;--th-b:#1b2a4a;--pr-b:#12322c;--gm-b:#3a2019;--ok-b:#123227;--no-b:#3a1a1e;--amb-b:#3a2d12;--mark:#6b5a12;--g1:rgba(255,130,130,.045);--g2:rgba(255,130,130,.07);--sh:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6)}
 html[data-theme=dark] body::before{opacity:.8}
@@ -694,8 +695,6 @@ html[data-theme=dark] .opsvg,html[data-theme=dark] .chsvg,html[data-theme=dark] 
 :where(html[data-theme=dark]) /* «Курс всегда под рукой» */
 .anyw{background:linear-gradient(120deg,#19303e,#171e2a 62%);border-color:#2f546a}
 :where(html[data-theme=dark]) .anyt{background:rgba(18,24,33,.75);border:1px solid #2f536a}
-:where(html[data-theme=dark]) .anyd>summary{background:#171e2a;color:#88c8f1;border:1px solid #2f526a}
-:where(html[data-theme=dark]) .anyd[open]>summary{background:#19303e}
 :where(html[data-theme=dark]) /* живая картинка «операционный блок» */
 .oppic{background:#171e2a;border:1px solid #6a5e2f}
 :where(html[data-theme=dark]) .oppic>.opk{color:#ffdb7a}
@@ -1868,7 +1867,7 @@ function instSteps(){const ios=isIOS(),and=/Android/i.test(navigator.userAgent);
  return`<ul class="ist">${ios?I:and?A:I+A+'<li><b>Компьютер:</b> в Chrome или Edge нажми значок установки справа в адресной строке.</li>'}</ul>`}
 function anyH(sheet){const tg=inTG(),st=standalone(),th=tg&&tgHome();
  const tgT=tg?'':`<div class="anyt"><span class="anyi">${PLANE}</span><div><b>В Telegram</b><p class="meta">Учись прямо в Telegram — курс откроется как отдельное приложение.</p><a class="btn pri" href="${TG_APP}" target="_blank" rel="noopener">Открыть в Telegram${ic('arrow',18)}</a></div></div>`;
- const hmT=st||(tg&&!th)?'':`<div class="anyt"><span class="anyi"><img src="${IMG('phone')}" alt="" width="56" height="56"></span><div><b>На экран телефона</b><p class="meta">Значок курса встанет рядом с другими приложениями — одно касание, и ты на уроке.</p>${th?'<button class="btn pri anyhome" type="button">Добавить на экран</button>':instEv?'<button class="btn pri anyinst" type="button">Установить</button>':`<details class="anyd"${sheet?' open':''}><summary class="btn">Как добавить</summary>${instSteps()}</details>`}</div></div>`;
+ const hmT=st||(tg&&!th)?'':`<div class="anyt"><span class="anyi"><img src="${IMG('phone')}" alt="" width="56" height="56"></span><div><b>На экран телефона</b><p class="meta">Поставь курс на телефон как приложение: без браузера и ссылок — одно касание, и ты на уроке.</p>${th?`<button class="btn pri anyb anyhome" type="button">Добавить на телефон${ic('arrow',18)}</button>`:instEv?`<button class="btn pri anyb anyinst" type="button">Добавить на телефон${ic('arrow',18)}</button>`:`<details class="anyd"${sheet?' open':''}><summary class="btn pri anyb">Добавить на телефон${ic('arrow',18)}</summary>${instSteps()}</details>`}</div></div>`;
  if(!tgT&&!hmT)return'';
  return`<section class="${sheet?'':'card '}anyw"><h2>Курс всегда под рукой</h2><div class="anyg${tgT&&hmT?'':' one'}">${tgT}${hmT}</div></section>`}
 function anyInit(root,redo){const h=root.querySelector('.anyhome');if(h)h.onclick=()=>{const W=tgHome();if(W)try{W.addToHomeScreen()}catch(e){}};
