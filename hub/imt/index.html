@@ -2,112 +2,293 @@
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
 <title>Индекс массы тела</title>
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f6f7fb">
 <link rel="icon" href="../../icon-192.png">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>try{var t=localStorage.getItem("ekg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--tx:#161a23;--mu:#667085;--bd:#e4e7ee;--acc:#e5484d;--sh:0 1px 2px rgba(16,24,40,.06),0 6px 18px rgba(16,24,40,.06);--c1:#4c8dff;--c2:#2eb67d;--c3:#f0b429;--c4:#f08a29;--c5:#e5484d;--c6:#b3262f}
-:root[data-theme=dark]{--bg:#0f141c;--card:#171e29;--tx:#eef1f6;--mu:#97a1b3;--bd:#263041;--sh:none}
+:root{--bg:#f4f6fb;--card:#fff;--tx:#161a23;--mu:#667085;--bd:#e4e7ee;--soft:#f1f3f9;--acc:#2f6fed;--accx:#e8f0ff;--ok:#1b8f5e;
+--sh:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.07);
+--c0:#2f55c9;--c1:#4c8dff;--c2:#2eb67d;--c3:#f0b429;--c4:#f08a29;--c5:#e5484d;--c6:#b3262f}
+:root[data-theme=dark]{--c0:#5b86f5;--bg:#0f141c;--card:#171e29;--tx:#eef1f6;--mu:#97a1b3;--bd:#263041;--soft:#1e2735;--acc:#6b9bff;--accx:#1d2b49;--ok:#41c98f;--sh:none}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;padding:max(18px,env(safe-area-inset-top)) 16px max(24px,env(safe-area-inset-bottom))}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%;padding:max(16px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom))}
 .w{max-width:560px;margin:0 auto}
-a.back{display:inline-block;color:var(--mu);text-decoration:none;font-size:15px;margin:0 0 6px}
-h1{font-size:26px;line-height:1.2;margin:4px 0 16px;letter-spacing:-.01em}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:16px;box-shadow:var(--sh);margin:0 0 14px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{display:block;font-size:14px;color:var(--mu);margin:0 0 6px}
-input{width:100%;font:inherit;font-size:20px;font-weight:600;color:var(--tx);background:var(--bg);border:1.5px solid var(--bd);border-radius:14px;padding:12px 14px;outline:none}
-input:focus{border-color:var(--acc)}
-.err{color:var(--acc);font-size:14px;min-height:20px;margin:10px 0 0}
+button{font:inherit;color:inherit;cursor:pointer}
+a.back{display:inline-block;color:var(--mu);text-decoration:none;font-size:15px;margin:0 0 4px}
+h1{font-size:28px;line-height:1.15;margin:2px 0 14px;letter-spacing:-.02em}
+h2{font-size:13px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px}
+.tabs{display:flex;gap:4px;background:var(--soft);border-radius:16px;padding:4px;margin:0 0 14px}
+.tabs button{flex:1;border:0;background:transparent;border-radius:12px;padding:10px 8px;font-weight:600;color:var(--mu)}
+.tabs button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.tabs b{display:inline-block;min-width:20px;padding:0 6px;margin-left:4px;border-radius:10px;background:var(--accx);color:var(--acc);font-size:12px;line-height:20px}
+.tabs b:empty{display:none}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:16px;box-shadow:var(--sh);margin:0 0 14px}
+.sex{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sex button{display:flex;align-items:center;justify-content:center;gap:10px;border:2px solid var(--bd);background:var(--card);border-radius:16px;padding:14px 8px;font-weight:700;font-size:16px}
+.sex button svg{width:26px;height:26px;fill:currentColor}
+.sex button[aria-checked=true]{border-color:var(--acc);background:var(--accx);color:var(--acc)}
+.fld{margin:0 0 14px}
+.fld:last-child{margin:0}
+.fld label{display:block;font-size:14px;color:var(--mu);margin:0 0 6px}
+.step{display:flex;align-items:center;gap:10px}
+.step button{flex:none;width:48px;height:48px;border-radius:50%;border:1.5px solid var(--bd);background:var(--soft);font-size:26px;line-height:1;font-weight:500}
+.step button:active{background:var(--accx)}
+.inp{position:relative;flex:1}
+.inp input{width:100%;font:inherit;font-size:26px;font-weight:700;text-align:center;color:var(--tx);background:var(--soft);border:2px solid transparent;border-radius:16px;padding:10px 44px 10px 10px;outline:none}
+.inp input:focus{border-color:var(--acc);background:var(--card)}
+.inp i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--mu);font-size:15px;pointer-events:none}
+.hint{color:var(--mu);font-size:15px;text-align:center;padding:12px 0 0}
+.hint:empty{display:none}
+.hint.err{color:#d6343f}
 #res{display:none}
-.big{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.02em}
-.cat{font-size:18px;font-weight:700;margin:6px 0 14px}
-.bar{position:relative;display:flex;height:12px;border-radius:8px;overflow:hidden;margin:22px 0 6px}
-.bar i{display:block;height:100%}
-.pin{position:absolute;top:-8px;width:4px;height:28px;border-radius:2px;background:var(--tx);transform:translateX(-2px);box-shadow:0 0 0 2px var(--card)}
-.sc{position:relative;height:16px;font-size:12px;color:var(--mu)}
-.sc span{position:absolute;transform:translateX(-50%)}
-.sc span:first-child{transform:none}
-.sc span:last-child{transform:translateX(-100%)}
-.rng{margin:16px 0 0;font-size:15px}
-.rng b{white-space:nowrap}
+.gauge{display:block;width:100%;max-width:340px;margin:0 auto}
+.pill{display:table;margin:2px auto 8px;padding:6px 16px;border-radius:20px;font-weight:700;font-size:16px;color:#fff}
+.desc{text-align:center;color:var(--mu);font-size:15px;margin:0 0 14px}
+.rows{border-top:1px solid var(--bd)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--bd);font-size:15px}
+.row:last-child{border-bottom:0}
+.row span:first-child{color:var(--mu)}
+.row b{text-align:right;white-space:nowrap}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:15px;font-weight:700;font-size:17px;background:var(--acc);color:#fff;margin:14px 0 0}
+.btn:active{opacity:.85}
+.btn:disabled{background:var(--soft);color:var(--ok);cursor:default}
+.btn.ghost{background:var(--soft);color:var(--tx);font-weight:600;font-size:15px;padding:12px}
+.btn.del{background:transparent;color:#d6343f;font-weight:600;font-size:15px;padding:10px}
+details{border-top:1px solid var(--bd);padding:2px 0}
+details summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+details summary::-webkit-details-marker{display:none}
+details summary:after{content:"›";transform:rotate(90deg);color:var(--mu);font-size:20px;line-height:1}
+details[open] summary:after{transform:rotate(-90deg)}
 table{width:100%;border-collapse:collapse;font-size:14px}
-td{padding:7px 0;border-top:1px solid var(--bd)}
+td{padding:8px 0;border-top:1px solid var(--bd)}
 td:last-child{text-align:right;color:var(--mu);white-space:nowrap}
 tr.on td{font-weight:700;color:var(--tx)}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
-.note{color:var(--mu);font-size:13px;line-height:1.5}
+.note{color:var(--mu);font-size:13px;line-height:1.5;margin:0 0 10px}
+.li{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:12px 12px 12px 14px;margin:0 0 10px;box-shadow:var(--sh)}
+.li .bv{flex:none;min-width:58px;text-align:center;font-weight:800;font-size:20px}
+.li .mid{flex:1;min-width:0}
+.li .mid b{display:block;font-size:15px}
+.li .mid small{display:block;color:var(--mu);font-size:13px}
+.li .x{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--soft);color:var(--mu);font-size:18px}
+.empty{text-align:center;color:var(--mu);padding:26px 10px}
+.empty svg{width:56px;height:56px;margin:0 auto 8px;display:block;opacity:.5}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:11px 18px;border-radius:14px;font-size:15px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s}
+.toast.on{opacity:1}
 </style></head><body>
 <div class="w">
  <a class="back" id="bk" href="../">‹ Все приложения</a>
  <h1>Индекс массы тела</h1>
- <div class="card">
-  <div class="row">
-   <div><label for="h">Рост, см</label><input id="h" type="number" inputmode="decimal" min="100" max="250" placeholder="175"></div>
-   <div><label for="w">Вес, кг</label><input id="w" type="number" inputmode="decimal" min="20" max="400" placeholder="70"></div>
+ <div class="tabs" role="tablist">
+  <button id="tcalc" class="on" role="tab" aria-selected="true">Расчёт</button>
+  <button id="thist" role="tab" aria-selected="false">История<b id="hc"></b></button>
+ </div>
+
+ <section id="vcalc">
+  <div class="card">
+   <h2>Пол</h2>
+   <div class="sex" role="radiogroup" aria-label="Пол">
+    <button type="button" id="sm" role="radio" aria-checked="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M7 21v-8a5 5 0 0 1 10 0v8h-3v-5h-4v5z"/></svg>Мужчина</button>
+    <button type="button" id="sf" role="radio" aria-checked="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 9c-2.5 0-4 1.5-4.5 4L5 21h14l-2.5-8C16 10.500 14.500 9 12 9z"/></svg>Женщина</button>
+   </div>
   </div>
-  <div class="err" id="err"></div>
- </div>
- <div class="card" id="res">
-  <div class="big" id="v">0</div>
-  <div class="cat" id="c"></div>
-  <div class="bar" id="bar"></div>
-  <div class="sc" id="sc"></div>
-  <p class="rng" id="rng"></p>
- </div>
- <div class="card">
-  <table id="tb"></table>
- </div>
- <p class="note">Формула: масса (кг) ÷ рост (м) в квадрате. Классификация ВОЗ для взрослых от 18 лет. Не подходит для детей, беременных, спортсменов с большой мышечной массой и пожилых: там ИМТ может вводить в заблуждение, он не учитывает состав тела и распределение жира. Это справка, а не диагноз: решения принимает врач.</p>
+  <div class="card">
+   <div class="fld">
+    <label for="h">Рост</label>
+    <div class="step"><button type="button" id="hm" aria-label="Рост меньше">−</button><div class="inp"><input id="h" type="text" inputmode="decimal" autocomplete="off" placeholder="170"><i>см</i></div><button type="button" id="hp" aria-label="Рост больше">+</button></div>
+   </div>
+   <div class="fld">
+    <label for="w">Вес</label>
+    <div class="step"><button type="button" id="wm" aria-label="Вес меньше">−</button><div class="inp"><input id="w" type="text" inputmode="decimal" autocomplete="off" placeholder="70"><i>кг</i></div><button type="button" id="wp" aria-label="Вес больше">+</button></div>
+   </div>
+   <div class="hint" id="hint" aria-live="polite">Введи рост и вес</div>
+  </div>
+
+  <div id="res" aria-live="polite">
+   <div class="card">
+    <div id="gauge"></div>
+    <div class="pill" id="pill"></div>
+    <p class="desc" id="desc"></p>
+    <div class="rows" id="rows"></div>
+    <button class="btn" id="save" type="button">Сохранить в историю</button>
+   </div>
+  </div>
+
+  <div class="card">
+   <details>
+    <summary>Шкала ВОЗ</summary>
+    <table id="tb"></table>
+   </details>
+   <details>
+    <summary>Как считается и что не учитывает</summary>
+    <p class="note" style="margin-top:4px">ИМТ = масса (кг) ÷ рост (м) в квадрате. Для взрослых от 18 лет одинаков для мужчин и женщин: категории ВОЗ общие. Пол здесь нужен только для справочной формулы Девина (ориентир массы тела для роста).</p>
+    <p class="note">Не подходит детям, беременным, спортсменам с большой мышечной массой и пожилым: ИМТ не различает мышцы и жир и не показывает, где откладывается жир. Это справка, а не диагноз. Расчёты требуют проверки, решения принимает врач.</p>
+   </details>
+  </div>
+ </section>
+
+ <section id="vhist" hidden>
+  <div id="chartbox"></div>
+  <div id="list"></div>
+  <p class="note" id="hnote" style="text-align:center"></p>
+  <button class="btn del" id="clear" type="button" hidden>Очистить историю</button>
+ </section>
 </div>
+<div class="toast" id="toast"></div>
+
 <script>
 (function(){
- var C=[
-  {n:'Выраженный дефицит массы',a:0,b:16,c:'--c1'},
-  {n:'Недостаточная масса',a:16,b:18.5,c:'--c1'},
-  {n:'Норма',a:18.5,b:25,c:'--c2'},
-  {n:'Избыточная масса (предожирение)',a:25,b:30,c:'--c3'},
-  {n:'Ожирение I степени',a:30,b:35,c:'--c4'},
-  {n:'Ожирение II степени',a:35,b:40,c:'--c5'},
-  {n:'Ожирение III степени',a:40,b:99,c:'--c6'}];
  var $=function(i){return document.getElementById(i)};
  var fmt=function(x,d){return x.toFixed(d).replace('.',',')};
- var lo=15,hi=45;
- $('bar').innerHTML=C.map(function(k){var a=Math.max(k.a,lo),b=Math.min(k.b,hi);return'<i style="width:'+((b-a)/(hi-lo)*100)+'%;background:var('+k.c+')"></i>'}).join('')+'<span class="pin" id="pin"></span>';
- $('sc').innerHTML=[[15,'15'],[18.5,'18,5'],[25,'25'],[30,'30'],[35,'35'],[40,'40']].map(function(t){return'<span style="left:'+((t[0]-lo)/(hi-lo)*100)+'%">'+t[1]+'</span>'}).join('');
- var R=['меньше 16','16 – 18,4','18,5 – 24,9','25 – 29,9','30 – 34,9','35 – 39,9','40 и больше'];
- function table(on){$('tb').innerHTML=C.map(function(k,i){var r=R[i];
-  return'<tr'+(i===on?' class="on"':'')+'><td><span class="dot" style="background:var('+k.c+')"></span>'+k.n+'</td><td>'+r+'</td></tr>'}).join('')}
- table(-1);
+ var C=[
+  {n:'Выраженный дефицит массы',a:0,b:16,c:'--c0',r:'меньше 16',d:'Выраженный дефицит массы тела. Лучше обсудить это с врачом.'},
+  {n:'Недостаточная масса',a:16,b:18.5,c:'--c1',r:'16 – 18,4',d:'Масса тела ниже нормы для роста.'},
+  {n:'Норма',a:18.5,b:25,c:'--c2',r:'18,5 – 24,9',d:'Масса тела в пределах нормы для роста.'},
+  {n:'Избыточная масса',a:25,b:30,c:'--c3',r:'25 – 29,9',d:'Предожирение: масса выше нормы, но это ещё не ожирение.'},
+  {n:'Ожирение I степени',a:30,b:35,c:'--c4',r:'30 – 34,9',d:'Повышен риск сопутствующих заболеваний. Стоит обсудить с врачом.'},
+  {n:'Ожирение II степени',a:35,b:40,c:'--c5',r:'35 – 39,9',d:'Риск сопутствующих заболеваний высокий. Стоит обсудить с врачом.'},
+  {n:'Ожирение III степени',a:40,b:99,c:'--c6',r:'40 и больше',d:'Риск сопутствующих заболеваний очень высокий. Стоит обсудить с врачом.'}];
+ var LO=15,HI=40,KEY='hub-imt-history-v1',SKEY='hub-imt-sex';
+ var sex='',H=[],saved='';
+ function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+ function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+ try{var a=JSON.parse(lsGet(KEY)||'[]');if(Array.isArray(a))H=a.filter(function(e){return e&&e.h&&e.w&&e.b})}catch(e){}
+ function persist(){lsSet(KEY,JSON.stringify(H))}
+ function num(v){var x=parseFloat(String(v).replace(',','.'));return isFinite(x)?x:NaN}
+ function catI(b1){var i=0;for(var j=0;j<C.length;j++)if(b1>=C[j].a)i=j;return i}
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+ /* ---------- шкала-полукруг ---------- */
+ function ang(v){var t=(Math.min(Math.max(v,LO),HI)-LO)/(HI-LO);return Math.PI*(1-t)}
+ function pt(v,r){var a=ang(v);return[150+r*Math.cos(a),150-r*Math.sin(a)]}
+ function arc(a,b,r){var p=pt(a,r),q=pt(b,r);return'M'+p[0].toFixed(2)+' '+p[1].toFixed(2)+' A'+r+' '+r+' 0 0 1 '+q[0].toFixed(2)+' '+q[1].toFixed(2)}
+ function gauge(b,i){
+  var s='<svg class="gauge" viewBox="0 0 300 178" role="img" aria-label="ИМТ '+fmt(b,1)+'">';
+  C.forEach(function(k){var a=Math.max(k.a,LO)+0.12,e=Math.min(k.b,HI)-0.12;s+='<path d="'+arc(a,e,120)+'" fill="none" stroke="var('+k.c+')" stroke-width="20" stroke-linecap="butt"/>'});
+  [18.5,25,30,35].forEach(function(v){var p=pt(v,141);s+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" font-size="11" fill="var(--mu)">'+fmt(v,v%1?1:0)+'</text>'});
+  var m=pt(b,120);
+  s+='<circle cx="'+m[0].toFixed(2)+'" cy="'+m[1].toFixed(2)+'" r="14" fill="#fff" stroke="var('+C[i].c+')" stroke-width="6"/>';
+  s+='<text x="150" y="142" text-anchor="middle" font-size="48" font-weight="800" fill="var('+C[i].c+')">'+fmt(b,1)+'</text>';
+  s+='<text x="150" y="166" text-anchor="middle" font-size="13" fill="var(--mu)">ИМТ, кг/м²</text></svg>';
+  return s}
+
+ /* ---------- расчёт ---------- */
+ function read(){return{h:num($('h').value),w:num($('w').value)}}
+ function devine(h,s){var inch=h/2.54;if(!s||inch<60)return null;return(s==='m'?50:45.5)+2.3*(inch-60)}
  function calc(){
-  var h=parseFloat($('h').value.replace(',','.')),w=parseFloat($('w').value.replace(',','.')),e=$('err'),res=$('res');
-  e.textContent='';res.style.display='none';table(-1);
-  if(!$('h').value&&!$('w').value)return;
-  if(!h||!w)return;
-  if(h<100||h>250){e.textContent='Рост должен быть от 100 до 250 см';return}
-  if(w<20||w>400){e.textContent='Вес должен быть от 20 до 400 кг';return}
-  var m=h/100,b=w/(m*m),i=0;for(var j=0;j<C.length;j++)if(b>=C[j].a)i=j;
-  var k=C[i];res.style.display='block';
-  $('v').textContent=fmt(b,1);$('v').style.color='var('+k.c+')';
-  $('c').textContent=k.n;
-  var p=(Math.min(Math.max(b,lo),hi)-lo)/(hi-lo)*100;$('pin').style.left=p+'%';
-  var a=18.5*m*m,z=24.9*m*m;
-  $('rng').innerHTML='Нормальный вес для роста '+fmt(h,h%1?1:0)+' см: <b>'+fmt(a,1)+' – '+fmt(z,1)+' кг</b>.';
-  table(i);
+  var r=read(),hint=$('hint'),res=$('res');
+  hint.className='hint';res.style.display='none';rowsMark(-1);
+  var he=$('h').value.trim(),we=$('w').value.trim();
+  if(!he&&!we){hint.textContent='Введи рост и вес';return}
+  if(!(r.h>0)||!(r.w>0)){hint.textContent=!(r.h>0)?'Введи рост':'Введи вес';return}
+  if(r.h<100||r.h>250){hint.textContent='Рост должен быть от 100 до 250 см';hint.className='hint err';return}
+  if(r.w<20||r.w>400){hint.textContent='Вес должен быть от 20 до 400 кг';hint.className='hint err';return}
+  hint.textContent='';
+  var m=r.h/100,b=r.w/(m*m),b1=Math.round(b*10)/10,i=catI(b1),k=C[i];
+  $('gauge').innerHTML=gauge(b1,i);
+  var p=$('pill');p.textContent=k.n;p.style.background='var('+k.c+')';
+  $('desc').textContent=k.d;
+  var lo=18.5*m*m,hi=24.9*m*m,rows='';
+  rows+='<div class="row"><span>Нормальный вес для роста '+fmt(r.h,r.h%1?1:0)+' см</span><b>'+fmt(lo,1)+' – '+fmt(hi,1)+' кг</b></div>';
+  var diff=r.w>hi?'снизить на '+fmt(r.w-hi,1)+' кг':(r.w<lo?'набрать '+fmt(lo-r.w,1)+' кг':'');
+  rows+='<div class="row"><span>До нормы</span><b>'+(diff?'нужно '+diff:'в пределах нормы')+'</b></div>';
+  var dv=devine(r.h,sex);
+  if(dv)rows+='<div class="row"><span>Ориентир по формуле Девина ('+(sex==='m'?'муж.':'жен.')+')</span><b>≈ '+fmt(dv,1)+' кг</b></div>';
+  else rows+='<div class="row"><span>Формула Девина</span><b>'+(sex?'для роста от 152 см':'выбери пол')+'</b></div>';
+  $('rows').innerHTML=rows;
+  rowsMark(i);res.style.display='block';
+  var key=sex+'|'+r.h+'|'+r.w,btn=$('save');
+  if(H.length&&H[0].s===sex&&H[0].h===r.h&&H[0].w===r.w){btn.disabled=true;btn.textContent='Сохранено ✓'}
+  else{btn.disabled=false;btn.textContent='Сохранить в историю'}
+  cur={s:sex,h:r.h,w:r.w,b:b1};
  }
- $('h').addEventListener('input',calc);$('w').addEventListener('input',calc);
- var W=window.Telegram&&window.Telegram.WebApp;
- if(!W||!W.initData)return;
+ var cur=null;
+ function rowsMark(i){var t='';C.forEach(function(k,j){t+='<tr'+(j===i?' class="on"':'')+'><td><span class="dot" style="background:var('+k.c+')"></span>'+k.n+'</td><td>'+k.r+'</td></tr>'});$('tb').innerHTML=t}
+ rowsMark(-1);
+
+ /* ---------- ввод ---------- */
+ function clean(el){var v=el.value.replace(/[^0-9.,]/g,'');if(v!==el.value)el.value=v}
+ ['h','w'].forEach(function(id){$(id).addEventListener('input',function(){clean(this);calc()});$(id).addEventListener('keydown',function(e){if(e.key==='Enter')this.blur()})});
+ function bump(id,d,def,min,max){var el=$(id),v=num(el.value);if(!isFinite(v))v=def;else v=Math.round((v+d)*10)/10;v=Math.min(Math.max(v,min),max);el.value=String(v).replace('.',',');calc();tick()}
+ $('hm').onclick=function(){bump('h',-1,170,100,250)};
+ $('hp').onclick=function(){bump('h',1,170,100,250)};
+ $('wm').onclick=function(){bump('w',-0.5,70,20,400)};
+ $('wp').onclick=function(){bump('w',0.5,70,20,400)};
+ function setSex(s,quiet){sex=s;$('sm').setAttribute('aria-checked',s==='m');$('sf').setAttribute('aria-checked',s==='f');lsSet(SKEY,s);if(!quiet)tick();calc()}
+ $('sm').onclick=function(){setSex('m')};
+ $('sf').onclick=function(){setSex('f')};
+ var s0=lsGet(SKEY);if(s0==='m'||s0==='f'){sex=s0;$('sm').setAttribute('aria-checked',s0==='m');$('sf').setAttribute('aria-checked',s0==='f')}
+
+ /* ---------- история ---------- */
+ var tt;function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){e.classList.remove('on')},1800)}
+ $('save').onclick=function(){
+  if(!cur)return;
+  if(H.length&&H[0].s===cur.s&&H[0].h===cur.h&&H[0].w===cur.w){return}
+  H.unshift({t:Date.now(),s:cur.s,h:cur.h,w:cur.w,b:cur.b});if(H.length>60)H.length=60;
+  persist();this.disabled=true;this.textContent='Сохранено ✓';toast('Сохранено в историю');counter();ok()};
+ function counter(){$('hc').textContent=H.length||''}
+ counter();
+ function dstr(t){try{return new Date(t).toLocaleString('ru-RU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}catch(e){return''}}
+ function dshort(t){try{return new Date(t).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})}catch(e){return''}}
+ function chart(){
+  if(H.length<2)return'';
+  var d=H.slice(0,12).reverse(),W=320,Ht=150,pl=30,pr=14,pt0=14,pb=24,y0=14,y1=42;
+  var X=function(i){return pl+(W-pl-pr)*(i/(d.length-1))},Y=function(v){v=Math.min(Math.max(v,y0),y1);return pt0+(Ht-pt0-pb)*(1-(v-y0)/(y1-y0))};
+  var s='<div class="card"><h2>Динамика ИМТ</h2><svg viewBox="0 0 '+W+' '+Ht+'" width="100%" role="img" aria-label="График ИМТ">';
+  s+='<rect x="'+pl+'" y="'+Y(25).toFixed(1)+'" width="'+(W-pl-pr)+'" height="'+(Y(18.5)-Y(25)).toFixed(1)+'" fill="var(--c2)" opacity=".16" rx="6"/>';
+  [20,30,40].forEach(function(v){s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'" stroke="var(--bd)" stroke-dasharray="3 4"/><text x="'+(pl-6)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="var(--mu)">'+v+'</text>'});
+  s+='<polyline fill="none" stroke="var(--acc)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="'+d.map(function(e,i){return X(i).toFixed(1)+','+Y(e.b).toFixed(1)}).join(' ')+'"/>';
+  d.forEach(function(e,i){s+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(e.b).toFixed(1)+'" r="5" fill="var('+C[catI(e.b)].c+')" stroke="var(--card)" stroke-width="2"/>'});
+  var sameDay=dshort(d[0].t)===dshort(d[d.length-1].t),lab=function(t){return sameDay?new Date(t).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}):dshort(t)};
+  s+='<text x="'+pl+'" y="'+(Ht-6)+'" font-size="11" fill="var(--mu)">'+lab(d[0].t)+'</text><text x="'+(W-pr)+'" y="'+(Ht-6)+'" text-anchor="end" font-size="11" fill="var(--mu)">'+lab(d[d.length-1].t)+'</text></svg>';
+  var df=d[d.length-1].b-d[0].b;
+  s+='<p class="note" style="margin:6px 0 0">Зелёная полоса — норма (18,5–24,9). За период: <b>'+(df>0?'+':df<0?'−':'')+fmt(Math.abs(df),1)+'</b>.</p></div>';
+  return s}
+ function renderHist(){
+  counter();
+  $('chartbox').innerHTML=chart();
+  var l=$('list');
+  if(!H.length){l.innerHTML='<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Пока пусто.<br>Рассчитай ИМТ и нажми «Сохранить в историю».</div>';$('clear').hidden=true;$('hnote').textContent='';return}
+  var s='';H.forEach(function(e,i){var k=C[catI(e.b)];
+   s+='<div class="li" data-i="'+i+'" role="button" tabindex="0"><div class="bv" style="color:var('+k.c+')">'+fmt(e.b,1)+'</div><div class="mid"><b>'+esc(k.n)+'</b><small>'+(e.s==='m'?'Муж. · ':e.s==='f'?'Жен. · ':'')+fmt(e.h,e.h%1?1:0)+' см · '+fmt(e.w,e.w%1?1:0)+' кг</small><small>'+dstr(e.t)+'</small></div><button class="x" type="button" data-d="'+i+'" aria-label="Удалить запись">✕</button></div>'});
+  l.innerHTML=s;$('clear').hidden=false;$('hnote').textContent='Нажми на запись, чтобы открыть её в расчёте. История хранится только на этом устройстве.'}
+ $('list').addEventListener('click',function(ev){
+  var x=ev.target.closest('[data-d]');
+  if(x){ev.stopPropagation();H.splice(+x.dataset.d,1);persist();renderHist();calc();return}
+  var li=ev.target.closest('.li');if(!li)return;var e=H[+li.dataset.i];if(!e)return;
+  $('h').value=String(e.h).replace('.',',');$('w').value=String(e.w).replace('.',',');setSex(e.s||'',true);show('calc');window.scrollTo(0,0)});
+ $('list').addEventListener('keydown',function(ev){if((ev.key==='Enter'||ev.key===' ')&&ev.target.classList.contains('li')){ev.preventDefault();ev.target.click()}});
+ $('clear').onclick=function(){
+  var go=function(){H=[];persist();renderHist();calc()};
+  var W=window.Telegram&&window.Telegram.WebApp;
+  if(W&&W.initData&&W.showConfirm){try{W.showConfirm('Удалить всю историю? Это нельзя отменить.',function(y){if(y)go()});return}catch(e){}}
+  if(confirm('Удалить всю историю? Это нельзя отменить.'))go()};
+ function show(v){
+  var c=v==='calc';$('vcalc').hidden=!c;$('vhist').hidden=c;
+  $('tcalc').classList.toggle('on',c);$('thist').classList.toggle('on',!c);
+  $('tcalc').setAttribute('aria-selected',c);$('thist').setAttribute('aria-selected',!c);
+  if(!c)renderHist()}
+ $('tcalc').onclick=function(){show('calc')};
+ $('thist').onclick=function(){show('hist')};
+
+ /* ---------- Telegram ---------- */
+ var W=window.Telegram&&window.Telegram.WebApp,hasTg=!!(W&&W.initData);
  function sf(f){try{return f()}catch(e){}}
+ function tick(){if(hasTg)sf(function(){W.HapticFeedback.selectionChanged()})}
+ function ok(){if(hasTg)sf(function(){W.HapticFeedback.notificationOccurred('success')})}
+ calc();
+ if(!hasTg)return;
  sf(function(){W.ready()});sf(function(){W.expand()});sf(function(){W.disableVerticalSwipes()});
- function theme(){var t;try{t=localStorage.getItem('ekg-theme')}catch(e){}t=t||W.colorScheme||'light';document.documentElement.dataset.theme=t;
-  var c=t==='dark'?'#0f141c':'#f6f7fb';sf(function(){W.setHeaderColor(c)});sf(function(){W.setBackgroundColor(c)});sf(function(){W.setBottomBarColor(c)})}
+ function theme(){var t=lsGet('ekg-theme')||W.colorScheme||'light';document.documentElement.dataset.theme=t;
+  var c=t==='dark'?'#0f141c':'#f4f6fb';sf(function(){W.setHeaderColor(c)});sf(function(){W.setBackgroundColor(c)});sf(function(){W.setBottomBarColor(c)})}
  theme();W.onEvent('themeChanged',theme);
  $('bk').style.display='none';
- sf(function(){W.BackButton.show();W.BackButton.onClick(function(){location.href='../'})});
+ sf(function(){W.BackButton.show();W.BackButton.onClick(function(){if(!$('vhist').hidden){show('calc')}else location.href='../'})});
 })();
 </script>
 </body></html>
