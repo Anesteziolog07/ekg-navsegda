@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<title>КЩС: газы крови</title>
+<meta name="theme-color" content="#f4f6fb">
+<link rel="icon" href="../../icon-192.png">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>try{var t=localStorage.getItem("ekg-theme");document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#161a23;--mu:#667085;--bd:#e4e7ee;--soft:#f1f3f9;--acc:#2f6fed;--accx:#e8f0ff;
+--ok:#1b8f5e;--okx:#e3f6ec;--warn:#b7791f;--warnx:#fdf3dc;--bad:#d6343f;--badx:#fde8ea;--inf:#2f6fed;--infx:#e8f0ff;
+--sh:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.07)}
+:root[data-theme=dark]{--bg:#0f141c;--card:#171e29;--tx:#eef1f6;--mu:#97a1b3;--bd:#263041;--soft:#1e2735;--acc:#6b9bff;--accx:#1d2b49;
+--ok:#41c98f;--okx:#15302a;--warn:#e8b04a;--warnx:#3a2f17;--bad:#ff6b76;--badx:#3d1d22;--inf:#6b9bff;--infx:#1d2b49;--sh:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%;padding:max(16px,env(safe-area-inset-top)) 16px max(32px,env(safe-area-inset-bottom))}
+.w{max-width:600px;margin:0 auto}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--acc)}
+a.back{display:inline-block;color:var(--mu);text-decoration:none;font-size:15px;margin:0 0 4px}
+h1{font-size:28px;line-height:1.15;margin:2px 0 6px;letter-spacing:-.02em}
+.sub{color:var(--mu);margin:0 0 14px;font-size:15px}
+h2{font-size:13px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px}
+h3{font-size:17px;margin:18px 0 6px}
+.tabs{display:flex;gap:4px;background:var(--soft);border-radius:16px;padding:4px;margin:0 0 14px}
+.tabs button{flex:1;border:0;background:transparent;border-radius:12px;padding:10px 8px;font-weight:600;color:var(--mu)}
+.tabs button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:16px;box-shadow:var(--sh);margin:0 0 14px}
+.seg{display:flex;gap:4px;background:var(--soft);border-radius:14px;padding:3px}
+.seg button{flex:1;border:0;background:transparent;border-radius:11px;padding:9px 6px;font-weight:600;font-size:14px;color:var(--mu)}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{margin:0 0 12px}
+.fld label,.lab{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px;color:var(--mu);margin:0 0 5px}
+.lab small{font-size:12px;opacity:.9}
+.inp{position:relative}
+.inp input{width:100%;font:inherit;font-size:22px;font-weight:700;color:var(--tx);background:var(--soft);border:2px solid transparent;border-radius:14px;padding:10px 54px 10px 14px;outline:none}
+.inp input:focus{border-color:var(--acc);background:var(--card)}
+.inp input.err{border-color:var(--bad)}
+.inp i{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--mu);font-size:13px;pointer-events:none}
+.hint{font-size:14px;color:var(--mu);margin:2px 0 0}
+.hint.err{color:var(--bad)}
+.ex{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0}
+.chip{border:1px solid var(--bd);background:var(--soft);border-radius:20px;padding:7px 12px;font-size:13.5px;font-weight:600}
+.chip:active{background:var(--accx)}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:13px;font-weight:700;font-size:16px;background:var(--acc);color:#fff;margin:10px 0 0}
+.btn.ghost{background:var(--soft);color:var(--tx);font-weight:600;font-size:15px}
+details{border-top:1px solid var(--bd)}
+details:first-of-type{border-top:0}
+details>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;align-items:center;gap:10px}
+details>summary::-webkit-details-marker{display:none}
+details>summary:after{content:"›";margin-left:auto;transform:rotate(90deg);color:var(--mu);font-size:20px;line-height:1}
+details[open]>summary:after{transform:rotate(-90deg)}
+.verdict{border-radius:22px;padding:16px;margin:0 0 14px;border:1px solid}
+.verdict.ok{background:var(--okx);border-color:var(--ok)}
+.verdict.warn{background:var(--warnx);border-color:var(--warn)}
+.verdict.bad{background:var(--badx);border-color:var(--bad)}
+.verdict .k{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.verdict.ok .k{color:var(--ok)}.verdict.warn .k{color:var(--warn)}.verdict.bad .k{color:var(--bad)}
+.verdict .t{font-size:20px;font-weight:800;line-height:1.25;margin:4px 0 10px;letter-spacing:-.01em}
+.verdict ul{margin:0;padding:0;list-style:none}
+.verdict li{display:flex;gap:9px;padding:4px 0;font-size:15px}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;margin-top:8px;background:var(--inf)}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.warns{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:var(--warnx);color:var(--tx);font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}
+.tile{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px 6px;text-align:center}
+.tile b{display:block;font-size:19px;line-height:1.1}
+.tile span{display:block;font-size:12px;color:var(--mu);margin-top:2px}
+.tile em{display:block;font-style:normal;font-size:11.5px;font-weight:700;margin-top:4px}
+.tile.ok em{color:var(--ok)}.tile.bad em{color:var(--bad)}.tile.warn em{color:var(--warn)}.tile.nil em{color:var(--mu)}
+.st>summary .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--infx);color:var(--inf)}
+.st.ok>summary .n{background:var(--okx);color:var(--ok)}.st.warn>summary .n{background:var(--warnx);color:var(--warn)}.st.bad>summary .n{background:var(--badx);color:var(--bad)}
+.sb{padding:0 0 14px 36px;font-size:15px}
+.sb p{margin:0 0 8px}
+.sb .what{color:var(--mu)}
+.calc{background:var(--soft);border-radius:12px;padding:9px 11px;font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word;margin:0 0 8px}
+.sb .res{font-weight:600}
+.sb .note{font-size:13px;color:var(--mu)}
+.causes ul{margin:4px 0 8px;padding-left:20px;font-size:14.5px}
+.cap{font-size:13px;color:var(--mu);margin:4px 0 0}
+.disc{font-size:13px;color:var(--mu);line-height:1.5;margin:0 0 10px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px}
+th,td{padding:7px 6px;border-top:1px solid var(--bd);text-align:left;vertical-align:top}
+th{font-size:12.5px;color:var(--mu);font-weight:700}
+.ref p{margin:0 0 8px;font-size:15px}
+.ref .b{font-weight:700}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:11px 18px;border-radius:14px;font-size:15px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s}
+.toast.on{opacity:1}
+@media(max-width:380px){.tiles{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="w">
+ <a class="back" id="bk" href="../">‹ Все приложения</a>
+ <h1>КЩС: газы крови</h1>
+ <p class="sub">Кислотно-щелочное состояние по шагам с объяснением каждого числа.</p>
+ <div class="tabs" role="tablist">
+  <button id="tcalc" class="on" role="tab" aria-selected="true">Расчёт</button>
+  <button id="tref" role="tab" aria-selected="false">Справочник</button>
+ </div>
+
+ <section id="vcalc">
+  <div class="card">
+   <h2>Проба</h2>
+   <div class="seg" id="segS"><button type="button" data-s="a" class="on">Артериальная</button><button type="button" data-s="v">Венозная</button></div>
+   <p class="hint" id="sHint">Лучший вариант: артериальная кровь. По венозной компенсация не оценивается.</p>
+  </div>
+
+  <div class="card">
+   <h2>Газы крови</h2>
+   <div class="fld"><div class="lab"><span>pH</span><small>норма 7,35–7,45</small></div><div class="inp"><input id="ph" type="text" inputmode="decimal" autocomplete="off" placeholder="7,40"></div></div>
+   <div class="fld"><div class="lab"><span>pCO₂ <small>норма <span id="pcN">35–45</span></small></span><div class="seg" id="segP" style="width:150px"><button type="button" data-u="mmhg" class="on">мм рт.</button><button type="button" data-u="kpa">кПа</button></div></div><div class="inp"><input id="pco2" type="text" inputmode="decimal" autocomplete="off" placeholder="40"><i id="pcU">мм рт.</i></div></div>
+   <div class="fld" style="margin:0"><div class="lab"><span>HCO₃⁻ (бикарбонат)</span><small>норма 22–26</small></div><div class="inp"><input id="hco3" type="text" inputmode="decimal" autocomplete="off" placeholder="24"><i>ммоль/л</i></div></div>
+  </div>
+
+  <div class="card">
+   <h2>Электролиты и АР <small style="text-transform:none;letter-spacing:0;font-weight:500">(по желанию)</small></h2>
+   <div class="grid">
+    <div class="fld"><div class="lab"><span>Na⁺</span></div><div class="inp"><input id="na" type="text" inputmode="decimal" autocomplete="off" placeholder="140"><i>ммоль/л</i></div></div>
+    <div class="fld"><div class="lab"><span>Cl⁻</span></div><div class="inp"><input id="cl" type="text" inputmode="decimal" autocomplete="off" placeholder="104"><i>ммоль/л</i></div></div>
+   </div>
+   <div class="fld"><div class="lab"><span>Альбумин</span><div class="seg" id="segA" style="width:118px"><button type="button" data-u="gl" class="on">г/л</button><button type="button" data-u="gdl">г/дл</button></div></div><div class="inp"><input id="alb" type="text" inputmode="decimal" autocomplete="off" placeholder="40"><i id="albU">г/л</i></div></div>
+   <div class="fld" style="margin:0"><div class="lab"><span>Лактат</span></div><div class="inp"><input id="lac" type="text" inputmode="decimal" autocomplete="off" placeholder="1,0"><i>ммоль/л</i></div></div>
+   <p class="hint" id="agHint">Na⁺ и Cl⁻ нужны для анионного разрыва. Альбумин вносит поправку на низкий белок, лактат показывает, какая часть разрыва им объясняется.</p>
+   <details style="margin-top:8px"><summary>Настройки</summary>
+    <div class="fld" style="margin-top:6px"><div class="lab"><span>Референс АР вашей лаборатории</span></div><div class="inp"><input id="agref" type="text" inputmode="decimal" autocomplete="off" placeholder="12"><i>ммоль/л</i></div><p class="hint">По умолчанию 12 (Na − Cl − HCO₃⁻, без калия). Используется как порог «повышен» и как норма в дельте.</p></div>
+   </details>
+  </div>
+
+  <div class="card">
+   <h2>Примеры для обучения</h2>
+   <div class="ex" id="exs"></div>
+   <button class="btn ghost" id="clr" type="button">Очистить всё</button>
+  </div>
+
+  <div id="msg" class="hint" style="text-align:center;margin:0 0 14px"></div>
+
+  <div id="res" hidden>
+   <div class="verdict" id="verd"></div>
+   <div class="tiles" id="tiles"></div>
+   <div class="card" style="padding:6px 16px 4px">
+    <h2 style="margin:12px 0 0">Как получен вывод</h2>
+    <p class="cap" style="margin:2px 0 6px">Нажми на шаг, чтобы увидеть, что он проверяет, формулу и расчёт.</p>
+    <div id="steps"></div>
+   </div>
+   <div class="card causes" id="causesCard" hidden>
+    <details><summary>Возможные причины (справка, не диагноз)</summary><div id="causes"></div></details>
+   </div>
+   <button class="btn ghost" id="copy" type="button">Скопировать итог</button>
+  </div>
+
+  <p class="disc" style="margin-top:14px">Образовательная справка для врача, не заменяет клиническое суждение, протоколы учреждения и лабораторные референсы. Формулы приближённые, у источников есть расхождения, расчёты требуют проверки. Данные не сохраняются и никуда не отправляются: расчёт идёт на этом устройстве. Не вводи данные, по которым можно узнать пациента.</p>
+ </section>
+
+ <section id="vref" hidden>
+  <div class="card ref">
+   <details open><summary>Что за что отвечает</summary>
+    <p><span class="b">pH</span> — кислотность крови (отрицательный логарифм концентрации H⁺). Артериальная норма 7,35–7,45, то есть H⁺ 35–45 нмоль/л. Ниже — ацидемия, выше — алкалемия. «Ацидоз/алкалоз» — процессы, «-емия» — итоговое состояние крови.</p>
+    <p><span class="b">pCO₂</span> — давление растворённого CO₂, показатель дыхания (респираторный компонент). Норма 35–45 мм рт. ст. (4,7–6,0 кПа); 1 кПа = 7,5 мм рт. ст. Повышен при недостаточной вентиляции (респираторный ацидоз), снижен при избыточной (респираторный алкалоз).</p>
+    <p><span class="b">HCO₃⁻</span> — бикарбонат, главный буфер, метаболический компонент (почки и обмен). Норма 22–26 ммоль/л (ммоль/л и мэкв/л совпадают). Низкий — метаболический ацидоз или компенсация респираторного алкалоза, высокий — метаболический алкалоз или компенсация респираторного ацидоза. Газоанализатор вычисляет его из pH и pCO₂; «общий CO₂» в биохимии на 1–2 ммоль/л выше.</p>
+    <p><span class="b">BE</span> (избыток оснований) — метаболический компонент «очищенный» от дыхания: сколько кислоты или основания нужно добавить, чтобы при pCO₂ 40 вернуть pH 7,40. Норма −2…+2 ммоль/л.</p>
+    <p><span class="b">Анионный разрыв (АР)</span> = Na⁺ − (Cl⁻ + HCO₃⁻). Косвенно показывает неизмеренные анионы (лактат, кетоны, фосфаты, сульфаты, токсины). Референс зависит от лаборатории и анализатора: у современных ионоселективных обычно от 3–11 до 10–14 (без калия), у старых методов шире. Если ваша лаборатория считает АР с калием, задайте её референс в настройках.</p>
+    <p><span class="b">Альбумин</span> — основной «неизмеренный анион» плазмы. При его падении АР занижен: поправка +0,25 ммоль/л на каждый г/л ниже 40 (Figge, 1998). В части работ нормой принято 44 г/л, а сама поправка обсуждается.</p>
+    <p><span class="b">Лактат</span> — анион, который часто объясняет повышенный АР (норма до 2 ммоль/л).</p>
+    <p><span class="b">Дельта-отношение</span> = (АР − 12) ÷ (24 − HCO₃⁻). Сравнивает, на сколько вырос АР и на сколько упал HCO₃⁻. Ловит скрытое второе нарушение.</p>
+   </details>
+   <details><summary>Алгоритм по шагам</summary>
+    <p>1) Проверить, что pH, pCO₂ и HCO₃⁻ согласуются между собой (уравнение Хендерсона–Хассельбальха). 2) Оценить pH: ацидемия или алкалемия. 3) Найти первичное нарушение — то, чей сдвиг совпадает по направлению с pH. 4) Проверить компенсацию по формуле: если измеренное значение не совпало, есть второе нарушение. 5) При метаболическом ацидозе или подозрении на него рассчитать АР с поправкой на альбумин. 6) При повышенном АР посчитать дельту: нет ли скрытого алкалоза или ацидоза с нормальным АР. 7) Сопоставить с BE и клиникой.</p>
+   </details>
+   <details><summary>Формулы компенсации, принятые здесь</summary>
+    <table>
+     <tr><th>Нарушение</th><th>Ожидаемая реакция</th></tr>
+     <tr><td>Метаболический ацидоз</td><td>pCO₂ = 1,5 × HCO₃⁻ + 8 ± 2 мм рт. ст. (Уинтерс)</td></tr>
+     <tr><td>Метаболический алкалоз</td><td>pCO₂ = 0,7 × HCO₃⁻ + 20 ± 5 мм рт. ст.</td></tr>
+     <tr><td>Респираторный ацидоз, острый</td><td>HCO₃⁻ растёт на 1–2 ммоль/л на каждые 10 мм рт. ст. pCO₂ выше 40</td></tr>
+     <tr><td>Респираторный ацидоз, хронический</td><td>HCO₃⁻ растёт на 3–5 ммоль/л на каждые 10 мм рт. ст. (почки: 2–4 суток)</td></tr>
+     <tr><td>Респираторный алкалоз, острый</td><td>HCO₃⁻ падает на 1–2 ммоль/л на каждые 10 мм рт. ст. pCO₂ ниже 40 (не ниже ~18)</td></tr>
+     <tr><td>Респираторный алкалоз, хронический</td><td>HCO₃⁻ падает на 4–5 ммоль/л на каждые 10 мм рт. ст. (не ниже 12–15)</td></tr>
+    </table>
+    <p class="cap">Для респираторных нарушений к полосам добавлен допуск ±2 ммоль/л на HCO₃⁻ (погрешность измерения и разброс правил). Если измерение выходит за любую из полос, программа сообщает о добавочном метаболическом нарушении. Если отклонение pCO₂ меньше 10 мм рт. ст., острое и хроническое различить нельзя. Для метаболических нарушений выход pCO₂ за расчётный диапазон не более чем на 1 мм рт. ст. считается границей, а не добавочным нарушением (условность программы).</p>
+   </details>
+   <details><summary>Дельта-отношение: как читать</summary>
+    <table>
+     <tr><th>Значение</th><th>Смысл</th></tr>
+     <tr><td>&lt; 0,4</td><td>преобладает ацидоз с нормальным АР (гиперхлоремический)</td></tr>
+     <tr><td>0,4–0,8</td><td>сочетание ацидоза с высоким и с нормальным АР (бывает и при почечной недостаточности)</td></tr>
+     <tr><td>0,8–1,0</td><td>пограничная зона: чаще чистый ацидоз с высоким АР</td></tr>
+     <tr><td>1–2</td><td>«чистый» ацидоз с высоким АР (лактат в среднем ~1,6, кетоацидоз ближе к 1)</td></tr>
+     <tr><td>&gt; 2</td><td>сопутствующий метаболический алкалоз или хронический респираторный ацидоз</td></tr>
+    </table>
+    <p class="cap">Если HCO₃⁻ не снижен, а АР повышен, применяется поправка: HCO₃⁻ + (АР − 12). Выше 28 — скрытый метаболический алкалоз, ниже 22 — ацидоз с нормальным АР.</p>
+   </details>
+   <details><summary>Чего этот калькулятор не делает</summary>
+    <p>Не ставит диагноз и не даёт лечебных рекомендаций. Не учитывает температуру, гемоглобин, смесь газов и вентиляцию. Не разбирает расширенную модель Стюарта (сильная разность ионов). Для венозной пробы не оценивает компенсацию: формулы выведены для артериальной крови (венозный pCO₂ выше примерно на 6 мм рт. ст., pH ниже примерно на 0,04). Не знает вашего референса АР, пока вы его не зададите. Все формулы приближённые, компенсация у разных людей варьирует.</p>
+   </details>
+   <details><summary>Источники</summary>
+    <p class="cap" style="margin-top:0">Значения сверены по нескольким источникам; где они расходятся, взят диапазон и это отмечено.</p>
+    <p><a href="https://www.merckmanuals.com/professional/nephrology/acid-base-regulation-and-disorders/acid-base-disorders">Merck Manual Professional: Acid-Base Disorders</a></p>
+    <p><a href="https://litfl.com/metabolic-alkalosis/">LITFL: Metabolic alkalosis</a>, <a href="https://litfl.com/respiratory-alkalosis/">Respiratory alkalosis</a>, <a href="https://litfl.com/delta-ratio/">Delta ratio</a></p>
+    <p><a href="https://med.libretexts.org/Bookshelves/Anatomy_and_Physiology/Book%3A_Acid-base_Physiology_(Brandis)/04%3A_Respiratory_Acidosis/4.05%3A_Compensation">Brandis, Acid-base physiology: компенсация при респираторном ацидозе</a></p>
+    <p><a href="https://derangedphysiology.com/main/index.php/cicm-primary-exam/acid-base-physiology/Chapter-704/anion-gap-its-merits-and-demerits">Deranged Physiology: Anion gap</a></p>
+    <p><a href="https://pubmed.ncbi.nlm.nih.gov/9824071/">Figge J. и др. Anion gap and hypoalbuminemia. Crit Care Med 1998</a></p>
+    <p><a href="https://pubmed.ncbi.nlm.nih.gov/2240729/">Wrenn K. The delta (delta) gap: an approach to mixed acid-base disorders. Ann Emerg Med 1990</a></p>
+    <p><a href="https://acutecaretesting.org/en/articles/central-venous-blood-gas-analysis">Acute Care Testing: венозные газы крови</a></p>
+    <p><a href="https://www.siggaard-andersen.dk/OsaAnthologyOnBE.htm">Siggaard-Andersen: Base excess (антология)</a></p>
+    <p class="cap">Albert M.S., Dell R.B., Winters R.W. Ann Intern Med 1967;66:312–322 (формула Уинтерса). Mehta A.N., Emmett J.B., Emmett M. GOLD MARK. Lancet 2008;372:892 (причины ацидоза с высоким АР).</p>
+   </details>
+  </div>
+ </section>
+</div>
+<div class="toast" id="toast"></div>
+<noscript><p style="padding:16px">Для работы калькулятора нужен JavaScript.</p></noscript>
+<script src="engine.js"></script>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)},K=window.KSH,fmt=K.fmt;
+ var PK='hub-kshs-prefs';
+ var P={s:'a',pu:'mmhg',au:'gl',ag:''};
+ try{var o=JSON.parse(localStorage.getItem(PK)||'{}');['s','pu','au','ag'].forEach(function(k){if(typeof o[k]==='string')P[k]=o[k]})}catch(e){}
+ function saveP(){try{localStorage.setItem(PK,JSON.stringify(P))}catch(e){}}
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function num(v){v=String(v).trim().replace(',','.');if(v===''||!/^-?\d*\.?\d*$/.test(v))return v===''?null:NaN;var x=parseFloat(v);return isFinite(x)?x:NaN}
+ var IDS=['ph','pco2','hco3','na','cl','alb','lac','agref'];
+ IDS.forEach(function(id){$(id).addEventListener('input',function(){var v=this.value.replace(/[^0-9.,]/g,'');if(v!==this.value)this.value=v;calc()});$(id).addEventListener('keydown',function(e){if(e.key==='Enter')this.blur()})});
+
+ /* ---- переключатели ---- */
+ function seg(id,key,after){var el=$(id);el.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var v=b.dataset.s||b.dataset.u;if(P[key]===v)return;var old=P[key];P[key]=v;saveP();paint();if(after)after(old,v);calc()})}
+ function conv(id,mul,dec){var el=$(id),x=num(el.value);if(x!==null&&!isNaN(x))el.value=fmt(x*mul,dec).replace('−','-')}
+ seg('segS','s');
+ seg('segP','pu',function(o,n){conv('pco2',n==='kpa'?1/7.50062:7.50062,n==='kpa'?2:0)});
+ seg('segA','au',function(o,n){conv('alb',n==='gdl'?0.1:10,n==='gdl'?2:0)});
+ function paint(){
+  [['segS','s'],['segP','pu'],['segA','au']].forEach(function(p){[].forEach.call($(p[0]).children,function(b){b.classList.toggle('on',(b.dataset.s||b.dataset.u)===P[p[1]])})});
+  var v=P.s==='v';
+  $('sHint').textContent=v?'Венозная кровь: нормы pH 7,31–7,41, pCO₂ 41–51 мм рт. ст. Компенсацию по формулам оценить нельзя, но АР, дельта и BE считаются.':'Лучший вариант: артериальная кровь. По венозной компенсация не оценивается.';
+  $('pcU').textContent=P.pu==='kpa'?'кПа':'мм рт.';
+  $('pco2').placeholder=P.pu==='kpa'?'5,3':'40';
+  $('pcN').textContent=v?(P.pu==='kpa'?'5,5–6,8':'41–51'):(P.pu==='kpa'?'4,7–6,0':'35–45');
+  $('albU').textContent=P.au==='gdl'?'г/дл':'г/л';$('alb').placeholder=P.au==='gdl'?'4,0':'40';
+  document.querySelector('#ph').closest('.fld').querySelector('small').textContent=v?'норма 7,31–7,41':'норма 7,35–7,45';
+ }
+ $('agref').value=P.ag;
+ $('agref').addEventListener('input',function(){P.ag=this.value;saveP()});
+
+ /* ---- чтение формы ---- */
+ function read(){
+  var V={};IDS.forEach(function(id){V[id]=num($(id).value)});
+  var inp={sample:P.s,ph:V.ph,pco2:(V.pco2!==null&&!isNaN(V.pco2))?(P.pu==='kpa'?K.kpaToMmHg(V.pco2):V.pco2):V.pco2,hco3:V.hco3,na:V.na,cl:V.cl,
+   alb:(V.alb!==null&&!isNaN(V.alb))?(P.au==='gdl'?K.gdlToGl(V.alb):V.alb):V.alb,lac:V.lac};
+  if(V.agref!==null)inp.agRef=V.agref;
+  Object.keys(inp).forEach(function(k){if(inp[k]===null)delete inp[k]});
+  return{V:V,inp:inp};
+ }
+
+ /* ---- расчёт и вывод ---- */
+ var last=null;
+ function calc(){
+  var r=read(),V=r.V,msg=$('msg');
+  IDS.forEach(function(id){$(id).classList.remove('err')});
+  var miss=[];if(V.ph===null)miss.push('pH');if(V.pco2===null)miss.push('pCO₂');if(V.hco3===null)miss.push('HCO₃⁻');
+  var bad=IDS.filter(function(id){return V[id]!==null&&isNaN(V[id])});
+  if(bad.length){bad.forEach(function(id){$(id).classList.add('err')});msg.className='hint err';msg.textContent='Проверь число в выделенном поле';hide();return}
+  if(miss.length){msg.className='hint';msg.textContent=(miss.length===3?'Введи pH, pCO₂ и HCO₃⁻':'Ещё нужно: '+miss.join(', '));hide();return}
+  var out=K.analyze(r.inp);
+  if(!out.ok){msg.className='hint err';msg.textContent=out.errors[0].m;var map={ph:'ph',pco2:'pco2',hco3:'hco3',na:'na',cl:'cl',alb:'alb',lac:'lac',agRef:'agref'};out.errors.forEach(function(e){var el=$(map[e.f]);if(el)el.classList.add('err')});hide();return}
+  msg.textContent='';msg.className='hint';
+  var hasNa=r.inp.na!==undefined,hasCl=r.inp.cl!==undefined;
+  if(hasNa!==hasCl){msg.className='hint';msg.textContent='Для анионного разрыва нужны оба: Na⁺ и Cl⁻'}
+  last={out:out,inp:r.inp};
+  render(out);
+ }
+ function hide(){$('res').hidden=true;last=null}
+ function tile(label,val,state,txt){return'<div class="tile '+state+'"><b>'+val+'</b><span>'+label+'</span><em>'+txt+'</em></div>'}
+ function st(flag){return flag==='low'?['bad','ниже нормы']:flag==='high'?['bad','выше нормы']:['ok','в норме']}
+ function render(out){
+  var cls=(out.headline==='Нарушений КЩС не выявлено')?'ok':(out.headline==='Пограничные значения'||out.headline==='Газы в норме, но АР повышен')?'warn':'bad';
+  var h='<div class="k">'+esc(out.headline)+'</div><div class="t">'+esc(out.headline2||(cls==='ok'?'Показатели в пределах нормы':'Значения на границе нормы'))+'</div><ul>';
+  out.list.forEach(function(x){h+='<li><span class="dot '+x.l+'"></span><span>'+esc(x.t)+'</span></li>'});
+  h+='</ul>';
+  if(out.warnings.length)h+='<div class="warns">'+out.warnings.map(function(w){return'⚠ '+esc(w)}).join('<br>')+'</div>';
+  var v=$('verd');v.className='verdict '+cls;v.innerHTML=h;
+  var pc=out.input.pco2,t='';
+  var a=st(out.flags.ph),b=st(out.flags.pco2),c=st(out.flags.hco3);
+  t+=tile('pH',fmt(out.input.ph,2),a[0],a[1])+tile('pCO₂, мм рт. ст.',fmt(pc,0),b[0],b[1])+tile('HCO₃⁻',fmt(out.input.hco3,1),c[0],c[1]);
+  if(out.ag)t+=tile('АР'+(out.ag.corr>0?' (скорр.)':''),fmt(out.ag.agc,1),out.ag.neg?'warn':out.ag.high?'bad':'ok',out.ag.neg?'отрицательный':out.ag.high?'повышен':'в норме');
+  else t+=tile('АР','—','nil','нужны Na, Cl');
+  $('tiles').innerHTML=t;
+  var s='';
+  out.steps.forEach(function(x,i){
+   var open=(x.level==='bad'||x.level==='warn')?' open':'';
+   s+='<details class="st '+x.level+'"'+open+'><summary><span class="n">'+(i+1)+'</span>'+esc(x.title)+'</summary><div class="sb"><p class="what">'+esc(x.what)+'</p>'+(x.calc?'<div class="calc">'+esc(x.calc)+'</div>':'')+'<p class="res">'+esc(x.text)+'</p>'+(x.note?'<p class="note">'+esc(x.note)+'</p>':'')+'</div></details>';
+  });
+  $('steps').innerHTML=s;
+  var cc='';out.causes.forEach(function(c){cc+='<h3 style="margin-top:10px;font-size:15px">'+esc(c.t)+'</h3><ul>'+c.i.map(function(i){return'<li>'+esc(i)+'</li>'}).join('')+'</ul>'});
+  cc+='<p class="cap">Перечень ориентировочный и неполный. Причина определяется по клинике и дообследованию.</p>';
+  $('causes').innerHTML=cc;$('causesCard').hidden=!out.causes.length;
+  $('res').hidden=false;
+ }
+
+ /* ---- примеры, очистка, копирование ---- */
+ var ex=$('exs');
+ K.examples.forEach(function(e){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=e.name;b.onclick=function(){load(e)};ex.appendChild(b)});
+ function put(id,x){$(id).value=(x===undefined||x===null)?'':fmt(x,x%1?(Math.abs(x*10%1)>1e-9?2:1):0).replace('−','-')}
+ function load(e){
+  P.s=e.sample||'a';P.pu='mmhg';P.au='gl';saveP();paint();
+  put('ph',e.ph);$('ph').value=fmt(e.ph,2);put('pco2',e.pco2);put('hco3',e.hco3);put('na',e.na);put('cl',e.cl);put('alb',e.alb);put('lac',e.lac);
+  calc();var r=$('res');if(!r.hidden)r.scrollIntoView({behavior:'smooth',block:'start'});tick();
+ }
+ $('clr').onclick=function(){IDS.slice(0,7).forEach(function(id){$(id).value=''});calc();window.scrollTo(0,0);tick()};
+ var tt;function toast(m){var e=$('toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){e.classList.remove('on')},1800)}
+ $('copy').onclick=function(){
+  if(!last)return;var o=last.out,i=last.inp;
+  var tx=['КЩС ('+o.ref.name+' кровь)','pH '+fmt(i.ph,2)+'; pCO₂ '+fmt(i.pco2,0)+' мм рт. ст.; HCO₃⁻ '+fmt(i.hco3,1)+' ммоль/л'+(o.ag?'; АР '+fmt(o.ag.agc,1):''),'Итог: '+o.headline+(o.headline2?' — '+o.headline2:'')];
+  o.list.forEach(function(x){tx.push('• '+x.t)});tx.push('Справочный расчёт, требует проверки врачом.');
+  var s=tx.join('\n');
+  try{navigator.clipboard.writeText(s).then(function(){toast('Скопировано')},function(){toast('Не удалось скопировать')})}catch(e){toast('Не удалось скопировать')}
+ };
+
+ /* ---- вкладки ---- */
+ function show(v){var c=v==='calc';$('vcalc').hidden=!c;$('vref').hidden=c;$('tcalc').classList.toggle('on',c);$('tref').classList.toggle('on',!c);$('tcalc').setAttribute('aria-selected',c);$('tref').setAttribute('aria-selected',!c);window.scrollTo(0,0)}
+ $('tcalc').onclick=function(){show('calc')};$('tref').onclick=function(){show('ref')};
+
+ /* ---- Telegram ---- */
+ var W=window.Telegram&&window.Telegram.WebApp,hasTg=!!(W&&W.initData);
+ function sf(f){try{return f()}catch(e){}}
+ function tick(){if(hasTg)sf(function(){W.HapticFeedback.selectionChanged()})}
+ paint();calc();
+ if(!hasTg)return;
+ sf(function(){W.ready()});sf(function(){W.expand()});sf(function(){W.disableVerticalSwipes()});
+ function theme(){var t;try{t=localStorage.getItem('ekg-theme')}catch(e){}t=t||W.colorScheme||'light';document.documentElement.dataset.theme=t;var c=t==='dark'?'#0f141c':'#f4f6fb';sf(function(){W.setHeaderColor(c)});sf(function(){W.setBackgroundColor(c)});sf(function(){W.setBottomBarColor(c)})}
+ theme();W.onEvent('themeChanged',theme);
+ $('bk').style.display='none';
+ sf(function(){W.BackButton.show();W.BackButton.onClick(function(){if(!$('vref').hidden)show('calc');else location.href='../'})});
+ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="http"]');if(!a)return;e.preventDefault();sf(function(){W.openLink(a.href)})},true);
+})();
+</script>
+</body></html>
